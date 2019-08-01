@@ -42,5 +42,6 @@
  
   <mappers>
   	<mapper resource="mappers/HairMapper.xml"/>
+  	<mapper resource="mappers/DesignerMapper.xml"/>
   </mappers>
 </configuration>
