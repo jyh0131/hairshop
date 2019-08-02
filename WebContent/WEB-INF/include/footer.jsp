@@ -7,6 +7,7 @@
 		width: 1080px;
 		margin:0 auto;
 		position: relative;
+		clear: both;
 	}
 	footer p{
 		height: 

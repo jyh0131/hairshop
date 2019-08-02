@@ -12,12 +12,18 @@
 		width: 70%;
 		margin: 0 auto;
 	}
+	#hairByAll{
+		width: 80%;
+		margin:0 auto;
+		margin-right: 10px;
+		background-color: yellow;
+	}
 	.hair{
 		float:left;
 		width: 230px;
 		padding:10px;
 	}
-	img{
+	section img{
 		width: 175px;
 		height:261px;
 	}
@@ -72,7 +78,7 @@
 		</ul>
 	</div>
 	
-	
+	<div id="hairByAll">
 	<!-- 커트사진 -->	
 	<div id="cut">
 		<div class="hair">
@@ -320,7 +326,7 @@
 			<p>Midnight Blue</p>
 		</div>
 	</div>
-
+	</div>
 
 
 
