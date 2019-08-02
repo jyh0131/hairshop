@@ -23,7 +23,6 @@ public class ReserveHandler implements CommandHandler{
 			sqlSession = MyBatisSqlSessionFactory.openSession();
 			DesignerMapper dao = new DesignerMapperImpl();
 			List<Designer> dList=dao.selectDesignerByAll();
-			System.out.println(dList.size());
 			req.setAttribute("dList", dList);
 			return "/WEB-INF/view/reserve/reserve.jsp";
 		}catch (Exception e) {
