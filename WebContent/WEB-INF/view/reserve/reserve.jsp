@@ -80,7 +80,7 @@ section article#border div#form div#calendar img#right {
 section article#border div#form div#calendar img {
 	width: 20px;
 	height: 20px;
-}
+}    
 
 section article#border div#form div#calendar tr#date {
 	
@@ -184,6 +184,9 @@ section article#border div#form div#calendar td {
 												alert("장바구니에 담았습니다.");
 											} else {
 												alert("장바구니에 담을수 없습니다.");
+												
+												
+												
 											}
 										}
 									})
