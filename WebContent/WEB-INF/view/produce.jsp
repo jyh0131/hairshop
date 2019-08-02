@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%-- <%@ include file="../include/header.jsp" %> --%>
+<%@ include file="../include/header.jsp" %>
+<link href="https://fonts.googleapis.com/css?family=Cutive+Mono&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Sunflower:300&display=swap" rel="stylesheet">
 <style>
 	h3{
 		text-align: center;
@@ -14,6 +16,7 @@
 	}
 	#explain{
 		margin-bottom: 40px;
+		font-family: 'Sunflower', sans-serif;
 	}
 	#table1{
 		background-color: #EAEAEA;
@@ -21,26 +24,37 @@
 	table{
 		border: none;
 		padding: 10px 0 10px 20px;
+		font-family: 'Sunflower', sans-serif;
 	}
 	#chahongimg{
 		margin-top: 40px;
 		padding-left: 50px;
 	}
 	#designer{
-
-		margin-top: 40px;
 		padding-left:40px;
 		width: 100%;
 		margin:0 auto;
-		
 	}
 	.designerArticle{
 		float:left;
 		width:20%;
 		padding: 20px;
+		overflow: hidden;
 	}
 	.designerArticle p{
 		font-size: 14px;
+		color:#ccc;
+	}
+	#staff{
+		margin-top:40px;
+		width: 100%;
+		height:50px;
+		color:#ccc;
+	}
+	#staff #stafftext{
+		text-align: center;
+		font-family: 'Cutive Mono', monospace;
+		font-size: 15px;
 		color:#ccc;
 	}
 </style>
@@ -75,22 +89,44 @@
 	<div>
 		<img src="../images/etc/chahong.png" id="chahongimg">
 	</div>
+	<div id="staff">
+		――――――――――――――――――――――――――――――――― <span id="stafftext">Staff</span> ―――――――――――――――――――――――――――――――――
+	</div>
 	<div id="designer">
 		<div class="designerArticle">
 			<img src="../images/designer/hanps.png">
 			<p>한필수 원장</p>
+			<p class="profile">Designer.profile</p><!-- 마우스오버 나타나도록.클릭시  -->
 		</div>
 		<div class="designerArticle">
 			<img src="../images/designer/gosy.png">
 			<p>고선영 실장</p>
+			<p class="profile">Designer.profile</p>
 		</div>
 		<div class="designerArticle">
 			<img src="../images/designer/hanyl.png">
 			<p>한상아 실장</p>
+			<p class="profile">Designer.profile</p>
 		</div>
 		<div class="designerArticle">
 			<img src="../images/designer/jangsy.png">
 			<p>장소연 디자이너</p>
+		</div>
+		<div class="designerArticle">
+			<img src="../images/designer/anjh.png">
+			<p>안장희 디자이너</p>
+		</div>
+		<div class="designerArticle">
+			<img src="../images/designer/anjh.png">
+			<p>안장희 디자이너</p>
+		</div>
+		<div class="designerArticle">
+			<img src="../images/designer/anjh.png">
+			<p>안장희 디자이너</p>
+		</div>
+		<div class="designerArticle">
+			<img src="../images/designer/anjh.png">
+			<p>안장희 디자이너</p>
 		</div>
 		<div class="designerArticle">
 			<img src="../images/designer/jungjw.png">
@@ -100,15 +136,10 @@
 			<img src="../images/designer/kimgb.png">
 			<p>김가빈 디자이너</p>
 		</div>
-		<div class="designerArticle">
-			<img src="../images/designer/anjh.png">
-			<p>안장희 디자이너</p>
-		</div>
 	</div>
 
 
 
 
 </section>
-<%-- <%@ include file="../include/footer.jsp" %>
- --%>
+<%@ include file="../include/footer.jsp" %>
