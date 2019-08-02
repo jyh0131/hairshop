@@ -9,7 +9,7 @@
 	</settings>
 	
 	<typeAliases>
-		<package name="kr.yi.hairshop.model"/>
+		<package name="kr.yi.hairshop.dto"/>
 	</typeAliases>
     
   <environments default="development">
@@ -41,7 +41,6 @@
   </environments>
  
   <mappers>
-  	<mapper resource="mappers/HairMapper.xml"/>
-  	<mapper resource="mappers/DesignerMapper.xml"/>
+  	<package name="kr.yi.hairshop.dao"/>
   </mappers>
 </configuration>

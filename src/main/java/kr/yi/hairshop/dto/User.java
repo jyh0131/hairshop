@@ -1,4 +1,4 @@
-package kr.yi.hairshop.model;
+package kr.yi.hairshop.dto;
 
 public class User {
 	private int mNo;
