@@ -8,11 +8,11 @@ section {
 	margin: 0 auto;
 }
 
-section ul {
+section ul#designer {
 	list-style: none;
 }
 
-section ul li {
+section ul#designer li {
 	line-height: 50px;
 	width: 150px;
 	height: 50px;
@@ -58,7 +58,7 @@ section article#border div#form div#calendar img#left {
 }
 section article#border div#form div#calendar img#right {
 	top:0px;
-	rigth:0px;
+	rigth:-50px;
 	position: absolute;
 }
 section article#border div#form div#calendar img {
@@ -123,6 +123,8 @@ section article#border div#form div#calendar td{
 	$(function() {
 		var date = new Date();
 		calendar(date.getFullYear(), date.getMonth());
+		$("#designer li").eq(0).click();
+		
 		
 		$(document).on('click','#left',function() {
 			var str=$("#calendar h1").text();
@@ -165,15 +167,24 @@ section article#border div#form div#calendar td{
 			
 		})
 		
+		$("#designer li").click(function() {
+			alert($(this).text());
+			
+			var date = new Date();
+			calendar(date.getFullYear(), date.getMonth());
+			designer=$(this).text();
+			
+		})
+		
 	})
 </script>
 <section>
 	<h1>예약하기</h1>
+	<ul id="designer">
 	<c:forEach var="list" items="${dList}">
-		<ul>
-			<li>${list.dName }</li>
-		</ul>
+		<li>${list.dName }</li>
 	</c:forEach>
+	</ul>
 	<article id="border">
 		<div id="form">
 			
