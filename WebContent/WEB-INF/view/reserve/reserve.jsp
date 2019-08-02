@@ -7,6 +7,9 @@ section {
 	width: 1050px;
 	margin: 0 auto;
 }
+section h1#title{
+	clear: both;
+}
 
 section ul#designer {
 	list-style: none;
@@ -169,9 +172,10 @@ section article#border div#form div#calendar td{
 		
 		$("#designer li").click(function() {
 			alert($(this).text());
-			
+			$("#designer").css("background-color","#f5f5f5");
 			var date = new Date();
 			calendar(date.getFullYear(), date.getMonth());
+			$(this).css("background-color","white")
 			designer=$(this).text();
 			
 		})
@@ -179,7 +183,7 @@ section article#border div#form div#calendar td{
 	})
 </script>
 <section>
-	<h1>예약하기</h1>
+	<h1 id="title">예약하기</h1>
 	<ul id="designer">
 	<c:forEach var="list" items="${dList}">
 		<li>${list.dName }</li>
