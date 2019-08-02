@@ -54,7 +54,25 @@
 		line-height: 30px;
 		text-decoration: none;
 		color: black;
-
+	}
+	
+	header .mymenu{
+		width: 120px;
+		height: 40px;
+		background-color: gray;
+		
+		position: absolute;
+		display: inline;
+		top:30px;
+		right:10px;
+		text-align: center;
+	}
+	header .mymenu a{
+		text-decoration: none;
+		color: white;
+		font-weight: bold;
+		line-height: 40px;
+		
 	}
 
 
@@ -71,13 +89,23 @@
 			
 			<div id="Idcheck">
 				<c:if test="${Auth != null }">
-					<span><a href="${pageContext.request.contextPath}/cart/list.do">${Auth.uId}</a>님 반갑습니다</span>
+					<span><a href="${pageContext.request.contextPath}/member/mypage.do">${Auth.uId}</a>님 반갑습니다</span>
 					<span><a href="${pageContext.request.contextPath}/member/logout.do">{로그아웃}</a></span>
 				</c:if>
 				<c:if test="${Auth == null }">
 					<span><a href="${pageContext.request.contextPath}/member/login.do">{로그인}</a></span>
 					<span><a href="${pageContext.request.contextPath}/member/join.do">{회원가입}</a></span>
-				</c:if>				
+				</c:if>
+			</div>
+			
+			<div id="loginMenu">
+				<c:if test="${Auth.uIsMgr == true }">
+					<span class="mymenu"><a href="${pageContext.request.contextPath}/member/mgn.do">관리자 페이지</a></span>
+				</c:if>
+				<c:if test="${Auth.uIsMgr == false }">
+					<span class="mymenu"><a href="${pageContext.request.contextPath}/member/mypage.do">마이 페이지</a></span>
+				</c:if>
+				
 			</div>
 			
 			<div id="topmenu">
