@@ -11,4 +11,7 @@ public interface GuestMapper {
 	public int updateGuest(Guest guest);
 	public void deleteGuest(int getgNo);
 	public int insertGuestByWorkMain(Guest guest);
+	
+	/*web project 용*/
+	public Guest selectById(String id);
 }

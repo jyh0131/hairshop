@@ -1,42 +1,48 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ include file="../include/header.jsp" %>
+<%@ include file="../../include/header.jsp" %>
 
-
-<link rel="stylesheet" type="text/css" href="css/common.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css">
 <style>
-	#loginform{
-		width: 960px;
+	#joinForm{
+		width:1080px;
 		margin: 0 auto;
 	}
-	#logoDiv{
-		text-align: center;
-	}
-	form{
-		font-size: 16px;
+	#joinForm form{
+		font-size: 14px;
 		border: none;
 	}
-	fieldset{
+	#joinForm fieldset{
 		width: 960px;
+		height: 
 	}
-	.req{
+	#joinForm fieldset p{
+		padding-left: 100px;
+		margin: 15px;
+	}
+	#joinForm .error{
+		font-size: 13px;
+		
+	}
+	#joinForm .req{
 		color: red;
 		font-size: 20px;
 	}
-	.input{
+	#joinForm .input{
 		width: 300px;
 		height: 60px;
 	}
-	label{
+	#joinForm label{
 		line-height: 60px;
 		width: 150px;
+		float: left;
 	}
 	
 
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="js/common.js"></script>
+<script src="${pageContext.request.contextPath}/js/common_kyg.js"></script>
 <script>
 
 	$(function () {
@@ -100,14 +106,10 @@
 
 </script>
 
-<section>
+<section id="joinForm">
 
-	<div id="loginform">
-		<div id="logoDiv">
-			<img src="images/logo.png">
-		</div>
 
-		<form action="join.do" method="post" id="f1">
+		<form action="${pageContext.request.contextPath}/member/join.do" method="post" id="f1">
 			<fieldset>
 				<legend>회원 가입</legend>
 				<p><span>(<span class="req">*</span>)</span>는 필수 입니다</p>
@@ -154,11 +156,11 @@
 			</fieldset>
 		
 		</form>
-		
+
 </section>
 
 
-<%@ include file="../include/footer.jsp" %>
+<%@ include file="../../include/footer.jsp" %>
 
 
 

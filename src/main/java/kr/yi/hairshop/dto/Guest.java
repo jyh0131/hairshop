@@ -153,11 +153,19 @@ public class Guest {
 	public void setgSecession(boolean gSecession) {
 		this.gSecession = gSecession;
 	}
-
+	
 	@Override
-	public String toString() { // 나모가 바꿈
-		return String.format("%s", gName);
+	public String toString() {
+		return String.format(
+				"Guest [gNo=%s, gId=%s, gPassword=%s, gLGrade=%s, gName=%s, gTel=%s, gEmail=%s, gBirth=%s, gJoin=%s, gPoint=%s, gMemo=%s, gSecession=%s, workDialogList=%s]",
+				gNo, gId, gPassword, gLGrade, gName, gTel, gEmail, gBirth, gJoin, gPoint, gMemo, gSecession,
+				workDialogList);
 	}
+	
+//	@Override
+//	public String toString() { // 나모가 바꿈
+//		return String.format("%s", gName);
+//	}
 	
 	public Object[] toArray() {
 		SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
