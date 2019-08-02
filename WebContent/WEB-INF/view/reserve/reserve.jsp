@@ -7,7 +7,8 @@ section {
 	width: 1050px;
 	margin: 0 auto;
 }
-section h1#title{
+
+section h1#title {
 	clear: both;
 }
 
@@ -15,16 +16,22 @@ section ul#designer {
 	list-style: none;
 }
 
+section ul#designer {
+	width: 100%;
+	height: 150px;
+	display: block;
+}
+
 section ul#designer li {
 	line-height: 50px;
 	width: 150px;
 	height: 50px;
 	text-align: center;
-	float: left;
-	background: #f5f5f5;
+	float: left; background : #f5f5f5;
 	margin: 2px;
 	border: 1px solid #dddddd;
 	cursor: pointer;
+	background: #f5f5f5;
 }
 
 section article#border {
@@ -37,54 +44,61 @@ section article#border {
 
 section article#border div#form {
 	background: white;
-	padding:20px;
+	padding: 20px;
 }
-section article#border div#form div#calendar{
+
+section article#border div#form div#calendar {
 	width: 450px;
 }
-section article#border div#form div#calendar table{
+
+section article#border div#form div#calendar table {
 	border-collapse: collapse;
-	width:450px;
+	width: 450px;
 }
+
 section article#border div#form div#calendar h1 {
-	background:#e9e9e9;
+	background: #e9e9e9;
 	font-size: 30px;
 	text-align: center;
-	margin-top:10px;
-	margin-bottom:10px;
+	margin-top: 10px;
+	margin-bottom: 10px;
 	position: relative;
 }
+
 section article#border div#form div#calendar img#left {
 	position: absolute;
-	top:0px;
-	left:0px;
+	top: 0px;
+	left: 0px;
 }
+
 section article#border div#form div#calendar img#right {
-	top:0px;
-	rigth:-50px;
+	top: 0px;
+	rigth: -50px;
 	position: absolute;
 }
+
 section article#border div#form div#calendar img {
 	width: 20px;
 	height: 20px;
 }
-section article#border div#form div#calendar tr#date{
+
+section article#border div#form div#calendar tr#date {
 	
 }
-section article#border div#form div#calendar td.day{
+
+section article#border div#form div#calendar td.day {
 	cursor: pointer;
 }
-section article#border div#form div#calendar td{
+
+section article#border div#form div#calendar td {
 	text-align: center;
-	width:60px;
+	width: 60px;
 	height: 20px;
 	margin: 2px;
 }
-
-
 </style>
 <script type="text/javascript">
-	var designer="";
+	var designer = "";
 	function calendar(year, month) {
 		var y = year;
 		var m = month;
@@ -121,80 +135,130 @@ section article#border div#form div#calendar td{
 		}
 		calendar += "</tr></table>";
 		$("#calendar").html(calendar);
+
 	}
-   
+
 	$(function() {
 		var date = new Date();
 		calendar(date.getFullYear(), date.getMonth());
-		$("#designer li").eq(0).click();
-		
-		
-		$(document).on('click','#left',function() {
-			var str=$("#calendar h1").text();
-			var year=str.slice(0,4);
-			var month=str.slice(str.indexOf(".")+1);
-			calendar(year,month-2);
-			       
+
+		$(document).on('click', '#left', function() {
+			var str = $("#calendar h1").text();
+			var year = str.slice(0, 4);
+			var month = str.slice(str.indexOf(".") + 1);
+			calendar(year, month - 2);
+
 		})
-		$(document).on('click','#right',function() {
-			var str=$("#calendar h1").text();
-			var year=str.slice(0,4);
-			var month=str.slice(str.indexOf(".")+1);
+		$(document).on('click', '#right', function() {
+			var str = $("#calendar h1").text();
+			var year = str.slice(0, 4);
+			var month = str.slice(str.indexOf(".") + 1);
 			console.log(year);
 			console.log(month);
-			calendar(year,month);
+			calendar(year, month);
 		})
-		
-		
-		$(document).on('click',".day",function(){
-			$(".day").css('background-color','white');
-			$(this).css('background-color','#fcfc90');
-			var str=$("#calendar h1").text();
-			var year=str.slice(0,4);
-			var day=$(this).text();
-			
-			$.ajax({
-				url:"${pageContext.request.contextPath }/reserve/designerChange.do",
-				type:"get",
-				data:{"pNo":pNo,"count":count},
-				dataType:"json",
-				success:function(json){
-					console.log(json)
-					if(json.success==true){
-						alert("장바구니에 담았습니다.");
-					}else{
-						alert("장바구니에 담을수 없습니다.");
-					}
-				}
-			})
-			
-		})
-		
+
+		$(document)
+				.on(
+						'click',
+						".day",
+						function() {
+							$(".day").css('background-color', 'white');
+							$(this).css('background-color', '#fcfc90');
+							var str = $("#calendar h1").text();
+							var year = str.slice(0, 4);
+							var day = $(this).text();
+
+							$
+									.ajax({
+										url : "${pageContext.request.contextPath }/reserve/designerChange.do",
+										type : "get",
+										data : {
+											"pNo" : pNo,
+											"count" : count
+										},
+										dataType : "json",
+										success : function(json) {
+											console.log(json)
+											if (json.success == true) {
+												alert("장바구니에 담았습니다.");
+											} else {
+												alert("장바구니에 담을수 없습니다.");
+											}
+										}
+									})
+
+						})
+
 		$("#designer li").click(function() {
 			alert($(this).text());
-			$("#designer").css("background-color","#f5f5f5");
+			$("#designer li").css("background-color", "#f5f5f5");
+			$("#designer li").css("border-top", "1px solid #dddddd");
+			$(this).css("border-top", "2px solid black");
+			$("#designer li").css("height", "50px")
+			$(this).css("height", "49px")
 			var date = new Date();
+			var day = date.getDate() + "";
+			$(this).css("background-color", "white")
+			designer = $(this).text();
 			calendar(date.getFullYear(), date.getMonth());
-			$(this).css("background-color","white")
-			designer=$(this).text();
-			
+
+			$("td").filter(function() {
+				return $(this).text() === day;
+			}).css("background-color", "#fcfc90");
+
 		})
-		
+
+		$("ul#designer li").eq(0).click();
 	})
 </script>
 <section>
 	<h1 id="title">예약하기</h1>
 	<ul id="designer">
-	<c:forEach var="list" items="${dList}">
-		<li>${list.dName }</li>
-	</c:forEach>
+		<c:forEach var="list" items="${dList}">
+			<li>${list.dName }${list.dGrade }</li>
+		</c:forEach>
 	</ul>
 	<article id="border">
 		<div id="form">
-			
+
 			<h3>날짜 선택</h3>
-			<div id="calendar">
-			</div>
+			<div id="calendar"></div>
+			<hr>
+			<h3>시간 선택</h3>
+			<table id="time">
+				<tr>
+					<td>08:00</td>
+					<td>09:30</td>
+					<td>10:00</td>
+					<td>10:30</td>
+					<td>11:00</td>
+					<td>11:30</td>
+					<td>12:00</td>
+					<td>12:30</td>
+					<td>13:00</td>
+					<td>13:30</td>
+					<td>14:00</td>
+					<td>14:30</td>
+					<td>15:00</td>
+					<td>15:30</td>
+					<td>16:00</td>
+					<td>16:30</td>
+					<td>17:00</td>
+					<td>17:30</td>
+					<td>18:00</td>
+					<td>18:30</td>
+					<td>19:00</td>
+					<td>19:30</td>
+					<td>20:00</td>
+					<td>20:30</td>
+					<td>21:00</td>
+					<td>21:30</td>
+					<td>22:00</td>
+					<td>22:30</td>
+					<td>23:00</td>
+				</tr>
+			</table>
 		</div>
 
 	</article>
