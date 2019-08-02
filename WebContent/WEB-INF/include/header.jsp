@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/common_kyg.css" type="text/css">
 <style>
 	*{
 		margin: 0;
@@ -14,25 +15,25 @@
 	}
 	header{
 		width: 1080px;
-		height: 200px;
+		height: 155px;
 		margin:0 auto;
-		background-color: lightgreen;
+		margin-top: 20px;
+		position: relative;
 	}
-	#title{
+	header #title{
 		text-align: center;
 	}
-	#title img{
-		width: 400px;
+	header #title img{
+		height: 90px;
 	}
->>>>>>> refs/heads/헤더
 	
-	#topmenu ul{
+	header #topmenu ul{
 		
 	}
-	#topmenu ul a{
+	header #topmenu ul a{
 		color: black;
 	}
-	#topmenu ul li{
+	header #topmenu ul li{
 		width: 180px;
 		height: 60px;
 		line-height: 60px;
@@ -42,13 +43,21 @@
 		display: inline-block;
 	}
 	
-	#Idcheck{
-		width:130px;
+	header #Idcheck{
+		width:230px;
 		height:30px;
-		position: relative;
+		position: absolute;
 		display: inline;
 		top:0;
-		right:100px;
+		right:0px;
+		text-align: right;
+		font-size: 13px;
+	}
+	header #Idcheck a{
+		line-height: 30px;
+		text-decoration: none;
+		color: black;
+
 	}
 
 
@@ -65,11 +74,12 @@
 			
 			<div id="Idcheck">
 				<c:if test="${Auth != null }">
-					<span><a href="${pageContext.request.contextPath}/cart/list.do">${Auth.uId}</a>님 반갑습니다, 로그인 되었습니다</span>
+					<span><a href="${pageContext.request.contextPath}/cart/list.do">${Auth.uId}</a>님 반갑습니다</span>
 					<span><a href="${pageContext.request.contextPath}/member/logout.do">{로그아웃}</a></span>
 				</c:if>
 				<c:if test="${Auth == null }">
 					<span><a href="${pageContext.request.contextPath}/member/login.do">{로그인}</a></span>
+					<span><a href="${pageContext.request.contextPath}/member/login.do">{회원가입}</a></span>
 				</c:if>				
 			</div>
 			
