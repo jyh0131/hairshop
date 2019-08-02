@@ -21,7 +21,7 @@ section ul#designer {
 	height: 150px;
 	display: block;
 }
-
+   
 section ul#designer li {
 	line-height: 50px;
 	width: 150px;
