@@ -73,35 +73,35 @@
 		</div>
 	</div>
 	<div>
-		<img src="images/chahong.png" id="chahongimg">
+		<img src="../images/etc/chahong.png" id="chahongimg">
 	</div>
 	<div id="designer">
 		<div class="designerArticle">
-			<img src="images/hanps.png">
+			<img src="../images/designer/hanps.png">
 			<p>한필수 원장</p>
 		</div>
 		<div class="designerArticle">
-			<img src="images/gosy.png">
+			<img src="../images/designer/gosy.png">
 			<p>고선영 실장</p>
 		</div>
 		<div class="designerArticle">
-			<img src="images/hanyl.png">
+			<img src="../images/designer/hanyl.png">
 			<p>한상아 실장</p>
 		</div>
 		<div class="designerArticle">
-			<img src="images/jangsy.png">
+			<img src="../images/designer/jangsy.png">
 			<p>장소연 디자이너</p>
 		</div>
 		<div class="designerArticle">
-			<img src="images/jungjw.png">
+			<img src="../images/designer/jungjw.png">
 			<p>정재우 디자이너</p>
 		</div>
 		<div class="designerArticle">
-			<img src="images/kimgb.png">
+			<img src="../images/designer/kimgb.png">
 			<p>김가빈 디자이너</p>
 		</div>
 		<div class="designerArticle">
-			<img src="images/anjh.png">
+			<img src="../images/designer/anjh.png">
 			<p>안장희 디자이너</p>
 		</div>
 	</div>

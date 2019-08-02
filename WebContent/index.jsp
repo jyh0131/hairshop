@@ -4,8 +4,8 @@
 <%@ include file="WEB-INF/include/header.jsp" %>
 <section>
 	
-<a href="${pageContext.request.contextPath}/hair/hair.do">헤어</a>
-
+<a href="${pageContext.request.contextPath}/view/hair.do">헤어</a><br>
+<a href="${pageContext.request.contextPath}/view/produce.do">소개</a><br>
 
 
 
