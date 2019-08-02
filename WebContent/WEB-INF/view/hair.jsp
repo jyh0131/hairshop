@@ -11,12 +11,12 @@
 	section{
 		width: 70%;
 		margin: 0 auto;
+		padding-top: 40px;
 	}
 	#hairByAll{
 		width: 80%;
 		margin:0 auto;
-		margin-right: 10px;
-		background-color: yellow;
+		padding-left: 160px;
 	}
 	.hair{
 		float:left;
