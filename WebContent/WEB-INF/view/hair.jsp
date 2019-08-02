@@ -30,57 +30,57 @@
 	
 	<div>
 		<a href="">
-			<img src="images/balloon.png">
+			<img src="../images/hair/balloon.png">
 		</a>
 	</div>	
 	<div>
 		<a href="">
-			<img src="images/build.png">
+			<img src="../images/hair/build.png">
 		</a>
 	</div>	
 	<div>
 		<a href="">
-			<img src="images/diann.png">
+			<img src="../images/hair/diann.png">
 		</a>
 	</div>	
 	<div>
 		<a href="">
-			<img src="images/egg.png">
+			<img src="../images/hair/egg.png">
 		</a>
 	</div>	
 	<div>
 		<a href="">
-			<img src="images/feminine.png">
+			<img src="../images/hair/feminine.png">
 		</a>
 	</div>	
 	<div>
 		<a href="">
-			<img src="images/hug.png">
+			<img src="../images/hair/hug.png">
 		</a>
 	</div>	
 	<div>
 		<a href="">
-			<img src="images/hush.png">
+			<img src="../images/hair/hush.png">
 		</a>
 	</div>	
 	<div>
 		<a href="">
-			<img src="images/rain.png">
+			<img src="../images/hair/rain.png">
 		</a>
 	</div>	
 	<div>
 		<a href="">
-			<img src="images/ruffle.png">
+			<img src="../images/hair/ruffle.png">
 		</a>
 	</div>	
 	<div>
 		<a href="">
-			<img src="images/sand.png">
+			<img src="../images/hair/sand.png">
 		</a>
 	</div>	
 	<div>
 		<a href="">
-			<img src="images/tassel.png">
+			<img src="../images/hair/tassel.png">
 		</a>
 	</div>
 
