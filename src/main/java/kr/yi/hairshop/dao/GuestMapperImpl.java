@@ -61,6 +61,13 @@ public class GuestMapperImpl implements GuestMapper {
 		}
 	}
 
+	@Override
+	public Guest selectById(String id) {
+		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
+			return sqlSession.selectOne(namespace + ".selectById", id);
+		}
+	}
+
 
 	
 }

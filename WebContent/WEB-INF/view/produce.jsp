@@ -3,20 +3,20 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="../include/header.jsp" %>
 <link href="https://fonts.googleapis.com/css?family=Cutive+Mono&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Sunflower:300&display=swap" rel="stylesheet">
 <style>
 	h3{
 		text-align: center;
 		color:gray;
 		margin-bottom: 40px;
+		margin-top:40px;
 	}
 	section{
-		width: 60%;
+		width: 50%;
 		margin:0 auto;
 	}
 	#explain{
 		margin-bottom: 40px;
-		font-family: 'Sunflower', sans-serif;
+
 	}
 	#table1{
 		background-color: #EAEAEA;
@@ -24,22 +24,22 @@
 	table{
 		border: none;
 		padding: 10px 0 10px 20px;
-		font-family: 'Sunflower', sans-serif;
+	
 	}
 	#chahongimg{
 		margin-top: 40px;
-		padding-left: 50px;
+		width: 950px;
 	}
 	#designer{
-		padding-left:40px;
+		
 		width: 100%;
 		margin:0 auto;
 	}
 	.designerArticle{
 		float:left;
 		width:20%;
-		padding: 20px;
-		overflow: hidden;
+		height:300px;
+		padding: 20px 20px 60px 20px;
 	}
 	.designerArticle p{
 		font-size: 14px;
@@ -57,6 +57,12 @@
 		font-size: 15px;
 		color:#ccc;
 	}
+	.profile a{
+		text-decoration
+		font-weight: bold;
+	}
+		
+	
 </style>
 <section>
 
@@ -90,13 +96,13 @@
 		<img src="../images/etc/chahong.png" id="chahongimg">
 	</div>
 	<div id="staff">
-		――――――――――――――――――――――――――――――――― <span id="stafftext">Staff</span> ―――――――――――――――――――――――――――――――――
+		――――――――――――――――――――――――――― <span id="stafftext">Staff</span> ――――――――――――――――――――――――――――
 	</div>
 	<div id="designer">
-		<div class="designerArticle">
+		<div class="designerArticle" id="han">
 			<img src="../images/designer/hanps.png">
 			<p>한필수 원장</p>
-			<p class="profile">Designer.profile</p><!-- 마우스오버 나타나도록.클릭시  -->
+			<p class="profile"><a href="">Director.profile</a></p><!-- 마우스오버 나타나도록.클릭시  -->
 		</div>
 		<div class="designerArticle">
 			<img src="../images/designer/gosy.png">
@@ -117,20 +123,12 @@
 			<p>안장희 디자이너</p>
 		</div>
 		<div class="designerArticle">
-			<img src="../images/designer/anjh.png">
-			<p>안장희 디자이너</p>
-		</div>
-		<div class="designerArticle">
-			<img src="../images/designer/anjh.png">
-			<p>안장희 디자이너</p>
-		</div>
-		<div class="designerArticle">
-			<img src="../images/designer/anjh.png">
-			<p>안장희 디자이너</p>
-		</div>
-		<div class="designerArticle">
 			<img src="../images/designer/jungjw.png">
 			<p>정재우 디자이너</p>
+		</div>
+		<div class="designerArticle">
+			<img src="../images/designer/juran.png">
+			<p>주란 디자이너</p>
 		</div>
 		<div class="designerArticle">
 			<img src="../images/designer/kimgb.png">
@@ -139,7 +137,32 @@
 	</div>
 
 
-
-
 </section>
 <%@ include file="../include/footer.jsp" %>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js">
+</script>
+<script>
+	$(function(){
+		$("#han").mouseover(function(){
+			$("#han").addClass("profile");
+			
+		})
+		
+		$("#han").hover(function(){
+			$("#han").$("#profile")text("마우스");
+		})
+	})
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
