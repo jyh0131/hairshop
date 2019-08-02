@@ -9,6 +9,7 @@ public class HairHandler implements CommandHandler {
 
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		
 		return "/WEB-INF/view/hair.jsp";
 	}
 	

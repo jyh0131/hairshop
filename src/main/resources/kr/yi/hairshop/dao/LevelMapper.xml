@@ -32,7 +32,7 @@
 		WHERE l_grade=#{lGrade};
 	</delete>
 	<!-- <resultMap type="Level" id="extendsLevel" extends="basicLevel"> <collection 
-		property="guestList" resultMap="kr.or.yi.hairshop.dao.GuestMapper.basicGuest"></collection> 
+		property="guestList" resultMap="kr.yi.hairshop.dao.GuestMapper.basicGuest"></collection> 
 		</resultMap> -->
 
 </mapper>

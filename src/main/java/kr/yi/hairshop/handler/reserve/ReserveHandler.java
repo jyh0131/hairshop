@@ -17,21 +17,22 @@ public class ReserveHandler implements CommandHandler{
 
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
-SqlSession sqlSession = null;
+		SqlSession sqlSession = null;
 		
 		try {
 			sqlSession = MyBatisSqlSessionFactory.openSession();
 			DesignerMapper dao = new DesignerMapperImpl();
 			List<Designer> dList=dao.selectDesignerByAll();
-			
-			
+			System.out.println(dList.size());
+			req.setAttribute("dList", dList);
+			return "/WEB-INF/view/reserve/reserve.jsp";
 		}catch (Exception e) {
 			e.printStackTrace();
 		}finally {
 			sqlSession.close();
 		}
 		
-		return "/WEB-INF/view/reserve/reserve.jsp";
+		return null;
 	}
 
 }

@@ -9,6 +9,6 @@
 		<result property="tDate" column="t_date" />
 	</resultMap>
 	<!-- <resultMap type="Tax" id="extendsTax" extends="basicTax">
-		<association property="tPName" resultMap="kr.or.yi.hairshop.dao.ProductMapper.resultProduct"/>
+		<association property="tPName" resultMap="kr.yi.hairshop.dao.ProductMapper.resultProduct"/>
 	</resultMap> -->
 </mapper>

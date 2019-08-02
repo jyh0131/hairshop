@@ -9,7 +9,7 @@
 		<result property="eSale" column="e_sale" />
 	</resultMap>
 	<!-- <resultMap type="Event" id="extendsEvent" extends="basicEvent">
-		<collection property="workDialogList" resultMap="kr.or.yi.hairshop.dao.WorkDialogMapper.extendsWorkDialog" />
+		<collection property="workDialogList" resultMap="kr.yi.hairshop.dao.WorkDialogMapper.extendsWorkDialog" />
 	</resultMap> -->
 	
 	<select id="selectEventByAll" resultType="Event">

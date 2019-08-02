@@ -4,8 +4,8 @@
 
 	<resultMap type="Guest" id="extendsGuest"
 		extends="basicGuest">
-		<association property="gLGrade"	resultMap="kr.or.yi.hairshop.dao.LevelMapper.basicLevel" />
-		<collection property="workDialogList" resultMap="kr.or.yi.hairshop.dao.WorkDialogMapper.basicWorkDialog" />
+		<association property="gLGrade"	resultMap="kr.yi.hairshop.dao.LevelMapper.basicLevel" />
+		<collection property="workDialogList" resultMap="kr.yi.hairshop.dao.WorkDialogMapper.basicWorkDialog" />
 	</resultMap>
 
 	<resultMap type="Guest" id="basicGuest">
