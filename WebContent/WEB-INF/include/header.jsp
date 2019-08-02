@@ -15,7 +15,7 @@
 	}
 	header{
 		width: 1080px;
-		height: 300px;
+		height: 200px;
 		margin:0 auto;
 		background-color: lightgreen;
 	}
@@ -30,7 +30,7 @@
 		
 	}
 	#topmenu ul a{
-		
+		color: black;
 	}
 	#topmenu ul li{
 		width: 180px;
@@ -44,11 +44,11 @@
 	
 	#Idcheck{
 		width:130px;
-		height:80px;
+		height:30px;
 		position: relative;
-		display: inline-block;
+		display: inline;
 		top:0;
-		right:0;
+		right:100px;
 	}
 
 
