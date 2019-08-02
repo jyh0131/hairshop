@@ -8,6 +8,7 @@
 		width: 1900px;
 		margin:0 auto;
 		height: 593px;
+		position: static;
 	}
 	.wrap_home img{
 		width:1900px;
