@@ -79,7 +79,7 @@
 				</c:if>
 				<c:if test="${Auth == null }">
 					<span><a href="${pageContext.request.contextPath}/member/login.do">{로그인}</a></span>
-					<span><a href="${pageContext.request.contextPath}/member/login.do">{회원가입}</a></span>
+					<span><a href="${pageContext.request.contextPath}/member/join.do">{회원가입}</a></span>
 				</c:if>				
 			</div>
 			
