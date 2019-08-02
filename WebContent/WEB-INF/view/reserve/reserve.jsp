@@ -20,14 +20,15 @@ section ul#designer {
 	width: 100%;
 	height: 150px;
 	display: block;
-}   
-   
+}
+
 section ul#designer li {
 	line-height: 50px;
-	width: 150px;
+	width: 140px;
 	height: 50px;
 	text-align: center;
-	float: left; background : #f5f5f5;
+	float: left;
+	background: #f5f5f5;
 	margin: 2px;
 	border: 1px solid #dddddd;
 	cursor: pointer;
@@ -38,12 +39,15 @@ section article#border {
 	clear: both;
 	background: #ebebeb;
 	padding: 25px;
-	padding-left: 100px;
-	padding-right: 100px;
+	width: 960px; 
+	padding-left : 100px;
+	padding-right: 50px;
+	padding-left: 50px;
 }
 
 section article#border div#form {
 	background: white;
+	width:450px;
 	padding: 20px;
 }
 
@@ -80,8 +84,13 @@ section article#border div#form div#calendar img#right {
 section article#border div#form div#calendar img {
 	width: 20px;
 	height: 20px;
-}    
-
+}
+section article#border td {
+	text-align: center;
+	width: 60px;
+	height: 30px;
+	line-height: 30px;
+}
 section article#border div#form div#calendar tr#date {
 	
 }
@@ -90,15 +99,41 @@ section article#border div#form div#calendar td.day {
 	cursor: pointer;
 }
 
-section article#border div#form div#calendar td {
-	text-align: center;
-	width: 60px;
-	height: 20px;
-	margin: 2px;
+section article#border table#time td {
+	float: left;
+	border: 1px solid black;
+	margin: 1px;
 }
+
+section article#border table#time {
+	border-collapse: collapse;
+	width: 450px;
+	height: 100px;
+}
+section article#border table#item td {
+	width: 100px;
+	height:40px;
+	line-height:40px;
+	float: left;      
+	border: 1px solid black;
+	margin: 1px;
+}
+
+section article#border div#guest{
+	
+	
+}
+section article#border div#guest img{
+	width:298px;
+	height: 200px;
+}
+
 </style>
 <script type="text/javascript">
 	var designer = "";
+	var time="";
+	var hair="";
+	
 	function calendar(year, month) {
 		var y = year;
 		var m = month;
@@ -158,41 +193,45 @@ section article#border div#form div#calendar td {
 			calendar(year, month);
 		})
 
-		$(document)
-				.on(
-						'click',
-						".day",
-						function() {
-							$(".day").css('background-color', 'white');
-							$(this).css('background-color', '#fcfc90');
-							var str = $("#calendar h1").text();
-							var year = str.slice(0, 4);
-							var day = $(this).text();
+		$(document).on('click',".day",function() {
+			$(".day").css('background-color', 'white');
+			$(this).css('background-color', '#fcfc90');
+			var str = $("#calendar h1").text();
+			var year = str.slice(0, 4);
+			var day = $(this).text();
 
-							$
-									.ajax({
-										url : "${pageContext.request.contextPath }/reserve/designerChange.do",
-										type : "get",
-										data : {
-											"pNo" : pNo,
-											"count" : count
-										},
-										dataType : "json",
-										success : function(json) {
-											console.log(json)
-											if (json.success == true) {
-												alert("장바구니에 담았습니다.");
-											} else {
-												alert("장바구니에 담을수 없습니다.");
-												
-												
-												
-											}
-										}
-									})
+			$.ajax({
+				url : "${pageContext.request.contextPath }/reserve/designerChange.do",
+				type : "get",
+				data : {
+							"pNo" : pNo,
+							"count" : count
+						},
+				dataType : "json",
+				success : function(json) {
+					console.log(json)
+					if (json.success == true) {
+						alert("장바구니에 담았습니다.");
+					} else {
+						alert("장바구니에 담을수 없습니다.");
 
-						})
+					}
+				}
+			})
 
+		})
+		
+		$("#time tr td").click(function() {
+			$("#time tr td").css("background-color","white");
+			$(this).css("background-color","#fcfc90");
+			time=$(this).text();
+		})
+		$("#item tr td").click(function() {
+			$("#item tr td").css("background-color","white");
+			$(this).css("background-color","#fcfc90");
+			hair=$(this).text();         
+		})
+		
 		$("#designer li").click(function() {
 			alert($(this).text());
 			$("#designer li").css("background-color", "#f5f5f5");
@@ -219,7 +258,7 @@ section article#border div#form div#calendar td {
 	<h1 id="title">예약하기</h1>
 	<ul id="designer">
 		<c:forEach var="list" items="${dList}">
-			<li>${list.dName }${list.dGrade }</li>
+			<li>${list.dName } ${list.dGrade }</li>
 		</c:forEach>
 	</ul>
 	<article id="border">
@@ -227,8 +266,13 @@ section article#border div#form div#calendar td {
 
 			<h3>날짜 선택</h3>
 			<div id="calendar"></div>
+			<br>
 			<hr>
+			<br>
 			<h3>시간 선택</h3>
+			<br>
+
+
 			<table id="time">
 				<tr>
 					<td>08:00</td>
@@ -252,20 +296,29 @@ section article#border div#form div#calendar td {
 					<td>18:00</td>
 					<td>18:30</td>
 					<td>19:00</td>
-					<td>19:30</td>
-					<td>20:00</td>
-					<td>20:30</td>
-					<td>21:00</td>
-					<td>21:30</td>
-					<td>22:00</td>
-					<td>22:30</td>
-					<td>23:00</td>
+				
+				</tr>
+			</table>
+			<br>
+			<hr>
+			<br>
+			
+			<h3>메뉴 선택</h3>
+			<br>
+			<table id="item">
+				<tr>
+					<c:forEach var="product" items="${pList}">
+						<td>${product.pName }</td>
+					</c:forEach>
 				</tr>
 			</table>
 		</div>
 
-	</article>
 
+		<div id="guest">
+			<img src="${pageContext.request.contextPath}/images/reserve/reserve.jpg">
+		</div>
+	</article>
 </section>
 
 

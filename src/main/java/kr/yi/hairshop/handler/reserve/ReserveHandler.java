@@ -10,7 +10,10 @@ import org.apache.ibatis.session.SqlSession;
 import kr.yi.hairshop.controller.CommandHandler;
 import kr.yi.hairshop.dao.DesignerMapper;
 import kr.yi.hairshop.dao.DesignerMapperImpl;
+import kr.yi.hairshop.dao.ProductMapper;
+import kr.yi.hairshop.dao.ProductMapperImpl;
 import kr.yi.hairshop.dto.Designer;
+import kr.yi.hairshop.dto.Product;
 import kr.yi.hairshop.util.MyBatisSqlSessionFactory;
 
 public class ReserveHandler implements CommandHandler{
@@ -21,9 +24,15 @@ public class ReserveHandler implements CommandHandler{
 		
 		try {
 			sqlSession = MyBatisSqlSessionFactory.openSession();
-			DesignerMapper dao = new DesignerMapperImpl();
-			List<Designer> dList=dao.selectDesignerByAll();
+			DesignerMapper dDao = new DesignerMapperImpl();
+			List<Designer> dList=dDao.selectDesignerByAll();
+			
+			ProductMapper pDao = new ProductMapperImpl();
+			List<Product> pList=pDao.selectProductByAll();
+			
 			req.setAttribute("dList", dList);
+			req.setAttribute("pList", pList);
+			
 			return "/WEB-INF/view/reserve/reserve.jsp";
 		}catch (Exception e) {
 			e.printStackTrace();
