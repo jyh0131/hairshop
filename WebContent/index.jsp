@@ -7,7 +7,7 @@
 <a href="${pageContext.request.contextPath}/hair/hair.do">헤어</a>
 
 
-
+<a href="${pageContext.request.contextPath}/reserve.do">예약</a>
 
 
 

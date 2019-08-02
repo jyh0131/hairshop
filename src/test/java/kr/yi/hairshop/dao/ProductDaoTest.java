@@ -5,8 +5,8 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
 
-import kr.yi.hairshop.model.Product;
-import kr.yi.hairshop.util.MySqlSessionFactory;
+import kr.yi.hairshop.dto.Product;
+import kr.yi.hairshop.util.MyBatisSqlSessionFactory;
 
 
 
@@ -17,9 +17,9 @@ public class ProductDaoTest {
 		SqlSession sqlSession = null;
 		
 		try {
-			sqlSession = MySqlSessionFactory.openSession();
-			ProductDao dao = ProductDaoImpl.getInstance(sqlSession);
-			List<Product> product = dao.selectList();
+			sqlSession = MyBatisSqlSessionFactory.openSession();
+			ProductMapper dao = new ProductMapperImpl();
+			List<Product> product = dao.selectProductByAll();
 			System.out.println(product);
 			
 		} catch (Exception e) {
