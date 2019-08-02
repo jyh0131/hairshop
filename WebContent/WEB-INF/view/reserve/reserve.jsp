@@ -20,7 +20,7 @@ section ul#designer {
 	width: 100%;
 	height: 150px;
 	display: block;
-}
+}   
    
 section ul#designer li {
 	line-height: 50px;
