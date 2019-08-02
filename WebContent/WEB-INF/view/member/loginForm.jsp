@@ -6,13 +6,24 @@
 
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css">
 <style>
-	form{
-		font-size: 16px;
-		border: none;
-	}
-	fieldset{
-		width: 960px;
-	}
+
+section{
+	width: 1080px;
+	margin: 0 auto;
+}
+form{
+	font-size: 16px;
+	border: none;
+	margin: 0 auto;
+}
+fieldset{
+	width: 400px;
+	height: 200px;
+	
+}
+label {
+	margin: 2px;
+}
 
 </style>
 
