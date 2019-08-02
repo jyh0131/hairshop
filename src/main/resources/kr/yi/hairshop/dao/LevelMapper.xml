@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.yi.hairshop.dao.LevelMapper">
+
+	<resultMap type="Level" id="basicLevel">
+		<result property="lGrade" column="l_grade" />
+		<result property="lSale" column="l_sale" />
+	</resultMap>
+
+	<select id="selectLevelByAll" resultType="Level"
+		resultMap="basicLevel">
+		SELECT l_grade, l_sale
+		FROM hairshop.level;
+	</select>
+
+	<insert id="insertLevel" parameterType="Level">
+		INSERT INTO
+		hairshop.level
+		(l_grade, l_sale)
+		VALUES(#{lGrade}, #{lSale});
+	</insert>
+
+	<update id="updateLevel">
+		UPDATE hairshop.level
+		SET l_sale=#{Sale},l_grade=#{NewGrade}
+		WHERE l_grade=#{OriginalGrade};
+	</update>
+
+	<delete id="deleteLevel" parameterType="Level">
+		DELETE FROM
+		hairshop.level
+		WHERE l_grade=#{lGrade};
+	</delete>
+	<!-- <resultMap type="Level" id="extendsLevel" extends="basicLevel"> <collection 
+		property="guestList" resultMap="kr.yi.hairshop.dao.GuestMapper.basicGuest"></collection> 
+		</resultMap> -->
+
+</mapper>

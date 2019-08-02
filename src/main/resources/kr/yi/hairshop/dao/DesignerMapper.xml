@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.yi.hairshop.dao.DesignerMapper">
+
+	<resultMap type="Designer" id="basicDesigner">
+		<result property="dNo" column="d_no" />
+		<result property="dGrade" column="d_grade" />
+		<result property="dId" column="d_id" />
+		<result property="dPassword" column="d_password" />
+		<result property="dName" column="d_name" />
+		<result property="dTel" column="d_tel" />
+		<result property="dTel2" column="d_tel2" />
+		<result property="dAddr" column="d_addr" />
+		<result property="dAddr2" column="d_addr2" />
+		<result property="dAddr3" column="d_addr3" />
+		<result property="dBirth" column="d_birth" />
+		<result property="dJoin" column="d_join" />
+		<result property="dMemo" column="d_memo" />
+		<result property="dSecession" column="d_secession" />
+	</resultMap>
+	<resultMap type="Designer" id="extendsDesigner" extends="basicDesigner">
+		<collection property="workDialogList" resultMap="kr.yi.hairshop.dao.WorkDialogMapper.resultWorkDialog"/>
+	</resultMap>
+	
+	
+	<select id="selectDesignerByAll" resultType="Designer">
+		select * from designer where d_secession=false
+	</select>
+
+	<select id="selectDesignerByNo" resultMap="extendsDesigner">
+		select d_id, d_password, d_grade, d_name, d_tel, d_tel2, d_addr, d_addr2, d_addr3, d_birth, d_join, d_memo, w_workTime, w_reservTime, w_priceTotal, w_e_name, w_d_no, w_g_no,w_no
+		from Designer d
+		join workDialog w
+		on d.d_no=w.w_g_no
+	</select>
+	
+	<!-- 로그인 하려고 id로 검색 by 권영각 -->
+	<select id="selelctDesignerById" resultMap="basicDesigner">
+		select * from Designer where d_id = #{dId}
+	</select>	
+
+	<insert id="insertDesigner" parameterType="Designer">
+		insert into designer
+		(d_id, d_password, d_grade, d_name, d_tel, d_tel2, d_addr, d_addr2, d_addr3, d_birth,
+		d_join, d_memo)
+		values (#{dId}, #{dPassword}, #{dGrade}, #{dName}, #{dTel}, #{dTel2}, #{dAddr}, #{dAddr2},
+		#{dAddr3}, #{dBirth}, #{dJoin}, #{dMemo})
+	</insert>
+
+	<update id="deleteDesigner">
+		UPDATE designer
+		SET d_secession = true
+		WHERE d_no=#{dNo}
+	</update>
+
+	<update id="updateDesigner">
+		UPDATE designer
+		SET d_id=#{dId}, d_password=#{dPassword}, d_grade=#{dGrade}, d_name=#{dName}, d_tel=#{dTel}, d_tel2=#{dTel2}, d_addr=#{dAddr}, d_addr2=#{dAddr2}, d_addr3=#{dAddr3}, d_birth=#{dBirth}, d_join=#{dJoin}, d_memo=#{dMemo}
+		WHERE d_no=#{dNo}
+	</update>
+	
+	<select id="selectDesignerByMgn" resultType="Designer">
+		SELECT *
+		FROM designer
+		where d_secession = false
+	</select>
+	
+
+</mapper>
