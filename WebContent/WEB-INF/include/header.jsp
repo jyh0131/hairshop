@@ -19,21 +19,20 @@
 		margin:0 auto;
 		background-color: lightgreen;
 	}
-	#title{
+	header #title{
 		text-align: center;
 	}
-	#title img{
+	header #title img{
 		width: 400px;
 	}
->>>>>>> refs/heads/헤더
 	
-	#topmenu ul{
+	header #topmenu ul{
 		
 	}
-	#topmenu ul a{
+	header #topmenu ul a{
 		color: black;
 	}
-	#topmenu ul li{
+	header #topmenu ul li{
 		width: 180px;
 		height: 60px;
 		line-height: 60px;
@@ -43,7 +42,7 @@
 		display: inline-block;
 	}
 	
-	#Idcheck{
+	header #Idcheck{
 		width:130px;
 		height:30px;
 		position: relative;
