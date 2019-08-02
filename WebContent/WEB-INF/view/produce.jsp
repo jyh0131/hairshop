@@ -3,12 +3,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="../include/header.jsp" %>
 <link href="https://fonts.googleapis.com/css?family=Cutive+Mono&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Libre+Caslon+Display&display=swap" rel="stylesheet">
 <style>
 	h3{
 		text-align: center;
 		color:gray;
 		margin-bottom: 40px;
 		margin-top:40px;
+		font-family: 'Libre Caslon Display', serif;
 	}
 	section{
 		width: 50%;
@@ -58,8 +60,10 @@
 		color:#ccc;
 	}
 	.profile a{
-		text-decoration
+		text-decoration:none;
 		font-weight: bold;
+		color:#ccc;
+		font-family: 'Cutive Mono', monospace;
 	}
 		
 	
@@ -102,37 +106,42 @@
 		<div class="designerArticle" id="han">
 			<img src="../images/designer/hanps.png">
 			<p>한필수 원장</p>
-			<p class="profile"><a href="">Director.profile</a></p><!-- 마우스오버 나타나도록.클릭시  -->
+			<p class="profile"><a href="">profile</a></p><!-- 마우스오버 나타나도록.클릭시  -->
 		</div>
 		<div class="designerArticle">
 			<img src="../images/designer/gosy.png">
 			<p>고선영 실장</p>
-			<p class="profile">Designer.profile</p>
+			<p class="profile"><a href="">profile</a></p>
 		</div>
 		<div class="designerArticle">
 			<img src="../images/designer/hanyl.png">
 			<p>한상아 실장</p>
-			<p class="profile">Designer.profile</p>
+			<p class="profile"><a href="">profile</a></p>
 		</div>
 		<div class="designerArticle">
 			<img src="../images/designer/jangsy.png">
 			<p>장소연 디자이너</p>
+			<p class="profile"><a href="">profile</a></p>
 		</div>
 		<div class="designerArticle">
 			<img src="../images/designer/anjh.png">
 			<p>안장희 디자이너</p>
+			<p class="profile"><a href="">profile</a></p>
 		</div>
 		<div class="designerArticle">
 			<img src="../images/designer/jungjw.png">
 			<p>정재우 디자이너</p>
+			<p class="profile"><a href="">profile</a></p>
 		</div>
 		<div class="designerArticle">
 			<img src="../images/designer/juran.png">
 			<p>주란 디자이너</p>
+			<p class="profile"><a href="">profile</a></p>
 		</div>
 		<div class="designerArticle">
 			<img src="../images/designer/kimgb.png">
 			<p>김가빈 디자이너</p>
+			<p class="profile"><a href="">profile</a></p>
 		</div>
 	</div>
 

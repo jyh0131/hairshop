@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="../include/header.jsp" %>
-<link href="https://fonts.googleapis.com/css?family=Anton&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Libre+Caslon+Display&display=swap" rel="stylesheet">
 <style>
 	*{
 		padding:0;
@@ -33,7 +32,7 @@
 	}
 	#hairlist{
 		margin:0 auto;
-		background-color: #EAEAEA;
+		background-color: #F6F6F6;
 		width: 40%;
 		height:30px;
 		clear: both;
@@ -50,13 +49,18 @@
 		height: 30px;
 		line-height: 30px;
 		text-align: center;
-		font-family: 'Anton', sans-serif;
-		
+		font-size:20px;
+		font-family: 'Libre Caslon Display', serif;
+	
 	}	
 	/* #hairlist ul li a{
-		border: 1px solid black;
-		border-radius: 5px;
-	} */
+		border:1px solid gray;
+		padding: 3px 5px 3px 5px;
+		border-radius: 8px;
+		background-color: #F6F6F6;
+	}	 */
+		
+	
 	#color .hair img{
 		width: 175px;
 		height: 242px;
@@ -71,9 +75,9 @@
 	
 	<div id="hairlist">
 		<ul>
-			<li><a href=".cut">cut</a></li>
-			<li><a href="#perm" class="go_btn">perm</a></li>
-			<li><a href=".color">color</a></li>
+			<li><a href="#cut" class="go_btn">cut</a></li>
+			<li><a href="#perm">perm</a></li>
+			<li><a href="#color">color</a></li>
 			<li><a href=".care">care</a></li>
 		</ul>
 	</div>
@@ -340,15 +344,29 @@
 </script>
 <script>
 	$(function(){
-		var jj = $("#perm").offset();
+		var jj = $("#cut").offset();
+	
 		
 		$(".go_btn").click(function(event){
 			event.preventDefault();
 			$('html,body').animate({scrollTop:$(this.hash).offset().top},500);
 		});
 		
+		
+		
 	})
 </script>
+
+
+
+
+
+
+
+
+
+
+
 
 
 
