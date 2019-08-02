@@ -9,10 +9,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common_kyg.css" type="text/css">
 <style>
-	*{
-		margin: 0;
-		padding: 0;
-	}
+
 	header{
 		width: 1080px;
 		height: 155px;
