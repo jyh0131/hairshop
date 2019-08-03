@@ -7,19 +7,22 @@ section {
 	width: 1050px;
 	margin: 0 auto;
 }
-
-section h1#title {
+.underline{
+	text-decoration: underline;
+}       
+section ul#designer h1#title {
 	clear: both;
 }
 
-section ul#designer {
-	list-style: none;
+section div#designerList {
+	width: 900px;
+	height: 200px;
+	padding: 20px;
+	margin-bottom: 10px;
 }
-
 section ul#designer {
-	width: 100%;
-	height: 150px;
 	display: block;
+	list-style: none;
 }
 
 section ul#designer li {
@@ -38,21 +41,34 @@ section ul#designer li {
 section article#border {
 	clear: both;
 	background: #ebebeb;
-	padding: 25px;
-	width: 960px; 
-	padding-left : 100px;
-	padding-right: 50px;
-	padding-left: 50px;
+	padding: 30px;
+	padding-left:40px;
+	padding-right:40px;
+	
+	display:inline-block;
 }
+
+section article#border div#designerList{
+	background-color: white;
+} 
 
 section article#border div#form {
 	background: white;
 	width:450px;
-	padding: 20px;
+	height:1100px;
+	padding: 20px;  
 	margin: 2px;
 	float: left;
 }
-
+section article#border div#guest{
+	width:400px;
+	height:1100px;
+	background:white;
+	display: inline-block;
+	padding: 20px;
+	margin: 2px;
+	margin-left: 10px;
+}
 section article#border div#form div#calendar {
 	width: 450px;
 }
@@ -97,16 +113,23 @@ section article#border div#form div#calendar tr#date {
 	
 }
 
+
 section article#border div#form div#calendar td.day {
 	cursor: pointer;
 }
-
+section article#border div#form div#mapForm{
+	display: none;
+	
+}                              
+section article#border div#form div#map input{
+	
+}
 section article#border table#time td {
 	float: left;
 	border: 1px solid black;
 	margin: 1px;
-}
-
+}       
+           
 section article#border table#time {
 	border-collapse: collapse;
 	width: 450px;
@@ -121,16 +144,14 @@ section article#border table#item td {
 	margin: 1px;
 }
 
-section article#border div#guest{
-	width:400px;
-	height:866.4px;
-	display: inline-block;
-	margin-left: 10px;
-}
+
 section article#border div#guest img{
-	width:450px;
-	height: 300px;
+	width:400px;
+	height: 280px;
 	float: left;
+}
+section article#border div#guest h2{
+	clear: both;
 }
 section article#border div#guest p#guestText{
 
@@ -185,8 +206,8 @@ section article#border div#guest div#reserve span{
 		calendar += "<td>금</td>";
 		calendar += "<td>토</td>";
 		calendar += "</tr>";
-
 		calendar += "<tr>";
+		
 		for (var j = 0; j < t.getDay(); j++) {
 			calendar += "<td></td>";
 		}
@@ -232,7 +253,7 @@ section article#border div#guest div#reserve span{
 			date=year+"-"+month+"-"+day;
 			$("#reserveDate").text(year+"년 "+month+"월 "+day+"일 ");
 			$("#time tr td").removeClass("reserved");
-			$.ajax({
+			$.ajax({  
 				url : "${pageContext.request.contextPath }/reserve/designerChange.do",
 				type : "get",
 				data : {
@@ -340,65 +361,76 @@ section article#border div#guest div#reserve span{
 	})
 </script>
 <section>
-	<h1 id="title">예약하기</h1>
-	<ul id="designer">
-		<c:forEach var="list" items="${dList}">
-			<li>${list.dName } ${list.dGrade }</li>
-		</c:forEach>
-	</ul>
+	
 	<article id="border">
-		<div id="form">
-
-			<h3>날짜 선택</h3>
-			<div id="calendar"></div>
-			<br>
-			<hr>
-			<br>
-			<h3>시간 선택</h3>
-			<br>
-
-
-			<table id="time">
-				<tr>
-					<td>08:00</td>
-					<td>09:30</td>
-					<td>10:00</td>
-					<td>10:30</td>
-					<td>11:00</td>
-					<td>11:30</td>
-					<td>12:00</td>
-					<td>12:30</td>
-					<td>13:00</td>
-					<td>13:30</td>
-					<td>14:00</td>
-					<td>14:30</td>
-					<td>15:00</td>
-					<td>15:30</td>
-					<td>16:00</td>
-					<td>16:30</td>
-					<td>17:00</td>
-					<td>17:30</td>
-					<td>18:00</td>
-					<td>18:30</td>
-					<td>19:00</td>
-				
-				</tr>
-			</table>
-			<br>
-			<hr>
-			<br>
+		<div id="designerList">
+			<h1 id="title">예약하기</h1>
+			<ul id="designer">
 			
-			<h3>메뉴 선택</h3>
-			<br>
-			<table id="item">
-				<tr>
-					<c:forEach var="product" items="${pList}">
-						<td>${product.pName }</td>
-					</c:forEach>
-				</tr>
-			</table>
+				<c:forEach var="list" items="${dList}">
+					<li>${list.dName } ${list.dGrade }</li>
+				</c:forEach>
+			</ul>
 		</div>
-
+		<div id="form">
+			<div id="reserveForm">
+				<h3>날짜 선택</h3>
+				<div id="calendar"></div>
+				<br>
+				<hr>
+				<br>
+				<h3>시간 선택</h3>
+				<br>
+	
+	
+				<table id="time">
+					<tr>
+						<td>08:00</td>
+						<td>09:30</td>
+						<td>10:00</td>
+						<td>10:30</td>
+						<td>11:00</td>
+						<td>11:30</td>
+						<td>12:00</td>
+						<td>12:30</td>
+						<td>13:00</td>
+						<td>13:30</td>
+						<td>14:00</td>
+						<td>14:30</td>
+						<td>15:00</td>
+						<td>15:30</td>
+						<td>16:00</td>
+						<td>16:30</td>
+						<td>17:00</td>
+						<td>17:30</td>
+						<td>18:00</td>
+						<td>18:30</td>
+						<td>19:00</td>
+					
+					</tr>
+				</table>
+				<br>
+				<hr>
+				<br>
+				
+				<h3>메뉴 선택</h3>
+				<br>
+				<table id="item">
+					<tr>
+						<c:forEach var="product" items="${pList}">
+							<td>${product.pName }</td>
+						</c:forEach>
+					</tr>
+				</table>
+			
+			</div>
+			<div id="mapForm">
+				<input type="text"><button id="search">검색</button>
+				<div id="map" style="width:450px;height:400px;">
+			</div>
+			</div>          
+		</div>
+            
 
 		<div id="guest">
 			<img src="${pageContext.request.contextPath}/images/reserve/reserve.jpg">
@@ -411,13 +443,31 @@ section article#border div#guest div#reserve span{
 				<span>예약확인</span>
 				<span>오시는길</span>
 			</div>
+			
+			<script type="text/javascript">
+				$("#logo span").eq(2).click(function() {
+					$("#reserveForm").hide();
+					$("#mapForm").show();
+					var ps = new kakao.maps.services.Places(); 
+					ps.keywordSearch("영남인재교육원", placesSearchCB);
+					window.setTimeout(function() {
+					    map.relayout();
+					}, 0);
+				})
+				$("#logo span").eq(0).click(function() {
+					$("#reserveForm").show();
+					$("#mapForm").hide();
+				})
+			</script>
+			
 			<br>
 			<hr>
 			<br>
 			<p id="guestText">
 			<label>고객명</label><input type="text" name="gName" id="gName"><br>
 			<label>핸드폰번호</label><input type="text" name="gTel" id="gTel"><br>
-			<input type="checkbox"><span>개인정보 수집 및 이용</span>안내에 동의 합니다.
+			<br>
+			<input type="checkbox"><span class="underline">개인정보 수집 및 이용</span>안내에 동의 합니다.
 			</p>
 			<br>
 			<hr>
@@ -433,7 +483,7 @@ section article#border div#guest div#reserve span{
 						
 		</div>
 		
-		<div id="map" style="width:500px;height:400px;"></div>
+		
 		
 		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e7a1993c6a8fe959ae3a03145152acfa&libraries=services,clusterer,drawing"></script>
 		<script type="text/javascript">
@@ -490,7 +540,7 @@ section article#border div#guest div#reserve span{
 			    });
 			}
 		</script>
-		<input type="text"><button id="search">검색</button>
+		
 		<script type="text/javascript">
 			$("#search").click(function() {
 				var text=$(this).prev().val();
