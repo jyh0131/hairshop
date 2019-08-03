@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.ibatis.session.SqlSession;
 
 import kr.yi.hairshop.controller.CommandHandler;
-import kr.yi.hairshop.dao.GuestDaoTest;
 import kr.yi.hairshop.dao.GuestMapper;
 import kr.yi.hairshop.dao.GuestMapperImpl;
 import kr.yi.hairshop.dto.Guest;
