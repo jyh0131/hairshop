@@ -43,7 +43,6 @@
 	width: 100px;
 	height: 40px;
 }
-	
 
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -90,17 +89,17 @@
 		
 		$("#btnCheck").click(function() {
 			$.ajax({
-				url:"json3.do",
+				url:"${pageContext.request.contextPath}/member/idCheckHandler.do",
 				type:"get",
 				data:{"id" : $("#id").val() },
 				dataType:"json",
 				success:function(res){
 					console.log(res);
 					
-					if(res.chec==true){
-						confirm('없다!');
+					if(res.check!=true){
+						confirm('ID가 존제합니다');
 					}else{
-						confirm('있다');
+						confirm('가입이 가능합니다');
 					}
 
 				}
@@ -126,23 +125,23 @@
 				</c:if>
 			</p>
 			<p>
-				<label><span>(<span class="req">*</span>)</span>비밀번호</label>
+				<label><span>(<span class=".fontColorRed">*</span>)</span>비밀번호</label>
 				<input class="input" type="password" name="password" placeholder="영어,숫자,특수문자 포함 8~20자리">
 				<span class="error">비밀번호(영어, 숫자, 특수문자 포함, 8~20자)를 입력하세요</span>					
 			</p>
 			<p>
-				<label><span>(<span class="req">*</span>)</span>비밀번호 확인</label>
+				<label><span>(<span class=".fontColorRed">*</span>)</span>비밀번호 확인</label>
 				<input class="input" type="password" name="confirmPassword" placeholder="비밀번호 확인">
 				<span class="error">비밀번호 확인란을 입력하세요</span>
 				<span class="error">비밀번호가 일치하지 않습니다</span>
 			</p>
 			<p>
-				<label><span>(<span class="req">*</span>)</span>이름</label>
+				<label><span>(<span class=".fontColorRed">*</span>)</span>이름</label>
 				<input class="input" type="text" name="name" value="${param.name }" placeholder="한글 2~5">
 				<span class="error">이름(한글 2~5)을 입력하세요</span>
 			</p>
 			<p>
-				<label><span>(<span class="req">*</span>)</span>전화번호</label>
+				<label><span>(<span class=".fontColorRed">*</span>)</span>전화번호</label>
 				<input class="input" type="text" name="tel" placeholder="전화번호">
 			</p>
 			<p>
