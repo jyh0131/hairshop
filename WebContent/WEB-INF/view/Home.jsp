@@ -63,9 +63,10 @@
 	<section>
 		<div class="wrap_home">
 			<div class="bxslider">
-			    <div><img src="${pageContext.request.contextPath }/images/hair/1.png" title="1"></div>
-			  	<div><img src="${pageContext.request.contextPath }/images/hair/2.png" title="2"></div>
-			  	<div><img src="${pageContext.request.contextPath }/images/hair/3.png" title="3"></div>
+			    <div><img src="${pageContext.request.contextPath }/images/hair/1__1.jpg" title="사진"></div>
+			  	<div><img src="${pageContext.request.contextPath }/images/hair/1_2.jpg" title="나중에"></div>
+			  	<div><img src="${pageContext.request.contextPath }/images/hair/1-3.jpg" title="바꿀게요"></div>
+			  	<div><img src="${pageContext.request.contextPath }/images/hair/1-4.png" title="^^"></div>
 			</div>
 		</div>
 		
@@ -133,6 +134,30 @@
 			<div>
 				<a href="">
 					<img src="../images/hair/tassel.png">
+				</a>
+			</div>
+			
+			<div>
+				<a href="">
+					<img src="../images/cut/wind.png">
+				</a>
+			</div>
+			
+			<div>
+				<a href="">
+					<img src="../images/cut/v.png">
+				</a>
+			</div>
+			
+			<div>
+				<a href="">
+					<img src="../images/cut/smooth.png">
+				</a>
+			</div>
+			
+			<div>
+				<a href="">
+					<img src="../images/cut/gureum.png">
 				</a>
 			</div>
 		</div>
