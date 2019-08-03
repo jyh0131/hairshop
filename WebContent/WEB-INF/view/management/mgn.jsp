@@ -26,18 +26,18 @@
 		<a href="#"><li>예약 관리(list 보기, 수정, 등록, 삭제?)</li></a>
 		<a href="#"><li>추가</li></a>
 	</ul>
-		
+	<br><br>
 	<ul>
 		<a href="#"><li>종훈</li></a>
 		<a href="#"><li>회원 관리(수정, 삭제)</li></a>
 		<a href="#"><li>추가</li></a>		
 	</ul>
-
+	<br><br>
 	<ul>
 		<a href="#"><li>다영</li></a>
 		<a href="#"><li>추가??</li></a>	
 	</ul>
-
+	<br><br>
 	<ul>
 		<a href="#"><li>영각</li></a>
 		<a href="#"><li>회원 등급 관리(최초가입시 브론즈)</li></a>
