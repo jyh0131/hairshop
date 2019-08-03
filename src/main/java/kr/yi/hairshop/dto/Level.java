@@ -17,7 +17,6 @@ public class Level {
 		this.lGrade = lGrade;
 	}
 
-
 	public Level(String lGrade, int lSale, List<Guest> guestList) {
 		this.lGrade = lGrade;
 		this.lSale = lSale;
