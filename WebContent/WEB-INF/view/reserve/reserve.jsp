@@ -145,7 +145,10 @@ section article#border div#guest div#reserve span{
 	color: #3B9838;
 	font-weight: bold;
 }
-
+.reserved{
+	color: #E5E5E5;
+	cursor: not-allowed;
+}
 
 </style>
 <script type="text/javascript">
@@ -155,6 +158,10 @@ section article#border div#guest div#reserve span{
 	var hair="";
 	var haircount=0;
 	
+	function pad(n, width) {
+		  n = n + '';
+		  return n.length >= width ? n : new Array(width - n.length + 1).join('0') + n;
+	}
 	
 	function calendar(year, month) {
 		var y = year;
@@ -224,6 +231,7 @@ section article#border div#guest div#reserve span{
 			var day = $(this).text();
 			date=year+"-"+month+"-"+day;
 			$("#reserveDate").text(year+"년 "+month+"월 "+day+"일 ");
+			$("#time tr td").removeClass("reserved");
 			$.ajax({
 				url : "${pageContext.request.contextPath }/reserve/designerChange.do",
 				type : "get",
@@ -234,10 +242,26 @@ section article#border div#guest div#reserve span{
 				dataType : "json",
 				success : function(json) {
 					console.log(json)
-					if(json.wListMap.length>0){
-						
-						alert(json.wListMap[0].wReserveTime)
-						
+					for(var i=0; i<json.wListMap.length; i++){
+						var reserve = new Date(json.wListMap[i].wReserveTime);
+						var rHours=reserve.getHours();
+						var rMinutes=reserve.getMinutes();
+						var str="";
+						if(0<=rMinutes && rMinutes<=30){
+							rMinutes=0;
+							rHours=pad(rHours,2);
+							rMinutes=pad(rMinutes,2);
+							$("#time tr td").filter(function() {
+								return $(this).text() === rHours+":"+rMinutes;
+							}).addClass("reserved");
+						}else{
+							rMinutes=30;
+							rHours=pad(rHours,2);
+							rMinutes=pad(rMinutes,2);
+							$("#time tr td").filter(function() {
+								return $(this).text() === rHours+":"+rMinutes;
+							}).addClass("reserved");
+						}
 					}
 				}
 			})
@@ -246,11 +270,16 @@ section article#border div#guest div#reserve span{
 		
 		//시간선택하였을때 이벤트
 		$("#time tr td").click(function() {
-			$("#time tr td").css("background-color","white");
-			$(this).css("background-color","#fcfc90");
-			time=$(this).text();
+			if($(this).hasClass("reserved")){
+				alert("이미 예약되었습니다.")
+			}else{
+				$("#time tr td").css("background-color","white");
+				$(this).css("background-color","#fcfc90");
+				time=$(this).text();
+				
+				$("#reserveTime").text(time);
+			}
 			
-			$("#reserveTime").text(time);
 		})
 		
 		//메뉴 선택 햇을때 이벤트
@@ -295,7 +324,7 @@ section article#border div#guest div#reserve span{
 			/* $("td").filter(function() {
 				return $(this).text() === day;
 			}).css("background-color", "#fcfc90"); */
-			$("td").filter(function() {
+			$("#calendar tr td").filter(function() {
 				return $(this).text() === day;
 			}).click();
 			
