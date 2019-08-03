@@ -9,7 +9,8 @@ public class DesignerChangeHandler implements CommandHandler{
 
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
-		// TODO Auto-generated method stub
+		String str=(String) req.getAttribute("date");
+		System.out.println(str);
 		return null;
 	}
 

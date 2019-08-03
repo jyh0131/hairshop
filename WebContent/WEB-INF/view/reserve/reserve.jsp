@@ -49,6 +49,8 @@ section article#border div#form {
 	background: white;
 	width:450px;
 	padding: 20px;
+	margin: 2px;
+	float: left;
 }
 
 section article#border div#form div#calendar {
@@ -120,19 +122,39 @@ section article#border table#item td {
 }
 
 section article#border div#guest{
-	
-	
+	width:400px;
+	height:866.4px;
+	display: inline-block;
+	margin-left: 10px;
 }
 section article#border div#guest img{
-	width:298px;
-	height: 200px;
+	width:450px;
+	height: 300px;
+	float: left;
 }
+section article#border div#guest p#guestText{
+
+}
+
+section article#border div#guest p#guestText label{
+	float: left;
+	width: 100px;
+}
+
+section article#border div#guest div#reserve span{
+	color: #3B9838;
+	font-weight: bold;
+}
+
 
 </style>
 <script type="text/javascript">
 	var designer = "";
+	var date="";
 	var time="";
 	var hair="";
+	var haircount=0;
+	
 	
 	function calendar(year, month) {
 		var y = year;
@@ -198,14 +220,15 @@ section article#border div#guest img{
 			$(this).css('background-color', '#fcfc90');
 			var str = $("#calendar h1").text();
 			var year = str.slice(0, 4);
+			var month = str.slice(str.indexOf(".")+1,str.length);
 			var day = $(this).text();
-
+			date=year+"-"+month+"-"+day;
+			$("#reserveDate").text(year+"년 "+month+"월 "+day+"일 ");
 			$.ajax({
 				url : "${pageContext.request.contextPath }/reserve/designerChange.do",
 				type : "get",
 				data : {
-							"pNo" : pNo,
-							"count" : count
+							date:"야야투레"
 						},
 				dataType : "json",
 				success : function(json) {
@@ -221,19 +244,39 @@ section article#border div#guest img{
 
 		})
 		
+		//시간선택하였을때 이벤트
 		$("#time tr td").click(function() {
 			$("#time tr td").css("background-color","white");
 			$(this).css("background-color","#fcfc90");
 			time=$(this).text();
+			
+			$("#reserveTime").text(time);
 		})
+		
+		//메뉴 선택 햇을때 이벤트
 		$("#item tr td").click(function() {
-			$("#item tr td").css("background-color","white");
-			$(this).css("background-color","#fcfc90");
-			hair=$(this).text();         
+			var check=$(this).css("background-color")=="rgb(252, 252, 144)";
+			if(check==true){
+				$(this).css("background-color","white");
+				var str=$(this).text();
+				hair=hair.replace(str+",","");
+				haircount--;
+			}else{
+				if(haircount>=3){
+					alert("메뉴는 3개까지만 선택가능합니다.")
+				}else{
+					$(this).css("background-color","#fcfc90");
+					hair+=$(this).text()+",";
+					haircount++;
+				}
+			}
+			
+			$("#reserveProduct").text(hair.slice(0,-1));
+			
+			
 		})
 		
 		$("#designer li").click(function() {
-			alert($(this).text());
 			$("#designer li").css("background-color", "#f5f5f5");
 			$("#designer li").css("border-top", "1px solid #dddddd");
 			$(this).css("border-top", "2px solid black");
@@ -241,16 +284,29 @@ section article#border div#guest img{
 			$(this).css("height", "49px")
 			var date = new Date();
 			var day = date.getDate() + "";
-			$(this).css("background-color", "white")
+			$(this).css("background-color", "white");
+			
+			$("#reserveDate").text(date.getFullYear()+"년 "+(date.getMonth()+1)+"월 "+date.getDate()+"일");
+			
+			
 			designer = $(this).text();
 			calendar(date.getFullYear(), date.getMonth());
-
+			
+			/* $("td").filter(function() {
+				return $(this).text() === day;
+			}).css("background-color", "#fcfc90"); */
 			$("td").filter(function() {
 				return $(this).text() === day;
-			}).css("background-color", "#fcfc90");
-
+			}).click();
+			
+			
+			$("#time tr td").css("background-color","white");
+			$("#reserveTime").text("");
+			time="";
+			$("#reserveDesigner").text(designer);
 		})
-
+		
+		
 		$("ul#designer li").eq(0).click();
 	})
 </script>
@@ -317,7 +373,104 @@ section article#border div#guest img{
 
 		<div id="guest">
 			<img src="${pageContext.request.contextPath}/images/reserve/reserve.jpg">
+			<h2>차홍아르더 본점</h2>
+			<p>대구 광역시 동구 방촌동</p>
+			<p>053-981-0000</p>
+			<p>00:00~22:00</p>
+			<div id="logo">
+				<span>예약하기</span>
+				<span>예약확인</span>
+				<span>오시는길</span>
+			</div>
+			<br>
+			<hr>
+			<br>
+			<p id="guestText">
+			<label>고객명</label><input type="text" name="gName" id="gName"><br>
+			<label>핸드폰번호</label><input type="text" name="gTel" id="gTel"><br>
+			<input type="checkbox"><span>개인정보 수집 및 이용</span>안내에 동의 합니다.
+			</p>
+			<br>
+			<hr>
+			<br>
+			<div id="reserve">
+				<label>예약시간</label> : <span id="reserveDate"></span><span id="reserveTime"></span><br>
+				<label>디자이너</label> : <span id="reserveDesigner"></span><br>
+				<label>메뉴</label> : <span id="reserveProduct"></span><br>
+			</div>
+			<br>
+			<hr>
+			<br>
+						
 		</div>
+		
+		<div id="map" style="width:500px;height:400px;"></div>
+		
+		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e7a1993c6a8fe959ae3a03145152acfa&libraries=services,clusterer,drawing"></script>
+		<script type="text/javascript">
+			// 마커를 클릭하면 장소명을 표출할 인포윈도우 입니다
+			var infowindow = new kakao.maps.InfoWindow({zIndex:1});
+	
+			var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+			    mapOption = {
+			        center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
+			        level: 3 // 지도의 확대 레벨
+			    };  
+	
+			// 지도를 생성합니다    
+			var map = new kakao.maps.Map(mapContainer, mapOption); 
+	
+			// 장소 검색 객체를 생성합니다
+			var ps = new kakao.maps.services.Places(); 
+	
+			// 키워드로 장소를 검색합니다
+			ps.keywordSearch('영남인재교육원', placesSearchCB); 
+	
+			// 키워드 검색 완료 시 호출되는 콜백함수 입니다
+			function placesSearchCB (data, status, pagination) {
+			    if (status === kakao.maps.services.Status.OK) {
+	
+			        // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
+			        // LatLngBounds 객체에 좌표를 추가합니다
+			        var bounds = new kakao.maps.LatLngBounds();
+	         
+			        for (var i=0; i<data.length; i++) {
+			            displayMarker(data[i]);    
+			            bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x));
+			        }       
+	
+			        // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
+			        map.setBounds(bounds);
+			    } 
+			}
+	
+			// 지도에 마커를 표시하는 함수입니다
+			function displayMarker(place) {
+			    
+			    // 마커를 생성하고 지도에 표시합니다
+			    var marker = new kakao.maps.Marker({
+			        map: map,
+			        position: new kakao.maps.LatLng(place.y, place.x) 
+			    });
+	
+			    // 마커에 클릭이벤트를 등록합니다
+			    kakao.maps.event.addListener(marker, 'click', function() {
+			        // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
+			        infowindow.setContent('<div style="padding:5px;font-size:12px;">' + place.place_name + '</div>');
+			        infowindow.open(map, marker);
+			    });
+			}
+		</script>
+		<input type="text"><button id="search">검색</button>
+		<script type="text/javascript">
+			$("#search").click(function() {
+				var text=$(this).prev().val();
+				var ps = new kakao.maps.services.Places(); 
+				ps.keywordSearch(text, placesSearchCB);
+			})
+		</script>
+		<!-- <a href="https://map.kakao.com/?urlX=851400&urlY=659402&urlLevel=3&map_type=TYPE_MAP&map_hybrid=false" target="_blank"><img width="504" height="310" src="https://map2.daum.net/map/mapservice?FORMAT=PNG&SCALE=2.5&MX=851400&MY=659402&S=0&IW=504&IH=310&LANG=0&COORDSTM=WCONGNAMUL&logo=kakao_logo" style="border:1px solid #ccc"></a><div class="hide" style="overflow:hidden;padding:7px 11px;border:1px solid #dfdfdf;border-color:rgba(0,0,0,.1);border-radius:0 0 2px 2px;background-color:#f9f9f9;width:482px;"><strong style="float: left;"><img src="//t1.daumcdn.net/localimg/localimages/07/2018/pc/common/logo_kakaomap.png" width="72" height="16" alt="카카오맵"></strong><div style="float: right;position:relative"><a style="font-size:12px;text-decoration:none;float:left;height:15px;padding-top:1px;line-height:15px;color:#000" target="_blank" href="https://map.kakao.com/?urlX=851400&urlY=659402&urlLevel=3&map_type=TYPE_MAP&map_hybrid=false">지도 크게 보기</a></div></div> -->
+		
 	</article>
 </section>
 
