@@ -14,7 +14,7 @@ public class LogoutHandler implements CommandHandler {
 		HttpSession session = req.getSession(false);
 		session.setAttribute("Auth", null);
 		
-		return "/";
+		return "/WEB-INF/view/member/loginForm.jsp";
 	}
 
 }
