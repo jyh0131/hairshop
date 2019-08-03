@@ -11,12 +11,7 @@
 	
 <a href="${pageContext.request.contextPath}/view/hair.do">헤어</a><br>
 <a href="${pageContext.request.contextPath}/view/produce.do">소개</a><br>
-<a href="${pageContext.request.contextPath}/reserve.do">예약</a>
-
-
-
-
-
+<a href="${pageContext.request.contextPath}/reserve/form.do">예약</a>
 </section>
 
 <%@ include file="WEB-INF/include/footer.jsp" %>
