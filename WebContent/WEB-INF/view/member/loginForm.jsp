@@ -6,47 +6,48 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css">
 <style>
 
-#loginform{
-	width: 1080px;
-	height: 400px;
+#loginform section{
+	width:1080px;
 	margin: 0 auto;
-	margin-top: 50px;
+	margin-top: 100px;
+	margin-bottom: 100px;
 }
 #loginform form{
-	font-size: 16px;
-	border: none;
+	width: 1080px;
 	margin: 0 auto;
-}
-#loginform form p:last-child{
-	padding: 0;
-}
-#loginform fieldset{
-	width: 500px;
-	height: 300px;
-	padding-top: 50px;
-	text-align: center;
-}
-#loginform fieldset p{
-	position: relative;
+	
+	padding-top: 40px;
+	padding-bottom: 40px;
+	
+	background-color: lightgreen;
 }
 
-#loginform input{
+#loginform p{
+	position: relative;
+	padding-left: 430px;
+	margin: 15px;
+}
+
+#loginform .loiginFormInput{
 	width: 180px;
 	height: 40px;
 	margin: 5px;
+}
 
+#loginform input #isMgn{
+	
 }
 #loginform .error{
 	position: absolute;
-	top: 20px;
-	left: 350px;
+	top: 18px;
+	left: 630px;
 }
 
 </style>
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/common_kyg.js"></script>
+<script src="${pageContext.request.contextPath}/js/common.js"></script>
 <script>
 
 	$(function () {
@@ -75,23 +76,29 @@
 
 <section id="loginform">
 
-		<form action="${pageContext.request.contextPath}/member/login.do" method="post" id="f1">
-			<fieldset>
-				<legend>로그인</legend>
-				<p>
-					<input type="text" name="id" id="id" placeholder="아이디를 입력하세요">
-					<span class="error">ID를 입력하세요</span>
-				</p>
-				<p>
-					<input type="password" name="password" id="pass" placeholder="비밀번호를 입력하세요">
-					<span class="error">비밀번호를 입력하세요</span>
-				</p>
-				<p>
-					<input type="submit" value="로그인">
-				</p>
-			</fieldset>
+	<form action="${pageContext.request.contextPath}/member/login.do" method="post" id="f1">
+
+		<P>
+			<select name="isMgn">
+				<option value="1">Guest Mode</option>
+				<option value="0">Mgn Mode</option>
+			</select>
+		</P>
+		<p>
+			<input type="text" name="id" id="id" class="loiginFormInput" placeholder="아이디를 입력하세요">
+			<span class="error">ID를 입력하세요</span>
+		</p>
+		<p>
+			<input type="password" name="password" id="pass" class="loiginFormInput" placeholder="비밀번호를 입력하세요">
+			<span class="error">비밀번호를 입력하세요</span>
+		</p>
+		<p>
+			<input type="submit"  class="loiginFormInput" value="로그인">
+		</p>
 		
-		</form>
+
+	
+	</form>
 
 
 

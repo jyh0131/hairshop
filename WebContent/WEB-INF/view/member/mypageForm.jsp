@@ -4,6 +4,7 @@
 <%@ include file="../../include/header.jsp" %>
 
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common_kyg.css">
 <style>
 	#mypageForm{
 		width:1080px;

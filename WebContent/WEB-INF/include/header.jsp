@@ -89,7 +89,7 @@
 			
 			<div id="Idcheck">
 				<c:if test="${Auth != null }">
-					<span><a href="${pageContext.request.contextPath}/member/mypage.do">${Auth.uId}</a>님 반갑습니다</span>
+					<span><a href="${pageContext.request.contextPath}/member/mypage.do">${Auth.uName}</a>님 반갑습니다</span>
 					<span><a href="${pageContext.request.contextPath}/member/logout.do">{로그아웃}</a></span>
 				</c:if>
 				<c:if test="${Auth == null }">
@@ -100,7 +100,7 @@
 			
 			<div id="loginMenu">
 				<c:if test="${Auth.uIsMgr == true }">
-					<span class="mymenu"><a href="${pageContext.request.contextPath}/member/mgn.do">관리자 페이지</a></span>
+					<span class="mymenu"><a href="${pageContext.request.contextPath}/management/mgn.do">관리자 페이지</a></span>
 				</c:if>
 				<c:if test="${Auth.uIsMgr == false }">
 					<span class="mymenu"><a href="${pageContext.request.contextPath}/member/mypage.do">마이 페이지</a></span>
@@ -114,7 +114,7 @@
 					<a href="${pageContext.request.contextPath}/view/produce.do"><li>Staff</li></a>
 					<a href="${pageContext.request.contextPath}/view/hair.do"><li>hair style</li></a>
 					<a href="#"><li>viedo</li></a>
-					<a href="#"><li>resevation</li></a>
+					<a href="${pageContext.request.contextPath}/reserve/form.do"><li>resevation</li></a>
 					<a href="#"><li>resevation state</li></a>
 				</ul>
 			</div>
