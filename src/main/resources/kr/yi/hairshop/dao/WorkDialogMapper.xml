@@ -80,6 +80,15 @@
 		and w_reservTime <![CDATA[<]]> concat(#{date}, ' 23:59:59')
 		order by w_reservTime
 	</select>
+	<select id="selectWDjoinByWDNoDate" resultMap="selectWDGECPjoinByNo">
+		select * 
+		from workdialog w
+		join designer d on w.w_d_no=d.d_no
+		where d.d_name=#{dName}
+		and d.d_grade=#{dGrade}
+		and left(w_reservTime,10)=#{date}
+		order by w_reservTime
+	</select>
 	<select id="selectDListByNo" parameterType="int" resultMap="resultWorkDialog">
 		select
 		w_no,

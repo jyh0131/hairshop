@@ -228,16 +228,16 @@ section article#border div#guest div#reserve span{
 				url : "${pageContext.request.contextPath }/reserve/designerChange.do",
 				type : "get",
 				data : {
-							date:"야야투레"
+							"date":date,
+							"designer":designer
 						},
 				dataType : "json",
 				success : function(json) {
 					console.log(json)
-					if (json.success == true) {
-						alert("장바구니에 담았습니다.");
-					} else {
-						alert("장바구니에 담을수 없습니다.");
-
+					if(json.wListMap.length>0){
+						
+						alert(json.wListMap[0].wReserveTime)
+						
 					}
 				}
 			})
