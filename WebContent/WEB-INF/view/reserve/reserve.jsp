@@ -426,9 +426,14 @@ section article#border div#guest div#reserve span{
 			</div>
 			<div id="mapForm">
 				<input type="text"><button id="search">검색</button>
-				<div id="map" style="width:450px;height:400px;">
+				<div id="map" style="width:450px;height:400px;"></div>
 			</div>
-			</div>          
+			<div id="reservedForm">
+				<h2>예약 정보</h2>
+				<div>
+					
+				</div>
+			</div>
 		</div>
             
 
@@ -448,6 +453,7 @@ section article#border div#guest div#reserve span{
 				$("#logo span").eq(2).click(function() {
 					$("#reserveForm").hide();
 					$("#mapForm").show();
+					$("#reservedForm").hide();
 					var ps = new kakao.maps.services.Places(); 
 					ps.keywordSearch("영남인재교육원", placesSearchCB);
 					window.setTimeout(function() {
@@ -457,6 +463,12 @@ section article#border div#guest div#reserve span{
 				$("#logo span").eq(0).click(function() {
 					$("#reserveForm").show();
 					$("#mapForm").hide();
+					$("#reservedForm").hide();
+				})
+				$("#logo span").eq(1).click(function() {
+					$("#reserveForm").hide();
+					$("#mapForm").hide();
+					$("#reservedForm").show();
 				})
 			</script>
 			
