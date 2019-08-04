@@ -17,7 +17,7 @@ public class PassCheckhandler implements CommandHandler {
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		if(req.getMethod().equalsIgnoreCase("get")) {
-			return "/WEB-INF/view/member/mypagePassCheck.jsp";
+			return "/WEB-INF/view/member/passCheck.jsp";
 		}else if(req.getMethod().equalsIgnoreCase("post")) {
 			
 			HttpSession session = req.getSession(false);
