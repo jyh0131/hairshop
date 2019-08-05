@@ -1,5 +1,6 @@
 package kr.yi.hairshop.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -167,6 +168,21 @@ public class WorkDialogMapperImpl implements WorkDialogMapper{
 			return sqlSession.selectList(namespace+".selectWDjoinByWDNoDate",map);
 		}
 	}
+
+	@Override
+	public List<WorkDialog> selectBygNameAndgTel(Map<String, String> map) {
+		try(SqlSession sqlSession=MyBatisSqlSessionFactory.openSession();){
+			
+			return sqlSession.selectList(namespace+".selectBygNameAndgTel",map);
+		}
+	}
+	@Override
+	public List<WorkDialog> selectByIdForReservState(Map<String, Object> map) {
+		try(SqlSession sqlSession=MyBatisSqlSessionFactory.openSession();){
+			return sqlSession.selectList(namespace+".selectByIdForReservState", map);
+		}
+	}
+
 
 	
 

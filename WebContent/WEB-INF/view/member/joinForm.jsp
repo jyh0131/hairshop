@@ -114,9 +114,9 @@
 
 	<form action="${pageContext.request.contextPath}/member/join.do" method="post" id="f1">
 
-		<p><span>(<span class=".fontColorRed">*</span>)</span>는 필수 입니다</p>
+		<p><span>(<span class="fontColorRed">*</span>)</span>는 필수 입니다</p>
 		<p>
-			<label><span>(<span class="req">*</span>)</span>아이디</label>
+			<label><span>(<span class="fontColorRed">*</span>)</span>아이디</label>
 			<input class="input" type="text" name="id" id="id" value="${pram.id }" placeholder="영어,숫자 포함 6~15 자리">
 			<span class="error">ID(영어, 숫자 6~15)를 입력하세요</span>
 			<button id="btnCheck">ID 중복확인</button>
@@ -125,23 +125,23 @@
 			</c:if>
 		</p>
 		<p>
-			<label><span>(<span class=".fontColorRed">*</span>)</span>비밀번호</label>
+			<label><span>(<span class="fontColorRed">*</span>)</span>비밀번호</label>
 			<input class="input" type="password" name="password" placeholder="영어,숫자,특수문자 포함 8~20자리">
 			<span class="error">비밀번호(영어, 숫자, 특수문자 포함, 8~20자)를 입력하세요</span>					
 		</p>
 		<p>
-			<label><span>(<span class=".fontColorRed">*</span>)</span>비밀번호 확인</label>
+			<label><span>(<span class="fontColorRed">*</span>)</span>비밀번호 확인</label>
 			<input class="input" type="password" name="confirmPassword" placeholder="비밀번호 확인">
 			<span class="error">비밀번호 확인란을 입력하세요</span>
 			<span class="error">비밀번호가 일치하지 않습니다</span>
 		</p>
 		<p>
-			<label><span>(<span class=".fontColorRed">*</span>)</span>이름</label>
+			<label><span>(<span class="fontColorRed">*</span>)</span>이름</label>
 			<input class="input" type="text" name="name" value="${param.name }" placeholder="한글 2~5">
 			<span class="error">이름(한글 2~5)을 입력하세요</span>
 		</p>
 		<p>
-			<label><span>(<span class=".fontColorRed">*</span>)</span>전화번호</label>
+			<label><span>(<span class="fontColorRed">*</span>)</span>전화번호</label>
 			<input class="input" type="text" name="tel" placeholder="전화번호">
 		</p>
 		<p>
