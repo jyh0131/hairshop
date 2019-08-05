@@ -7,6 +7,7 @@
 <style>
 #mypage{
 	width:1080px;
+	height:600px;
 	margin: 0 auto;
 	text-align: center;
 }
@@ -102,7 +103,7 @@
 				<tr>
 					<td>${Auth.uId }</td>
 					<td>${Auth.uName }</td>
-					<td>${guest.gLGrade }</td>
+					<td>${guest.gLGrade.lGrade }</td>
 					<td>${guest.gTel }</td>
 					<td>${guest.gEmail }</td>
 					<td>${guest.gJoin }</td>
@@ -112,7 +113,7 @@
 	    </div>	
 	
 		<div id="myMenuBtn">
-			<a href="#"><div>예약정보 확인하기</div></a>
+			<a href="${pageContext.request.contextPath}/reserve/reserveState.do"><div>예약정보 확인하기</div></a>
 			<a href="#"><div>내 정보 수정하기</div></a>
 			<a href="#"><div>예약정보 확인하기</div></a>
 			<a href="#"><div>예약정보 확인하기</div></a>
