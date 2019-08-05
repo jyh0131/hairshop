@@ -78,6 +78,20 @@
 
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+	$(function () {
+		
+		$("#reserv").click(function() {
+			var Auth = <%=session.getAttribute("Auth") %>;
+			if( Auth != null){
+				location.href="${pageContext.request.contextPath}/reserve/reserveState.do";
+			}else{
+				alert("로그인 하세요");
+			}
+			
+		})
+	})
+</script>
 </head>
 
 <body>
@@ -115,7 +129,8 @@
 					<a href="${pageContext.request.contextPath}/view/hair.do"><li>hair style</li></a>
 					<a href="#"><li>viedo</li></a>
 					<a href="${pageContext.request.contextPath}/reserve/form.do"><li>resevation</li></a>
-					<a href="${pageContext.request.contextPath}/reserve/reserveState.do"><li>resevation state</li></a>
+					<%-- <a href="${pageContext.request.contextPath}/reserve/reserveState.do"><li>resevation state</li></a> --%>
+					<a href="#" id="reserv"><li>resevation state</li></a>
 				</ul>
 			</div>
 		</header>
