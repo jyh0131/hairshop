@@ -29,7 +29,17 @@ public class ReserveHandler implements CommandHandler{
 			
 		req.setAttribute("dList", dList);
 		req.setAttribute("pList", pList);
-			
+		
+		
+		
+		if(req.getAttribute("reserved")==null) {
+			req.setAttribute("reserved", false);
+		}else {
+			req.setAttribute("reserved", true);
+			req.setAttribute("gName", req.getAttribute("gName"));
+			req.setAttribute("gTel", req.getAttribute("gTel"));
+		}
+		
 		return "/WEB-INF/view/reserve/reserve.jsp";
 	}
 

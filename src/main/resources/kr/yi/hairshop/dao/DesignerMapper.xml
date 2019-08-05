@@ -26,6 +26,12 @@
 	<select id="selectDesignerByAll" resultType="Designer">
 		select * from designer where d_secession=false
 	</select>
+	<select id="selectByNameAndGrade" resultType="Designer">
+		select *
+		from designer
+		where d_secession=false
+		and d_Name=#{dName} and d_grade=#{dGrade}
+	</select>
 
 	<select id="selectDesignerByNo" resultMap="extendsDesigner">
 		select d_id, d_password, d_grade, d_name, d_tel, d_tel2, d_addr, d_addr2, d_addr3, d_birth, d_join, d_memo, w_workTime, w_reservTime, w_priceTotal, w_e_name, w_d_no, w_g_no,w_no

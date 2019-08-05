@@ -18,12 +18,14 @@ public interface WorkDialogMapper {
 	
 	public List<WorkDialog> selectReservDetailByDate(Map<String, String> map);
 	
-	public int insertWorkDialogResWNoNoGuest(WorkDialog workDialog);
+	public int insertWorkDialogResWNo(WorkDialog workDialog);
+	public int insertWorkNoGuestResWNo(WorkDialog workDialog);
 	public int insertChoice(Map<String, String> map);
 	
 	public int deleteChoice(int wNo);
 	public int updateWorkDialog(WorkDialog workDialog);
 	public int updateWorkDialogWorkTime(WorkDialog workDialog);
+	public int updateWorkPrice(WorkDialog workDialog);
 	public int deleteWorkDialog(int wNo);
 	public List<WorkDialog> selectGuestBarChartPrice();
 	public List<WorkDialog> selectGuestBarChartCount();
@@ -34,5 +36,4 @@ public interface WorkDialogMapper {
 	public List<WorkDialog> selectByDateForChartMon(Map<String, String> map);
 	public List<WorkDialog> selectBygNameAndgTel(Map<String, String> map);
 	public List<WorkDialog> selectByIdForReservState(Map<String, Object> map);
-
 }
