@@ -114,7 +114,7 @@
 	
 		<div id="myMenuBtn">
 			<a href="${pageContext.request.contextPath}/reserve/reserveState.do"><div>예약정보 확인하기</div></a>
-			<a href="#"><div>내 정보 수정하기</div></a>
+			<a href="${pageContext.request.contextPath}/member/memberModify.do"><div>내 정보 수정하기</div></a>
 			<a href="#"><div>예약정보 확인하기</div></a>
 			<a href="#"><div>예약정보 확인하기</div></a>
 		</div>
