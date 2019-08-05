@@ -62,7 +62,7 @@
 		left join tax t on p.p_name = t.t_name
 		where g_id=#{id} and w_worktime
 			<if test="check==1"> is not null </if>
-			<if test="check==0"> is null	 </if>		
+			<if test="check==0"> is null	 </if>
 		order by w_reservTime desc
 	</select>
 	
