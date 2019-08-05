@@ -236,7 +236,7 @@ order by w_reservTime desc
 
 w_no, w_reservTime, e_name, w_priceTotal, w_workTime, d_name, d_grade, g_name, l_grade, p_name;
 
-select g_id, g_name,w_reservTime, w_priceTotal, d_name, d_grade, p_name, w_workTime
+select g_id, g_name, w_reservTime, w_priceTotal, d_name, d_grade, p_name, w_workTime
 from workdialog w
 left join designer d on w.w_d_no = d.d_no
 left join guest g on w.w_g_no = g.g_no

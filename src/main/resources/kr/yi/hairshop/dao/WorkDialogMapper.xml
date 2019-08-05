@@ -51,7 +51,7 @@
 	
 	<select id="selectByIdForReservState" resultMap="reserveDetail">
 		<!-- 예약 정보 확인 page 검색용 -->
-		select g_id, g_name,w_reservTime, w_priceTotal, d_name, d_grade, p_name, w_workTime
+		select g_id, g_name, w_reservTime, w_priceTotal, d_name, d_grade, p_name, w_workTime
 		from workdialog w
 		left join designer d on w.w_d_no = d.d_no
 		left join guest g on w.w_g_no = g.g_no

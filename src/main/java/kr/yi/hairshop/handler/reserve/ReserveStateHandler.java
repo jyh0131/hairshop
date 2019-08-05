@@ -1,6 +1,7 @@
 package kr.yi.hairshop.handler.reserve;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -33,6 +34,12 @@ public class ReserveStateHandler implements CommandHandler {
 		
 		map.put("check", "0"); //예약만 된것( w_worktime is null )
 		List<WorkDialog> lookAhead = dao.selectByIdForReservState(map);
+
+		Iterator<WorkDialog> list = lookAhead.iterator();
+		if(list.hasNext()) {
+			WorkDialog work=list.next();
+			System.out.println(work);
+		}
 		
 		req.setAttribute("lookback", lookback);
 		req.setAttribute("lookAhead", lookAhead);
