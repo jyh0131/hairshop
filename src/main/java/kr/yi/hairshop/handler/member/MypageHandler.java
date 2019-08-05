@@ -19,31 +19,7 @@ public class MypageHandler implements CommandHandler {
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		if(req.getMethod().equalsIgnoreCase("get")) {
 			
-			HttpSession session = req.getSession(false);
-			
-			User user = (User) session.getAttribute("Auth");
-			System.out.println(user);
-			String id = user.getuId();
-			
-			SqlSession sqlSession = null;
-			
-			try {
-				sqlSession = MyBatisSqlSessionFactory.openSession();
-				
-				
-				GuestMapper dao = new GuestMapperImpl();
-				Guest guest = dao.selectById(id);
-				
-				req.setAttribute("guest", guest);
-				
-				
-			} catch (Exception e) {
-				e.printStackTrace();
-			}finally {
-				sqlSession.close();
-			}
-			
-			
+
 			
 			
 			return "/WEB-INF/view/member/mypageForm.jsp";

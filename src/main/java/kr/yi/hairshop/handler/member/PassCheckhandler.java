@@ -11,6 +11,7 @@ import kr.yi.hairshop.dao.GuestMapper;
 import kr.yi.hairshop.dao.GuestMapperImpl;
 import kr.yi.hairshop.dto.Guest;
 import kr.yi.hairshop.dto.User;
+import kr.yi.hairshop.util.MyBatisSqlSessionFactory;
 
 public class PassCheckhandler implements CommandHandler {
 
@@ -20,30 +21,28 @@ public class PassCheckhandler implements CommandHandler {
 			return "/WEB-INF/view/member/passCheck.jsp";
 		}else if(req.getMethod().equalsIgnoreCase("post")) {
 			
-			HttpSession session = req.getSession(false);
+			HttpSession session = req.getSession();
+			User user = (User) session.getAttribute("Auth");
 			
-			//User user = req.getParameter("Auth");
+			String id = user.getuId();
+			String pass = req.getParameter("password");
 			
-			String id = req.getParameter("id");
-			SqlSession sqlSession = null;
-			try {
+
+			GuestMapper dao = new GuestMapperImpl();
+			Guest guest = dao.selectById(id);
+			
+			if(guest.getgPassword().equals(pass)) {
 				
-				GuestMapper dao = new GuestMapperImpl();
-				Guest guest = dao.selectById(id);
+				GuestMapper gDao = new GuestMapperImpl();
+				guest = gDao.selectById(id);
 				
+				req.setAttribute("guest", guest);
 				
-				
-				
-				
-				
-			} catch (Exception e) {
-				e.printStackTrace();
-			} finally {
-				sqlSession.close();
+				return "/WEB-INF/view/member/mypageForm.jsp";
+			}else {
+				return "/WEB-INF/view/member/passCheck.jsp";
 			}
-			
-			
-			
+
 			
 		}
 		return null;

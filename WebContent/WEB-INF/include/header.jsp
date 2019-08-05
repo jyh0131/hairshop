@@ -103,14 +103,14 @@
 					<span class="mymenu"><a href="${pageContext.request.contextPath}/management/mgn.do">관리자 페이지</a></span>
 				</c:if>
 				<c:if test="${Auth.uIsMgr == false }">
-					<span class="mymenu"><a href="${pageContext.request.contextPath}/member/mypage.do">마이 페이지</a></span>
+					<span class="mymenu"><a href="${pageContext.request.contextPath}/member/passCheck.do">마이 페이지</a></span>
 				</c:if>
 				
 			</div>
 			
 			<div id="topmenu">
 				<ul>
-					<a href="#"><li>intro</li></a>
+					<a href="${pageContext.request.contextPath}/"><li>intro</li></a>
 					<a href="${pageContext.request.contextPath}/view/produce.do"><li>Staff</li></a>
 					<a href="${pageContext.request.contextPath}/view/hair.do"><li>hair style</li></a>
 					<a href="#"><li>viedo</li></a>
