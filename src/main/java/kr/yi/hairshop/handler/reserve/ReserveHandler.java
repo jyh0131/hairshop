@@ -31,7 +31,7 @@ public class ReserveHandler implements CommandHandler{
 		req.setAttribute("pList", pList);
 		
 		
-		
+		System.out.println(req.getAttribute("reserved"));
 		if(req.getAttribute("reserved")==null) {
 			req.setAttribute("reserved", false);
 		}else {

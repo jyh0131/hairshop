@@ -145,6 +145,19 @@
 		left join tax t on p.p_name = t.t_name
 		order by w_no
 	</select>
+	<select id="selectReservDetail" resultMap="reserveDetail">
+		select
+		w_no, w_reservTime, e_name, w_priceTotal, w_workTime, d_name, d_grade, g_name, l_grade, p_name
+		from workdialog w
+		left join designer d on w.w_d_no = d.d_no
+		left join guest g on w.w_g_no = g.g_no
+		left join event e on w.w_e_name = e.e_name
+		left join level v on g.g_l_grade = v.l_grade
+		left join choice c on w.w_no = c.c_w_no
+		left join product p on c.c_p_name = p.p_name
+		left join tax t on p.p_name = t.t_name
+		order by w_reservTime desc limit #{start},#{size}
+	</select>
 	
 	
 	<select id="selectReservDetailByDate" parameterType="map" resultMap="reserveDetail">
@@ -161,6 +174,7 @@
 		where w_reservTime between #{start} and #{end}
 		order by w_no
 	</select>
+
 	
 	<insert id="insertWorkDialogResWNo" parameterType="WorkDialog" useGeneratedKeys="true" keyProperty="wNo">
 		INSERT INTO hairshop.workdialog

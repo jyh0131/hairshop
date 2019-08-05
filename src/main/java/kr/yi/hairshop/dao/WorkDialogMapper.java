@@ -12,6 +12,7 @@ public interface WorkDialogMapper {
 	public List<WorkDialog> selectWDGECPjoinByNo(int no);
 	
 	public List<WorkDialog> selectReservDetail();
+	public List<WorkDialog> selectByAllLimit(Map<String,Integer> map);
 	public List<WorkDialog> selectWDGECPjoinByWNo(int wNo);
 	public List<WorkDialog> selectWDGECPjoinByWDNoDate(Map<String, String> map);
 	public List<WorkDialog> selectWDjoinByWDNoDate(Map<String, String> map);

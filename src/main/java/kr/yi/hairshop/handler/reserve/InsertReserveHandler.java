@@ -79,7 +79,27 @@ public class InsertReserveHandler implements CommandHandler{
 		gMap.put("gTel", gTel);
 		Guest oldguest=gDao.selectGuestByGNameGTel(gMap);
 		if(oldguest!=null) {
-			
+			WorkDialog newWork=new WorkDialog();
+			newWork.setwGNo(oldguest);
+			newWork.setwReservTime(wReservTime);
+			newWork.setwDNo(new Designer(dFind.getdNo()));
+			int wNo=wDao.insertWorkNoGuestResWNo(newWork);
+			int sumPrice=0;
+			for(int i=0; i<pName.size(); i++) {
+				Map<String, String> choiceMap=new HashMap<>();
+				choiceMap.put("wNo", wNo+"");
+				choiceMap.put("pName", pName.get(i));
+				Product product=pDao.selectByName(pName.get(i));
+				sumPrice+=product.getpPrice();
+				wDao.insertChoice(choiceMap);
+			}
+			WorkDialog work = new WorkDialog();
+			work.setwNo(wNo);
+			work.setwPriceTotal(sumPrice);
+			wDao.updateWorkPrice(work);
+			req.setAttribute("reserved", true);
+			req.setAttribute("gName", gName);
+			req.setAttribute("gTel", gTel);
 		}
 		else {
 			Guest newGuest=new Guest();
@@ -112,7 +132,8 @@ public class InsertReserveHandler implements CommandHandler{
 			}
 			
 		}
-		return "/reserve/form.do";
+		res.sendRedirect(req.getContextPath()+"/reserve/form.do");
+		return null;
 	}
 
 }
