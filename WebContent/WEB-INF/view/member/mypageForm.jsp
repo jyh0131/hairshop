@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@page import="java.util.Date"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="../../include/header.jsp" %>
 
@@ -72,15 +72,17 @@
 #mypage #myMenuBtn a {
 	text-decoration: none;
 }
-
-
 </style>
-    
-    
     
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/common.js"></script>
-    
+<script>
+
+$(function () {
+	var da = new Date(guest.gJoin).format("yyyy-MM-dd a/p hh:mm");
+})
+	
+</script>
 <section id="mypage">
 
 	<div id="mpWrap">
@@ -106,7 +108,8 @@
 					<td>${guest.gLGrade.lGrade }</td>
 					<td>${guest.gTel }</td>
 					<td>${guest.gEmail }</td>
-					<td>${guest.gJoin }</td>
+					<td>${da }</td>
+					<%-- <td>${guest.gJoin }</td> --%>
 					<td>${guest.gPoint }</td>
 				</tr>
 	    	</table>

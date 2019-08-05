@@ -83,11 +83,11 @@
 	$(function () {
 		
 		$("#reserv").click(function() {
-			var Auth = <%=session.getAttribute("Auth") %>;
+			var Auth = '${Auth.uId}';
 			if( Auth != null){
 				location.href="${pageContext.request.contextPath}/reserve/reserveState.do";
 			}else{
-				alert("로그인 하세요");
+				alert("비회원 예약 정보 검색 창");
 			}
 			
 		})
@@ -130,7 +130,6 @@
 					<a href="${pageContext.request.contextPath}/view/hair.do"><li>hair style</li></a>
 					<a href="#"><li>viedo</li></a>
 					<a href="${pageContext.request.contextPath}/reserve/form.do"><li>resevation</li></a>
-					<%-- <a href="${pageContext.request.contextPath}/reserve/reserveState.do"><li>resevation state</li></a> --%>
 					<a href="#" id="reserv"><li>resevation state</li></a>
 				</ul>
 			</div>
