@@ -17,17 +17,16 @@ body {
 	position: relative;
 	width: 100%;
 	height: 100%;
-	overflow: hidden;
-	cursor: pointer
-}
-
+	overflow: hidden;  
+}      
+  
 .mov_box .yt_wrap {
 	position: absolute;
 	left: 0;
 	right: 0;
 	top: 0;
 	bottom: 0;
-	z-index: -99
+	z-index: -99;
 }
 
 .mov_box .yt_box {
@@ -35,7 +34,7 @@ body {
 	left: 50%;
 	top: 50%;
 	width: 1280px;
-	height: 720px
+	height: 900px;
 }
 
 .mov_box p {
@@ -50,5 +49,5 @@ body {
 	color: #fff;
 	text-shadow: 1px 1px 10px #000;
 	text-align: center;
-	vertical-align: middle
+	vertical-align: middle;
 }

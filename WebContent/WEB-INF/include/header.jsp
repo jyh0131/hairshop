@@ -84,7 +84,7 @@
 	<div id="container">
 		<header>
 			<div id="title">
-				<a href="${pageContext.request.contextPath}/index.jsp"><img src="${pageContext.request.contextPath}/images/logo.png"></a>
+				<a href="${pageContext.request.contextPath}/view/home.do"><img src="${pageContext.request.contextPath}/images/logo.png"></a>
 			</div>
 			
 			<div id="Idcheck">
