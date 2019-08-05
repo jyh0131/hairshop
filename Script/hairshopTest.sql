@@ -245,8 +245,7 @@ left join level v on g.g_l_grade = v.l_grade
 left join choice c on w.w_no = c.c_w_no
 left join product p on c.c_p_name = p.p_name
 left join tax t on p.p_name = t.t_name
--- where g_id='a'
-where w_worktime is not null
+where g_id='a' and w_worktime is null
 order by w_reservTime desc;
 
 

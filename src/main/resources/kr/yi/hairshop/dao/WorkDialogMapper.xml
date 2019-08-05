@@ -47,34 +47,46 @@
 		<association property="wGNo" resultMap="kr.yi.hairshop.dao.GuestMapper.basicGuest" />
 	</resultMap> -->
 	
+	<!-- 웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹 -->
+	
+	<select id="selectByIdForReservState" resultMap="reserveDetail">
+		<!-- 예약 정보 확인 page 검색용 -->
+		select g_id, g_name,w_reservTime, w_priceTotal, d_name, d_grade, p_name, w_workTime
+		from workdialog w
+		left join designer d on w.w_d_no = d.d_no
+		left join guest g on w.w_g_no = g.g_no
+		left join event e on w.w_e_name = e.e_name
+		left join level v on g.g_l_grade = v.l_grade
+		left join choice c on w.w_no = c.c_w_no
+		left join product p on c.c_p_name = p.p_name
+		left join tax t on p.p_name = t.t_name
+		where g_id=#{id} and w_worktime
+			<if test="check==1"> is not null </if>
+			<if test="check==0"> is null	 </if>		
+		order by w_reservTime desc
+	</select>
+	
+	<!-- 웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹웹 -->
+	
+	
 	<select id="selectWDGECPjoinByWNo" resultMap="selectWDGECPjoinByNo">
 		SELECT *
 		FROM workdialog w
-		left join designer d
-		on w.w_d_no=d.d_no
-		left join event e
-		on w.w_e_name=e.e_name
-		left join choice c
-		on w.w_no=c.c_w_no
-		left join product p
-		on c.c_p_name=p.p_name
-		left join guest g
-		on w_g_no=g.g_no
+		left join designer d on w.w_d_no=d.d_no
+		left join event e on w.w_e_name=e.e_name
+		left join choice c on w.w_no=c.c_w_no
+		left join product p on c.c_p_name=p.p_name
+		left join guest g on w_g_no=g.g_no
 		where w.w_no=#{wNo}
 	</select>
 	<select id="selectWDGECPjoinByWDNoDate" resultMap="selectWDGECPjoinByNo">
 		SELECT *
-		FROM workdialog w
-		left join designer d
-		on w.w_d_no=d.d_no
-		left join event e
-		on w.w_e_name=e.e_name
-		left join choice c
-		on w.w_no=c.c_w_no
-		left join product p
-		on c.c_p_name=p.p_name
-		left join guest g
-		on w_g_no=g.g_no
+		FROM workdialog w left join designer d
+		on w.w_d_no=d.d_no left join event e
+		on w.w_e_name=e.e_name left join choice c
+		on w.w_no=c.c_w_no left join product p
+		on c.c_p_name=p.p_name left join guest g
+		on w_g_no=g.g_no 
 		where w.w_d_no=#{wDNo}
 		and w_reservTime <![CDATA[>]]> concat(#{date}, ' 00:00:00')
 		and w_reservTime <![CDATA[<]]> concat(#{date}, ' 23:59:59')
@@ -91,35 +103,16 @@
 	</select>
 	<select id="selectDListByNo" parameterType="int" resultMap="resultWorkDialog">
 		select
-		w_no,
-		w_workTime,
-		w_reservTime,
-		w_e_name,
-		w_d_no,
-		w_g_no,
-		g.g_name
+		w_no, w_workTime, w_reservTime, w_e_name, w_d_no, w_g_no, g.g_name
 		from workdialog w
 		join guest g
 		on w.w_d_no=#{dNo} and w.w_g_no=g.g_no;
 	</select>
 	<select id="selectByAll" resultType="WorkDialog">
 		select
-		w_no,
-		w_workTime,
-		w_reservTime,
-		w_e_name,
-		w_d_no,
-		w_g_no,
-		c_w_no,
-		c_p_name,
-		g_no,
-		g_l_grade,
-		g_email,
-		g_birth,
-		g_name,
-		g_tel,
-		g_point,
-		g_memo
+		w_no, w_workTime, w_reservTime, w_e_name, w_d_no, w_g_no, 
+		c_w_no, c_p_name, 
+		g_no, g_l_grade, g_email, g_birth, g_name, g_tel, g_point, g_memo
 		from workdialog w
 		left join
 		choice c
@@ -131,14 +124,10 @@
 	<select id="selectByfivejoinMap" resultMap="resultWorkDialogfivejoin">
 		SELECT g_name, w_workTime, p_name, p_price, w_priceTotal
 		FROM workdialog w
-		join designer d
-		on w.w_d_no=d.d_no
-		join choice c
-		on w.w_no=c.c_w_no
-		join product p
-		on c.c_p_name=p.p_name
-		join guest g
-		on w_g_no=g.g_no
+		join designer d on w.w_d_no=d.d_no
+		join choice c on w.w_no=c.c_w_no
+		join product p on c.c_p_name=p.p_name
+		join guest g on w_g_no=g.g_no
 		where d_no=#{dNo}
 		and w_workTime is not null
 	</select>
@@ -172,6 +161,7 @@
 		where w_reservTime between #{start} and #{end}
 		order by w_no
 	</select>
+	
 	<insert id="insertWorkDialogResWNoNoGuest" parameterType="WorkDialog" useGeneratedKeys="true" keyProperty="wNo">
 		INSERT INTO hairshop.workdialog
 		(w_workTime, w_reservTime, w_priceTotal, w_e_name, w_d_no, w_g_no)
@@ -188,6 +178,7 @@
 		DELETE FROM hairshop.choice
 		WHERE c_w_no=#{wNo}
 	</delete>
+	
 	<update id="updateWorkDialog">
 		UPDATE hairshop.workdialog
 		SET
@@ -254,6 +245,8 @@
 		where w_reservTime between #{start} and #{end}
 		group by d_name	
 	</select>
+	
+
 	
 </mapper>
 
