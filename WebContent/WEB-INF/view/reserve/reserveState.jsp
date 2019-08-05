@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="../../include/header.jsp" %>
 
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css">
@@ -59,10 +60,11 @@
 				<th>디자이너 등급</th>
 				<th>작업명</th>
 			</tr>
-			
+						
 			<c:forEach var="w" items="${lookback }">
 				<tr>
-					<td>${w.wNo}</td>
+					<%-- <td>${w.wNo}</td> --%>
+					<td><fmt:formatDate value="${w.wWorkTime}" pattern="yy년 MM월 dd일 hh시 mm분"/></td>
  					<td>${w.wPriceTotal}</td>
  					<td>${w.wDNo.dName}</td>
  					<td>${w.wDNo.dGrade}</td>
@@ -85,7 +87,7 @@
 			</tr>
 			<c:forEach var="w" items="${lookAhead }">
 				<tr>
-					<td>${w.wNo}</td>
+					<td><fmt:formatDate value="${w.wReserveTime}" pattern="yy년 MM월 dd일 hh시 mm분"/></td>
 					<td>${w.wPriceTotal}</td>
 					<td>${w.wDNo.dName}</td>
 					<td>${w.wDNo.dGrade}</td>

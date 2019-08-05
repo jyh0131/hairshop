@@ -1,7 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@page import="java.util.Date"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="../../include/header.jsp" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css">
 <style>
@@ -49,10 +50,10 @@
 	width: 200px;
 }
 #mypage #mybio table th:nth-child(6) {
-	width: 100px;
+	width: 220px;
 }
 #mypage #mybio table th:nth-child(7) {
-	width: 50px;
+	width: 80px;
 }
 #mypage #myMenuBtn div{
 	width: 25%;
@@ -72,15 +73,14 @@
 #mypage #myMenuBtn a {
 	text-decoration: none;
 }
-
-
 </style>
-    
-    
     
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/common.js"></script>
-    
+<script>
+
+	
+</script>
 <section id="mypage">
 
 	<div id="mpWrap">
@@ -106,7 +106,7 @@
 					<td>${guest.gLGrade.lGrade }</td>
 					<td>${guest.gTel }</td>
 					<td>${guest.gEmail }</td>
-					<td>${guest.gJoin }</td>
+					<td><fmt:formatDate value="${guest.gJoin}" pattern="yy년 MM월 dd일 hh시 mm분"/></td>
 					<td>${guest.gPoint }</td>
 				</tr>
 	    	</table>
@@ -114,9 +114,9 @@
 	
 		<div id="myMenuBtn">
 			<a href="${pageContext.request.contextPath}/reserve/reserveState.do"><div>예약정보 확인하기</div></a>
-			<a href="#"><div>내 정보 수정하기</div></a>
-			<a href="#"><div>예약정보 확인하기</div></a>
-			<a href="#"><div>예약정보 확인하기</div></a>
+			<a href="${pageContext.request.contextPath}/member/memberModify.do"><div>내 정보 수정하기</div></a>
+			<a href="#"><div>가나다라마바사</div></a>
+			<a href="#"><div>사랑한단말이야</div></a>
 		</div>
 		
 	</div>

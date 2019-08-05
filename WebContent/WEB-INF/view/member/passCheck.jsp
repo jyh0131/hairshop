@@ -21,6 +21,11 @@
 	margin: 10px;
 	margin: 0 auto;
 }
+#passChecker input{
+	width: 220px;
+	height: 40px;
+	margin-bottom: 10px;
+}
 
 </style>
 
@@ -29,8 +34,9 @@
 
 	<h1>비밀번호 확인</h1>
 	<form action="${pageContext.request.contextPath}/member/passCheck.do" method="post">
-		<input type="password" name="password">
-		<input type="submit" value="확인">
+		
+		<p><input type="password" name="password" ></p>
+		<p><input type="submit" value="확인"></p>
 	</form>
 
 

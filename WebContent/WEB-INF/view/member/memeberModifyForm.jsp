@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="../../include/header.jsp" %>
 
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css">
@@ -77,28 +78,28 @@
 	<form action="${pageContext.request.contextPath}/member/memberModifyForm.do" method="post" id="f1">
 
 		<p>
-			</span>비밀번호</label>
+			<label>비밀번호</label>
 			<input class="input" type="password" name="password" placeholder="영어,숫자,특수문자 포함 8~20자리">
 			<span class="error">비밀번호(영어, 숫자, 특수문자 포함, 8~20자)를 입력하세요</span>					
 		</p>
 		<p>
-			</span>비밀번호 확인</label>
+			<label>비밀번호 확인</label>
 			<input class="input" type="password" name="confirmPassword" placeholder="비밀번호 확인">
 			<span class="error">비밀번호 확인란을 입력하세요</span>
 			<span class="error">비밀번호가 일치하지 않습니다</span>
 		</p>
 
 		<p>
-			</span>전화번호</label>
-			<input class="input" type="text" name="tel" placeholder="전화번호">
+			<label>전화번호</label>
+			<input class="input" type="text" name="tel" value="${guest.gTel }">
 		</p>
 		<p>
 			<label>이메일</label>
-			<input class="input" type="email" name="email" placeholder="이메일">
+			<input class="input" type="email" name="email" value="${guest.gEmail }">
 		</p>
 		<p>
 			<label>생일</label>
-			<input class="input" type="date" name="birth" placeholder="생일">
+			<input class="input" type="date" name="birth" value="<fmt:formatDate value="${guest.gBirth}" pattern='yyyy-MM-dd'/>">
 		</p>
 		<p>
 			<input type="submit" value="수 정" id="btnSubmit">

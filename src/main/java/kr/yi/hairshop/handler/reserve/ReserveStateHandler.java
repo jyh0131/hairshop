@@ -36,8 +36,9 @@ public class ReserveStateHandler implements CommandHandler {
 		List<WorkDialog> lookAhead = dao.selectByIdForReservState(map);
 
 		Iterator<WorkDialog> list = lookAhead.iterator();
-		if(list.hasNext()) {
+		while(list.hasNext()) {
 			WorkDialog work=list.next();
+			System.out.println("11");
 			System.out.println(work);
 		}
 		

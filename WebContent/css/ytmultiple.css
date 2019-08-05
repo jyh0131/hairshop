@@ -10,7 +10,7 @@ html, body {
 }
 
 body {
-	background-color: #000
+	background-color: #000;
 }
 
 .mov_box {
@@ -26,7 +26,7 @@ body {
 	right: 0;
 	top: 0;
 	bottom: 0;
-	z-index: -99;
+	z-index: -1;
 }
 
 .mov_box .yt_box {
