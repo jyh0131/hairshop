@@ -32,12 +32,14 @@
 		margin:0 auto;
 		height: 593px;
 		position: static;
-		background-color: black;
 	}  
 	.wrap_home img{
-		width:1700px;
+		width:800px;
 		height: 500px;
 		margin: 0 auto;
+	}
+	.bxslider div{
+		background-color: lightgray;
 	}
 	#images{
 		width: 70%;
@@ -123,6 +125,19 @@
 
 
 <body>
+	
+	
+	<div id="section">
+		<div class="example1 parallaxContainer" data-slim-prx-speed="20">
+			<div class="container"></div>
+		</div>
+
+		<div class="example2 parallaxContainer">
+			<div class="container"></div>
+		</div>
+		<p class="lead"></p>
+	</div>
+	
 	<div id=div1><%@ include file="../include/header.jsp"%></div>
 	<div class="jquery-script-center">
 		<div class="jquery-script-ads">
@@ -136,17 +151,6 @@
 		<div class="yt_wrap">
 			<div id="player1" class="yt_box"></div>
 		</div>
-	</div>
-	
-	<div id="section">
-		<div class="example1 parallaxContainer" data-slim-prx-speed="20">
-			<div class="container"></div>
-		</div>
-
-		<div class="example2 parallaxContainer">
-			<div class="container"></div>
-		</div>
-		<p class="lead"></p>
 	</div>
 	
 	<div class="wrap_home">
