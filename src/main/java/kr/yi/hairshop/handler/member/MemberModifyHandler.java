@@ -17,7 +17,7 @@ public class MemberModifyHandler implements CommandHandler {
 		if(req.getMethod().equalsIgnoreCase("get")) {
 			HttpSession session = req.getSession();
 			User user = (User) session.getAttribute("Auth");
-			
+			System.out.println("aaaaaaaaaaaaaaaaaaaaaaaa");
 			GuestMapper dao = new GuestMapperImpl();
 			Guest guest = dao.selectById(user.getuId());
 			
