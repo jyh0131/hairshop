@@ -254,6 +254,19 @@
 		where w_reservTime between #{start} and #{end}
 		group by d_name	
 	</select>
+	<select id="selectBygNameAndgTel" resultMap="selectWDGECPjoinByNo">
+		select *
+		from workdialog w
+		join guest g
+		on w.w_g_no=g.g_no
+		join choice c
+		on w.w_no=c.c_w_no
+		join product p
+		on p.p_name=c.c_p_name
+		join designer d
+		on d.d_no=w.w_d_no
+		where g.g_name=#{gName} and g.g_tel=#{gTel}
+	</select>
 	
 </mapper>
 

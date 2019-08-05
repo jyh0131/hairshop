@@ -20,27 +20,17 @@ public class ReserveHandler implements CommandHandler{
 
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
-		SqlSession sqlSession = null;
 		
-		try {
-			sqlSession = MyBatisSqlSessionFactory.openSession();
-			DesignerMapper dDao = new DesignerMapperImpl();
-			List<Designer> dList=dDao.selectDesignerByAll();
+		DesignerMapper dDao = new DesignerMapperImpl();
+		List<Designer> dList=dDao.selectDesignerByAll();
 			
-			ProductMapper pDao = new ProductMapperImpl();
-			List<Product> pList=pDao.selectProductByAll();
+		ProductMapper pDao = new ProductMapperImpl();
+		List<Product> pList=pDao.selectProductByAll();
 			
-			req.setAttribute("dList", dList);
-			req.setAttribute("pList", pList);
+		req.setAttribute("dList", dList);
+		req.setAttribute("pList", pList);
 			
-			return "/WEB-INF/view/reserve/reserve.jsp";
-		}catch (Exception e) {
-			e.printStackTrace();
-		}finally {
-			sqlSession.close();
-		}
-		
-		return null;
+		return "/WEB-INF/view/reserve/reserve.jsp";
 	}
 
 }

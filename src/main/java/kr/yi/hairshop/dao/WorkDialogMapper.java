@@ -32,5 +32,6 @@ public interface WorkDialogMapper {
 
 	public List<WorkDialog> selectByDName();
 	public List<WorkDialog> selectByDateForChartMon(Map<String, String> map);
+	public List<WorkDialog> selectBygNameAndgTel(Map<String, String> map);
 
 }

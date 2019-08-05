@@ -1,6 +1,7 @@
 package kr.yi.hairshop.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -65,6 +66,13 @@ public class GuestMapperImpl implements GuestMapper {
 	public Guest selectById(String id) {
 		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
 			return sqlSession.selectOne(namespace + ".selectById", id);
+		}
+	}
+
+	@Override
+	public Guest selectGuestByGNameGTel(Map<String, String> map) {
+		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
+			return sqlSession.selectOne(namespace + ".selectGuestByGNameGTel",map);
 		}
 	}
 

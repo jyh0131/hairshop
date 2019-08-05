@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="../../include/header.jsp"%>
 <style>
@@ -54,14 +54,14 @@ section article#border div#designerList{
 
 section article#border div#form {
 	background: white;
-	width:450px;
+	width:520px;
 	height:1100px;
 	padding: 20px;  
 	margin: 2px;
 	float: left;
 }
 section article#border div#guest{
-	width:400px;
+	width:320px;
 	height:1100px;
 	background:white;
 	display: inline-block;
@@ -89,13 +89,13 @@ section article#border div#form div#calendar h1 {
 
 section article#border div#form div#calendar img#left {
 	position: absolute;
-	top: 0px;
-	left: 0px;
+	top: 10px;
+	left: 10px;
 }
 
 section article#border div#form div#calendar img#right {
-	top: 0px;
-	rigth: -50px;
+	top: 10px;
+	right: 10px;
 	position: absolute;
 }
 
@@ -119,8 +119,41 @@ section article#border div#form div#calendar td.day {
 }
 section article#border div#form div#mapForm{
 	display: none;
+}
+section article#border div#form div#mapForm input{
+	float: right;
+}
+section article#border div#form div#mapForm button{
+	float: right;
+}
+section article#border div#form div#reservedForm{
+	display: none;
+}
+section article#border div#form div#reservedForm div#reservedList{
 	
-}                              
+}
+section article#border div#form div#reservedForm div#reservedList table{
+	border-collapse: collapse;
+}
+
+div#form div#reservedForm div#reservedList table th:nth-child(1){
+	width:100px;
+}
+div#form div#reservedForm div#reservedList table th:nth-child(2){
+	width: 100px;
+}
+div#form div#reservedForm div#reservedList table th:nth-child(3){
+	width: 100px;
+}
+div#form div#reservedForm div#reservedList table th:nth-child(4){
+	width: 100px;
+}
+div#form div#reservedForm div#reservedList table th:nth-child(5){
+	width: 100px;
+}
+div#form div#reservedForm div#reservedList table td,div#form div#reservedForm div#reservedList table th{
+	border: 1px solid black;
+}
 section article#border div#form div#map input{
 	
 }
@@ -146,7 +179,7 @@ section article#border table#item td {
 
 
 section article#border div#guest img{
-	width:400px;
+	width:320px;
 	height: 280px;
 	float: left;
 }
@@ -327,6 +360,9 @@ section article#border div#guest div#reserve span{
 		})
 		
 		$("#designer li").click(function() {
+			$("#reserveForm").show();
+			$("#mapForm").hide();
+			$("#reservedForm").hide();
 			$("#designer li").css("background-color", "#f5f5f5");
 			$("#designer li").css("border-top", "1px solid #dddddd");
 			$(this).css("border-top", "2px solid black");
@@ -425,13 +461,20 @@ section article#border div#guest div#reserve span{
 			
 			</div>
 			<div id="mapForm">
-				<input type="text"><button id="search">검색</button>
-				<div id="map" style="width:450px;height:400px;"></div>
+				<button id="search">검색</button><input type="text">
+				<div id="map" style="width:520px;height:520px;"></div>
 			</div>
 			<div id="reservedForm">
 				<h2>예약 정보</h2>
-				<div>
-					
+				<div id="reservedList">
+					<table>
+						<tr>
+							<th>디자이너</th>							
+							<th>예약시간</th>
+							<th>작업시간</th>
+							<th>작업명</th>
+							<th>가격</th>
+					</table>
 				</div>
 			</div>
 		</div>
@@ -450,7 +493,20 @@ section article#border div#guest div#reserve span{
 			</div>
 			
 			<script type="text/javascript">
-				$("#logo span").eq(2).click(function() {
+			
+				$("#logo span").eq(0).click(function() {
+					$("#reserveForm").show();
+					$("#mapForm").hide();
+					$("#reservedForm").hide();
+					$("#commit").text("예약신청");
+				})
+				$("#logo span").eq(1).click(function() {
+					$("#reserveForm").hide();
+					$("#mapForm").hide();
+					$("#reservedForm").show();
+					$("#commit").text("예약확인");
+				})
+					$("#logo span").eq(2).click(function() {
 					$("#reserveForm").hide();
 					$("#mapForm").show();
 					$("#reservedForm").hide();
@@ -460,42 +516,86 @@ section article#border div#guest div#reserve span{
 					    map.relayout();
 					}, 0);
 				})
-				$("#logo span").eq(0).click(function() {
-					$("#reserveForm").show();
-					$("#mapForm").hide();
-					$("#reservedForm").hide();
-				})
-				$("#logo span").eq(1).click(function() {
-					$("#reserveForm").hide();
-					$("#mapForm").hide();
-					$("#reservedForm").show();
-				})
 			</script>
 			
 			<br>
 			<hr>
 			<br>
 			<p id="guestText">
-			<label>고객명</label><input type="text" name="gName" id="gName"><br>
-			<label>핸드폰번호</label><input type="text" name="gTel" id="gTel"><br>
-			<br>
-			<input type="checkbox"><span class="underline">개인정보 수집 및 이용</span>안내에 동의 합니다.
-			</p>
-			<br>
-			<hr>
-			<br>
-			<div id="reserve">
-				<label>예약시간</label> : <span id="reserveDate"></span><span id="reserveTime"></span><br>
-				<label>디자이너</label> : <span id="reserveDesigner"></span><br>
-				<label>메뉴</label> : <span id="reserveProduct"></span><br>
-			</div>
-			<br>
-			<hr>
-			<br>
-						
+				<label>고객명</label><input type="text" name="gName" id="gName"><br>
+				<label>핸드폰번호</label><input type="text" name="gTel" id="gTel" placeholder='"-"를 붙여서 입력해 주세요.'><br>
+				
+				<br>
+					<input type="checkbox"><span class="underline">개인정보 수집 및 이용</span>안내에 동의 합니다.
+				</p>
+				<br>
+				<hr>
+				<br>
+				<div id="reserve">
+					<label>예약시간</label> : <span id="reserveDate"></span><span id="reserveTime"></span><br>
+					<label>디자이너</label> : <span id="reserveDesigner"></span><br>
+					<label>메뉴</label> : <span id="reserveProduct"></span><br>
+				</div>
+				<br>
+				<hr>
+				<br>
+				<button id="commit">예약신청</button>
 		</div>
 		
-		
+		<script type="text/javascript">
+				$(function() {
+					$("#commit").click(function() {
+						var gName=$("#gName").val();
+						var gTel=$("#gTel").val();	
+						if($(this).text()=="예약확인"){
+							$.ajax({  
+								url : "${pageContext.request.contextPath }/reserve/reservedCheck.do",
+								type : "post",
+								data : {
+											"gName":gName,
+											"gTel":gTel
+										},
+								dataType : "json",
+								success : function(json) {
+									console.log(json);
+									if(json.length>0){
+										for(var i=0; i<json.length; i++){
+											var work=json[i];
+											var str = "";
+											str+="<tr>";
+											str+="<td>"+work.wDNo.dName+" "+work.wDNo.dGrade+"</td>";
+											str+="<td>"+new Date(work.wPriceTotal).format('yyyy-MM-dd a/p hh:mm')+"</td>";
+											str+="<td>"+new Date(work.wReserveTime).format('yyyy-MM-dd a/p hh:mm')+"</td>";
+											str+="<td>";
+											for(var j=0; j<work.productList.length; j++){
+												str+=work.productList[j].pName+",";	
+											}
+											str=str.slice(0,-1);
+											str+="</td>";
+											str+="<td>"+work.wPriceTotal.toLocaleString()+"원</td>";
+											str+="</tr>";
+											
+											$("#reservedList table").append(str);
+										}
+									}
+										
+								}
+							})
+						}
+						if($(this).text()=="예약신청"){
+							var reserveDate=$("#reserve span").eq(0).text();
+							var reserveTime=$("#reserve span").eq(1).text();
+							var reserveDesigner=$("#reserve span").eq(2).text();
+							var reserveProduct=$("#reserve span").eq(3).text();
+							location.href="${pageContext.request.contextPath}/reserve/insertReserve.do?gName="+gName+"&gTel="+gTel
+									+"&reserveDate="+reserveDate+"&reserveTime="+reserveTime+"&reserveDesigner="+reserveDesigner+"&reserveProduct="+reserveProduct
+									;							
+						}
+					})
+					
+				})
+				
+			</script>
 		
 		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e7a1993c6a8fe959ae3a03145152acfa&libraries=services,clusterer,drawing"></script>
 		<script type="text/javascript">

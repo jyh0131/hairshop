@@ -38,6 +38,14 @@
 		FROM guest
 		where g_name like CONCAT('%',#{gName},'%')
 	</select>
+	<select id="selectGuestByGNameGTel" resultMap="extendsGuest">
+		SELECT g_no, g_id, g_l_grade as l_grade, g_name,
+		g_tel, g_email,
+		g_birth, g_join, g_point, g_memo
+		FROM guest
+		where g_name=#{gName}
+		and g_tel=#{gTel}
+	</select>
 	
 	<select id="selectById" resultType="Guest" resultMap="basicGuest">
 		select g_no, g_id, g_password, g_l_grade, g_name, g_tel, g_email, g_birth, g_join, g_point, g_memo, g_secession 
