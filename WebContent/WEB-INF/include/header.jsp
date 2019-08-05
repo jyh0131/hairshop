@@ -87,7 +87,7 @@
 			if( Auth != null){
 				location.href="${pageContext.request.contextPath}/reserve/reserveState.do";
 			}else{
-				alert("비회원 예약 정보 검색 창");
+				location.href="${pageContext.request.contextPath}/member/login.do";
 			}
 			
 		})
@@ -129,8 +129,8 @@
 					<a href="${pageContext.request.contextPath}/view/produce.do"><li>Staff</li></a>
 					<a href="${pageContext.request.contextPath}/view/hair.do"><li>hair style</li></a>
 					<a href="#"><li>viedo</li></a>
-					<a href="${pageContext.request.contextPath}/reserve/form.do"><li>resevation</li></a>
-					<a href="#" id="reserv"><li>resevation state</li></a>
+					<a href="${pageContext.request.contextPath}/reserve/form.do"><li>reservation</li></a>
+					<a href="#" id="reserv"><li>reservation state</li></a>
 				</ul>
 			</div>
 		</header>

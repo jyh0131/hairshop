@@ -20,6 +20,11 @@
 	
 	background-color: lightgreen;
 }
+#joinForm h3{
+	margin-top:30px;
+	padding-left: 100px;
+}
+
 #joinForm p{
 	padding-left: 100px;
 	margin: 15px;

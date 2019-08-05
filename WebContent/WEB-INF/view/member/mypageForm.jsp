@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="../../include/header.jsp" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css">
 <style>
@@ -49,10 +50,10 @@
 	width: 200px;
 }
 #mypage #mybio table th:nth-child(6) {
-	width: 100px;
+	width: 220px;
 }
 #mypage #mybio table th:nth-child(7) {
-	width: 50px;
+	width: 80px;
 }
 #mypage #myMenuBtn div{
 	width: 25%;
@@ -78,9 +79,6 @@
 <script src="${pageContext.request.contextPath}/js/common.js"></script>
 <script>
 
-$(function () {
-	var da = new Date(guest.gJoin).format("yyyy-MM-dd a/p hh:mm");
-})
 	
 </script>
 <section id="mypage">
@@ -108,8 +106,7 @@ $(function () {
 					<td>${guest.gLGrade.lGrade }</td>
 					<td>${guest.gTel }</td>
 					<td>${guest.gEmail }</td>
-					<td>${da }</td>
-					<%-- <td>${guest.gJoin }</td> --%>
+					<td><fmt:formatDate value="${guest.gJoin}" pattern="yy년 MM월 dd일 hh시 mm분"/></td>
 					<td>${guest.gPoint }</td>
 				</tr>
 	    	</table>
@@ -118,8 +115,8 @@ $(function () {
 		<div id="myMenuBtn">
 			<a href="${pageContext.request.contextPath}/reserve/reserveState.do"><div>예약정보 확인하기</div></a>
 			<a href="${pageContext.request.contextPath}/member/memberModify.do"><div>내 정보 수정하기</div></a>
-			<a href="#"><div>예약정보 확인하기</div></a>
-			<a href="#"><div>예약정보 확인하기</div></a>
+			<a href="#"><div>가나다라마바사</div></a>
+			<a href="#"><div>사랑한단말이야</div></a>
 		</div>
 		
 	</div>
