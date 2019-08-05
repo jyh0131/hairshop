@@ -23,36 +23,26 @@ public class IdCheckHandler implements CommandHandler {
 		if(req.getMethod().equalsIgnoreCase("get")) {
 			
 			String newId = req.getParameter("id");
+
+			GuestMapper dao = new GuestMapperImpl();
+			Guest dbGuest = dao.selectById(newId);
 			
-			SqlSession sqlSession = null;
+			Map<String, Boolean> map = new HashMap<>();
+			System.out.println(map);
+			if(dbGuest == null) {
+				map.put("check", true);
+			}else {
+				map.put("check", false);
+			}
 			
-			try {
-				sqlSession = MyBatisSqlSessionFactory.openSession();
-				
-				GuestMapper dao = new GuestMapperImpl();
-				Guest dbGuest = dao.selectById(newId);
-				
-				Map<String, Boolean> map = new HashMap<>();
-				System.out.println(map);
-				if(dbGuest == null) {
-					map.put("check", true);
-				}else {
-					map.put("check", false);
-				}
-				
-				ObjectMapper om = new ObjectMapper();
-				String data = om.writeValueAsString(map);
-				
-				res.setContentType("application/json;charset=utf-8");
-				PrintWriter out = res.getWriter();
-				out.print(data);
-				out.flush();					
-				
-			} catch (Exception e) {
-				e.printStackTrace();
-			}finally {
-				sqlSession.close();
-			}			
+			ObjectMapper om = new ObjectMapper();
+			String data = om.writeValueAsString(map);
+			
+			res.setContentType("application/json;charset=utf-8");
+			PrintWriter out = res.getWriter();
+			out.print(data);
+			out.flush();					
+		
 		}
 		return null;
 	}

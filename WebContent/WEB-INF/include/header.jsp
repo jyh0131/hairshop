@@ -79,13 +79,27 @@
 
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+	$(function () {
+		
+		$("#reserv").click(function() {
+			var Auth = <%=session.getAttribute("Auth") %>;
+			if( Auth != null){
+				location.href="${pageContext.request.contextPath}/reserve/reserveState.do";
+			}else{
+				alert("로그인 하세요");
+			}
+			
+		})
+	})
+</script>
 </head>
 
 <body>
 	<div id="container">
 		<header>
 			<div id="title">
-				<a href="${pageContext.request.contextPath}/index.jsp"><img src="${pageContext.request.contextPath}/images/logo.png"></a>
+				<a href="${pageContext.request.contextPath}/view/home.do"><img src="${pageContext.request.contextPath}/images/logo.png"></a>
 			</div>
 			
 			<div id="Idcheck">
@@ -104,19 +118,20 @@
 					<span class="mymenu"><a href="${pageContext.request.contextPath}/management/mgn.do">관리자 페이지</a></span>
 				</c:if>
 				<c:if test="${Auth.uIsMgr == false }">
-					<span class="mymenu"><a href="${pageContext.request.contextPath}/member/mypage.do">마이 페이지</a></span>
+					<span class="mymenu"><a href="${pageContext.request.contextPath}/member/passCheck.do">마이 페이지</a></span>
 				</c:if>
 				
 			</div>
 			
 			<div id="topmenu">
 				<ul>
-					<a href="#"><li>intro</li></a>
+					<a href="${pageContext.request.contextPath}/"><li>intro</li></a>
 					<a href="${pageContext.request.contextPath}/view/produce.do"><li>Staff</li></a>
 					<a href="${pageContext.request.contextPath}/view/hair.do"><li>hair style</li></a>
 					<a href="#"><li>viedo</li></a>
 					<a href="${pageContext.request.contextPath}/reserve/form.do"><li>resevation</li></a>
-					<a href="#"><li>resevation state</li></a>
+					<%-- <a href="${pageContext.request.contextPath}/reserve/reserveState.do"><li>resevation state</li></a> --%>
+					<a href="#" id="reserv"><li>resevation state</li></a>
 				</ul>
 			</div>
 		</header>

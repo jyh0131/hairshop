@@ -176,6 +176,13 @@ public class WorkDialogMapperImpl implements WorkDialogMapper{
 			return sqlSession.selectList(namespace+".selectBygNameAndgTel",map);
 		}
 	}
+	@Override
+	public List<WorkDialog> selectByIdForReservState(Map<String, Object> map) {
+		try(SqlSession sqlSession=MyBatisSqlSessionFactory.openSession();){
+			return sqlSession.selectList(namespace+".selectByIdForReservState", map);
+		}
+	}
+
 
 	
 

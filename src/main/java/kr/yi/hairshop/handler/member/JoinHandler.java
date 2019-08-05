@@ -44,21 +44,12 @@ public class JoinHandler implements CommandHandler {
 			guest.setgLGrade(new Level("브론즈"));
 			guest.setgMemo("온라인 회원가입");		
 			
-			SqlSession sqlSession = null;
 			
-			try {
-				sqlSession = MyBatisSqlSessionFactory.openSession();
+			GuestMapper dao = new GuestMapperImpl();
+			int result = dao.insertGuest(guest);
+			
+			return "/WEB-INF/view/member/loginForm.jsp";
 
-				GuestMapper dao = new GuestMapperImpl();
-				int result = dao.insertGuest(guest);
-				
-				return "/WEB-INF/view/member/loginForm.jsp";
-				
-			} catch (Exception e) {
-				e.printStackTrace();
-			}finally {
-				sqlSession.close();
-			}
 			
 		}
 		return null;
