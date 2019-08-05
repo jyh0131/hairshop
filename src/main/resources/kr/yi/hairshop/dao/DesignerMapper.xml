@@ -26,6 +26,11 @@
 	<select id="selectDesignerByAll" resultType="Designer">
 		select * from designer where d_secession=false
 	</select>
+	<select id="selectMinNo" resultType="int">
+		SELECT min(d_no) as d_no
+		from designer
+		where d_secession=false
+	</select>
 	<select id="selectByNameAndGrade" resultType="Designer">
 		select *
 		from designer

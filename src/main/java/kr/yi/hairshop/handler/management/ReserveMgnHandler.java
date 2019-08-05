@@ -8,37 +8,32 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.yi.hairshop.controller.CommandHandler;
+import kr.yi.hairshop.dao.DesignerMapper;
+import kr.yi.hairshop.dao.DesignerMapperImpl;
+import kr.yi.hairshop.dao.ProductMapper;
+import kr.yi.hairshop.dao.ProductMapperImpl;
 import kr.yi.hairshop.dao.WorkDialogMapper;
 import kr.yi.hairshop.dao.WorkDialogMapperImpl;
+import kr.yi.hairshop.dto.Designer;
+import kr.yi.hairshop.dto.Product;
 import kr.yi.hairshop.dto.WorkDialog;
 import kr.yi.hairshop.dto.WorkDialogPage;
 
-public class ReserveMgnHandler implements CommandHandler{
+public class ReserveMgnHandler implements CommandHandler {
 
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
-		
-		if(req.getMethod().equalsIgnoreCase("get")) {
-			String sPage=req.getParameter("page");
-			int page=1;
-			if(sPage!=null) {
-				page=Integer.parseInt(sPage);
-			}
+		String dName=req.getParameter("dName");
+		if(dName==null) {
+			DesignerMapper dDao = new DesignerMapperImpl();
+			int dNo=dDao.selectMinNo();
+			
 			
 			WorkDialogMapper wDao = new WorkDialogMapperImpl();
+			List<WorkDialog> wList = wDao.selectByAll();
 			
-			Map<String, Integer> map = new HashMap<String, Integer>();
-			map.put("start", (page-1)*10);
-			map.put("size", 10);
-			List<WorkDialog> wAllList=wDao.selectByAll();
-			List<WorkDialog> wList=wDao.selectByAllLimit(map);
-			
-			WorkDialogPage workPage = new WorkDialogPage(wAllList.size(), page, 10, wList);
-			
-			req.setAttribute("workPage", workPage);
-			return "";
 		}
-		return null;
+		return "/WEB-INF/view/management.jsp";
 	}
-	
+
 }

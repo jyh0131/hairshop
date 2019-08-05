@@ -200,16 +200,6 @@ public class WorkDialogMapperImpl implements WorkDialogMapper{
 			return res;
 		}
 	}
-
-	@Override
-	public List<WorkDialog> selectByAllLimit(Map<String, Integer> map) {
-		try(SqlSession sqlSession=MyBatisSqlSessionFactory.openSession();){
-			return sqlSession.selectList(namespace+".selectByAllLimit", map);
-		}
-	}
-
-
-
 	
 
 }

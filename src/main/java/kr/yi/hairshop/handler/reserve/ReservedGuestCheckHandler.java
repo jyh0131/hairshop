@@ -15,7 +15,7 @@ import kr.yi.hairshop.dao.WorkDialogMapper;
 import kr.yi.hairshop.dao.WorkDialogMapperImpl;
 import kr.yi.hairshop.dto.WorkDialog;
 
-public class ReservedCheckHandler implements CommandHandler{
+public class ReservedGuestCheckHandler implements CommandHandler{
 
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {

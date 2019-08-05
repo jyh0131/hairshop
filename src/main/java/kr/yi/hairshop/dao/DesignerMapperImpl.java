@@ -73,4 +73,12 @@ public class DesignerMapperImpl implements DesignerMapper{
 		}
 	}
 
+	@Override
+	public int selectMinNo() {
+		try(SqlSession sqlSession=MyBatisSqlSessionFactory.openSession();){
+			Designer designer= sqlSession.selectOne(namespace+".selectMinNo");
+			return designer.getdNo();
+		}
+	}
+
 }
