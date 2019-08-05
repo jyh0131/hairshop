@@ -10,6 +10,7 @@ import kr.yi.hairshop.util.MyBatisSqlSessionFactory;
 
 public class WorkDialogMapperImpl implements WorkDialogMapper{
 	private String namespace="kr.yi.hairshop.dao.WorkDialogMapper";
+	
 
 	@Override
 	public List<WorkDialog> selectDListByNo(int dNo) {
@@ -157,6 +158,13 @@ public class WorkDialogMapperImpl implements WorkDialogMapper{
 			int res = sqlSession.update(namespace + ".updateWorkDialogWorkTime", workDialog);
 			sqlSession.commit();
 			return res;
+		}
+	}
+
+	@Override
+	public List<WorkDialog> selectWDjoinByWDNoDate(Map<String, String> map) {
+		try(SqlSession sqlSession=MyBatisSqlSessionFactory.openSession();){
+			return sqlSession.selectList(namespace+".selectWDjoinByWDNoDate",map);
 		}
 	}
 

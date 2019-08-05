@@ -1,64 +1,59 @@
 package kr.yi.hairshop.handler.member;
 
+import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
+import org.codehaus.jackson.map.ObjectMapper;
 
 import kr.yi.hairshop.controller.CommandHandler;
 import kr.yi.hairshop.dao.GuestMapper;
 import kr.yi.hairshop.dao.GuestMapperImpl;
 import kr.yi.hairshop.dto.Guest;
-import kr.yi.hairshop.dto.User;
 import kr.yi.hairshop.util.MyBatisSqlSessionFactory;
 
-public class MypageHandler implements CommandHandler {
+public class IdCheckHandler implements CommandHandler {
 
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		if(req.getMethod().equalsIgnoreCase("get")) {
 			
-			HttpSession session = req.getSession(false);
-			
-			User user = (User) session.getAttribute("Auth");
-			System.out.println(user);
-			String id = user.getuId();
+			String newId = req.getParameter("id");
 			
 			SqlSession sqlSession = null;
 			
 			try {
 				sqlSession = MyBatisSqlSessionFactory.openSession();
 				
-				
 				GuestMapper dao = new GuestMapperImpl();
-				Guest guest = dao.selectById(id);
+				Guest dbGuest = dao.selectById(newId);
 				
-				req.setAttribute("guest", guest);
+				Map<String, Boolean> map = new HashMap<>();
+				System.out.println(map);
+				if(dbGuest == null) {
+					map.put("check", true);
+				}else {
+					map.put("check", false);
+				}
 				
+				ObjectMapper om = new ObjectMapper();
+				String data = om.writeValueAsString(map);
+				
+				res.setContentType("application/json;charset=utf-8");
+				PrintWriter out = res.getWriter();
+				out.print(data);
+				out.flush();					
 				
 			} catch (Exception e) {
 				e.printStackTrace();
 			}finally {
 				sqlSession.close();
-			}
-			
-			
-			
-			
-			return "/WEB-INF/view/member/mypageForm.jsp";
-		}else if(req.getMethod().equalsIgnoreCase("post")) {
-			
-			
-			
-			
-			
-			
-			
-			
-			return "/WEB-INF/view/member/mypageForm.jsp";
+			}			
 		}
-		
 		return null;
 	}
 

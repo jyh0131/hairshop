@@ -11,54 +11,41 @@ import kr.yi.hairshop.dao.GuestMapper;
 import kr.yi.hairshop.dao.GuestMapperImpl;
 import kr.yi.hairshop.dto.Guest;
 import kr.yi.hairshop.dto.User;
-import kr.yi.hairshop.util.MyBatisSqlSessionFactory;
 
-public class MypageHandler implements CommandHandler {
+public class PassCheckhandler implements CommandHandler {
 
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		if(req.getMethod().equalsIgnoreCase("get")) {
+			return "/WEB-INF/view/member/passCheck.jsp";
+		}else if(req.getMethod().equalsIgnoreCase("post")) {
 			
 			HttpSession session = req.getSession(false);
 			
-			User user = (User) session.getAttribute("Auth");
-			System.out.println(user);
-			String id = user.getuId();
+			//User user = req.getParameter("Auth");
 			
+			String id = req.getParameter("id");
 			SqlSession sqlSession = null;
-			
 			try {
-				sqlSession = MyBatisSqlSessionFactory.openSession();
-				
 				
 				GuestMapper dao = new GuestMapperImpl();
 				Guest guest = dao.selectById(id);
 				
-				req.setAttribute("guest", guest);
+				
+				
+				
 				
 				
 			} catch (Exception e) {
 				e.printStackTrace();
-			}finally {
+			} finally {
 				sqlSession.close();
 			}
 			
 			
 			
 			
-			return "/WEB-INF/view/member/mypageForm.jsp";
-		}else if(req.getMethod().equalsIgnoreCase("post")) {
-			
-			
-			
-			
-			
-			
-			
-			
-			return "/WEB-INF/view/member/mypageForm.jsp";
 		}
-		
 		return null;
 	}
 

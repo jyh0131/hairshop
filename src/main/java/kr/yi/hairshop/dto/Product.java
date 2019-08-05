@@ -9,7 +9,7 @@ public class Product {
 	private String pDivision;
 	private List<WorkDialog> workDialogList;
 	private List<Tax> taxList;
-
+	
 	public Product() {
 		// TODO Auto-generated constructor stub
 	}
@@ -84,11 +84,11 @@ public class Product {
 
 	public Object[] toArray() {
 		DecimalFormat df=new DecimalFormat("###,###");
-		return new Object[] { pName, df.format(pPrice)+"원", pDivision };
+		return new Object[] { pName, df.format(pPrice)+"�썝", pDivision };
 	}
 	public Object[] toArray2() {
 		DecimalFormat df=new DecimalFormat("###,###");
-		return new Object[] { pName, df.format(pPrice)+"원", pDivision };
+		return new Object[] { pName, df.format(pPrice)+"�썝", pDivision };
 	}
 
 }

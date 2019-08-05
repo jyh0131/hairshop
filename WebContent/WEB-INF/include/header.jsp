@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/common_kyg.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css" type="text/css">
 <style>
 
 	header{
@@ -114,7 +114,7 @@
 					<a href="${pageContext.request.contextPath}/view/produce.do"><li>Staff</li></a>
 					<a href="${pageContext.request.contextPath}/view/hair.do"><li>hair style</li></a>
 					<a href="#"><li>viedo</li></a>
-					<a href="#"><li>resevation</li></a>
+					<a href="${pageContext.request.contextPath}/reserve/form.do"><li>resevation</li></a>
 					<a href="#"><li>resevation state</li></a>
 				</ul>
 			</div>
