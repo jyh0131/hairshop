@@ -115,7 +115,7 @@
 					<a href="${pageContext.request.contextPath}/view/hair.do"><li>hair style</li></a>
 					<a href="#"><li>viedo</li></a>
 					<a href="${pageContext.request.contextPath}/reserve/form.do"><li>resevation</li></a>
-					<a href="#"><li>resevation state</li></a>
+					<a href="${pageContext.request.contextPath}/reserve/reserveState.do"><li>resevation state</li></a>
 				</ul>
 			</div>
 		</header>
