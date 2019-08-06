@@ -295,4 +295,4 @@ SELECT *
 
 select * from level;
 
-
+select * from guest where g_name like '%박%';

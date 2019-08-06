@@ -18,8 +18,6 @@
 	
 	padding-top: 40px;
 	padding-bottom: 40px;
-	
-	background-color: lightgreen;
 }
 
 #loginform p{

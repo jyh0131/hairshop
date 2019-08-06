@@ -10,71 +10,72 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css" type="text/css">
 <script src="${pageContext.request.contextPath}/js/common.js"></script>
 <style>
+header{
+	width: 1080px;
+	height: 155px;
+	margin:0 auto;
+	margin-top: 20px;
+	position: relative;
+}
+header #title{
+	text-align: center;
+}
+header #title img{
+	height: 90px;
+}
 
-	header{
-		width: 1080px;
-		height: 155px;
-		margin:0 auto;
-		margin-top: 20px;
-		position: relative;
-	}
-	header #title{
-		text-align: center;
-	}
-	header #title img{
-		height: 90px;
-	}
+header #topmenu ul{
 	
-	header #topmenu ul{
-		
-	}
-	header #topmenu ul a{
-		color: black;
-	}
-	header #topmenu ul li{
-		width: 180px;
-		height: 60px;
-		line-height: 60px;
-		text-decoration: none;
-		text-align: center;
-		float: left;
-		display: inline-block;
-	}
+}
+header #topmenu ul a{
+	color: black;
+}
+header #topmenu ul li{
+	width: 180px;
+	height: 60px;
+	line-height: 60px;
+	text-decoration: none;
+	text-align: center;
+	float: left;
+	display: inline-block;
+}
+
+header #Idcheck{
+	width:230px;
+	height:30px;
+	position: absolute;
+	display: inline;
+	top:0;
+	right:0px;
+	text-align: right;
+	font-size: 13px;
+}
+header #Idcheck a{
+	line-height: 30px;
+	text-decoration: none;
+	color: black;
+}
+
+header .mymenu{
+	width: 120px;
+	height: 40px;
+	background-color: gray;
 	
-	header #Idcheck{
-		width:230px;
-		height:30px;
-		position: absolute;
-		display: inline;
-		top:0;
-		right:0px;
-		text-align: right;
-		font-size: 13px;
-	}
-	header #Idcheck a{
-		line-height: 30px;
-		text-decoration: none;
-		color: black;
-	}
-	
-	header .mymenu{
-		width: 120px;
-		height: 40px;
-		background-color: gray;
-		
-		position: absolute;
-		display: inline;
-		top:30px;
-		right:10px;
-		text-align: center;
-	}
-	header .mymenu a{
-		text-decoration: none;
-		color: white;
-		font-weight: bold;
-		line-height: 40px;
-		
-	}
+	position: absolute;
+	display: inline;
+	top:30px;
+	right:10px;
+	text-align: center;
+}
+header .mymenu a{
+	text-decoration: none;
+	color: white;
+	font-weight: bold;
+	line-height: 40px;
+}
+header #topmenu li:hover{
+	text-decoration: underline;
+}
 
 
 </style>
@@ -109,7 +110,7 @@
 				</c:if>
 				<c:if test="${Auth == null }">
 					<span><a href="${pageContext.request.contextPath}/member/login.do">{로그인}</a></span>
-					<span><a href="${pageContext.request.contextPath}/member/join.do">{회원가입}</a></span>
+					<span><a href="${pageContext.request.contextPath}/member/joinServiceCheck.do">{회원가입}</a></span>
 				</c:if>
 			</div>
 			
