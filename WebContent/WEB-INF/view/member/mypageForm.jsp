@@ -31,11 +31,11 @@
 	margin: 0 auto;
 }
 #mypage #mybio table th, td, tr{
-	border: 1px solid red;
+	border: 1px solid #ddd;
 	height: 40px;
-}
+}                    
 #mypage #mybio table th:nth-child(1) {
-	width: 100px;
+	width: 150px;
 }
 #mypage #mybio table th:nth-child(2) {
 	width: 100px;
@@ -68,7 +68,7 @@
 	margin-bottom: 40px;
 }
 #mypage #myMenuBtn div:hover{
-	background-color: lightgreen;
+	background-color: #eee;
 }
 #mypage #myMenuBtn a {
 	text-decoration: none;

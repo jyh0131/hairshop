@@ -75,7 +75,5 @@ public class GuestMapperImpl implements GuestMapper {
 			return sqlSession.selectOne(namespace + ".selectGuestByGNameGTel",map);
 		}
 	}
-
-
 	
 }
