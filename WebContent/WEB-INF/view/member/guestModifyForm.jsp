@@ -75,7 +75,7 @@
 
 <section id="MMForm">
 
-	<form action="${pageContext.request.contextPath}/member/memberModifyForm.do" method="post" id="f1">
+	<form action="${pageContext.request.contextPath}/member/guestModifyForm.do" method="post" id="f1">
 
 		<p>
 			<label>비밀번호</label>

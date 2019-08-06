@@ -10,7 +10,7 @@ import kr.yi.hairshop.dao.GuestMapperImpl;
 import kr.yi.hairshop.dto.Guest;
 import kr.yi.hairshop.dto.User;
 
-public class MemberModifyHandler implements CommandHandler {
+public class GuestModifyHandler implements CommandHandler {
 
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
@@ -23,7 +23,7 @@ public class MemberModifyHandler implements CommandHandler {
 			
 			req.setAttribute("guest", guest);
 			
-			return "/WEB-INF/view/member/memeberModifyForm.jsp";
+			return "/WEB-INF/view/member/guestModifyForm.jsp";
 		}
 		return null;
 	}
