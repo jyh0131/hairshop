@@ -13,6 +13,13 @@
 	<select id="selectProductByAll" resultType="Product">
 		select * from product where p_secession = false order by p_name
 	</select>
+	<select id="selectByName" resultType="Product">
+		select * 
+		from product 
+		where p_secession = false
+		and p_name=#{pName}
+		order by p_name
+	</select>
 	
 	<insert id="insert" parameterType="Product">
 		insert into product

@@ -1,6 +1,7 @@
 package kr.yi.hairshop.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -62,6 +63,21 @@ public class DesignerMapperImpl implements DesignerMapper{
 	public List<Designer> selectDesignerByMgn() {
 		try(SqlSession sqlSession=MyBatisSqlSessionFactory.openSession();){
 			return sqlSession.selectList(namespace+".selectDesignerByMgn");
+		}
+	}
+
+	@Override
+	public Designer selectByNameAndGrade(Map<String, String> map) {
+		try(SqlSession sqlSession=MyBatisSqlSessionFactory.openSession();){
+			return sqlSession.selectOne(namespace+".selectByNameAndGrade",map);
+		}
+	}
+
+	@Override
+	public int selectMinNo() {
+		try(SqlSession sqlSession=MyBatisSqlSessionFactory.openSession();){
+			Designer designer= sqlSession.selectOne(namespace+".selectMinNo");
+			return designer.getdNo();
 		}
 	}
 

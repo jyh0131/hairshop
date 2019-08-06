@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="../../include/header.jsp" %>
 
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css">
@@ -98,7 +99,7 @@
 		</p>
 		<p>
 			<label>생일</label>
-			<input class="input" type="date" name="birth" placeholder="생일" value="${guest.gBirth }">
+			<input class="input" type="date" name="birth" value="<fmt:formatDate value="${guest.gBirth}" pattern='yyyy-MM-dd'/>">
 		</p>
 		<p>
 			<input type="submit" value="수 정" id="btnSubmit">

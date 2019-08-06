@@ -2,6 +2,7 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="../../include/header.jsp"%>
+
 <style>
 section {
 	width: 1050px;
@@ -161,6 +162,7 @@ section article#border table#time td {
 	float: left;
 	border: 1px solid black;
 	margin: 1px;
+	cursor: pointer;
 }       
            
 section article#border table#time {
@@ -175,6 +177,7 @@ section article#border table#item td {
 	float: left;      
 	border: 1px solid black;
 	margin: 1px;
+	cursor: pointer;
 }
 
 
@@ -201,7 +204,12 @@ section article#border div#guest div#reserve span{
 }
 .reserved{
 	color: #E5E5E5;
-	cursor: not-allowed;
+	cursor: not-allowed !important;
+}
+
+#reservedList img{
+	width:500px;
+	text-align: center;
 }
 
 </style>
@@ -564,8 +572,8 @@ section article#border div#guest div#reserve span{
 											var str = "";
 											str+="<tr>";
 											str+="<td>"+work.wDNo.dName+" "+work.wDNo.dGrade+"</td>";
-											str+="<td>"+new Date(work.wPriceTotal).format('yyyy-MM-dd a/p hh:mm')+"</td>";
 											str+="<td>"+new Date(work.wReserveTime).format('yyyy-MM-dd a/p hh:mm')+"</td>";
+											str+="<td>"+new Date(work.wWorkTime).format('yyyy-MM-dd a/p hh:mm')+"</td>";
 											str+="<td>";
 											for(var j=0; j<work.productList.length; j++){
 												str+=work.productList[j].pName+",";	
@@ -577,6 +585,12 @@ section article#border div#guest div#reserve span{
 											
 											$("#reservedList table").append(str);
 										}
+									}else{
+										var str="<tr>";
+										str+="<td colspan='5'> 예약된 정보가 없습니다. </td>";
+										str+="</tr>";
+										$("#reservedList table").append(str);
+										$("#reservedList").append("<img src='${pageContext.request.contextPath }/images/reserve/noreserved.PNG'>");
 									}
 										
 								}
@@ -587,12 +601,21 @@ section article#border div#guest div#reserve span{
 							var reserveTime=$("#reserve span").eq(1).text();
 							var reserveDesigner=$("#reserve span").eq(2).text();
 							var reserveProduct=$("#reserve span").eq(3).text();
+							
 							location.href="${pageContext.request.contextPath}/reserve/insertReserve.do?gName="+gName+"&gTel="+gTel
-									+"&reserveDate="+reserveDate+"&reserveTime="+reserveTime+"&reserveDesigner="+reserveDesigner+"&reserveProduct="+reserveProduct
-									;							
+									+"&reserveDate="+reserveDate+"&reserveTime="+reserveTime+"&reserveDesigner="+reserveDesigner
+									+"&reserveProduct="+reserveProduct
+									;
 						}
 					})
 					
+					
+					if(${reserved}==true){
+						$("#gName").val('${gName}');
+						$("#gTel").val('${gTel}');
+						$("#logo span").eq(1).click();
+						$("#commit").click();
+					};
 				})
 				
 			</script>
@@ -655,7 +678,7 @@ section article#border div#guest div#reserve span{
 		
 		<script type="text/javascript">
 			$("#search").click(function() {
-				var text=$(this).prev().val();
+				var text=$(this).next().val();
 				var ps = new kakao.maps.services.Places(); 
 				ps.keywordSearch(text, placesSearchCB);
 			})
