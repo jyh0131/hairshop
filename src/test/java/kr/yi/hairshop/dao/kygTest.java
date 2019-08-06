@@ -7,6 +7,7 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
 
+import kr.yi.hairshop.dto.Guest;
 import kr.yi.hairshop.dto.Product;
 import kr.yi.hairshop.dto.WorkDialog;
 import kr.yi.hairshop.util.MyBatisSqlSessionFactory;
@@ -29,6 +30,29 @@ public class kygTest {
 			
 			for (WorkDialog workDialog : list) {
 				System.out.println(workDialog);
+			}
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			sqlSession.close();  
+		}
+	}
+	
+	
+	@Test
+	public void selectGuestList() { 
+		SqlSession sqlSession = null;
+		
+		try {
+			sqlSession = MyBatisSqlSessionFactory.openSession();
+			GuestMapper dao = new GuestMapperImpl();
+			
+			List<Guest> list = dao.selectGuestBygName("박");
+			
+			for (Guest g : list) {
+				System.out.println(g);
 			}
 			
 			

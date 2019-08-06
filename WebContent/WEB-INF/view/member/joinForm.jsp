@@ -17,8 +17,6 @@
 	
 	padding-top: 40px;
 	padding-bottom: 40px;
-	
-	background-color: lightgreen;
 }
 #joinForm h3{
 	margin-top:30px;

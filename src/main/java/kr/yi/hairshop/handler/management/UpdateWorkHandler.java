@@ -54,7 +54,7 @@ public class UpdateWorkHandler implements CommandHandler{
 			out.flush();
 		}
 		if(req.getMethod().equalsIgnoreCase("post")) {
-			
+			System.out.println(req.getParameter("upreserveTime"));
 		}
 		return null;
 	}

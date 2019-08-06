@@ -11,9 +11,10 @@ public interface GuestMapper {
 	public Guest selectGuestByGNameGTel(Map<String, String> map);
 	public int insertGuest(Guest guest);
 	public int updateGuest(Guest guest);
-	public void deleteGuest(int getgNo);
+	public int deleteGuest(Guest guest);
 	public int insertGuestByWorkMain(Guest guest);
 	
 	/*web project 용*/
 	public Guest selectById(String id);
+
 }

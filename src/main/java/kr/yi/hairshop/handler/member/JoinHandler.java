@@ -5,6 +5,7 @@ import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -20,8 +21,7 @@ public class JoinHandler implements CommandHandler {
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		if(req.getMethod().equalsIgnoreCase("get")) {
-			
-			return "/WEB-INF/view/member/joinServiceCheck.jsp";					
+			return "/WEB-INF/view/member/joinForm.jsp";
 		}else if(req.getMethod().equalsIgnoreCase("post")) {
 			
 			String id = req.getParameter("id");
@@ -42,9 +42,16 @@ public class JoinHandler implements CommandHandler {
 			guest.setgEmail(email);
 			guest.setgBirth(birthDate);
 			guest.setgJoin(new Date());
-			guest.setgLGrade(new Level("브론즈"));
-			guest.setgMemo("온라인 회원가입");		
+			guest.setgLGrade(new Level("브론즈")); //기본이 브론즈
 			
+			HttpSession session = req.getSession(false);
+			
+			String serivce3 = req.getParameter("serivce3");
+			if(serivce3 != null) {
+				guest.setgMemo("온라인 회원가입+광고동의");
+			}else {
+				guest.setgMemo("온라인 회원가입+광고X");
+			}
 			
 			GuestMapper dao = new GuestMapperImpl();
 			int result = dao.insertGuest(guest);

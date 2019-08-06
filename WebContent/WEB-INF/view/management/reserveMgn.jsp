@@ -161,7 +161,9 @@ div#updatePageBlack div#updatePage img#x{
 	height:35px;
 	position: absolute;
 }
-
+div#updatePage h1#title{
+	margin-bottom: 50px;
+}
 </style>
 <script>
 	var designer = "";
@@ -344,8 +346,9 @@ div#updatePageBlack div#updatePage img#x{
 							},
 					dataType : "json",
 					success : function(json) {
-						console.log(json);
-						$("#upreserveTime").val(new Date(json[0].wReserveTime).format("yyyy-MM-dd"));		
+						console.log(json);  
+						$("#upreserveTime").val(new Date(json[0].wReserveTime).format("yyyy-MM-dd"));
+						$("#upresertTime2").val(new Date(json[0].wReserveTime).format("hh:mm").trim()).attr("selected","selected");
 						$("#upgName").val(json[0].wGNo.gName);
 						$("#upgTel").val(json[0].wGNo.gTel)
 						$("#upgLGrade").val(json[0].wGNo.gLGrade.lGrade)
@@ -357,11 +360,14 @@ div#updatePageBlack div#updatePage img#x{
 						$("#uppName").val(str);
 						$("#upeName").val(json[0].wEName.eName);
 						$("#upwPriceTotal").val(json[0].wPriceTotal);
-						if(json.wWorkTime==null){
-							$("#upworkTime").val("작업전");
+						if(json.wWorkTime==""){
+							alert("일로 빠지나보네");
 						}else{
 							$("#upworkTime").val(new Date(json[0].wWorkTime).format("yyyy-MM-dd"));
+							$("#upworkTime2").val(new Date(json[0].wWorkTime).format("hh:mm").trim());
 						}
+						
+						
 					}
 				})
 			}
@@ -446,9 +452,10 @@ div#updatePageBlack div#updatePage img#x{
 	<div id="updatePage">
 		<fieldset>
 			<img id="x" src="${pageContext.request.contextPath }/images/reserve/x.png">
-			<h1>예약 수정</h1>
-			<label>예약일시 : </label><input type="date" id="upreserveTime">
-			<select>
+			<h1 id="title">예약 수정</h1>
+			<form name="f1" id="f1">
+			<label>예약일시 : </label><input type="date" name="upreserveTime" id="upreserveTime">
+			<select name="upresertTime2" id="upresertTime2">
 				<option>08:00</option>
 				<option>09:30</option>
 				<option>10:00</option>
@@ -471,15 +478,15 @@ div#updatePageBlack div#updatePage img#x{
 				<option>18:30</option>
 				<option>19:00</option>
 			</select><br>
-			<label>손님명 : </label><input type="text" id="upgName"><br>
-			<label>손님전화번호 : </label><input type="text" id="upgTel"><br>
-			<label>손님등급 : </label><input type="text" id="upgLGrade"><br>
+			<label>손님명 : </label><input type="text" name="upgName" id="upgName"><br>
+			<label>손님전화번호 : </label><input type="text" name="upgTel" id="upgTel"><br>
+			<label>손님등급 : </label><input type="text" name="upgLGrade" id="upgLGrade"><br>
 			
-			<label>작업명 : </label><input type="text" id="uppName"><br>
-			<label>이벤트 :</label><input type="text" id="upeName"><br>
-			<label>가격 : </label><input type="text" id="upwPriceTotal"><br>
-			<label>완료일시 : </label><input type="date" id="upworkTime">
-			<select>
+			<label>작업명 : </label><input type="text" name="uppName" id="uppName"><br>
+			<label>이벤트 :</label><input type="text" name="upeName" id="upeName"><br>
+			<label>가격 : </label><input type="text" name="upwPriceTotal" id="upwPriceTotal"><br>
+			<label>완료일시 : </label><input type="date" name="upworkTime" id="upworkTime">
+			<select id="upworkTime2">
 				<option>08:00</option>
 				<option>09:30</option>
 				<option>10:00</option>
@@ -502,8 +509,28 @@ div#updatePageBlack div#updatePage img#x{
 				<option>18:30</option>
 				<option>19:00</option>
 			</select><br>
-			
+			<input type="submit" value="수정">
+			<input type="reset" value="초기화">
+			</form>
 		</fieldset>
 	</div>
 </div>
+<script>
+	$("#f1").submit(function() {
+		var queryString = $("#f1").serialize();
+		alert(queryString);
+		alert($("#f1").serialize());
+		$.ajax({
+            type : 'POST',
+            url : '${pageContext.request.contextPath }/management/updateWork.do',
+            data : $("#f1").serialize(),
+            dataType : 'json',
+            success : function(json){
+                alert(json)
+            },
+        });
+
+		return false;
+	})
+</script>
 <%@ include file="../../include/footer.jsp"%>

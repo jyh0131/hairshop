@@ -20,11 +20,11 @@
 	margin: 0 auto;
 }
 #reservState table th, td, tr{
-	border: 1px solid red;
+	border: 1px solid #ddd;
 	height: 40px;
 }
 #reservState table th:nth-child(1) {
-	width: 150px;
+	width: 210px;
 }
 #reservState table th:nth-child(2) {
 	width: 100px;
@@ -36,7 +36,7 @@
 	width: 120px;
 }
 #reservState table th:nth-child(5) {
-	width: 150px;
+	width: 200px;
 }
 
 

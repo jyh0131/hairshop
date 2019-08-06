@@ -295,4 +295,13 @@ SELECT *
 
 select * from level;
 
+select * from guest where g_name like '%김%';
+
+select * from guest;
+
+update guest
+set g_l_grade='브론즈'
+where g_id='ddd';
+
+
 

@@ -38,11 +38,11 @@ public class GuestMapperImpl implements GuestMapper {
 
 
 	@Override
-	public void deleteGuest(int getgNo) {
+	public int deleteGuest(Guest guest) {
 		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
-			int res = sqlSession.delete(namespace + ".deleteGuest", getgNo);
+			int res = sqlSession.delete(namespace + ".deleteGuest", guest);
 			sqlSession.commit();
-			return;
+			return res;
 		}
 	}
 
@@ -75,7 +75,5 @@ public class GuestMapperImpl implements GuestMapper {
 			return sqlSession.selectOne(namespace + ".selectGuestByGNameGTel",map);
 		}
 	}
-
-
 	
 }
