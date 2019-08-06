@@ -29,7 +29,7 @@
 
 	<ul>
 		<a href="#"><li>남호</li></a>
-		<a href="#"><li>예약 관리(list 보기, 수정, 등록, 삭제?)</li></a>
+		<a href="/management/reserve.do"><li>예약 관리(list 보기, 수정, 등록, 삭제?)</li></a>
 		<a href="#"><li>추가</li></a>
 	</ul>
 	<br><br>

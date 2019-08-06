@@ -69,9 +69,9 @@ public class WorkDialogMapperImpl implements WorkDialogMapper{
 	}
 
 	@Override
-	public int insertWorkDialogResWNoNoGuest(WorkDialog workDialog) {
+	public int insertWorkDialogResWNo(WorkDialog workDialog) {
 		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
-			sqlSession.insert(namespace + ".insertWorkDialogResWNoNoGuest", workDialog);
+			sqlSession.insert(namespace + ".insertWorkDialogResWNo", workDialog);
 			sqlSession.commit();
 			return workDialog.getwNo();
 		}
@@ -183,7 +183,23 @@ public class WorkDialogMapperImpl implements WorkDialogMapper{
 		}
 	}
 
+	@Override
+	public int insertWorkNoGuestResWNo(WorkDialog workDialog) {
+		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
+			sqlSession.insert(namespace + ".insertWorkNoGuestResWNo", workDialog);
+			sqlSession.commit();
+			return workDialog.getwNo();
+		}
+	}
 
+	@Override
+	public int updateWorkPrice(WorkDialog workDialog) {
+		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
+			int res = sqlSession.update(namespace + ".updateWorkPrice", workDialog);
+			sqlSession.commit();
+			return res;
+		}
+	}
 	
 
 }
