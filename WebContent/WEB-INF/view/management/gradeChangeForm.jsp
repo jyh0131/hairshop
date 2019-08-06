@@ -35,6 +35,7 @@
 		})		
 	})
 	
+	
 	$(document).ready(function() {
 		
 		$("#ggList").change(function() {
@@ -69,7 +70,8 @@
 
 <section id="gradeChange">
 
-	<div id="ggChange">
+	<div id="ggChange"> <!-- 게스트 등급 변경 -->
+		<h3>회원등급 변경</h3>
 		<input type="text" id="name"><button id="ggBtn">검색</button>
 		
 		<div id="ggResult">
@@ -81,13 +83,32 @@
 				</c:forEach>		
 			</select>
 		
-		<button id="ggChangeBtn">검색</button>
-			
+			<button id="ggChangeBtn">검색</button>
 		</div>
 		
 	</div>
-	
-	<div id="ddChange"></div>
+	<br>
+	<hr>
+	<br>
+	<div id="ddChange"> <!-- 디자이너 등급변경 -->
+		<h3>디자이너 직책 변경</h3>
+		<input type="text" id="name"><button id="ddBtn">검색</button>
+
+		<div id="ddResult">
+			<select id="ddList"></select>
+			
+			<select id="nowTitle">
+				<c:forEach var="level" items="${lList }">
+					<option>${level.lGrade }</option>
+				</c:forEach>		
+			</select>
+		
+			<button id="ddChangeBtn">검색</button>
+		</div>
+
+
+
+	</div>
 
 
 
