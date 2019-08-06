@@ -29,7 +29,7 @@
 	<br><br>
 	<ul>
 		<a href="#"><li>종훈</li></a>
-		<a href="#"><li>회원 관리(수정, 삭제)</li></a>
+		<a href="../guest/guestList.do"><li>회원 관리(수정, 삭제)</li></a>
 		<a href="#"><li>추가</li></a>		
 	</ul>
 	<br><br>

@@ -1,7 +1,5 @@
 package kr.yi.hairshop.handler.guest;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -12,27 +10,29 @@ import kr.yi.hairshop.dao.GuestMapper;
 import kr.yi.hairshop.dto.Guest;
 import kr.yi.hairshop.util.MyBatisSqlSessionFactory;
 
-public class GuestMgnHandler implements CommandHandler {
+public class GuestDeleteHandler implements CommandHandler {
 
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
-		
+
+		int gNo = Integer.parseInt(req.getParameter("gNo"));
 		SqlSession sqlSession = null;
 		
 		try {
 			sqlSession = MyBatisSqlSessionFactory.openSession();
 			GuestMapper dao = sqlSession.getMapper(GuestMapper.class);
-
-			List<Guest> list = dao.selectGuestByAll();
-
-			req.setAttribute("list", list);
-
+			
+			Guest guest = new Guest(gNo);
+			
+			dao.deleteGuest(guest);
+			req.setAttribute("gNo", gNo);
+			sqlSession.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
 			sqlSession.close();
 		}
-		return "/WEB-INF/view/guest/guestMgn.jsp";
+		return "/guest/guestList.do";
 	}
 
 }
