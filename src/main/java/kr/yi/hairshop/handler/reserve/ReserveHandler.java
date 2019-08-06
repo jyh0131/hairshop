@@ -1,5 +1,7 @@
 package kr.yi.hairshop.handler.reserve;
 
+import java.net.URLDecoder;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,7 +25,9 @@ public class ReserveHandler implements CommandHandler{
 		
 		DesignerMapper dDao = new DesignerMapperImpl();
 		List<Designer> dList=dDao.selectDesignerByAll();
-			
+
+	
+		
 		ProductMapper pDao = new ProductMapperImpl();
 		List<Product> pList=pDao.selectProductByAll();
 			
@@ -31,15 +35,15 @@ public class ReserveHandler implements CommandHandler{
 		req.setAttribute("pList", pList);
 		
 		
-		System.out.println(req.getAttribute("reserved"));
-		if(req.getAttribute("reserved")==null) {
+		if(req.getParameter("reserved")==null) {
 			req.setAttribute("reserved", false);
 		}else {
 			req.setAttribute("reserved", true);
-			req.setAttribute("gName", req.getAttribute("gName"));
-			req.setAttribute("gTel", req.getAttribute("gTel"));
+			String gName = URLDecoder.decode(req.getParameter("gName"), "UTF-8");
+			req.setAttribute("gName", gName);
+			req.setAttribute("gTel", req.getParameter("gTel"));
+			
 		}
-		
 		return "/WEB-INF/view/reserve/reserve.jsp";
 	}
 

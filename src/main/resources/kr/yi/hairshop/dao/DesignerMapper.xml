@@ -26,7 +26,7 @@
 	<select id="selectDesignerByAll" resultType="Designer">
 		select * from designer where d_secession=false
 	</select>
-	<select id="selectMinNo" resultType="int">
+	<select id="selectMinNo" resultType="Designer">
 		SELECT min(d_no) as d_no
 		from designer
 		where d_secession=false

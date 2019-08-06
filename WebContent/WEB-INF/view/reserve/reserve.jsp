@@ -309,7 +309,7 @@ section article#border div#guest div#reserve span{
 						var rHours=reserve.getHours();
 						var rMinutes=reserve.getMinutes();
 						var str="";
-						if(0<=rMinutes && rMinutes<=30){
+						if(0<=rMinutes && rMinutes<30){
 							rMinutes=0;
 							rHours=pad(rHours,2);
 							rMinutes=pad(rMinutes,2);
@@ -365,9 +365,10 @@ section article#border div#guest div#reserve span{
 			$("#reserveProduct").text(hair.slice(0,-1));
 			
 			
-		})
+		})             
 		
 		$("#designer li").click(function() {
+			$("#commit").text("예약신청");
 			$("#reserveForm").show();
 			$("#mapForm").hide();
 			$("#reservedForm").hide();
@@ -556,6 +557,7 @@ section article#border div#guest div#reserve span{
 						var gName=$("#gName").val();
 						var gTel=$("#gTel").val();	
 						if($(this).text()=="예약확인"){
+							$("#reservedList table td").remove();
 							$.ajax({  
 								url : "${pageContext.request.contextPath }/reserve/reservedCheck.do",
 								type : "post",
@@ -573,7 +575,12 @@ section article#border div#guest div#reserve span{
 											str+="<tr>";
 											str+="<td>"+work.wDNo.dName+" "+work.wDNo.dGrade+"</td>";
 											str+="<td>"+new Date(work.wReserveTime).format('yyyy-MM-dd a/p hh:mm')+"</td>";
-											str+="<td>"+new Date(work.wWorkTime).format('yyyy-MM-dd a/p hh:mm')+"</td>";
+											if(work.wWorkTime==null){
+												str+="<td>작업전</td>"
+											}
+											else{
+												str+="<td>"+new Date(work.wWorkTime).format('yyyy-MM-dd a/p hh:mm')+"</td>";
+											}
 											str+="<td>";
 											for(var j=0; j<work.productList.length; j++){
 												str+=work.productList[j].pName+",";	
@@ -613,6 +620,7 @@ section article#border div#guest div#reserve span{
 					if(${reserved}==true){
 						$("#gName").val('${gName}');
 						$("#gTel").val('${gTel}');
+						
 						$("#logo span").eq(1).click();
 						$("#commit").click();
 					};
