@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>차홍아르더</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css" type="text/css">
 <script src="${pageContext.request.contextPath}/js/common.js"></script>
 <style>
@@ -121,7 +121,6 @@ header #topmenu li:hover{
 				<c:if test="${Auth.uIsMgr == false }">
 					<span class="mymenu"><a href="${pageContext.request.contextPath}/member/passCheck.do">마이 페이지</a></span>
 				</c:if>
-				
 			</div>
 			
 			<div id="topmenu">
