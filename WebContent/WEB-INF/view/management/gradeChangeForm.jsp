@@ -24,18 +24,46 @@
 				dataType:"json",
 				success:function(list){
 					console.log(list);
+					$("#ggList").append("<option>검색되었습니다</option>");
+					$("#ggList option").remove();
 					$.each(list, function (i, guest) {
-						$("#ggList").append("<option>"+guest.gName+"("+guest.gId+")</option>");
+						$("#ggList").append("<option  value='"+guest.gLGrade.lGrade+"'>"+guest.gName+"("+guest.gId+")</option>");
 					})
 					
-
-				
-				
 				}
 			})
 		})		
 	})
-
+	
+	$(document).ready(function() {
+		
+		$("#ggList").change(function() {
+			var index = $(this).children('option:selected').index();
+			var a = $(this).val();
+			console.log(a);
+			$("#nowGrade").val(a).attr("selected","selected");
+		});
+		
+		
+		$("#ggChangeBtn").click(function () {
+			$.ajax({
+				url:"${pageContext.request.contextPath}/member/guestGradeModify.do",
+				type:"post",
+				data:{"nameId" : $("#ggList option:selected").text(),
+					  "grade" : $("#nowGrade").val() },
+				dataType:"json",
+				success:function(data){
+					if(data==1){
+						alert("등급을 변경하였습니다");						
+					}else{
+						alert("잠시 후 다시 시도 하세요");
+					}
+				}
+			})
+		});
+		
+	});
+	
 </script>
 
 
@@ -45,9 +73,16 @@
 		<input type="text" id="name"><button id="ggBtn">검색</button>
 		
 		<div id="ggResult">
-			<select id="ggList">
-				
+			<select id="ggList"></select>
+			
+			<select id="nowGrade">
+				<c:forEach var="level" items="${lList }">
+					<option>${level.lGrade }</option>
+				</c:forEach>		
 			</select>
+		
+		<button id="ggChangeBtn">검색</button>
+			
 		</div>
 		
 	</div>

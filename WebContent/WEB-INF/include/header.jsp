@@ -121,7 +121,6 @@ header #topmenu li:hover{
 				<c:if test="${Auth.uIsMgr == false }">
 					<span class="mymenu"><a href="${pageContext.request.contextPath}/member/passCheck.do">마이 페이지</a></span>
 				</c:if>
-				
 			</div>
 			
 			<div id="topmenu">
