@@ -16,7 +16,8 @@
 <%
 
 					/*
-					 * 뿌리오 발송API 경로 - 서버측 인코딩과 응답형태에 따라 선택
+					 *
+					 * 뿌리오 발송API 경로 - 서버측 인코딩과 응답형태에 따라 선택 test
 					 */
 					String api_url = "https://www.ppurio.com/api/send_euckr_text.php";    // EUC-KR 인코딩과 TEXT 응답용 호출 페이지
 					// String api_url = "https://www.ppurio.com/api/send_euckr_json.php"; // EUC-KR 인코딩과 JSON 응답용 호출 페이지

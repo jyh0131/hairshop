@@ -12,13 +12,15 @@
 	margin-top: 60px;
 	margin-bottom: 60px;
 }
+#gradeChange h3{
+	margin: 10px;
+}
 
 #gradeChange #ggChange .ggC{
 	margin: 5px;
 	width: 120px;
 	height: 30px;
 }
-
 
 #gradeChange #ddChange table{
 	border-collapse: collapse;
@@ -67,10 +69,10 @@
 	$(document).ready(function() {
 		
 		$("#ggList").change(function() {
-			var index = $(this).children('option:selected').index();
-			var a = $(this).val();
+			//var index = $(this).children('option:selected').index();
+			var selected = $(this).val();
 			console.log(a);
-			$("#nowGrade").val(a).attr("selected","selected");
+			$("#nowGrade").val(selected).attr("selected","selected");
 		});
 		
 		
@@ -90,6 +92,30 @@
 				}
 			})
 		});
+		
+		$(".ddBtn").click(function() {
+			var newTitle = prompt("새로운 직책을 입력하세요", "실장 넘버원");
+			var $this = $(this).parent().prev();
+			if (newTitle == null || newTitle == "") {
+				alert("취소 하였습니다");
+			} else {
+				
+				$.ajax({
+					url:"${pageContext.request.contextPath}/member/designerGradeModify.do",
+					type:"post",
+					data:{"id" : $(this).prev().val(), "title" : newTitle },
+					dataType:"json",
+					success:function(data){
+						if(data==1){
+							$this.text(newTitle);
+							alert("변경하였습니다");
+						}else{
+							alert("잠시 후 다시 시도 하세요");
+						}
+					}
+				})
+			}
+		})	
 		
 	});
 	
@@ -132,7 +158,10 @@
 				<tr>
 					<td>${designer.dName}</td>
 					<td>${designer.dGrade}</td>
-					<td><input type="hidden" value="${designer.dId }" class="dId"><button id="">수정</button></td>
+					<td>
+						<input type="hidden" value="${designer.dId }" class="dId">
+						<button class="ddBtn">수정</button>
+					</td>
 				</tr>
 				</c:forEach>						
 				
