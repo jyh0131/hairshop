@@ -33,8 +33,10 @@
   
   <filter-mapping>
   	<filter-name>LoginCheckFilter</filter-name>
-  	<url-pattern>/reserve/reserveState.do</url-pattern>
-  	<url-pattern>/member/mypageForm.do</url-pattern>
+  	<url-pattern>/member/*</url-pattern>
+  	<url-pattern>/management/*</url-pattern>
+  	<url-pattern>/guest/*</url-pattern>
+  	
   	
   </filter-mapping>
   

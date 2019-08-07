@@ -55,20 +55,17 @@
 				success:function(list){
 					console.log(list);
 					$("#ggList option").remove();
-					$.each(list, function (i, guest) {
+ 					$.each(list, function (i, guest) {
 						$("#ggList").append("<option  value='"+guest.gLGrade.lGrade+"'>"+guest.gName+"("+guest.gId+")</option>");
 					})
 					
 				}
 			})
-		})		
-	})
-	
-	
-	$(document).ready(function() {
-
+		})
+		
+		
 		//회원 승급 버튼
-		$("#gChangeBtn").click(function () {
+		$(document).on("click","#gChangeBtn",function(){
 			$.ajax({
 				url:"${pageContext.request.contextPath}/member/guestToDesignerModify.do",
 				type:"post",
@@ -85,8 +82,13 @@
 					}
 				}
 			})
-		});
+		})
 		
+		
+	})
+	
+	
+	$(document).ready(function() {
 		
 		//디자이너 삭제 버튼
 		$(".delBtn").click(function() {
