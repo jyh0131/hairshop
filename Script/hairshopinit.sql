@@ -1,7 +1,4 @@
-
-
-
--- 헤어샵
+﻿-- 헤어샵
 DROP SCHEMA IF EXISTS hairshop;
 
 -- 헤어샵
@@ -11,7 +8,8 @@ CREATE SCHEMA hairshop;
 CREATE TABLE hairshop.Product (
    p_name     VARCHAR(20) NOT NULL COMMENT '작업명', -- 작업명
    p_price    INT         NULL     COMMENT '가격', -- 가격
-   p_division VARCHAR(10) NULL     COMMENT '분류' -- 분류
+   p_division VARCHAR(10) NULL     COMMENT '분류', -- 분류
+   p_secession BOOLEAN    NULL DEFAULT false COMMENT '탈퇴여부' -- 탈퇴여부
 )
 COMMENT '상품';
 
@@ -167,14 +165,13 @@ ALTER TABLE hairshop.Level
 
 -- 후기
 CREATE TABLE hairshop.Review (
-   r_g_no      INT         NOT NULL COMMENT '손님번호', -- 손님번호
-   r_no        INT         not NULL COMMENT '번호', -- 번호
+   r_no        INT         NOT NULL COMMENT '번호', -- 번호
    r_title     VARCHAR(50) NOT NULL COMMENT '제목', -- 제목
    r_writer    VARCHAR(20) NULL     COMMENT '글쓴이', -- 글쓴이
    r_writetime DATE        NULL     COMMENT '작성일', -- 작성일
    r_content   TEXT        NOT NULL COMMENT '내용', -- 내용
    r_file      VARCHAR(50) NULL     COMMENT '사진', -- 사진
-   r_delete    BOOLEAN     NULL     DEFAULT false COMMENT '삭제여부' -- 삭제여부
+   r_g_no      INT         NULL     COMMENT '고객번호' -- 고객번호
 )
 COMMENT '후기';
 
@@ -182,24 +179,26 @@ COMMENT '후기';
 ALTER TABLE hairshop.Review
    ADD CONSTRAINT PK_Review -- 후기 기본키
       PRIMARY KEY (
-         r_g_no -- 손님번호
+         r_no -- 번호
       );
 
--- 댓글
+ALTER TABLE hairshop.Review
+   MODIFY COLUMN r_no INT NOT NULL AUTO_INCREMENT COMMENT '번호';
+
+-- 덧글
 CREATE TABLE hairshop.Comment (
-   c_no      INT  NOT NULL COMMENT '댓글번호', -- 댓글번호
-   r_g_no    INT  NOT NULL COMMENT '리뷰번호', -- 리뷰번호
+   COL       INT  NOT NULL COMMENT '댓글번호', -- 댓글번호
    g_no      INT  NOT NULL COMMENT '손님번호', -- 손님번호
    c_content TEXT NOT NULL COMMENT '내용', -- 내용
-   c_delete  BOOLEAN  NULL DEFAULT false COMMENT '삭제여부' -- 삭제여부  
+   r_no      INT  NULL     COMMENT '리뷰번호' -- 리뷰번호
 )
-COMMENT '새 테이블';
+COMMENT '덧글';
 
--- 새 테이블
+-- 덧글
 ALTER TABLE hairshop.Comment
-   ADD CONSTRAINT PK_Comment -- 새 테이블 기본키
+   ADD CONSTRAINT PK_Comment -- 덧글 기본키
       PRIMARY KEY (
-         c_no -- 댓글번호
+         COL -- 댓글번호
       );
 
 -- 작업일지
@@ -276,25 +275,15 @@ ALTER TABLE hairshop.Guest
 ALTER TABLE hairshop.Review
    ADD CONSTRAINT FK_Guest_TO_Review -- 손님 -> 후기
       FOREIGN KEY (
-         r_no -- 번호
+         r_g_no -- 고객번호
       )
       REFERENCES hairshop.Guest ( -- 손님
          g_no -- 번호
       );
 
--- 새 테이블
+-- 덧글
 ALTER TABLE hairshop.Comment
-   ADD CONSTRAINT FK_Review_TO_Comment -- 후기 -> 새 테이블
-      FOREIGN KEY (
-         r_g_no -- 리뷰번호
-      )
-      REFERENCES hairshop.Review ( -- 후기
-         r_g_no -- 손님번호
-      );
-
--- 새 테이블
-ALTER TABLE hairshop.Comment
-   ADD CONSTRAINT FK_Guest_TO_Comment -- 손님 -> 새 테이블
+   ADD CONSTRAINT FK_Guest_TO_Comment -- 손님 -> 덧글
       FOREIGN KEY (
          g_no -- 손님번호
       )
@@ -302,15 +291,12 @@ ALTER TABLE hairshop.Comment
          g_no -- 번호
       );
 
-	
-	
-grant all privileges 
-on hairshop.* 
-to 'user_hairshop'@'localhost'
-identified by 'rootroot';
-
-
-grant all privileges 
-on hairshop.* 
-to 'user_hairshop'@'%'
-identified by 'rootroot';
+-- 덧글
+ALTER TABLE hairshop.Comment
+   ADD CONSTRAINT FK_Review_TO_Comment -- 후기 -> 덧글
+      FOREIGN KEY (
+         r_no -- 리뷰번호
+      )
+      REFERENCES hairshop.Review ( -- 후기
+         r_no -- 번호
+      );

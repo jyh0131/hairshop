@@ -1,6 +1,21 @@
 
 use hairshop;
 
+
+	
+grant all privileges 
+on hairshop.* 
+to 'user_hairshop'@'localhost'
+identified by 'rootroot';
+
+
+grant all privileges 
+on hairshop.* 
+to 'user_hairshop'@'%'
+identified by 'rootroot';
+
+
+
 INSERT INTO hairshop.Level
 (l_grade, l_sale)
 values
@@ -133,7 +148,7 @@ values
 ;
 
 INSERT INTO hairshop.review
-(r_g_no, r_no, r_title, r_writer, r_writetime, r_content, r_file)values
+(r_g_no, r_no, r_title, r_writer, r_writetime, r_content, r_file) values
 (12, 1, '마음에 들어요', 'sbvvet4', '2019-02-06', '태슬컷 했는데 1시간정도 걸렸구요. 디자이너분이 친절하게 응대해주셔서 너무 좋았어요!', 'mosa1.jpeg'),
 (13, 2, '한상아실장님 감사합니닷!!', 'cvcdgfst1', '2019-03-17', '태슬컷 했는데 1시간정도 걸렸구요. 디자이너분이 친절하게 응대해주셔서 너무 좋았어요!', 'mosa2.jpeg'),
 (14, 3, '원장님 실력~ 믿을만한대요?', 'gbvbtrerer2', '2019-01-22', '태슬컷 했는데 1시간정도 걸렸구요. 디자이너분이 친절하게 응대해주셔서 너무 좋았어요!', 'mosa3.jpeg'),
