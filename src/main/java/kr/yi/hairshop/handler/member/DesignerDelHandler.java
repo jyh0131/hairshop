@@ -21,7 +21,6 @@ public class DesignerDelHandler implements CommandHandler {
 		
 		DesignerMapper dao = new DesignerMapperImpl();
 		Designer des = dao.selelctDesignerById(id);
-		System.out.println("나오나?"+id);
 		int result = dao.deleteDesigner(des.getdNo());
 		System.out.println("삭제결과는"+result);
 		

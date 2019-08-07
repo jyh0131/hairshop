@@ -17,7 +17,7 @@ public class DesignerGradeModifyHandler implements CommandHandler {
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
 
-		String id = req.getParameter("id");
+		String id = req.getParameter("id");	
 		String title = req.getParameter("title");
 		
 		DesignerMapper dao = new DesignerMapperImpl();

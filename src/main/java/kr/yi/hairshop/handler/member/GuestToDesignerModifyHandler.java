@@ -39,15 +39,17 @@ public class GuestToDesignerModifyHandler implements CommandHandler {
 		designer.setdTel(guest.getgTel());
 		designer.setdBirth(guest.getgBirth());
 		designer.setdJoin(new Date());
+		designer.setdGrade("인턴");
 		designer.setdMemo("승급디자이너");
 		
 		int result = gDao.deleteGuest(guest);
 		
 		DesignerMapper dDao = new DesignerMapperImpl();
 		result += dDao.insertDesigner(designer);
+//		System.out.println("승급결과는 " + result);
 		
 		ObjectMapper om = new ObjectMapper();
-		String data = om.writeValueAsString(result); // json string으로 변환
+		String data = om.writeValueAsString(designer); // json string으로 변환
 		
 		res.setContentType("application/json;charset=utf-8");
 		PrintWriter out = res.getWriter();
