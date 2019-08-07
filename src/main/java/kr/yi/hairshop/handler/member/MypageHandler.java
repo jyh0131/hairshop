@@ -31,7 +31,6 @@ public class MypageHandler implements CommandHandler {
 			
 			
 			
-			
 			return "/WEB-INF/view/member/mypageForm.jsp";
 		}
 		

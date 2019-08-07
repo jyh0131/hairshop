@@ -33,7 +33,11 @@
   
   <filter-mapping>
   	<filter-name>LoginCheckFilter</filter-name>
-  	<url-pattern>/*</url-pattern>
+  	<url-pattern>/member/*</url-pattern>
+  	<url-pattern>/management/*</url-pattern>
+  	<url-pattern>/guest/*</url-pattern>
+  	
+  	
   </filter-mapping>
   
   <welcome-file-list>

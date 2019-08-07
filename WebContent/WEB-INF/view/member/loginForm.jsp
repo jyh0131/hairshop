@@ -75,7 +75,7 @@
 		
 		var naverLogin = new naver.LoginWithNaverId({
 			clientId : "FWPeAQ9CLXanGC2lQSxd", /* 개발자센터에 등록한 ClientID */
-			callbackUrl : "http://localhost:8080/hairshop/member/login.do", /* 개발자센터에 등록한 callback Url */
+			callbackUrl : "http://localhost:8080/hairshop/login.do", /* 개발자센터에 등록한 callback Url */
 			isPopup : false, /* 팝업을 통한 연동처리 여부 */
 			loginButton : { color : "green", type : 3, height : 40 } /* 로그인 버튼의 타입을 지정 */
 		});
@@ -114,7 +114,7 @@
 
 <section id="loginform">
 
-	<form action="${pageContext.request.contextPath}/member/login.do"
+	<form action="${pageContext.request.contextPath}/login.do"
 		method="post" id="f1">
 
 		<P>

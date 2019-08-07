@@ -90,7 +90,7 @@ header #topmenu li:hover{
 			if( Auth != null){
 				location.href="${pageContext.request.contextPath}/reserve/reserveState.do";
 			}else{
-				location.href="${pageContext.request.contextPath}/member/login.do";
+				location.href="${pageContext.request.contextPath}/login.do";
 			}
 		})
 		
@@ -111,7 +111,7 @@ header #topmenu li:hover{
 					<span><a href="${pageContext.request.contextPath}/member/logout.do">{로그아웃}</a></span>
 				</c:if>
 				<c:if test="${Auth == null }">
-					<span><a href="${pageContext.request.contextPath}/member/login.do">{로그인}</a></span>
+					<span><a href="${pageContext.request.contextPath}/login.do">{로그인}</a></span>
 					<span><a href="${pageContext.request.contextPath}/member/joinServiceCheck.do">{회원가입}</a></span>
 				</c:if>
 			</div>

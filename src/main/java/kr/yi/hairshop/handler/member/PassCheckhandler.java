@@ -24,6 +24,7 @@ public class PassCheckhandler implements CommandHandler {
 			HttpSession session = req.getSession();
 			User user = (User) session.getAttribute("Auth");
 			
+			
 			String id = user.getuId();
 			String pass = req.getParameter("password");
 			
