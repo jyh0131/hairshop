@@ -199,8 +199,12 @@ $(function() {
 				dataType : "json",
 				success : function(json) {
 					console.log(json);
+					if(json[0].wGNo.gLGrade==null){
+						$("#grade").val("일반");
+					}else{
+						$("#grade").val(json[0].gNo.gLGrade.lGrade).attr("selected","selected");
+					}
 					
-					$("grade").val(json[0].gNo.gLGrade.lGrade)
 				}
 			})
 		}
