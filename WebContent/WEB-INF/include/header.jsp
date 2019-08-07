@@ -125,14 +125,16 @@ header #topmenu li:hover{
 			
 			<div id="topmenu">
 				<ul>
-					<a href="${pageContext.request.contextPath}/"><li>intro</li></a>
-					<a href="${pageContext.request.contextPath}/view/produce.do"><li>Staff</li></a>
-					<a href="${pageContext.request.contextPath}/view/hair.do"><li>hair style</li></a>
-					<a href="#"><li>viedo</li></a>
-					<a href="${pageContext.request.contextPath}/reserve/form.do"><li>reservation</li></a>
-					<a href="#" id="reserv"><li>reservation state</li></a>
+					<a href="${pageContext.request.contextPath}/view/produce.do"><li>INTRO</li></a>
+					<a href="${pageContext.request.contextPath}/view/hair.do"><li>HAIR</li></a>
+					<a href="#"><li>VIDEO</li></a>
+					<a href="${pageContext.request.contextPath}/view/"><li>REVIEW</li></a>
+					<a href="${pageContext.request.contextPath}/reserve/form.do"><li>RESERVATION</li></a>
+					<a href="#" id="reserv"><li>RESERVATION STATE</li></a>
 				</ul>
 			</div>
 		</header>
 		
+		
+					
 	
