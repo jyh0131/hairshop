@@ -12,21 +12,17 @@ import kr.yi.hairshop.dao.DesignerMapper;
 import kr.yi.hairshop.dao.DesignerMapperImpl;
 import kr.yi.hairshop.dto.Designer;
 
-public class DesignerGradeModifyHandler implements CommandHandler {
+public class DesignerDelHandler implements CommandHandler {
 
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
-
-		String id = req.getParameter("id");	
-		String title = req.getParameter("title");
+		
+		String id = req.getParameter("id");
 		
 		DesignerMapper dao = new DesignerMapperImpl();
-		
-		Designer designer = dao.selelctDesignerById(id);
-		System.out.println(title);
-		designer.setdGrade(title);
-		
-		int result = dao.updateDesigner(designer);
+		Designer des = dao.selelctDesignerById(id);
+		int result = dao.deleteDesigner(des.getdNo());
+		System.out.println("삭제결과는"+result);
 		
 		ObjectMapper om = new ObjectMapper();
 		String data = om.writeValueAsString(result); // json string으로 변환
@@ -35,6 +31,7 @@ public class DesignerGradeModifyHandler implements CommandHandler {
 		PrintWriter out = res.getWriter();
 		out.print(data);
 		out.flush();
+		
 		
 		return null;
 	}
