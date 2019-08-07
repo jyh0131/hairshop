@@ -127,8 +127,8 @@ header #topmenu li:hover{
 				<ul>
 					<a href="${pageContext.request.contextPath}/view/produce.do"><li>INTRO</li></a>
 					<a href="${pageContext.request.contextPath}/view/hair.do"><li>HAIR</li></a>
-					<a href="#"><li>VIDEO</li></a>
-					<a href="${pageContext.request.contextPath}/view/"><li>REVIEW</li></a>
+					<a href="${pageContext.request.contextPath}/view/video.do"><li>VIDEO</li></a>
+					<a href="${pageContext.request.contextPath}/review/review.do"><li>REVIEW</li></a>
 					<a href="${pageContext.request.contextPath}/reserve/form.do"><li>RESERVATION</li></a>
 					<a href="#" id="reserv"><li>RESERVATION STATE</li></a>
 				</ul>
