@@ -26,6 +26,10 @@
 		border:none;
 		background-color: white;
 	}
+	#button{
+		text-align: right;
+		padding-right: 60px;
+	}
 	#button input{
 		width: 60px;
 		height: 30px;

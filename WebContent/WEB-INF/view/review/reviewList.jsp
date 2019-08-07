@@ -16,6 +16,8 @@
 	}
 	section{
 		margin-top: 40px;
+		width: 100%;
+		height: 600px;
 	}
 	#example{
 		width: 800px;
@@ -87,7 +89,8 @@
 		<a href="${pageContext.request.contextPath}/review/insert.do">[글쓰기]</a>
 	</div>	
 </section>
+<script>
+$("#example").DataTable({ });
+</script>
 
-
-
-
+<%@ include file="../../include/footer.jsp" %>
