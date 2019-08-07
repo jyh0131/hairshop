@@ -4,7 +4,7 @@ public class User {
 	private int mNo;
 	private String uName;
 	private String uId;
-	private boolean uIsMgr;
+	private boolean uIsMgr; //1=관리자, 0=guest
 
 	public User() {
 	}
