@@ -33,9 +33,7 @@
   
   <filter-mapping>
   	<filter-name>LoginCheckFilter</filter-name>
-  	<url-pattern>/reserve/reserveState.do</url-pattern>
-  	<url-pattern>/member/mypageForm.do</url-pattern>
-  	
+  	<url-pattern>/*</url-pattern>
   </filter-mapping>
   
   <welcome-file-list>

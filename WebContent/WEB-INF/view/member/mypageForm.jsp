@@ -78,7 +78,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/common.js"></script>
 <script>
-
+alert(sessionStorage.getItem("naverName"));
+alert(sessionStorage.getItem("naverId"));
 	
 </script>
 <section id="mypage">

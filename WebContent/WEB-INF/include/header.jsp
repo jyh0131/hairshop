@@ -8,7 +8,9 @@
 <meta charset="UTF-8">
 <title>차홍아르더</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css" type="text/css">
+<script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
 <script src="${pageContext.request.contextPath}/js/common.js"></script>
+
 <style>
 header{
 	width: 1080px;
@@ -90,8 +92,8 @@ header #topmenu li:hover{
 			}else{
 				location.href="${pageContext.request.contextPath}/member/login.do";
 			}
-			
 		})
+		
 	})
 </script>
 </head>
