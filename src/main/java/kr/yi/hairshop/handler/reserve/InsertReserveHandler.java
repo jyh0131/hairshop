@@ -1,5 +1,6 @@
 package kr.yi.hairshop.handler.reserve;
 
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -29,15 +30,15 @@ public class InsertReserveHandler implements CommandHandler{
 
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		req.setCharacterEncoding("UTF-8");
+		res.setCharacterEncoding("UTF-8");
 		String gName=req.getParameter("gName");
 		String gTel=req.getParameter("gTel");
 		String reserveDate=req.getParameter("reserveDate");
 		String reserveTime=req.getParameter("reserveTime");
 		String reserveDesigner=req.getParameter("reserveDesigner");
 		String reserveProduct=req.getParameter("reserveProduct");
-		System.out.println(reserveDesigner);
 		List<String> pName=new ArrayList<String>();
-		
 		for(int i=0; i<3; i++) {
 			if(reserveProduct.indexOf(",")>0) {
 				pName.add(reserveProduct.substring(0, reserveProduct.indexOf(",")));
@@ -49,11 +50,6 @@ public class InsertReserveHandler implements CommandHandler{
 					break;
 			}
 		}
-		Iterator<String> iter = pName.iterator();
-		while(iter.hasNext()) {
-			System.out.println(iter.next());
-		}
-		
 		
 		SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd hh:mm");
 		String year=reserveDate.substring(0,reserveDate.indexOf("년")).trim();
@@ -97,9 +93,6 @@ public class InsertReserveHandler implements CommandHandler{
 			work.setwNo(wNo);
 			work.setwPriceTotal(sumPrice);
 			wDao.updateWorkPrice(work);
-			req.setAttribute("reserved", true);
-			req.setAttribute("gName", gName);
-			req.setAttribute("gTel", gTel);
 		}
 		else {
 			Guest newGuest=new Guest();
@@ -126,13 +119,9 @@ public class InsertReserveHandler implements CommandHandler{
 				work.setwNo(wNo);
 				work.setwPriceTotal(sumPrice);
 				wDao.updateWorkPrice(work);
-				req.setAttribute("reserved", true);
-				req.setAttribute("gName", gName);
-				req.setAttribute("gTel", gTel);
 			}
-			
 		}
-		res.sendRedirect(req.getContextPath()+"/reserve/form.do");
+		res.sendRedirect(req.getContextPath()+"/reserve/form.do?reserved=true&gName="+URLEncoder.encode(gName, "utf-8")+"&gTel="+gTel);
 		return null;
 	}
 
