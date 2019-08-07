@@ -29,7 +29,6 @@ public class GuestGradeModifyHandler implements CommandHandler {
 		
 		int result = dao.updateGuest(guest);
 		
-		
 		ObjectMapper om = new ObjectMapper();
 		String data = om.writeValueAsString(result); // json string으로 변환
 		

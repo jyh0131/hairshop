@@ -47,7 +47,7 @@
 	<ul>
 		<a href="#"><li>영각</li></a>
 		<a href="${pageContext.request.contextPath}/management/gradeChange.do"><li>회원 등급 관리(최초가입시 브론즈), 디자이너 등급 관리</li></a>
-		<a href="#"><li>회원>디자이너, 디자이너>손님 으로 변경</li></a>
+		<a href="${pageContext.request.contextPath}/management/guestChange.do"><li>회원>디자이너, 디자이너>회원 으로 변경</li></a>
 	</ul>
 
 
