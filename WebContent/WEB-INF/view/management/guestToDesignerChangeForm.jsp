@@ -73,16 +73,42 @@
 				data:{"nameId" : $("#ggList option:selected").text()},
 				dataType:"json",
 				success:function(data){
-					if(data==1){
+					if(data==2){
 						alert("승급하였습니다");
 					}else{
-						alert("잠시 후 다시 시도 하세요");
+						alert("정상적으로 작업되지 않았습니다.");
 					}
 				}
 			})
 		});
 		
-
+		
+		$(".delBtn").click(function() {
+			var del = confirm("삭제 하시겠습니까?");
+			
+			var $this = $(this).parent().parent();
+			
+			if (del == false) {
+				alert("취소 하였습니다");
+			} else {
+				
+				$.ajax({
+					url:"${pageContext.request.contextPath}/member/designerDel.do",
+					type:"post",
+					data:{"id" : $(this).prev().prev().val() },
+					dataType:"json",
+					success:function(data){
+						if(data==1){
+							$this.remove();
+							
+							alert("변경하였습니다");
+						}else{
+							alert("잠시 후 다시 시도 하세요");
+						}
+					}
+				})
+			}
+		})
 		
 	});
 	
@@ -106,7 +132,7 @@
 	<br><hr><br>
 
 	<div id="ddChange"> <!-- 디자이너 등급변경 -->
-		<h3>디자이너 직책 변경</h3>
+		<h3>디자이너 상태 변경</h3>
 		<div id="ddResult">
 			<table>
 				<tr>
@@ -121,7 +147,8 @@
 					<td>${designer.dGrade}</td>
 					<td>
 						<input type="hidden" value="${designer.dId }" class="dId">
-						<button class="ddBtn">수정</button>
+						<button class="downBtn">강 등</button>
+						<button class="delBtn">삭 제</button>
 					</td>
 				</tr>
 				</c:forEach>						
