@@ -7,6 +7,11 @@
 <link rel="stylesheet" href="/resources/demos/style.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+	$( function() {
+	    $( "#datepicker" ).datepicker();
+	});
+</script>
 <style>
 section {
 	width: 1050px;
@@ -65,14 +70,12 @@ section div#calendar h1 {
 }
 
 section div#calendar img#left {
-	cursor:pointer;
 	position: absolute;
 	top: 10px;
 	left: 10px;
 }
 
 section div#calendar img#right {
-	cursor:pointer;
 	top: 10px;
 	right: 10px;
 	position: absolute;
@@ -132,13 +135,13 @@ div#updatePageBlack{
 	width:100%;
 	height: 100%;
 	background: rgba(0,0,0,0.5);
-	padding:100px 20%;
+	padding:100px 400px;
 	display: none;
 }
 div#updatePageBlack div#updatePage{
 	padding:100px;
 	width:55%;
-	height: 600px;
+	height: 50%;
 	background: white;
 	
 }
@@ -149,11 +152,9 @@ div#updatePageBlack div#updatePage label{
 div#updatePageBlack div#updatePage fieldset{
 	border-radius: 50px;
 	padding:100px;
-	padding-right:0px;
 	position: relative;
 }
 div#updatePageBlack div#updatePage img#x{
-	cursor:pointer;
 	top:20px;
 	right:20px;
 	width:35px;
@@ -163,28 +164,11 @@ div#updatePageBlack div#updatePage img#x{
 div#updatePage h1#title{
 	margin-bottom: 50px;
 }
-#uppName span{
-	position: relative;
-	padding-right: 20px;
-}
-#uppName img{
-	cursor:pointer;
-	position:absolute;
-	top:5px;
-	right:10;
-	width:15px;
-	height: 15px;
-}
-
-div#updatePageBlack select{
-	height: 25px;
-}
 </style>
 <script>
 	var designer = "";
 	var date="";
 	var time="";
-	var pIndex=[0,0,0];
 
 	function calendar(year, month) {
 		var y = year;
@@ -362,59 +346,31 @@ div#updatePageBlack select{
 							},
 					dataType : "json",
 					success : function(json) {
-						console.log(json);
-						
-						$("#updName").val(json[0].wDNo.dName+" "+json[0].wDNo.dGrade);
+						console.log(json);  
 						$("#upreserveTime").val(new Date(json[0].wReserveTime).format("yyyy-MM-dd"));
-						
-						var time=new Date(json[0].wReserveTime).format("hh:mm");
-						if(new Date(json[0].wReserveTime).format("a/p").trim()=='오후' && new Date(json[0].wReserveTime).format("hh")!=12){
-							time=new Date(json[0].wReserveTime).format("hh:mm");
-							time=(Number(time.slice(0,2))+12)+time.slice(2,5);
-						}
-						
-						$("#upreserveTime2").val(time);
+						$("#upresertTime2").val(new Date(json[0].wReserveTime).format("hh:mm").trim()).attr("selected","selected");
 						$("#upgName").val(json[0].wGNo.gName);
 						$("#upgTel").val(json[0].wGNo.gTel)
-						if(json[0].wGNo.gLGrade==null){
-							$("#upgLGrade").val("일반");
-						}else{
-							$("#upgLGrade").val(json[0].wGNo.gLGrade.lGrade).attr("selected","selected");
-						}
-						$("#uppName span").remove();
+						$("#upgLGrade").val(json[0].wGNo.gLGrade.lGrade)
+						var str="";
 						for(var i=0; i<json[0].productList.length; i++){
-							pIndex[i]=1;
-							$("#uppName").append("<span class='uppName'><input type='hidden' name='pName"+i+"' value='"+json[0].productList[i].pName+"'>"
-									+json[0].productList[i].pName+"("+json[0].productList[i].pPrice.toLocaleString()
-											+")<img src='${pageContext.request.contextPath }/images/reserve/x2.jpg'></span>");
-							
+							str+=json[0].productList[i].pName+",";
 						}
-						
-						$("#upeName").val(json[0].wEName.eName+"("+json[0].wEName.eSale+")");
-						
-						
+						str=str.slice(0,-1);
+						$("#uppName").val(str);
+						$("#upeName").val(json[0].wEName.eName);
 						$("#upwPriceTotal").val(json[0].wPriceTotal);
 						if(json.wWorkTime==""){
-							
+							alert("일로 빠지나보네");
 						}else{
 							$("#upworkTime").val(new Date(json[0].wWorkTime).format("yyyy-MM-dd"));
-							
-							var time=new Date(json[0].wWorkTime).format("hh:mm");
-							if(new Date(json[0].wWorkTime).format("a/p").trim()=='오후' && new Date(json[0].wWorkTime).format("hh")!=12){
-								time=new Date(json[0].wWorkTime).format("hh:mm");
-								time=(Number(time.slice(0,2))+12)+time.slice(2,5);
-							}
-							$("#upworkTime2").val(time).attr("selected","selected");
+							$("#upworkTime2").val(new Date(json[0].wWorkTime).format("hh:mm").trim());
 						}
 						
 						
-					
 					}
 				})
 			}
-			
-			
-			
 			if($(this).text()=='삭제'){
 				var check=confirm("정말 삭제하시겠습니까?");
 				if(check==true){
@@ -432,6 +388,7 @@ div#updatePageBlack select{
 								var year=date.slice(0,4);
 								var month=date.slice(date.indexOf("-")+1,date.lastIndexOf("-"));
 								var choiceday=date.slice(date.lastIndexOf("-")+1,date.length);
+								alert(choiceday);
 								$("#designer li:contains('"+designer+"')").click();
 								calendar(year,Number(month)-1);
 								
@@ -494,11 +451,11 @@ div#updatePageBlack select{
 <div id="updatePageBlack">
 	<div id="updatePage">
 		<fieldset>
-			<img id="x" src="${pageContext.request.contextPath }/images/reserve/x2.jpg">
+			<img id="x" src="${pageContext.request.contextPath }/images/reserve/x.png">
 			<h1 id="title">예약 수정</h1>
 			<form name="f1" id="f1">
 			<label>예약일시 : </label><input type="date" name="upreserveTime" id="upreserveTime">
-			<select name="upreserveTime2" id="upreserveTime2">
+			<select name="upresertTime2" id="upresertTime2">
 				<option>08:00</option>
 				<option>09:30</option>
 				<option>10:00</option>
@@ -521,40 +478,12 @@ div#updatePageBlack select{
 				<option>18:30</option>
 				<option>19:00</option>
 			</select><br>
-			<label>디자이너 : </label>
-			<select id="updName">
-				<c:forEach var="d" items="${dList}">
-					<option>
-						${d.dName} ${d.dGrade }
-					</option>
-				</c:forEach>
-			</select>
-			<br>
 			<label>손님명 : </label><input type="text" name="upgName" id="upgName"><br>
 			<label>손님전화번호 : </label><input type="text" name="upgTel" id="upgTel"><br>
-			<label>손님등급 : </label>
-			<select name="upgLGrade" id="upgLGrade">
-				<option>일반</option>
-				<c:forEach var="l" items="${lList}">
-					<option>${l.lGrade}</option>
-				</c:forEach>
-			</select><br>
-			<label>작업명 : </label>
-			<select id="uppNameList">
-				<option>선택하세요.</option>
-				<c:forEach var="p" items="${pList}">
-					<option>${p.pName}(<fmt:formatNumber value="${p.pPrice}" pattern="###,###" />)</option>
-				</c:forEach>
-			</select>
-			<span id="uppName"></span><br>
-			<label>이벤트 :</label>
-			<select id="upeName">
-				<option>선택하세요.</option>
-				<c:forEach var="e" items="${eList }">
-					<option>${e.eName}(${e.eSale})</option>
-				</c:forEach>
-			</select>
-			<br>
+			<label>손님등급 : </label><input type="text" name="upgLGrade" id="upgLGrade"><br>
+			
+			<label>작업명 : </label><input type="text" name="uppName" id="uppName"><br>
+			<label>이벤트 :</label><input type="text" name="upeName" id="upeName"><br>
 			<label>가격 : </label><input type="text" name="upwPriceTotal" id="upwPriceTotal"><br>
 			<label>완료일시 : </label><input type="date" name="upworkTime" id="upworkTime">
 			<select id="upworkTime2">
@@ -587,34 +516,9 @@ div#updatePageBlack select{
 	</div>
 </div>
 <script>
-
-	$(document).on('change','#uppNameList',function(){
-		
-		if($("#uppName img").length >2 ){
-			alert("상품은 끽해봐야 3개가 최대입니다.");
-		}
-		else{
-			for(var i=0; i<3; i++){
-				
-			}
-		}
-		/* $("#uppName").append("<span class='uppName'><input type='hidden' name='pName""' value=''>"+$(this).val()+"<img src='${pageContext.request.contextPath }/images/reserve/x2.jpg'></span>"); */
-		
-	})
-	
-	
-	
-	$(document).on('click','#uppName img',function(){
-		var index=$("#uppName img").index(this);
-		pIndex[index]=0;
-		$(this).parent().remove();
-	}) 
-	
-	
-	
 	$("#f1").submit(function() {
 		var queryString = $("#f1").serialize();
-		console.log(queryString);
+		alert(queryString);
 		alert($("#f1").serialize());
 		$.ajax({
             type : 'POST',

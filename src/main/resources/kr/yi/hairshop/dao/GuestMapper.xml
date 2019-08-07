@@ -31,6 +31,15 @@
 		where g_secession = false
 	</select>
 	
+	<select id="selectGuestByAll2" resultType="Guest"
+		resultMap="extendsGuest">
+		SELECT g_no, g_id, g_password, g_l_grade as l_grade, g_name,
+		g_tel, g_email,
+		g_birth, g_join, g_point, g_memo
+		FROM hairshop.guest
+		where g_secession = false
+	</select>
+	
 	<select id="selectGuestBygName" resultMap="extendsGuest">
 		SELECT g_no, g_id, g_l_grade as l_grade, g_name,
 		g_tel, g_email,
