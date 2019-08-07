@@ -5,10 +5,16 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta charset="UTF-8">
+<link rel="favicon" href="${pageContext.request.contextPath}/images/favicon.ico">
 <title>차홍아르더</title>
+
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css" type="text/css">
+
 <script src="${pageContext.request.contextPath}/js/common.js"></script>
+
+
 <style>
 header{
 	width: 1080px;
@@ -94,6 +100,7 @@ header #topmenu li:hover{
 		})
 	})
 </script>
+
 </head>
 
 <body>

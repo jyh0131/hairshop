@@ -7,7 +7,14 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
  
 <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>
+<style>
 
+	th,td{
+		text-align:center;
+		border: 1px solid gray;
+		border-top: 2px solid gray;
+	}
+</style>
 
 <table id="example" class="table table-bordered">
 
@@ -72,7 +79,7 @@
 				
 				<td>
 					<button>수정</button>
-					<a href="" class="delete">삭제</a>
+					<button href="" class="delete">삭제</button>
 				</td>
 			</tr>
 		</c:forEach>
@@ -95,6 +102,10 @@ $(document).on("click",".delete",function(){
 	return false;
 })
 </script>
+
+<script src="/path/to/jquery.slim.min.js"></script>
+<script src="/path/to/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/boodal.min.js"></script>
 
 
 
