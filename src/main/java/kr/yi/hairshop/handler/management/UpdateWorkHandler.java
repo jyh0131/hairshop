@@ -44,7 +44,7 @@ public class UpdateWorkHandler implements CommandHandler{
 			
 			int wNo=Integer.parseInt(req.getParameter("wNo"));
 			List<WorkDialog> wList=wDao.selectWDGECPjoinByWNo(wNo);
-			
+			System.out.println(wList.get(0));
 			ObjectMapper om = new ObjectMapper();
 			String data = om.writeValueAsString(wList);
 			
@@ -54,7 +54,21 @@ public class UpdateWorkHandler implements CommandHandler{
 			out.flush();
 		}
 		if(req.getMethod().equalsIgnoreCase("post")) {
-			System.out.println(req.getParameter("upreserveTime"));
+			String reserveTime = req.getParameter("upreserveTime");
+			String reserveTime2 = req.getParameter("upreserveTime2");
+			String gTel = req.getParameter("upgTel"); 
+			String lGrade = req.getParameter("upgLGrade");
+			String wPriceTotal = req.getParameter("upwPriceTotal");
+			String workTime = req.getParameter("upworkTime");
+			String workTime2 = req.getParameter("upworkTime2");
+			
+			System.out.println(reserveTime);
+			System.out.println(reserveTime2);
+			System.out.println(gTel);
+			System.out.println(lGrade);
+			System.out.println(wPriceTotal);
+			System.out.println(workTime);
+			System.out.println(workTime2);
 		}
 		return null;
 	}

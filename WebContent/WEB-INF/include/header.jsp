@@ -5,12 +5,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta charset="UTF-8">
+<link rel="favicon" href="${pageContext.request.contextPath}/images/favicon.ico">
 <title>차홍아르더</title>
+
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css" type="text/css">
 <script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
 <script src="${pageContext.request.contextPath}/js/common.js"></script>
-
 <style>
 header{
 	width: 1080px;
@@ -96,6 +98,7 @@ header #topmenu li:hover{
 		
 	})
 </script>
+
 </head>
 
 <body>
@@ -129,8 +132,8 @@ header #topmenu li:hover{
 				<ul>
 					<a href="${pageContext.request.contextPath}/view/produce.do"><li>INTRO</li></a>
 					<a href="${pageContext.request.contextPath}/view/hair.do"><li>HAIR</li></a>
-					<a href="#"><li>VIDEO</li></a>
-					<a href="${pageContext.request.contextPath}/view/"><li>REVIEW</li></a>
+					<a href="${pageContext.request.contextPath}/view/video.do"><li>VIDEO</li></a>
+					<a href="${pageContext.request.contextPath}/review/review.do"><li>REVIEW</li></a>
 					<a href="${pageContext.request.contextPath}/reserve/form.do"><li>RESERVATION</li></a>
 					<a href="#" id="reserv"><li>RESERVATION STATE</li></a>
 				</ul>
