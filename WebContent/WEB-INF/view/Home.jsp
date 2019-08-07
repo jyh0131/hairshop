@@ -170,7 +170,7 @@
 		// YouTube ID
 		var ytPlayList = [ {
 			id : "player1",
-			VideoId : "bFiaiFBuy2I"     /* OYttd9GgVoM *//* bFiaiFBuy2I */
+			VideoId : "OYttd9GgVoM"     /* OYttd9GgVoM *//* bFiaiFBuy2I */
 		} ];
 
 	</script>

@@ -32,7 +32,7 @@ public class GuestMgnHandler implements CommandHandler {
 		}finally {
 			sqlSession.close();
 		}
-		return "/WEB-INF/view/guest/guestMgn.jsp";
+		return "/WEB-INF/view/guest/guestMgn2.jsp";
 	}
 
 }
