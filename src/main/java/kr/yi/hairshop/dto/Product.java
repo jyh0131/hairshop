@@ -16,6 +16,13 @@ public class Product {
 	
 	
 	
+	public Product(String pName) {
+		super();
+		this.pName = pName;
+	}
+
+
+
 	public Product(int pPrice, String pName) {
 		this.pPrice = pPrice;
 		this.pName = pName;

@@ -132,7 +132,7 @@ div#updatePageBlack{
 	width:100%;
 	height: 100%;
 	background: rgba(0,0,0,0.5);
-	padding:100px 20%;
+	padding:50px 20%;
 	display: none;
 }
 div#updatePageBlack div#updatePage{
@@ -267,6 +267,7 @@ div#updatePageBlack select{
 				dataType : "json",
 				success : function(json) {
 					console.log(json)
+					$("table#reserved td").remove();
 					if(json.wListMap.length>0){
 						for(var i=0; i<json.wListMap.length; i++){
 							var work=json.wListMap[i];
@@ -300,7 +301,7 @@ div#updatePageBlack select{
 							$("table#reserved").append(str);
 						}
 					}else{
-						$("table#reserved").append("<tr><td colspan='9'>예약이 하나도없네요ㅋㅋㅋㅋ</td></tr>")
+						$("table#reserved").append("<tr><td colspan='9'>예약이 하나도없네요ㅋㅋㅋㅋ</td></tr>");
 					}
 				}
 			})
@@ -354,6 +355,7 @@ div#updatePageBlack select{
 			var wNo=$(this).parent().parent().find("#hidden").val();
 			
 			if($(this).text()=='수정'){
+				
 				$("#updatePageBlack").fadeIn(300);
 				$.ajax({  
 					url : "${pageContext.request.contextPath }/management/updateWork.do",
@@ -420,6 +422,7 @@ div#updatePageBlack select{
 			if($(this).text()=='삭제'){
 				var check=confirm("정말 삭제하시겠습니까?");
 				if(check==true){
+					$("table#reserved td").remove();
 					$.ajax({  
 						url : "${pageContext.request.contextPath }/management/deleteWork.do",
 						type : "get",
@@ -454,7 +457,71 @@ div#updatePageBlack select{
 		$("img#x").click(function() {
 			$("#updatePageBlack").fadeOut(300);
 		})
+		
+		
+		$(document).on('change','#uppNameList',function(){
+		var index=0;
+		if($("#uppName img").length >2 ){
+			alert("상품은 끽해봐야 3개가 최대입니다.");
+		}
+		else{
+			for(var i=0; i<3; i++){
+				if(pIndex[i]==0){
+					index=i;
+					break;
+				}
+			}
+			$("#uppName").append("<span class='uppName'><input type='hidden' name='pName"+index+"' value='"+$(this).val()+"'>"+$(this).val()+"<img src='${pageContext.request.contextPath }/images/reserve/x2.jpg'></span>");
+		}
+		
+		
 	})
+	
+	
+	
+	$(document).on('click','#uppName img',function(){
+		var index=$("#uppName img").index(this);
+		pIndex[index]=0;
+		$(this).parent().remove();
+	}) 
+	
+	
+	
+	$("#f1").submit(function() {
+		var queryString = $("#f1").serialize();
+		console.log(queryString);
+		$.ajax({
+            type : 'POST',
+            url : '${pageContext.request.contextPath }/management/updateWork.do',
+            data : $("#f1").serialize(),
+            dataType : 'json',
+            success : function(json){
+                console.log(json)
+                var success=true;
+                for(var i=0; i<json.length; i++){
+                	if(json[i]<1){
+                		success=false;
+                		break;
+                	}
+                }
+
+                var year=date.slice(0,4);
+				var month=date.slice(date.indexOf("-")+1,date.lastIndexOf("-"));
+				var choiceday=date.slice(date.lastIndexOf("-")+1,date.length);
+				$("#designer li:contains('"+designer+"')").click();
+				calendar(year,Number(month)-1);
+				
+				$("div#calendar tr td").filter(function() {
+					return $(this).text() === choiceday;
+				}).click();
+                
+				$("#updatePageBlack").fadeOut(300);
+            },
+        });
+
+		return false;
+	})
+})
 </script>
 <section>
 	
@@ -588,53 +655,4 @@ div#updatePageBlack select{
 		</fieldset>
 	</div>
 </div>
-<script>
-
-	$(document).on('change','#uppNameList',function(){
-		var index=0;
-		if($("#uppName img").length >2 ){
-			alert("상품은 끽해봐야 3개가 최대입니다.");
-		}
-		else{
-			for(var i=0; i<3; i++){
-				if(pIndex[i]==0){
-					index=i;
-					break;
-				}
-			}
-			$("#uppName").append("<span class='uppName'><input type='hidden' name='pName"+i+"' value='"+$(this).val()+"'>"+$(this).val()+"<img src='${pageContext.request.contextPath }/images/reserve/x2.jpg'></span>");
-		}
-		
-		
-	})
-	
-	
-	
-	$(document).on('click','#uppName img',function(){
-		var index=$("#uppName img").index(this);
-		pIndex[index]=0;
-		$(this).parent().remove();
-	}) 
-	
-	
-	
-	$("#f1").submit(function() {
-		var queryString = $("#f1").serialize();
-		console.log(queryString);
-		$.ajax({
-            type : 'POST',
-            url : '${pageContext.request.contextPath }/management/updateWork.do',
-            data : $("#f1").serialize(),
-            dataType : 'json',
-            success : function(json){
-                alert(json)
-            },
-        });
-
-		return false;
-	})
-	
-	
-	
-</script>
 <%@ include file="../../include/footer.jsp"%>

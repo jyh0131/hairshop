@@ -604,6 +604,7 @@ section article#border div#guest div#reserve span{
 							})
 						}
 						if($(this).text()=="예약신청"){
+							
 							var reserveDate=$("#reserve span").eq(0).text();
 							var reserveTime=$("#reserve span").eq(1).text();
 							var reserveDesigner=$("#reserve span").eq(2).text();
