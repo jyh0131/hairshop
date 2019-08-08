@@ -82,5 +82,12 @@ public class GuestMapperImpl implements GuestMapper {
 			return sqlSession.selectList(namespace + ".selectGuestByAll2",gNo);
 		}
 	}
+
+	@Override
+	public Guest selectGuestByNo(int gNo) {
+		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
+			return sqlSession.selectOne(namespace + ".selectGuestByNo",gNo);
+		}
+	}
 	
 }

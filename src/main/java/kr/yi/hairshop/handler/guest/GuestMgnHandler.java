@@ -25,18 +25,12 @@ public class GuestMgnHandler implements CommandHandler {
 		try {
 			sqlSession = MyBatisSqlSessionFactory.openSession();
 			GuestMapper dao = sqlSession.getMapper(GuestMapper.class);
-
 			List<Guest> list = dao.selectGuestByAll();
-			
-			
 			
 			LevelMapper lDao = new LevelMapperImpl();
 			List<Level> lList = lDao.selectLevelByAll();
+			
 			req.setAttribute("lList", lList);
-			
-			
-			
-			
 			req.setAttribute("list", list);
 
 		} catch (Exception e) {

@@ -9,6 +9,7 @@ public interface GuestMapper {
 	public List<Guest> selectGuestByAll();
 	public List<Guest> selectGuestByAll2(int gNo);
 	public List<Guest> selectGuestBygName(String gName);
+	public Guest selectGuestByNo(int gNo);
 	public Guest selectGuestByGNameGTel(Map<String, String> map);
 	public int insertGuest(Guest guest);
 	public int updateGuest(Guest guest);
