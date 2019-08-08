@@ -11,7 +11,10 @@ import org.codehaus.jackson.map.ObjectMapper;
 import kr.yi.hairshop.controller.CommandHandler;
 import kr.yi.hairshop.dao.GuestMapper;
 import kr.yi.hairshop.dao.GuestMapperImpl;
+import kr.yi.hairshop.dao.LevelMapper;
+import kr.yi.hairshop.dao.LevelMapperImpl;
 import kr.yi.hairshop.dto.Guest;
+import kr.yi.hairshop.dto.Level;
 
 public class GuestUpdateHandler implements CommandHandler {
 
@@ -22,7 +25,8 @@ public class GuestUpdateHandler implements CommandHandler {
 			System.out.println("asdsadsadsa");
 			int gNo = Integer.parseInt(req.getParameter("gNo"));
 			List<Guest> gList = gDao.selectGuestByAll2(gNo);
-			System.out.println(gList.get(0));
+			
+			
 			
 			ObjectMapper om = new ObjectMapper();
 			String data = om.writeValueAsString(gList);

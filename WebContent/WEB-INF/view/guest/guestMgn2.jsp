@@ -199,11 +199,13 @@ $(function() {
 				dataType : "json",
 				success : function(json) {
 					console.log(json);
-					if(json[0].wGNo.gLGrade==null){
+					if(json[0].gNo.gLGrade==null){
 						$("#grade").val("일반");
 					}else{
-						$("#grade").val(json[0].gNo.gLGrade.lGrade).attr("selected","selected");
+						$("#grade").val(json[0].gNo.gLGrade).attr("selected","selected");
 					}
+					
+					$("#name").val(json[0].gNo.gName);
 					
 				}
 			})
@@ -242,8 +244,8 @@ $(document).on("click",".delete",function(){
 			<label>등급 : </label>
 			<select name="grade" id="grade">
 				<option>일반</option>
-				<c:forEach var="g" items="${gList}">
-					<option>${g.gLGrade}</option>
+				<c:forEach var="l" items="${lList}">
+					<option>${l.lGrade}</option>
 				</c:forEach>
 			</select><br>
 			<label>이름 : </label><input type="text" name="name" id="name"><br>

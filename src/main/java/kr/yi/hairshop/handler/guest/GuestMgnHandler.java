@@ -9,7 +9,10 @@ import org.apache.ibatis.session.SqlSession;
 
 import kr.yi.hairshop.controller.CommandHandler;
 import kr.yi.hairshop.dao.GuestMapper;
+import kr.yi.hairshop.dao.LevelMapper;
+import kr.yi.hairshop.dao.LevelMapperImpl;
 import kr.yi.hairshop.dto.Guest;
+import kr.yi.hairshop.dto.Level;
 import kr.yi.hairshop.util.MyBatisSqlSessionFactory;
 
 public class GuestMgnHandler implements CommandHandler {
@@ -24,7 +27,16 @@ public class GuestMgnHandler implements CommandHandler {
 			GuestMapper dao = sqlSession.getMapper(GuestMapper.class);
 
 			List<Guest> list = dao.selectGuestByAll();
-
+			
+			
+			
+			LevelMapper lDao = new LevelMapperImpl();
+			List<Level> lList = lDao.selectLevelByAll();
+			req.setAttribute("lList", lList);
+			
+			
+			
+			
 			req.setAttribute("list", list);
 
 		} catch (Exception e) {
