@@ -89,6 +89,40 @@ section td {
 	line-height: 30px;
 }
 
+section table#searchTable{
+	margin-top:10px;
+	border-collapse: collapse;
+}
+section table#searchTable tr td,section table#searchTable tr th{
+	border: 1px solid black;
+}
+section table#searchTable tr th{
+	width:130px;
+}
+section table#searchTable tr th:nth-child(1) {
+	width:100px;
+}
+section table#searchTable tr th:nth-child(4) {
+	width:80px !important;
+}
+
+section table#searchTable tr th:nth-child(6) {
+	width:100px !important;
+}
+section table#searchTable tr th:nth-child(8) {
+	width:100px !important;
+}
+
+section table#searchTable tr th:last-child {
+	width:80px !important;
+}
+
+
+
+
+
+
+
 section div#calendar td.day {
 	cursor: pointer;
 }
@@ -132,12 +166,19 @@ div#updatePageBlack{
 	width:100%;
 	height: 100%;
 	background: rgba(0,0,0,0.5);
-	padding:50px 20%;
+	padding:50px 25%;
 	display: none;
 }
+
+
+div#updatePageBlack div#updatePage label{
+}
 div#updatePageBlack div#updatePage{
-	padding:100px;
-	width:55%;
+
+
+	padding:100px 10%;
+	min-width:450px;
+	width:30%;
 	height: 600px;
 	background: white;
 	
@@ -164,9 +205,12 @@ div#updatePage h1#title{
 	margin-bottom: 50px;
 }
 #uppName span{
+	text-align:right;
 	position: relative;
 	padding-right: 20px;
-	display: inline-block;
+	display: block;
+	width: 300px;
+	height: 25px;
 }
 #uppName img{
 	cursor:pointer;
@@ -180,6 +224,13 @@ div#updatePage h1#title{
 div#updatePageBlack select{
 	height: 25px;
 }
+
+div#updatePageBlack #updateCommit{
+	margin-left:100px;
+	width:100px;
+	height: 30px;
+}
+
 </style>
 <script>
 	var designer = "";
@@ -254,7 +305,7 @@ div#updatePageBlack select{
 			var month = str.slice(str.indexOf(".")+1,str.length);
 			var day = $(this).text();
 			date=year+"-"+month+"-"+day;
-			$("#reserveDate").text(year+"년 "+month+"월 "+day+"일 ");
+			$("table#reserved #reserveDate").text(year+"년 "+month+"월 "+day+"일 ");
 			$("#time tr td").removeClass("reserved");
 			$("table#reserved td").remove();
 			$.ajax({  
@@ -282,21 +333,26 @@ div#updatePageBlack select{
 								str+="<td>일반</td>";
 							}
 							var product="";
+							var sumPrice=0;
 							for(var j=0; j<work.productList.length; j++){
+								sumPrice+=Number(work.productList[j].pPrice);
 								if(j==work.productList.length-1)
 									product+=work.productList[j].pName;
 								else
 									product+=work.productList[j].pName+",";
 							}
 							str+="<td>"+product+"</td>";
-							str+="<td>"+work.wEName.eName+"</td>";
-							str+="<td>"+work.wPriceTotal.toLocaleString()+"원</td>"
+							str+="<td>"+work.wEName.eName+"("+work.wEName.eSale+")</td>";
+							
+							sumPrice=sumPrice/100*(100-Number(work.wEName.eSale));
+							
+							str+="<td>"+sumPrice.toLocaleString()+"원</td>"
 							if(work.wWorkTime==null){
 								str+="<td>작업전</td>"
 							}else{
 								str+="<td>"+new Date(work.wWorkTime).format('yyyy-MM-dd a/p hh:mm')+"</td>"
 							}
-							str+="<td><button>수정</button><button>삭제</button><input id='hidden' type='hidden' value='"+work.wNo+"'/></td>";
+							str+="<td><button>작업완료</button><button>수정</button><button>삭제</button><input id='hidden' type='hidden' value='"+work.wNo+"'/></td>";
 							str+="</tr>";
 							$("table#reserved").append(str);
 						}
@@ -309,10 +365,7 @@ div#updatePageBlack select{
 		})
 		
 		$("#designer li").click(function() {
-			$("#commit").text("예약신청");
-			$("#reserveForm").show();
-			$("#mapForm").hide();
-			$("#reservedForm").hide();
+			
 			$("#designer li").css("background-color", "#f5f5f5");
 			$("#designer li").css("border-top", "1px solid #dddddd");
 			$(this).css("border-top", "2px solid black");
@@ -322,8 +375,7 @@ div#updatePageBlack select{
 			var day = date.getDate() + "";
 			$(this).css("background-color", "white");
 			
-			$("#reserveDate").text(date.getFullYear()+"년 "+(date.getMonth()+1)+"월 "+date.getDate()+"일");
-			
+			$("table#reserved #reserveDate").text(date.getFullYear()+"년 "+(date.getMonth()+1)+"월 "+date.getDate()+"일");
 			
 			designer = $(this).text();
 			calendar(date.getFullYear(), date.getMonth());
@@ -337,7 +389,7 @@ div#updatePageBlack select{
 			
 			
 			$("#time tr td").css("background-color","white");
-			$("#reserveTime").text("");
+			$("table#reserved #reserveTime").text("");
 			time="";
 			$("#reserveDesigner").text(designer);
 			
@@ -349,11 +401,69 @@ div#updatePageBlack select{
 		$("ul#designer li").eq(0).click();
 		
 		
-		
-		
-		$(document).on('click',"table#reserved button",function() {
-			var wNo=$(this).parent().parent().find("#hidden").val();
+		function sumPriceFunc(){
+			var sumPrice=0;
+			var eName = $("#upeName").val();
+			var eSale=eName.slice(eName.indexOf("(")+1,eName.indexOf(")"));
+			for(var i=0; i<3; i++){
+				
+				var price=$("input[name=pName"+i+"]").val();
+				if(price!=null){
+					price=price.slice(price.indexOf("(")+1, price.indexOf(")"));
+					
+					var prevPrice=price.slice(0,price.indexOf(","));
+					var nextPrice=price.slice(price.indexOf(",")+1,price.length);
+					
+					price=prevPrice+nextPrice;
+					
+					sumPrice+=Number(price);
+				}
+				
+			}
+			sumPrice=sumPrice/100*(100-Number(eSale));
 			
+			$("#upwPriceTotal").val(sumPrice.toLocaleString()+"원");
+		}
+		
+		$(document).on('click',"table button",function() {
+			var wNo=$(this).parent().parent().find("#hidden").val();
+			if($(this).text()=='작업완료'){
+				var commitCheck=confirm("작업을 완료하시겠습니까?");
+				if(commitCheck==true){
+					$.ajax({
+						url : "${pageContext.request.contextPath }/management/workComplete.do",
+						type : "get",
+						data : {
+									"wNo":wNo
+								},
+						dataType : "json",
+						success : function(json) {
+							console.log(json);
+							if(json>0){
+								
+								var year=date.slice(0,4);
+								var month=date.slice(date.indexOf("-")+1,date.lastIndexOf("-"));
+								var choiceday=date.slice(date.lastIndexOf("-")+1,date.length);
+								$("#designer li:contains('"+designer+"')").click();
+								calendar(year,Number(month)-1);
+								
+								$("div#calendar tr td").filter(function() {
+									
+									return $(this).text() === choiceday;
+								}).click();
+								
+								if($("#serachText").val()!=""){
+									$("#search").click();
+								}
+								alert("작업이 완료되었습니다.");
+							}else{
+								alert("삭제실패");
+							}
+							
+						}
+					})		
+				}
+			}
 			if($(this).text()=='수정'){
 				
 				$("#updatePageBlack").fadeIn(300);
@@ -386,36 +496,37 @@ div#updatePageBlack select{
 							$("#upgLGrade").val(json[0].wGNo.gLGrade.lGrade).attr("selected","selected");
 						}
 						$("#uppName span").remove();
+						
+						var sumPrice=0;
+						
 						for(var i=0; i<json[0].productList.length; i++){
 							pIndex[i]=1;
-							$("#uppName").append("<span class='uppName'><input type='hidden' name='pName"+i+"' value='"+json[0].productList[i].pName+"'>"
+							sumPrice+=Number(json[0].productList[i].pPrice);
+							$("#uppName").append("<span class='uppName'><input type='hidden' name='pName"+i+"' value='"+json[0].productList[i].pName+"("+json[0].productList[i].pPrice.toLocaleString()+")'>"
 									+json[0].productList[i].pName+"("+json[0].productList[i].pPrice.toLocaleString()
 											+")<img src='${pageContext.request.contextPath }/images/reserve/x2.jpg'></span>");
 							
 						}
-						
 						$("#upeName").val(json[0].wEName.eName+"("+json[0].wEName.eSale+")");
 						
+						sumPrice=sumPrice/100*(100-Number(json[0].wEName.eSale))
 						
-						$("#upwPriceTotal").val(json[0].wPriceTotal);
-						if(json.wWorkTime==""){
-							
+						$("#upwPriceTotal").val(sumPrice.toLocaleString()+"원");
+						
+						if(json[0].wWorkTime==null){
+							$("#upworkTime").val("작업전");
 						}else{
-							$("#upworkTime").val(new Date(json[0].wWorkTime).format("yyyy-MM-dd"));
+							$("#upworkTime").val(new Date(json[0].wWorkTime).format("yyyy-MM-dd hh:mm"));
 							
-							var time=new Date(json[0].wWorkTime).format("hh:mm");
-							if(new Date(json[0].wWorkTime).format("a/p").trim()=='오후' && new Date(json[0].wWorkTime).format("hh")!=12){
-								time=new Date(json[0].wWorkTime).format("hh:mm");
-								time=(Number(time.slice(0,2))+12)+time.slice(2,5);
-							}
-							$("#upworkTime2").val(time).attr("selected","selected");
 						}
-						
 						
 					
 					}
 				})
 			}
+			
+			
+			
 			
 			
 			
@@ -447,7 +558,10 @@ div#updatePageBlack select{
 								
 							}else{
 								alert("삭제실패");
-							}							
+							}
+							if($("#serachText").val()!=""){
+								$("#search").click();
+							}
 						}
 					})
 				}
@@ -461,29 +575,47 @@ div#updatePageBlack select{
 		
 		$(document).on('change','#uppNameList',function(){
 		var index=0;
-		if($("#uppName img").length >2 ){
-			alert("상품은 끽해봐야 3개가 최대입니다.");
-		}
-		else{
-			for(var i=0; i<3; i++){
-				if(pIndex[i]==0){
-					index=i;
-					break;
-				}
+		var sumPrice=0;
+		if($(this).val()!='선택하세요.'){
+			
+			if($("#uppName img").length >2 ){
+				alert("상품은 3개가 최대입니다.");
 			}
-			$("#uppName").append("<span class='uppName'><input type='hidden' name='pName"+index+"' value='"+$(this).val()+"'>"+$(this).val()+"<img src='${pageContext.request.contextPath }/images/reserve/x2.jpg'></span>");
+			else{
+				for(var i=0; i<3; i++){
+					if(pIndex[i]==0){
+						index=i;
+						pIndex[i]=1;
+						break;
+					}
+				}
+				$("#uppName").append("<span class='uppName'><input type='hidden' name='pName"+index+"' value='"+$(this).val()+"'>"+$(this).val()+"<img src='${pageContext.request.contextPath }/images/reserve/x2.jpg'></span>");
+				
+				
+				
+				
+				
+			}
+			sumPriceFunc();
 		}
-		
 		
 	})
-	
+	$(document).on('change','#upeName',function(){
+		if($(this).val()!='선택하세요.')
+			sumPriceFunc();
+	})
 	
 	
 	$(document).on('click','#uppName img',function(){
 		var index=$("#uppName img").index(this);
 		pIndex[index]=0;
 		$(this).parent().remove();
-	}) 
+		
+		sumPriceFunc();
+		
+	})
+	
+	
 	
 	
 	
@@ -516,10 +648,82 @@ div#updatePageBlack select{
 				}).click();
                 
 				$("#updatePageBlack").fadeOut(300);
+				
+				if($("#serachText").val()!=""){
+					$("#search").click();
+				}
             },
         });
 
 		return false;
+	})
+	
+	$("#search").click(function() {
+		var text=$("searchText").val();
+		$("#searchTable td").remove();
+		
+		var gName = $("#searchText").val();
+		$.ajax({
+            type : 'get',
+            url : '${pageContext.request.contextPath }/management/search.do',
+            data : {
+            	"gName":gName
+            },
+            dataType : 'json',
+            success : function(json){
+                console.log(json)
+                
+                if(json.length>0){
+					for(var i=0; i<json.length; i++){
+						var work=json[i];
+						var str="<tr>";
+						str+="<td id='reserveTime'>"+new Date(work.wReserveTime).format('yyyy-MM-dd a/p hh:mm')+"</td>";
+						str+="<td id='dName'>"+work.wDNo.dName+"</td>";
+						str+="<td id='gName'>"+work.wGNo.gName+"</td>";
+						str+="<td id='gTel'>"+work.wGNo.gTel+"</td>";
+						if(work.wGNo.gLGrade!=null){
+							str+="<td>"+work.wGNo.gLGrade.lGrade+"</td>";
+						}
+						else{
+							str+="<td>일반</td>";
+						}
+						var product="";
+						var sumPrice=0;
+						for(var j=0; j<work.productList.length; j++){
+							
+							sumPrice+=Number(work.productList[j].pPrice);
+							
+							if(j==work.productList.length-1)
+								product+=work.productList[j].pName;
+							else
+								product+=work.productList[j].pName+",";
+						}
+						
+						str+="<td>"+product+"</td>";
+						if(work.wEName==null){
+							str+="<td>일반</td>";
+						}
+						else{
+							str+="<td>"+work.wEName.eName+"</td>";
+						}
+						
+						sumPrice=sumPrice/100*(100-Number(work.wEName.eSale));
+						
+						str+="<td>"+sumPrice.toLocaleString()+"원</td>"
+						if(work.wWorkTime==null){
+							str+="<td>작업전</td>"
+						}else{
+							str+="<td>"+new Date(work.wWorkTime).format('yyyy-MM-dd a/p hh:mm')+"</td>"
+						}
+						str+="<td><button>작업완료</button><button>수정</button><button>삭제</button><input id='hidden' type='hidden' value='"+work.wNo+"'/></td>";
+						str+="</tr>";
+						$("#searchTable").append(str);
+					}
+				}else{
+					$("table#searchTable").append("<tr><td colspan='9'>예약이 하나도없네요ㅋㅋㅋㅋ</td></tr>");
+				}
+            }
+        });
 	})
 })
 </script>
@@ -527,6 +731,27 @@ div#updatePageBlack select{
 	
 	
 		<h1 id="title">예약관리</h1>
+		
+	<article id="">
+		<h1>회원 예약 검색</h1>
+		<input type="text" id="searchText"><button id="search">검색</button>
+		
+		<table id="searchTable">
+		<tr>
+			<th>예약일시</th>
+			<th>디자이너</th>
+			<th>손님명</th>
+			<th>손님전화번호</th>
+			<th>손님등급</th>
+			<th>작업명</th>
+			<th>이벤트</th>
+			<th>가격</th>
+			<th>완료일시</th>
+			<th></th>
+		</tr>
+		
+		</table>
+	</article>
 	<article>
 		<h1>디자이너 선택</h1>
 		<ul id="designer">
@@ -615,7 +840,7 @@ div#updatePageBlack select{
 					<option>${p.pName}(<fmt:formatNumber value="${p.pPrice}" pattern="###,###" />)</option>
 				</c:forEach>
 			</select>
-			<span id="uppName"></span><br>
+				<span id="uppName"></span>
 			<label>이벤트 :</label>
 			<select name="upeName" id="upeName">
 				<option>선택하세요.</option>
@@ -625,32 +850,9 @@ div#updatePageBlack select{
 			</select>
 			<br>
 			<label>가격 : </label><input type="text" name="upwPriceTotal" id="upwPriceTotal"><br>
-			<label>완료일시 : </label><input type="date" name="upworkTime" id="upworkTime">
-			<select name="upworkTime2" id="upworkTime2">
-				<option>08:00</option>
-				<option>09:30</option>
-				<option>10:00</option>
-				<option>10:30</option>
-				<option>11:00</option>
-				<option>11:30</option>
-				<option>12:00</option>
-				<option>12:30</option>
-				<option>13:00</option>
-				<option>13:30</option>
-				<option>14:00</option>
-				<option>14:30</option>
-				<option>15:00</option>
-				<option>15:30</option>
-				<option>16:00</option>
-				<option>16:30</option>
-				<option>17:00</option>
-				<option>17:30</option>
-				<option>18:00</option>
-				<option>18:30</option>
-				<option>19:00</option>
-			</select><br>
-			<input type="submit" value="수정">
-			<input type="reset" value="초기화">
+			<label>완료일시 : </label><input type="text" name="upworkTime" id="upworkTime" disabled><br>
+			<br>
+			<input id="updateCommit" type="submit" value="수정">
 			</form>
 		</fieldset>
 	</div>

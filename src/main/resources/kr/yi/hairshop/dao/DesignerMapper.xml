@@ -19,7 +19,7 @@
 		<result property="dSecession" column="d_secession" />
 	</resultMap>
 	<resultMap type="Designer" id="extendsDesigner" extends="basicDesigner">
-		<collection property="workDialogList" resultMap="kr.yi.hairshop.dao.WorkDialogMapper.resultWorkDialog"/>
+		<collection property="workDialogList" resultMap="kr.yi.hairshop.dao.WorkDialogMapper.basicWorkDialog"/>
 	</resultMap>
 	
 	

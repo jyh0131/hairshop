@@ -200,6 +200,24 @@ public class WorkDialogMapperImpl implements WorkDialogMapper{
 			return res;
 		}
 	}
+
+	@Override
+	public List<WorkDialog> selectBygName(String gName) {
+		try(SqlSession sqlSession=MyBatisSqlSessionFactory.openSession();){
+			return sqlSession.selectList(namespace+".selectBygName", gName);
+		}
+	}
+
+	@Override
+	public int updateWorkCompleteTimeBywNo(int wNo) {
+		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
+			int res = sqlSession.update(namespace + ".updateWorkCompleteTimeBywNo", wNo);
+			sqlSession.commit();
+			return res;
+		}
+	}
+
+
 	
 
 }
