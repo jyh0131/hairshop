@@ -113,7 +113,6 @@
 		<div id="hiddenbox">
 			<input type="hidden" name="snsId">
 			<input type="hidden" name="snsName">
-			<input type="hidden" name="snsBirthday">
 			<input type="hidden" name="snsEmail">
 		</div>
 					

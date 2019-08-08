@@ -18,7 +18,7 @@
 		window.addEventListener('load', function () {
 			naverLogin.getLoginStatus(function (status) {
 				if (status) {
-				alert("로그인 됩니까?");
+				alert("실행파일 : snsLoginCheckForm.jsp 로그인 됩니까?");
 				
 				$("#naverId").val(naverLogin.user.id);		
 				alert($("#naverId").val());

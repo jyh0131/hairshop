@@ -166,12 +166,13 @@ ALTER TABLE hairshop.Level
 -- 후기
 CREATE TABLE hairshop.Review (
 	r_no        INT         NOT NULL COMMENT '번호', -- 번호
-	r_title     VARCHAR(50) NOT NULL COMMENT '제목', -- 제목
+	r_g_no      INT         NULL     COMMENT '고객번호', -- 고객번호
 	r_writer    VARCHAR(20) NULL     COMMENT '글쓴이', -- 글쓴이
-	r_writetime DATE        NULL     COMMENT '작성일', -- 작성일
+	r_title     VARCHAR(50) NOT NULL COMMENT '제목', -- 제목
 	r_content   TEXT        NOT NULL COMMENT '내용', -- 내용
+	r_writetime DATE        NULL     COMMENT '작성일', -- 작성일
 	r_file      VARCHAR(50) NULL     COMMENT '사진', -- 사진
-	r_g_no      INT         NULL     COMMENT '고객번호' -- 고객번호
+	r_delete    BOOLEAN     NULL     DEFAULT false COMMENT '삭제여부' -- 삭제여부
 )
 COMMENT '후기';
 
@@ -187,10 +188,11 @@ ALTER TABLE hairshop.Review
 
 -- 덧글
 CREATE TABLE hairshop.Comment (
-	c_no      INT  NOT NULL COMMENT '댓글번호', -- 댓글번호
-	g_no      INT  NOT NULL COMMENT '손님번호', -- 손님번호
-	c_content TEXT NOT NULL COMMENT '내용', -- 내용
-	r_no      INT  NULL     COMMENT '리뷰번호' -- 리뷰번호
+	c_no      INT     NOT NULL COMMENT '댓글번호', -- 댓글번호
+	g_no      INT     NOT NULL COMMENT '손님번호', -- 손님번호
+	r_no      INT     NULL     COMMENT '리뷰번호', -- 리뷰번호
+	c_content TEXT    NOT NULL COMMENT '내용', -- 내용
+	c_delete  BOOLEAN NULL     DEFAULT false COMMENT '삭제여부' -- 삭제여부
 )
 COMMENT '덧글';
 
