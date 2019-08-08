@@ -3,8 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="../../include/header.jsp"%>
 
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/css/common.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css">
 <style>
 #loginform section {
 	width: 1080px;
@@ -75,37 +74,14 @@
 		
 		var naverLogin = new naver.LoginWithNaverId({
 			clientId : "FWPeAQ9CLXanGC2lQSxd", /* 개발자센터에 등록한 ClientID */
-			callbackUrl : "http://localhost:8080/hairshop/login.do", /* 개발자센터에 등록한 callback Url */
+			callbackUrl : "http://localhost:8080/hairshop/snsLoginCheck.do", /* 개발자센터에 등록한 callback Url */
 			isPopup : false, /* 팝업을 통한 연동처리 여부 */
 			loginButton : { color : "green", type : 3, height : 40 } /* 로그인 버튼의 타입을 지정 */
 		});
-		naverLogin.init();		
+		naverLogin.init();
 		
-		window.addEventListener('load', function () {
-			naverLogin.getLoginStatus(function (status) {
-				if (status) {
-					console.log(naverLogin);
-					console.log(naverLogin.user.id);
-					console.log(naverLogin.user.name);
-					
-					/* (5) 필수적으로 받아야하는 프로필 정보가 있다면 callback처리 시점에 체크 */
-					var email = naverLogin.user.getEmail();
-					if( email == undefined || email == null) {
-						alert("이메일은 필수정보입니다. 정보제공을 동의해주세요.");
-						/* (5-1) 사용자 정보 재동의를 위하여 다시 네아로 동의페이지로 이동함 */
-						naverLogin.reprompt();
-						return;
-					}
-					
-					window.location.replace("${pageContext.request.contextPath}/member/naverlogin.do?id="+naverLogin.user.id);
 
-				} else {
-					//alert("callback 처리에 실패하였습니다.")
-				}
-			});
 
-			
-		});
 
 		
 		
@@ -114,8 +90,7 @@
 
 <section id="loginform">
 
-	<form action="${pageContext.request.contextPath}/login.do"
-		method="post" id="f1">
+	<form action="${pageContext.request.contextPath}/login.do" method="post" id="f1">
 
 		<P>
 			<select name="isMgn">

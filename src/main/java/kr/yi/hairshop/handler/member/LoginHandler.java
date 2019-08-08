@@ -22,18 +22,19 @@ public class LoginHandler implements CommandHandler {
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		if(req.getMethod().equalsIgnoreCase("get")) {
-			return "/WEB-INF/view/member/loginForm.jsp";					
+			return "/WEB-INF/view/member/loginForm.jsp";
 		}else if(req.getMethod().equalsIgnoreCase("post")) {
 			
 			int isMgn = Integer.parseInt(req.getParameter("isMgn")); //mgn=0, guest=1
 			String id = req.getParameter("id");
+			System.out.println("들어오나요?"+id);
 			String password = req.getParameter("password");
 			
 			HttpSession session = req.getSession();
 
 			if(isMgn == 1) {
 				GuestMapper dao = new GuestMapperImpl();
-				Guest guest = dao.selectById(id);			
+				Guest guest = dao.selectById(id);
 				
 				if(guest == null) { //회원없음
 					req.setAttribute("noMember", true);

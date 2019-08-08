@@ -261,7 +261,13 @@ order by w_reservTime desc;
 
 
 
+select sns_g_no, sns_id, sns_type, sns_name, sns_profile, sns_connecte_date
+from hairshop.snsinfo
+where sns_id="3215";
 
+INSERT INTO hairshop.snsinfo
+(sns_id, sns_type, sns_name, sns_profile, sns_connecte_date)
+VALUES('123123', 'login', 'naver', '111', '2019-07-02');
 
 
 
