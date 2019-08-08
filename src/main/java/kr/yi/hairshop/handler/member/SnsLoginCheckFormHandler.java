@@ -15,15 +15,16 @@ public class SnsLoginCheckFormHandler implements CommandHandler {
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		if(req.getMethod().equalsIgnoreCase("get")) {
-			System.out.println("get으로 왔다 (로그인 때문에)");
+			System.out.println("실행파일 > SnsLoginCheckFormHandler : get으로 왔다 (로그인 때문에)");
 			
 			return "/WEB-INF/view/snsLoginCheckForm.jsp";
 		}else if(req.getMethod().equalsIgnoreCase("post")) {
 			
 			String id = req.getParameter("id");
+			System.out.println("실행파일 > SnsLoginCheckFormHandler : post로 왔다 ("+id+")아이디도 가지고 오는지 확인한다 ");
 			
-			GuestMapper dao = new GuestMapperImpl();
 			
+			GuestMapper dao = new GuestMapperImpl();			
 			Guest guest = dao.selectById(id);
 			
 			if(guest != null) {
