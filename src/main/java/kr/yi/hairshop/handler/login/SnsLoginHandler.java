@@ -1,4 +1,4 @@
-package kr.yi.hairshop.handler.member;
+package kr.yi.hairshop.handler.login;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

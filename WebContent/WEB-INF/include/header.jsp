@@ -121,11 +121,11 @@ header #topmenu li:hover{
 			<div id="Idcheck">
 				<c:if test="${Auth != null }">
 					<span><a href="${pageContext.request.contextPath}/member/mypage.do">${Auth.uName}</a>님 반갑습니다</span>
-					<span><a href="${pageContext.request.contextPath}/member/logout.do">LogOut</a></span>
+					<span><a href="${pageContext.request.contextPath}/login/logout.do">LogOut</a></span>
 				</c:if>
 				<c:if test="${Auth == null }">
-					<span><a href="${pageContext.request.contextPath}/login.do">Login</a></span> |
-					<span><a href="${pageContext.request.contextPath}/member/joinServiceCheck.do">Join</a></span>
+					<span><a href="${pageContext.request.contextPath}/login/login.do">Login</a></span> |
+					<span><a href="${pageContext.request.contextPath}/login/joinServiceCheck.do">Join</a></span>
 				</c:if>
 			</div>
 			

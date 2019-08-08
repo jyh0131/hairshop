@@ -1,4 +1,4 @@
-package kr.yi.hairshop.handler.member;
+package kr.yi.hairshop.handler.login;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,7 +12,7 @@ public class JoinServiceCheckHandler implements CommandHandler {
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		if(req.getMethod().equalsIgnoreCase("get")) {
-			return "/WEB-INF/view/joinServiceCheck.jsp";
+			return "/WEB-INF/view/login/joinServiceCheck.jsp";
 		}else if(req.getMethod().equalsIgnoreCase("post")) {
 			
 			String service1 = req.getParameter("service1");
@@ -21,16 +21,12 @@ public class JoinServiceCheckHandler implements CommandHandler {
 			HttpSession session = req.getSession(false);
 			
 			session.setAttribute("service3", service3);
-			res.sendRedirect(req.getContextPath()+"/join.do");
+			res.sendRedirect(req.getContextPath()+"/login/join.do");
 			
 			
 			return null;
 		}
 		return null;
-
-
-			
-			
 
 	}
 

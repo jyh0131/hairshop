@@ -1,4 +1,4 @@
-package kr.yi.hairshop.handler.member;
+package kr.yi.hairshop.handler.login;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -21,7 +21,7 @@ public class JoinHandler implements CommandHandler {
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		if(req.getMethod().equalsIgnoreCase("get")) {
-			return "/WEB-INF/view/member/joinForm.jsp";
+			return "/WEB-INF/view/login/joinForm.jsp";
 		}else if(req.getMethod().equalsIgnoreCase("post")) {
 			
 			String id = req.getParameter("id");
@@ -55,8 +55,13 @@ public class JoinHandler implements CommandHandler {
 			
 			GuestMapper dao = new GuestMapperImpl();
 			int result = dao.insertGuest(guest);
+			if(result==1) {
+				System.out.println("회원가입이 정상적으로 작동하였습니다");				
+			}else {
+				System.out.println("회원가입 에러에러에러");
+			}
 			
-			return "/WEB-INF/view/member/loginForm.jsp";
+			return "/WEB-INF/view/login/loginForm.jsp";
 
 			
 		}
