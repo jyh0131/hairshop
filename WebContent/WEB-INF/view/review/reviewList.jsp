@@ -65,13 +65,14 @@
 	    </tr>
   	</thead>
   <tbody>
+<%--   ${list } --%>
     <c:forEach var="review" items="${list }">
 			<tr>
 				<td id="no">
 					${review.rNo}
 				</td>
 				<td>
-					<a href="">${review.rTitle }</a>
+					<a href="${pageContext.request.contextPath}/review/detail.do?no=${review.rNo}">${review.rTitle }</a>
 				</td>
 				<td>
 					${review.rWriter }
@@ -85,9 +86,17 @@
   </tbody>
 
 </table>
-	<div id="write">
-		<a href="${pageContext.request.contextPath}/review/insert.do">[글쓰기]</a>
-	</div>	
+	<c:if test="${Auth != null}"><!-- 비회원일시에 글쓰기 할수 없음 -->
+		<div id="write">
+			<a href="${pageContext.request.contextPath}/review/insert.do">[글쓰기]</a>
+		</div>	
+	</c:if>
+	
+	
+	
+	
+	
+	
 </section>
 <script>
 $("#example").DataTable({ });
