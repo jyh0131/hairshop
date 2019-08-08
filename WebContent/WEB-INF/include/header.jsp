@@ -88,11 +88,21 @@ header #topmenu li:hover{
 	$(function () {
 		
 		$("#reserv").click(function() {
+			
 			var Auth = '${Auth.uId}';
-			if( Auth != null){
-				location.href="${pageContext.request.contextPath}/reserve/reserveState.do";
-			}else{
+			
+			if( Auth == null || Auth == ""){
 				location.href="${pageContext.request.contextPath}/login.do";
+			}else{
+				
+				 
+				if( ${Auth.uIsMgr} == true){
+					location.href="${pageContext.request.contextPath}/management/reserve.do";
+				}else{
+					location.href="${pageContext.request.contextPath}/reserve/reserveState.do";
+				}
+				
+				
 			}
 		})
 		
