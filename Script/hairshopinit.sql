@@ -1,4 +1,4 @@
-﻿-- 헤어샵
+-- 헤어샵
 DROP SCHEMA IF EXISTS hairshop;
 
 -- 헤어샵
@@ -6,9 +6,10 @@ CREATE SCHEMA hairshop;
 
 -- 상품
 CREATE TABLE hairshop.Product (
-	p_name     VARCHAR(20) NOT NULL COMMENT '작업명', -- 작업명
-	p_price    INT         NULL     COMMENT '가격', -- 가격
-	p_division VARCHAR(10) NULL     COMMENT '분류' -- 분류
+	p_name      VARCHAR(20) NOT NULL COMMENT '작업명', -- 작업명
+	p_price     INT         NULL     COMMENT '가격', -- 가격
+	p_division  VARCHAR(10) NULL     COMMENT '분류', -- 분류
+	g_secession BOOLEAN     NULL     COMMENT '삭제여부' -- 삭제여부
 )
 COMMENT '상품';
 

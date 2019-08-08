@@ -68,7 +68,11 @@ public class UpdateWorkHandler implements CommandHandler{
 			String reserveTime2 = req.getParameter("upreserveTime2");
 			String gTel = req.getParameter("upgTel");
 			String lGrade = req.getParameter("upgLGrade");
-			int wPriceTotal = Integer.parseInt(req.getParameter("upwPriceTotal"));
+			String wPriceTotalstr = req.getParameter("upwPriceTotal");
+			String leftPriceString=wPriceTotalstr.substring(0,wPriceTotalstr.indexOf(","));
+			String rightPriceString=wPriceTotalstr.substring(wPriceTotalstr.indexOf(",")+1,wPriceTotalstr.indexOf("원"));
+			int wPriceTotal=Integer.parseInt(leftPriceString+rightPriceString);
+			
 			String workTime = req.getParameter("upworkTime");
 			String workTime2 = req.getParameter("upworkTime2");
 			String pName0=req.getParameter("pName0");
@@ -89,12 +93,12 @@ public class UpdateWorkHandler implements CommandHandler{
 			}
 			if(pName1!=null && !pName1.equals("")) {
 				if(pName1.indexOf("(")>0)
-					pName0=pName0.substring(0, pName1.indexOf("("));
+					pName1=pName1.substring(0, pName1.indexOf("("));
 				productList.add(new Product(pName1));
 			}
 			if(pName2!=null && !pName2.equals("")) {
 				if(pName2.indexOf("(")>0)
-					pName0=pName0.substring(0, pName2.indexOf("("));
+					pName2=pName2.substring(0, pName2.indexOf("("));
 				productList.add(new Product(pName2));
 			}
 			
