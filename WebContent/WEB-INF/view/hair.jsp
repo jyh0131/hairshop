@@ -69,6 +69,19 @@
 		color:#AB8212;
 		font-size: 13px;
 	}
+	#hairlist ul li:hover{
+		font-size: 20px;
+		background: black;
+		border-radius: 5px;
+	}
+	#hairlist ul li:hover a{
+		color: white;
+	}
+	
+	
+	
+	
+	
 	
 </style>
 <section>

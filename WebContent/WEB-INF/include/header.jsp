@@ -34,6 +34,15 @@ header #topmenu ul{
 header #topmenu ul a{
 	color: black;
 }
+header #topmenu ul li:hover{
+	background: black;
+	color: white;
+	border-radius: 10px;
+}
+
+
+
+
 header #topmenu ul li{
 	width: 180px;
 	height: 60px;
@@ -53,6 +62,9 @@ header #Idcheck{
 	right:0px;
 	text-align: right;
 	font-size: 13px;
+}
+header #Idcheck a:hover{
+	font-size: 20px;
 }
 header #Idcheck a{
 	line-height: 30px;
@@ -94,7 +106,6 @@ header #topmenu li:hover{
 			if( Auth == null || Auth == ""){
 				location.href="${pageContext.request.contextPath}/login.do";
 			}else{
-				
 				if( ${Auth.uIsMgr } == true){
 					location.href="${pageContext.request.contextPath}/management/reserve.do";
 				}else{
@@ -117,11 +128,11 @@ header #topmenu li:hover{
 			<div id="Idcheck">
 				<c:if test="${Auth != null }">
 					<span><a href="${pageContext.request.contextPath}/member/mypage.do">${Auth.uName}</a>님 반갑습니다</span>
-					<span><a href="${pageContext.request.contextPath}/member/logout.do">{로그아웃}</a></span>
+					<span><a href="${pageContext.request.contextPath}/member/logout.do">LogOut</a></span>
 				</c:if>
 				<c:if test="${Auth == null }">
-					<span><a href="${pageContext.request.contextPath}/login.do">{로그인}</a></span>
-					<span><a href="${pageContext.request.contextPath}/joinServiceCheck.do">{회원가입}</a></span>
+					<span><a href="${pageContext.request.contextPath}/login.do">Login</a></span> |
+					<span><a href="${pageContext.request.contextPath}/member/joinServiceCheck.do">Join</a></span>
 				</c:if>
 			</div>
 			
