@@ -11,10 +11,8 @@
 <title>차홍아르더</title>
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css" type="text/css">
-
+<script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
 <script src="${pageContext.request.contextPath}/js/common.js"></script>
-
-
 <style>
 header{
 	width: 1080px;
@@ -90,14 +88,24 @@ header #topmenu li:hover{
 	$(function () {
 		
 		$("#reserv").click(function() {
-			var Auth = '${Auth.uId}';
-			if( Auth != null){
-				location.href="${pageContext.request.contextPath}/reserve/reserveState.do";
-			}else{
-				location.href="${pageContext.request.contextPath}/member/login.do";
-			}
 			
+			var Auth = '${Auth.uId}';
+			
+			if( Auth == null || Auth == ""){
+				location.href="${pageContext.request.contextPath}/login.do";
+			}else{
+				
+				 
+				if( ${Auth.uIsMgr} == true){
+					location.href="${pageContext.request.contextPath}/management/reserve.do";
+				}else{
+					location.href="${pageContext.request.contextPath}/reserve/reserveState.do";
+				}
+				
+				
+			}
 		})
+		
 	})
 </script>
 
@@ -116,7 +124,7 @@ header #topmenu li:hover{
 					<span><a href="${pageContext.request.contextPath}/member/logout.do">{로그아웃}</a></span>
 				</c:if>
 				<c:if test="${Auth == null }">
-					<span><a href="${pageContext.request.contextPath}/member/login.do">{로그인}</a></span>
+					<span><a href="${pageContext.request.contextPath}/login.do">{로그인}</a></span>
 					<span><a href="${pageContext.request.contextPath}/member/joinServiceCheck.do">{회원가입}</a></span>
 				</c:if>
 			</div>

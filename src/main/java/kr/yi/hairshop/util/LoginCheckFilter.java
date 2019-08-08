@@ -29,7 +29,7 @@ public class LoginCheckFilter implements Filter {
 			//logout상태이면 login화면으로 이동하도록 한다.
 			
 			HttpServletResponse response = (HttpServletResponse) res;
-			response.sendRedirect(request.getContextPath()+"/member/login.do");
+			response.sendRedirect(request.getContextPath()+"/login.do");
 		}else { //로그인 상태
 			cha.doFilter(req, res);
 		}
