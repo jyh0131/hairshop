@@ -217,6 +217,11 @@
 		w_priceTotal=#{wPriceTotal}
 		WHERE w_no=#{wNo};
 	</update>
+	<update id="updateWorkCompleteTimeBywNo">
+		UPDATE hairshop.workdialog
+		SET w_workTime=now()
+		WHERE w_no=#{wNo};
+	</update>
 	<update id="updateWorkDialogWorkTime">
 		UPDATE hairshop.workdialog
 		SET
@@ -263,6 +268,7 @@
 		left join choice c on w.w_g_no = c.c_w_no
 		left join designer d on w.w_d_no = d.d_no
 		group by d_name
+		order by w_reservTime desc
 	</select>
 	
 	<select id="selectByDateForChartMon" resultMap="reserveDetail">
@@ -288,9 +294,35 @@
 		order by w_reservTime desc
 	</select>
 	
+	
+	
+	
+	
+	<select id="selectBygName" resultMap="selectWDGECPjoinByNo">
+		select *
+		from workdialog w
+		left join guest g
+		on w.w_g_no=g.g_no
+		left join choice c
+		on w.w_no=c.c_w_no
+		left join product p
+		on p.p_name=c.c_p_name
+		left join designer d
+		on d.d_no=w.w_d_no
+		left join event e
+		on w.w_e_name=e.e_name
+		where g.g_name=#{gName}
+		order by w_reservTime desc
+	</select>
+	
 
 	
 </mapper>
+
+
+
+
+
 
 
 

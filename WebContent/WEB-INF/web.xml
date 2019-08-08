@@ -31,14 +31,14 @@
   	<filter-class>kr.yi.hairshop.util.LoginCheckFilter</filter-class>
   </filter>
   
- <!--  <filter-mapping>
+  <filter-mapping>
   	<filter-name>LoginCheckFilter</filter-name>
   	<url-pattern>/member/*</url-pattern>
   	<url-pattern>/management/*</url-pattern>
   	<url-pattern>/guest/*</url-pattern>
   	
   	
-  </filter-mapping> -->
+  </filter-mapping> 
   
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>

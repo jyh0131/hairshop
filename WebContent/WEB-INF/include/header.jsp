@@ -95,17 +95,13 @@ header #topmenu li:hover{
 				location.href="${pageContext.request.contextPath}/login.do";
 			}else{
 				
-				 
-				if( ${Auth.uIsMgr} == true){
+				if( ${Auth.uIsMgr } == true){
 					location.href="${pageContext.request.contextPath}/management/reserve.do";
 				}else{
 					location.href="${pageContext.request.contextPath}/reserve/reserveState.do";
 				}
-				
-				
 			}
 		})
-		
 	})
 </script>
 
@@ -125,7 +121,7 @@ header #topmenu li:hover{
 				</c:if>
 				<c:if test="${Auth == null }">
 					<span><a href="${pageContext.request.contextPath}/login.do">{로그인}</a></span>
-					<span><a href="${pageContext.request.contextPath}/member/joinServiceCheck.do">{회원가입}</a></span>
+					<span><a href="${pageContext.request.contextPath}/joinServiceCheck.do">{회원가입}</a></span>
 				</c:if>
 			</div>
 			

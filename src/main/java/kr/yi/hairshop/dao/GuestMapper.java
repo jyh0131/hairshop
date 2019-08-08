@@ -18,5 +18,6 @@ public interface GuestMapper {
 	
 	/*web project 용*/
 	public Guest selectById(String id);
+	public int insertByNaver(Guest guest);
 
 }

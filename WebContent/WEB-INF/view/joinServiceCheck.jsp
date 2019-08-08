@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ include file="../../include/header.jsp" %>
+<%@ include file="../include/header.jsp" %>
 
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css">
 <style>
@@ -38,11 +38,16 @@
 	text-align: center;
 	margin-left: 0px;
 }
+#joinService #naverIdLogin {
+	text-align: center;
+	
+	margin: 0 auto;
+}
 #joinService #joinServiceBtn{
-	width: 150px;
+	width: 185px;
 	height: 40px;
 	margin-top: 40px;
-	
+	margin-bottom: 10px;
 }
 </style>
 
@@ -59,8 +64,41 @@ $(function () {
 		if($(".serviceCheck").eq(1).prop("checked")==false){
 			return false;
 		}
-		
 	})
+	
+	
+	var naverLogin = new naver.LoginWithNaverId({
+		clientId : "FWPeAQ9CLXanGC2lQSxd", /* 개발자센터에 등록한 ClientID */
+		callbackUrl : "http://localhost:8080/hairshop/joinServiceCheck.do", /* 개발자센터에 등록한 callback Url */
+		isPopup : false, /* 팝업을 통한 연동처리 여부 */
+		loginButton : { color : "green", type : 3, height : 40 } /* 로그인 버튼의 타입을 지정 */
+	});
+	naverLogin.init();
+	
+	window.addEventListener('load', function () {
+		naverLogin.getLoginStatus(function (status) {
+			if (status) {
+				console.log(naverLogin);
+				console.log(naverLogin.user.id);
+				console.log(naverLogin.user.name);
+				
+				/* (5) 필수적으로 받아야하는 프로필 정보가 있다면 callback처리 시점에 체크 */
+				var email = naverLogin.user.getEmail();
+				if( email == undefined || email == null) {
+					alert("이메일은 필수정보입니다. 정보제공을 동의해주세요.");
+					/* (5-1) 사용자 정보 재동의를 위하여 다시 네아로 동의페이지로 이동함 */
+					naverLogin.reprompt();
+					return;
+				}			
+				
+				window.location.replace("${pageContext.request.contextPath}/snsJoin.do");
+
+			} else {
+				//alert("callback 처리에 실패하였습니다.")
+			}
+		});
+	});
+	
 })
 
 </script>
@@ -68,7 +106,7 @@ $(function () {
 
 <section id="joinService">
 
-	<form action="${pageContext.request.contextPath}/member/joinServiceCheck.do" method="post" id="serviceForm">
+	<form action="${pageContext.request.contextPath}/joinServiceCheck.do" method="post" id="serviceForm">
 		<h3>회원약관</h3>
 		<p><textarea rows="8" cols="120" readonly="readonly" disabled >
 제 1 장 총칙
@@ -185,11 +223,17 @@ IP주소, 쿠키, 서비스 이용기록, 방문기록 등
 개인정보의 마케팅/홍보의 수집 및 이용 동의를 거부하시더라도 회원 가입 시 제한은 없습니다. 다만, 마케팅 활용 서비스 안내 및 참여에 제한이 있을 수 있습니다.		
 		</textarea><br><input type="checkbox" name="service3" value="service3"> 마케팅/홍보를 위하여 귀하의 개인정보를 이용하는데 동의합니다.(선택)</p>
 		
-		<p id="joinServiceBtnP"><input type="submit" value="동의 합니다" id="joinServiceBtn"></p>
+		<p id="joinServiceBtnP">
+			<input type="submit" value="동의 하고 회원가입 하기" id="joinServiceBtn">
+		</p>
+		
+		<!-- 네이버아이디로로그인 버튼 노출 영역 -->
+		<p><div id="naverIdLogin"></div></p>
+		<!-- //네이버아이디로로그인 버튼 노출 영역 -->
 	</form>
 
 </section>
 
 
-<%@ include file="../../include/footer.jsp" %>
+<%@ include file="../include/footer.jsp" %>
 

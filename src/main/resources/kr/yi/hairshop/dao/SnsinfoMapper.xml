@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.yi.hairshop.dao.SnsinfoMapper">
+	<resultMap type="Snsinfo" id="basicSnsinfo">
+		<result property="snsNo" column="sns_no"/>
+		<result property="snsGuestNo" column="sns_g_no"/>
+		<result property="snsId" column="sns_id"/>
+		<result property="snsType" column="sns_type"/>
+		<result property="snsName" column="sns_name"/>
+		<result property="snsProfile" column="sns_profile"/>
+		<result property="snsConnecteDate" column="sns_connecte_date"/>	
+	</resultMap>
+
+	<select id="selectById" resultType="Snsinfo">
+		select * from SNSinfo
+	</select>
+
+	<insert id="insertSnsinfo" parameterType="Snsinfo">
+		insert into snsinfo
+		(sns_g_no, sns_id, sns_type, sns_name, sns_profile, sns_connecte_date)
+		values(#{snsGuestNo}, #{snsType}, #{snsName}, #{snsProfile}, #{snsConnecteDate});
+	</insert>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</mapper>

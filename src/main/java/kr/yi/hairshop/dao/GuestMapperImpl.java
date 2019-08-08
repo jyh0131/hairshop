@@ -89,5 +89,14 @@ public class GuestMapperImpl implements GuestMapper {
 			return sqlSession.selectOne(namespace + ".selectGuestByNo",gNo);
 		}
 	}
+			
+	@Override
+	public int insertByNaver(Guest guest) {
+		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
+			sqlSession.insert(namespace + ".insertByNaver", guest);
+			sqlSession.commit();
+			return guest.getgNo();
+		}
+	}
 	
 }

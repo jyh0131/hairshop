@@ -118,6 +118,7 @@ section article#border div#form div#calendar tr#date {
 section article#border div#form div#calendar td.day {
 	cursor: pointer;
 }
+
 section article#border div#form div#mapForm{
 	display: none;
 }
@@ -127,6 +128,13 @@ section article#border div#form div#mapForm input{
 section article#border div#form div#mapForm button{
 	float: right;
 }
+section article#border div#form div#mapForm img{
+	width:450px;
+	height:270px;
+	margin:0 auto;	
+}
+
+
 section article#border div#form div#reservedForm{
 	display: none;
 }
@@ -211,7 +219,9 @@ section article#border div#guest div#reserve span{
 	width:500px;
 	text-align: center;
 }
-
+textarea{
+	
+}
 </style>
 <script type="text/javascript">
 	var designer = "";
@@ -265,14 +275,15 @@ section article#border div#guest div#reserve span{
 	}
 
 	$(function() {
-		var date = new Date();
-		calendar(date.getFullYear(), date.getMonth());
+		var calDate = new Date();
+		calendar(calDate.getFullYear(), calDate.getMonth());
 
 		$(document).on('click', '#left', function() {
 			var str = $("#calendar h1").text();
 			var year = str.slice(0, 4);
 			var month = str.slice(str.indexOf(".") + 1);
 			calendar(year, month - 2);
+			date="";
 
 		})
 		$(document).on('click', '#right', function() {
@@ -282,6 +293,7 @@ section article#border div#guest div#reserve span{
 			console.log(year);
 			console.log(month);
 			calendar(year, month);
+			date="";
 		})
 
 		$(document).on('click',".day",function() {
@@ -332,39 +344,49 @@ section article#border div#guest div#reserve span{
 		
 		//시간선택하였을때 이벤트
 		$("#time tr td").click(function() {
-			if($(this).hasClass("reserved")){
-				alert("이미 예약되었습니다.")
+			if(date==''){
+				alert("날짜를 먼저 선택해주세용");
 			}else{
-				$("#time tr td").css("background-color","white");
-				$(this).css("background-color","#fcfc90");
-				time=$(this).text();
-				
-				$("#reserveTime").text(time);
+				if($(this).hasClass("reserved")){
+					alert("이미 예약되었습니다.")
+				}else{
+					$("#time tr td").css("background-color","white");
+					$(this).css("background-color","#fcfc90");
+					time=$(this).text();
+					
+					$("#reserveTime").text(time);
+				}
 			}
+			
 			
 		})
 		
 		//메뉴 선택 햇을때 이벤트
 		$("#item tr td").click(function() {
-			var check=$(this).css("background-color")=="rgb(252, 252, 144)";
-			if(check==true){
-				$(this).css("background-color","white");
-				var str=$(this).text();
-				hair=hair.replace(str+",","");
-				haircount--;
-			}else{
-				if(haircount>=3){
-					alert("메뉴는 3개까지만 선택가능합니다.")
-				}else{
-					$(this).css("background-color","#fcfc90");
-					hair+=$(this).text()+",";
-					haircount++;
-				}
+			
+			if(time==''){
+				alert("시간을 먼저 선택해주세요.");
 			}
+			else{
+				var check=$(this).css("background-color")=="rgb(252, 252, 144)";
+				if(check==true){
+					$(this).css("background-color","white");
+					var str=$(this).text();
+					hair=hair.replace(str+",","");
+					haircount--;
+				}else{
+					if(haircount>=3){
+						alert("메뉴는 3개까지만 선택가능합니다.")
+					}else{
+						$(this).css("background-color","#fcfc90");
+						hair+=$(this).text()+",";
+						haircount++;
+					}
+				}
+				
+				$("#reserveProduct").text(hair.slice(0,-1));
 			
-			$("#reserveProduct").text(hair.slice(0,-1));
-			
-			
+			}
 		})             
 		
 		$("#designer li").click(function() {
@@ -472,9 +494,14 @@ section article#border div#guest div#reserve span{
 			<div id="mapForm">
 				<button id="search">검색</button><input type="text">
 				<div id="map" style="width:520px;height:520px;"></div>
+				
+				<img src="${pageContext.request.contextPath}/images/reserve/findLoad1.PNG">
+				<img src="${pageContext.request.contextPath}/images/reserve/findLoad2.PNG">
+				
 			</div>
 			<div id="reservedForm">
 				<h2>예약 정보</h2>
+				<br>
 				<div id="reservedList">
 					<table>
 						<tr>
@@ -535,7 +562,7 @@ section article#border div#guest div#reserve span{
 				<label>핸드폰번호</label><input type="text" name="gTel" id="gTel" placeholder='"-"를 붙여서 입력해 주세요.'><br>
 				
 				<br>
-					<input type="checkbox"><span class="underline">개인정보 수집 및 이용</span>안내에 동의 합니다.
+					<input type="checkbox" id="privacy"><span class="underline">개인정보 수집 및 이용</span>안내에 동의 합니다.
 				</p>
 				<br>
 				<hr>
@@ -605,20 +632,44 @@ section article#border div#guest div#reserve span{
 						}
 						if($(this).text()=="예약신청"){
 							
-							var reserveDate=$("#reserve span").eq(0).text();
-							var reserveTime=$("#reserve span").eq(1).text();
-							var reserveDesigner=$("#reserve span").eq(2).text();
-							var reserveProduct=$("#reserve span").eq(3).text();
-							
-							location.href="${pageContext.request.contextPath}/reserve/insertReserve.do?gName="+gName+"&gTel="+gTel
-									+"&reserveDate="+reserveDate+"&reserveTime="+reserveTime+"&reserveDesigner="+reserveDesigner
-									+"&reserveProduct="+reserveProduct
+							if(date==''){
+								alert("날짜를 선택해주세요.");
+							}
+							else if(time==''){
+								alert("시간을 선택해주세요.");
+							}
+							else if(hair==''){
+								alert("메뉴를 선택해주세요.");
+							}
+							else if($("#gName").val()==''){
+								alert("이름을 입력해 주세요.");
+							}
+							else if($("#gTel").val()==''){
+								alert("전화번호를 입력해 주세요.");
+							}
+							else if($("#privacy").prop("checked")==false){
+								alert("약관을 동의해 주세요.");
+							}
+							else{
+								var reserveDate=$("#reserve span").eq(0).text();
+								var reserveTime=$("#reserve span").eq(1).text();
+								var reserveDesigner=$("#reserve span").eq(2).text();
+								var reserveProduct=$("#reserve span").eq(3).text();
+								
+								location.href="${pageContext.request.contextPath}/reserve/insertReserve.do?gName="+gName+"&gTel="+gTel
+										+"&reserveDate="+reserveDate+"&reserveTime="+reserveTime+"&reserveDesigner="+reserveDesigner
+										+"&reserveProduct="+reserveProduct
 									;
+							}
 						}
 					})
 					
 					
-					if(${reserved}==true){
+					
+					
+					
+					
+					if(${reserved }==true){
 						$("#gName").val('${gName}');
 						$("#gTel").val('${gTel}');
 						
@@ -646,6 +697,10 @@ section article#border div#guest div#reserve span{
 			// 장소 검색 객체를 생성합니다
 			var ps = new kakao.maps.services.Places(); 
 	
+			var zoomControl = new kakao.maps.ZoomControl();
+			map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+			
+			
 			// 키워드로 장소를 검색합니다
 			ps.keywordSearch('영남인재교육원', placesSearchCB); 
 	
