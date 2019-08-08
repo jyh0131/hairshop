@@ -39,36 +39,33 @@
 	}
 </style>
 <section>
-	<form action="${pageContext.request.contextPath}/review/insert.do" method="post" enctype="multipart/form-data">
+	<form action="${pageContext.request.contextPath}/review/modify.do" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="rNo" value="${list.rNo }">
 	<p>
 		<label>이름</label>
-		<input type="text" name="rWriter" disabled="disabled" id="rWriter" value="${Auth.uId }">	
+		<input type="text" name="rWriter" disabled="disabled" id="rWriter" value="${list.rWriter }">	
 	</p>
 	<br>
 	<p>
 		<label>제목</label>
-		<input type="text" name="rTitle">	
+		<input type="text" name="rTitle" value="${list.rTitle }">	
 	</p>
 	<br>
 	<p>
 		<label>내용</label>
-		<textarea rows="20" cols="90" name="rContent">차홍아르더를 이용해 주셔서 감사드립니다. 고객님의 한 줄 리뷰가 저희들에게 큰 힘이 됩니다^^!
-담당디자이너:
-시술메뉴:
-만족도(10점 만점):
-총평:
-		</textarea>
+		<textarea rows="20" cols="90" name="rContent">${list.rContent }</textarea>
 	</p>
 	<br>
 	<p>
 		<label>사진</label>
-		<input type="file" name="rFile">	
+		<input type="file" name="rFile" value="${list.rFile }">	
 	</p>
 	<br>
 	<p id="button">
+		<input type="submit" value="수정">
 		<input type="reset" value="취소">
-		<input type="submit" value="등록">
 	</p>
 	</form>
+
 </section>
 <%@ include file="../../include/footer.jsp" %>
