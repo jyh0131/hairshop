@@ -599,8 +599,8 @@ div#updatePageBlack select{
 				</c:forEach>
 			</select>
 			<br>
-			<label>손님명 : </label><input type="text" name="upgName" id="upgName"><br>
-			<label>손님전화번호 : </label><input type="text" name="upgTel" id="upgTel"><br>
+			<label>손님명 : </label><input type="text" name="upgName" id="upgName" disabled><br>
+			<label>손님전화번호 : </label><input type="text" name="upgTel" id="upgTel" disabled><br>
 			<label>손님등급 : </label>
 			<select name="upgLGrade" id="upgLGrade">
 				<option>일반</option>
