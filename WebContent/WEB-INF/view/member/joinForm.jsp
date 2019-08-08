@@ -108,6 +108,7 @@
 				}
 			})
 		})
+	
 		
 	})
 
@@ -158,6 +159,7 @@
 		<p>
 			<input type="submit" value="회원가입" id="btnSubmit">
 		</p>
+
 	
 	</form>
 

@@ -11,7 +11,10 @@
 	#sectable{
 		width:1250px;
 		margin:0 auto;
+		margin-top:20px;
 	}
+	
+	
 	th,td{
 		text-align:center;
 		border: 1px solid gray;
@@ -184,10 +187,11 @@ div#updatePageBlack select{
 </section>
 <script>
 $("#example").DataTable({ });
+
 $(function() {
 	$(document).on("click",".update",function(){
 		var gNo = $(this).parent().parent().find("#no").text().trim();
-		
+		alert(gNo);
 		if($(this).text()=='수정'){
 			$("#updatePageBlack").fadeIn(500);
 			$.ajax({
@@ -199,12 +203,21 @@ $(function() {
 				dataType : "json",
 				success : function(json) {
 					console.log(json);
-					if(json[0].wGNo.gLGrade==null){
-						$("#grade").val("일반");
+					$("#f1").append("<input type='hidden' name='gNo' value='"+json.gNo+"'>");
+			
+					if(json.gLGrade==null){
+						$("#gLGrade").val("일반");
 					}else{
-						$("#grade").val(json[0].gNo.gLGrade.lGrade).attr("selected","selected");
+						$("#gLGrade").val(json.gLGrade.lGrade);
 					}
 					
+					$("#gName").val(json.gName);
+					$("#gTel").val(json.gTel);
+					$("#gEmail").val(json.gEmail);
+					$("#gBirth").val(new Date(json.gBirth).format("yyyy-MM-dd"));
+					$("#gJoin").val(new Date(json.gJoin).format("yyyy-MM-dd"));
+					$("#gPoint").val(json.gPoint);
+					$("#gMemo").val(json.gMemo);
 				}
 			})
 		}
@@ -239,25 +252,25 @@ $(document).on("click",".delete",function(){
 			<img id="x" src="${pageContext.request.contextPath }/images/reserve/x3.jpg">
 			<h1 id="title">회원 수정</h1>
 			<form name="f1" id="f1">
+			
 			<label>등급 : </label>
-			<select name="grade" id="grade">
+			<select name="gLGrade" id="gLGrade">
 				<option>일반</option>
-				<c:forEach var="g" items="${gList}">
-					<option>${g.gLGrade}</option>
+				<c:forEach var="l" items="${lList}">
+					<option>${l.lGrade}</option>
 				</c:forEach>
 			</select><br>
-			<label>이름 : </label><input type="text" name="name" id="name"><br>
-			<label>전화번호 : </label><input type="tel" name="tel" id="tel"><br>
-			<label>이메일 : </label><input type="text" name="mail" id="mail"><br> 
-			<label>생일 : </label><input type="date" name="birth" id="birth"><br>
-			<label>가입일 : </label><input type="date" name="join" id="join"><br>
-			<label>포인트 : </label><input type="number" name="point" id="point"><br> 
-			<label>메모 : </label><input type="text" name="memo" id="memo"><br> 
+			<label>이름 : </label><input type="text" name="gName" id="gName"><br>
+			<label>전화번호 : </label><input type="tel" name="gTel" id="gTel"><br>
+			<label>이메일 : </label><input type="text" name="gEmail" id="gEmail"><br> 
+			<label>생일 : </label><input type="date" name="gBirth" id="gBirth"><br>
+			<label>가입일 : </label><input type="date" name="gJoin" id="gJoin"><br>
+			<label>포인트 : </label><input type="number" name="gPoint" id="gPoint"><br> 
+			<label>메모 : </label><input type="text" name="gMemo" id="gMemo"><br> 
 			  
 			
 			  
 			<input type="submit" value="수정">
-			<input type="reset" value="초기화">
 			</form>
 		</fieldset>
 	</div>
@@ -282,3 +295,5 @@ $("#f1").submit(function() {
 })
 </script>
 
+
+<%@ include file="../../include/footer.jsp"%>

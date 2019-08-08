@@ -26,13 +26,12 @@ public class NaverLoginHandler implements CommandHandler {
 			JOptionPane.showMessageDialog(null, "안되요");
 			return "/WEB-INF/view/member/home.jsp";
 		}
+		
 		//로그인 된 사람의 정가 담긴 class 생성후 sesseion에 저장
 		User user = new User(guest.getgNo(), guest.getgName(), guest.getgId(), false); //false 손님
 		
 		HttpSession session = req.getSession();
 		session.setAttribute("Auth", user);		
-
-
 		
 		
 		return "/WEB-INF/view/member/mypageForm.jsp";

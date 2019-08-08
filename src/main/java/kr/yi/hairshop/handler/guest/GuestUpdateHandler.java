@@ -11,21 +11,24 @@ import org.codehaus.jackson.map.ObjectMapper;
 import kr.yi.hairshop.controller.CommandHandler;
 import kr.yi.hairshop.dao.GuestMapper;
 import kr.yi.hairshop.dao.GuestMapperImpl;
+import kr.yi.hairshop.dao.LevelMapper;
+import kr.yi.hairshop.dao.LevelMapperImpl;
 import kr.yi.hairshop.dto.Guest;
+import kr.yi.hairshop.dto.Level;
 
 public class GuestUpdateHandler implements CommandHandler {
 
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		GuestMapper gDao = new GuestMapperImpl();
 		if(req.getMethod().equalsIgnoreCase("get")) {
-			GuestMapper gDao = new GuestMapperImpl();
-			System.out.println("asdsadsadsa");
+			
 			int gNo = Integer.parseInt(req.getParameter("gNo"));
-			List<Guest> gList = gDao.selectGuestByAll2(gNo);
-			System.out.println(gList.get(0));
+			Guest guest = gDao.selectGuestByNo(gNo);
+			System.out.println(guest);
 			
 			ObjectMapper om = new ObjectMapper();
-			String data = om.writeValueAsString(gList);
+			String data = om.writeValueAsString(guest);
 			
 			res.setContentType("application/json;charset=utf-8");
 			PrintWriter out = res.getWriter();
@@ -33,23 +36,23 @@ public class GuestUpdateHandler implements CommandHandler {
 			out.flush();
 		}
 		if(req.getMethod().equalsIgnoreCase("post")) {
-			String grade = req.getParameter("grade");
-			String name = req.getParameter("name");
-			String tel = req.getParameter("tel");
-			String mail = req.getParameter("mail");
-			String birth = req.getParameter("birth");
-			String join = req.getParameter("join");
-			String point = req.getParameter("point");
-			String memo = req.getParameter("memo");
+			String gLGrade = req.getParameter("gLGrade");
+			String gName = req.getParameter("gName");
+			String gTel = req.getParameter("gTel");
+			String gEmail = req.getParameter("gEmail");
+			String gBirth = req.getParameter("gBirth");
+			String gJoin = req.getParameter("gJoin");
+			String gPoint = req.getParameter("gPoint");
+			String gMemo = req.getParameter("gMemo");
 			
-			System.out.println(grade);
-			System.out.println(name);
-			System.out.println(tel);
-			System.out.println(mail);
-			System.out.println(birth);
-			System.out.println(join);
-			System.out.println(point);
-			System.out.println(memo);
+			System.out.println(gLGrade);
+			System.out.println(gName);
+			System.out.println(gTel);
+			System.out.println(gEmail);
+			System.out.println(gBirth);
+			System.out.println(gJoin);
+			System.out.println(gPoint);
+			System.out.println(gMemo);
 		}
 		return null;
 	}

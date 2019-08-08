@@ -107,17 +107,13 @@ header #topmenu li:hover{
 				location.href="${pageContext.request.contextPath}/login.do";
 			}else{
 				
-				 
-				if( ${Auth.uIsMgr} == true){
+				if( ${Auth.uIsMgr } == true){
 					location.href="${pageContext.request.contextPath}/management/reserve.do";
 				}else{
 					location.href="${pageContext.request.contextPath}/reserve/reserveState.do";
 				}
-				
-				
 			}
 		})
-		
 	})
 </script>
 
