@@ -11,6 +11,7 @@
 		width: 40%;
 		margin: 0 auto;
 		padding-top: 40px;
+		padding-bottom: 40px;
 	}
 	label{
 		margin-right: 20px;	
