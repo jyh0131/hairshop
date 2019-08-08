@@ -106,7 +106,6 @@ header #topmenu li:hover{
 			if( Auth == null || Auth == ""){
 				location.href="${pageContext.request.contextPath}/login.do";
 			}else{
-				
 				if( ${Auth.uIsMgr } == true){
 					location.href="${pageContext.request.contextPath}/management/reserve.do";
 				}else{
