@@ -134,7 +134,16 @@ header #topmenu li:hover{
 					<span class="mymenu"><a href="${pageContext.request.contextPath}/management/mgn.do">관리자 페이지</a></span>
 				</c:if>
 				<c:if test="${Auth.uIsMgr == false }">
-					<span class="mymenu"><a href="${pageContext.request.contextPath}/member/passCheck.do">마이 페이지</a></span>
+				
+					<!-- 일반회원일경우 -->
+					<c:if test="${Auth.uIsSns == false }">
+						<span class="mymenu"><a href="${pageContext.request.contextPath}/member/passCheck.do">마이 페이지</a></span>
+					</c:if>
+					
+					<!-- SNS회원일경우 -->
+					<c:if test="${Auth.uIsSns == true }">
+						<span class="mymenu"><a href="${pageContext.request.contextPath}/member/mypage.do">마이 페이지</a></span>
+					</c:if>
 				</c:if>
 			</div>
 			
