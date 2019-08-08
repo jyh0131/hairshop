@@ -34,13 +34,6 @@ header #topmenu ul{
 header #topmenu ul a{
 	color: black;
 }
-header #topmenu ul li:hover{
-	background: black;
-	color: white;
-	border-radius: 10px;
-}
-
-
 
 
 header #topmenu ul li{
