@@ -46,7 +46,7 @@ public class LoginHandler implements CommandHandler {
 					return "/WEB-INF/view/login/loginForm.jsp";
 				}
 				//로그인 된 사람의 정가 담긴 class 생성후 sesseion에 저장
-				User user = new User(guest.getgNo(), guest.getgName(), guest.getgId(), false); //false 손님
+				User user = new User(guest.getgNo(), guest.getgName(), guest.getgId(), false, false); //false 손님, false 일반회원
 				session.setAttribute("Auth", user);
 				
 			}else if(isMgn==0) {
@@ -65,7 +65,7 @@ public class LoginHandler implements CommandHandler {
 				}
 				
 				//로그인 된 사람의 정가 담긴 class 생성후 sesseion에 저장
-				User user = new User(designer.getdNo(), designer.getdName(), designer.getdId(), true); //true 관리자
+				User user = new User(designer.getdNo(), designer.getdName(), designer.getdId(), true, false); //true 관리자, false 일반
 				session.setAttribute("Auth", user);
 			}
 			

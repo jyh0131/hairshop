@@ -29,7 +29,7 @@ public class SnsLoginCheckFormHandler implements CommandHandler {
 			
 			if(guest != null) {
 				HttpSession session = req.getSession();
-				User user = new User(guest.getgNo(), guest.getgName(), guest.getgId(), false); //false 손님
+				User user = new User(guest.getgNo(), guest.getgName(), guest.getgId(), false, true); //false 손님, true SNS로그인
 				session.setAttribute("Auth", user);
 				return "/";
 				

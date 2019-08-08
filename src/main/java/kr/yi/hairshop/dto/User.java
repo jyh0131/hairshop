@@ -5,16 +5,18 @@ public class User {
 	private String uName;
 	private String uId;
 	private boolean uIsMgr; //1=관리자, 0=guest
+	private boolean uIsSns;
 
 	public User() {
 	}
 
-	public User(int mNo, String uName, String uId, boolean uIsMgr) {
+	public User(int mNo, String uName, String uId, boolean uIsMgr, boolean uIsSns) {
 		super();
 		this.mNo = mNo;
 		this.uName = uName;
 		this.uId = uId;
 		this.uIsMgr = uIsMgr;
+		this.uIsSns = uIsSns;
 	}
 
 	public int getmNo() {
@@ -49,9 +51,19 @@ public class User {
 		this.uIsMgr = uIsMgr;
 	}
 
+	public boolean isuIsSns() {
+		return uIsSns;
+	}
+
+	public void setuIsSns(boolean uIsSns) {
+		this.uIsSns = uIsSns;
+	}
+
 	@Override
 	public String toString() {
-		return "User [mNo=" + mNo + ", uName=" + uName + ", uId=" + uId + ", uIsMgr=" + uIsMgr + "]";
+		return String.format("User [mNo=%s, uName=%s, uId=%s, uIsMgr=%s, uIsSns=%s]", mNo, uName, uId, uIsMgr, uIsSns);
 	}
+
+
 
 }
