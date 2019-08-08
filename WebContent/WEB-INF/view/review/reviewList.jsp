@@ -86,21 +86,11 @@
   </tbody>
 
 </table>
-	<%-- <c:if test="${Auth.id != null}"><!-- 비회원일시에 글쓰기 할수 없음 -->
+	<c:if test="${Auth != null}"><!-- 비회원일시에 글쓰기 할수 없음 -->
 		<div id="write">
 			<a href="${pageContext.request.contextPath}/review/insert.do">[글쓰기]</a>
 		</div>	
-	</c:if> --%>
-	
-	
-	<% if(session.getAttribute("sessionId") != null){%>
-		<div id="write">
-			<a href="${pageContext.request.contextPath}/review/insert.do">[글쓰기]</a>
-		</div>
-	<%}else { %>
-	<%} %>
-	
-	
+	</c:if>
 	
 	
 	

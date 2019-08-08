@@ -80,6 +80,8 @@
 	})
 </script>
 <section>
+${Auth.uId}
+${review.rWriter}
 	<div id="first">
 		<h4>${review.rTitle}</h4>
 		<p>${review.rWriter} | <fmt:formatDate value="${review.rWritetime}" pattern="yyyy.MM.dd"/></p>
@@ -93,12 +95,12 @@
 		<div id="list">
 			<a href="${pageContext.request.contextPath}/review/review.do">목록보기</a>
 		</div>
-	<c:if test="${Auth.id != null} "> <!-- 비회원일시에 수정삭제 할수 없음 -->
+	 <c:if test="${Auth.uId == review.rWriter}"> <!-- 비회원일시에 수정삭제 할수 없음 -->
 		<div id="md">
 			<a href="${pageContext.request.contextPath}/review/modify.do?no=${review.rNo}">수정</a>
 			<a href="#" id="delete">삭제</a>
 		</div>
-	</c:if>
+	</c:if> 
 	</div>				
 
 </section>
