@@ -1,4 +1,4 @@
-package kr.yi.hairshop.handler.member;
+package kr.yi.hairshop.handler.login;
 
 import java.io.PrintWriter;
 import java.util.HashMap;

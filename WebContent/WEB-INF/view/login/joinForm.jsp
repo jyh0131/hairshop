@@ -92,7 +92,7 @@
 		
 		$("#btnCheck").click(function() {
 			$.ajax({
-				url:"${pageContext.request.contextPath}/member/idCheckHandler.do",
+				url:"${pageContext.request.contextPath}/login/idCheckHandler.do",
 				type:"get",
 				data:{"id" : $("#id").val() },
 				dataType:"json",
@@ -108,15 +108,13 @@
 				}
 			})
 		})
-	
-		
 	})
 
 </script>
 
 <section id="joinForm">
 
-	<form action="${pageContext.request.contextPath}/member/join.do" method="post" id="f1">
+	<form action="${pageContext.request.contextPath}/login/join.do" method="post" id="f1">
 
 		<p><span>(<span class="fontColorRed">*</span>)</span>는 필수 입니다</p>
 		<p>

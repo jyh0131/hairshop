@@ -1,4 +1,4 @@
-package kr.yi.hairshop.handler.member;
+package kr.yi.hairshop.handler.login;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -20,20 +20,22 @@ public class SnsJoinHandler implements CommandHandler {
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		if(req.getMethod().equalsIgnoreCase("get")) {
 			System.out.println("실행파일 :SnsJoinHandler.java > get으로 왔다간다");
-			return "/WEB-INF/view/snsJoinForm.jsp";
+			return "/WEB-INF/view/login/snsJoinForm.jsp";
 		}else if (req.getMethod().equalsIgnoreCase("post")) {
-
+			System.out.println("sns 회원가입을 실행 중이다");
 			System.out.println("실행파일 :SnsJoinHandler.java > post으로 왔다");
 			
 			String id = req.getParameter("snsId");
 			String name = req.getParameter("snsName");
 			String birth = req.getParameter("birth");
 			SimpleDateFormat sDate = new SimpleDateFormat("yyyy-MM-dd");
-			System.out.println(birth);
 			Date birthDate = sDate.parse(birth);
 			String email = req.getParameter("snsEmail");
 			String tel = req.getParameter("tel");
-		
+
+			System.out.println("**************************************");
+			System.out.println("회원가입 작업 여기에서 멈춤");
+			System.out.println("**************************************");
 			Guest guest = new Guest();
 			guest.setgId(id);
 			guest.setgName(name);
@@ -58,7 +60,7 @@ public class SnsJoinHandler implements CommandHandler {
 			System.out.println("guest가 나오는가? "+guest);
 			System.out.println("snsinfo가 나오는가? "+snsinfo);
 			
-			return "/WEB-INF/view/member/loginForm.jsp";
+			return "/WEB-INF/view/login/loginForm.jsp";
 		}
 		
 		return null;
