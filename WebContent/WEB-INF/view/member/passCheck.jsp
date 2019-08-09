@@ -13,11 +13,10 @@
 }
 #passChecker h1{
 	padding: 10px;
-	margin-top: 150px;
+	margin-top: 10px;
 	text-align: center;
 }
 #passChecker form{
-	width:960px;
 	margin: 10px;
 	margin: 0 auto;
 }
@@ -26,19 +25,24 @@
 	height: 40px;
 	margin-bottom: 10px;
 }
-
+#passChecker fieldset{
+	width: 350px;
+	height: 200px;
+	margin: 0 auto;
+	margin-top: 100px;
+}
 </style>
 
 
 <section id="passChecker">
 
-	<h1>비밀번호 확인</h1>
-	<form action="${pageContext.request.contextPath}/member/passCheck.do" method="post">
-		
-		<p><input type="password" name="password" ></p>
-		<p><input type="submit" value="확인"></p>
-	</form>
-
+	<fieldset>
+		<h1>비밀번호 확인</h1>
+		<form action="${pageContext.request.contextPath}/member/passCheck.do" method="post">
+			<p><input type="password" name="password" ></p>
+			<p><input type="submit" value="확인"></p>
+		</form>
+	</fieldset>
 
 </section>
 

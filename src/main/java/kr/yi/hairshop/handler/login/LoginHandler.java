@@ -27,7 +27,6 @@ public class LoginHandler implements CommandHandler {
 			
 			int isMgn = Integer.parseInt(req.getParameter("isMgn")); //mgn=0, guest=1
 			String id = req.getParameter("id");
-			System.out.println("들어오나요?"+id);
 			String password = req.getParameter("password");
 			
 			HttpSession session = req.getSession();
@@ -45,7 +44,7 @@ public class LoginHandler implements CommandHandler {
 					System.out.println("비번 불일치");
 					return "/WEB-INF/view/login/loginForm.jsp";
 				}
-				//로그인 된 사람의 정가 담긴 class 생성후 sesseion에 저장
+				//로그인 된 사람의 정가 담긴 user class 생성 후 sesseion에 저장
 				User user = new User(guest.getgNo(), guest.getgName(), guest.getgId(), false, false); //false 손님, false 일반회원
 				session.setAttribute("Auth", user);
 				
@@ -64,8 +63,8 @@ public class LoginHandler implements CommandHandler {
 					return "/WEB-INF/view/login/loginForm.jsp";
 				}
 				
-				//로그인 된 사람의 정가 담긴 class 생성후 sesseion에 저장
-				User user = new User(designer.getdNo(), designer.getdName(), designer.getdId(), true, false); //true 관리자, false 일반
+				//로그인 된 사람의 정가 담긴 user class 생성 후 sesseion에 저장
+				User user = new User(designer.getdNo(), designer.getdName(), designer.getdId(), true, false); //true 관리자, false 일반회원
 				session.setAttribute("Auth", user);
 			}
 			

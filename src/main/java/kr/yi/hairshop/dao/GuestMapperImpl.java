@@ -105,5 +105,23 @@ public class GuestMapperImpl implements GuestMapper {
 			return guest.getgNo();
 		}
 	}
+
+	@Override
+	public int updateGuest3(Guest guest) {
+		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
+			int res = sqlSession.update(namespace + ".updateGuest3", guest);
+			sqlSession.commit();
+			return res;
+		}
+	}
+
+	@Override
+	public int updateGuestPassword(Guest guest) {
+		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
+			int res = sqlSession.update(namespace + ".updateGuestPassword", guest);
+			sqlSession.commit();
+			return res;
+		}
+	}
 	
 }

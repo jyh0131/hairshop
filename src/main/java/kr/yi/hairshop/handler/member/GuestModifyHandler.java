@@ -1,5 +1,8 @@
 package kr.yi.hairshop.handler.member;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -24,6 +27,30 @@ public class GuestModifyHandler implements CommandHandler {
 			req.setAttribute("guest", guest);
 			
 			return "/WEB-INF/view/member/guestModifyForm.jsp";
+		}else if(req.getMethod().equalsIgnoreCase("post")) {
+
+			HttpSession session = req.getSession();
+			User user = (User) session.getAttribute("Auth");
+
+			GuestMapper dao = new GuestMapperImpl();
+			Guest guest = dao.selectById(user.getuId());
+
+			String tel = req.getParameter("tel");
+			String email = req.getParameter("email");
+			String birth = req.getParameter("birth");
+			SimpleDateFormat sDate = new SimpleDateFormat("yyyy-MM-dd");			
+			Date birthDate = sDate.parse(birth);
+			
+			guest.setgTel(tel);
+			guest.setgEmail(email);
+			guest.setgBirth(birthDate);
+			
+			int result = dao.updateGuest3(guest);
+			if(result == 1)
+				System.out.println("내정보 수정이 잘되었다");
+			
+			res.sendRedirect(req.getContextPath()+"/member/passCheck.do");
+			return null;
 		}
 		return null;
 	}
