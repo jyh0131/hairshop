@@ -74,23 +74,18 @@
 		
 		var naverLogin = new naver.LoginWithNaverId({
 			clientId : "FWPeAQ9CLXanGC2lQSxd", /* 개발자센터에 등록한 ClientID */
-			callbackUrl : "http://localhost:8080/hairshop/snsLoginCheck.do", /* 개발자센터에 등록한 callback Url */
+			callbackUrl : "http://localhost:8080/hairshop/login/snsLoginCheck.do", /* 개발자센터에 등록한 callback Url */
 			isPopup : false, /* 팝업을 통한 연동처리 여부 */
 			loginButton : { color : "green", type : 3, height : 40 } /* 로그인 버튼의 타입을 지정 */
 		});
 		naverLogin.init();
-		
-
-
-
-		
 		
 	})
 </script>
 
 <section id="loginform">
 
-	<form action="${pageContext.request.contextPath}/login.do" method="post" id="f1">
+	<form action="${pageContext.request.contextPath}/login/login.do" method="post" id="f1">
 
 		<P>
 			<select name="isMgn">

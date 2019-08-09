@@ -3,8 +3,29 @@
 <mapper namespace="kr.yi.hairshop.dao.ReviewMapper">
 
 	<select id="selectReview" resultType="Review">
-		select r_no, r_title, r_writer, r_writetime from review
+		select r_no, r_title, r_writer, r_writetime from review where r_delete=0
 	</select>
 	
+	<insert id="insertReview" parameterType="Review" >
+		INSERT INTO review
+		(r_title, r_writer, r_writetime, r_content, r_file, r_g_no)
+		VALUES(#{rTitle}, #{rWriter}, now(), #{rContent}, #{rFile}, #{rGNo.gNo})
+	</insert>
+
+	<update id="deleteReview">
+		update review
+		set r_delete = true
+		where r_no=#{rNo}
+	</update>
+
+	<select id="selectListByNo" resultType="Review">
+		select r_no, r_title, r_writer, r_writetime, r_content, r_file, r_g_no as rGNo from review where r_no=#{rNo}
+	</select>
+
+	<update id="updateReview" parameterType="Review">
+		UPDATE review
+		SET r_title=#{rTitle}, r_writetime=now(), r_content=#{rContent}, r_file=#{rFile}
+		WHERE r_no=#{rNo}
+	</update>
 
 </mapper>

@@ -1,4 +1,4 @@
-package kr.yi.hairshop.handler.member;
+package kr.yi.hairshop.handler.login;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,7 +28,7 @@ public class NaverLoginHandler implements CommandHandler {
 		}
 		
 		//로그인 된 사람의 정가 담긴 class 생성후 sesseion에 저장
-		User user = new User(guest.getgNo(), guest.getgName(), guest.getgId(), false); //false 손님
+		User user = new User(guest.getgNo(), guest.getgName(), guest.getgId(), false, true); //false 손님, true SNS회원
 		
 		HttpSession session = req.getSession();
 		session.setAttribute("Auth", user);		

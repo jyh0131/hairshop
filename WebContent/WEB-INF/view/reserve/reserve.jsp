@@ -129,10 +129,16 @@ section article#border div#form div#mapForm button{
 	float: right;
 }
 section article#border div#form div#mapForm img{
+	margin-top:20px;
+	display:block;
 	width:450px;
 	height:270px;
 	margin:0 auto;	
 }
+
+
+
+
 
 
 section article#border div#form div#reservedForm{
@@ -510,6 +516,10 @@ textarea{
 							<th>작업시간</th>
 							<th>작업명</th>
 							<th>가격</th>
+						</tr>
+						<tr>
+							<td colspan="5">고객명,핸드폰번호를 입력해주세요</td>
+						</tr>
 					</table>
 				</div>
 			</div>
@@ -658,11 +668,11 @@ textarea{
 								
 								location.href="${pageContext.request.contextPath}/reserve/insertReserve.do?gName="+gName+"&gTel="+gTel
 										+"&reserveDate="+reserveDate+"&reserveTime="+reserveTime+"&reserveDesigner="+reserveDesigner
-										+"&reserveProduct="+reserveProduct
-									;
+										+"&reserveProduct="+reserveProduct;
 							}
 						}
 					})
+				}
 					
 					
 					

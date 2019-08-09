@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ include file="../include/header.jsp" %>
+<%@ include file="../../include/header.jsp" %>
 
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css">
 <style>
@@ -51,7 +51,6 @@
 }
 </style>
 
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/common.js"></script>
 <script>
@@ -69,7 +68,7 @@ $(function () {
 	
 	var naverLogin = new naver.LoginWithNaverId({
 		clientId : "FWPeAQ9CLXanGC2lQSxd", /* 개발자센터에 등록한 ClientID */
-		callbackUrl : "http://localhost:8080/hairshop/joinServiceCheck.do", /* 개발자센터에 등록한 callback Url */
+		callbackUrl : "http://localhost:8080/hairshop/login/joinServiceCheck.do",
 		isPopup : false, /* 팝업을 통한 연동처리 여부 */
 		loginButton : { color : "green", type : 3, height : 40 } /* 로그인 버튼의 타입을 지정 */
 	});
@@ -91,7 +90,7 @@ $(function () {
 					return;
 				}			
 				
-				window.location.replace("${pageContext.request.contextPath}/snsJoin.do");
+				window.location.replace("${pageContext.request.contextPath}/login/snsJoin.do");
 
 			} else {
 				//alert("callback 처리에 실패하였습니다.")
@@ -106,7 +105,7 @@ $(function () {
 
 <section id="joinService">
 
-	<form action="${pageContext.request.contextPath}/joinServiceCheck.do" method="post" id="serviceForm">
+	<form action="${pageContext.request.contextPath}/login/joinServiceCheck.do" method="post" id="serviceForm">
 		<h3>회원약관</h3>
 		<p><textarea rows="8" cols="120" readonly="readonly" disabled >
 제 1 장 총칙
@@ -235,5 +234,5 @@ IP주소, 쿠키, 서비스 이용기록, 방문기록 등
 </section>
 
 
-<%@ include file="../include/footer.jsp" %>
+<%@ include file="../../include/footer.jsp" %>
 
