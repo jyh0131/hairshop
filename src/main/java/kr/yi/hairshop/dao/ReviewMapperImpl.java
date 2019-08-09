@@ -26,4 +26,11 @@ public class ReviewMapperImpl implements ReviewMapper{
 		}
 	}
 
+	@Override
+	public List<Review> selectBoardManager() {
+		try(SqlSession sqlSession=MyBatisSqlSessionFactory.openSession();){
+			return sqlSession.selectList(namespace+".selectBoardManager");
+		}
+	}
+
 }

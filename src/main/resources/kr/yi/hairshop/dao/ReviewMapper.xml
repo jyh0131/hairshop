@@ -1,9 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.yi.hairshop.dao.ReviewMapper">
+	<resultMap type="Review" id="basicReview">
+		<result property="rNo" column="r_no" />
+		<result property="rTitle" column="r_title" />
+		<result property="rWriter" column="r_writer" />
+		<result property="rWritetime" column="r_writetime" />
+		<result property="rContent" column="r_content" />
+		<result property="rFile" column="r_file" />
+		<result property="rDelete" column="r_delete" />
+	</resultMap>
+	<resultMap type="Review" id="extendReview" extends="basicReview">
+		<association property="rRNo" resultMap="kr.yi.hairshop.dao.GuestMapper.basicGuest" />
+		<association property="rDNo" resultMap="kr.yi.hairshop.dao.DesignerMapper.basicDesigner" />
+	</resultMap>
 
 	<select id="selectReview" resultType="Review">
 		select r_no, r_title, r_writer, r_writetime from review
+	</select>
+	<select id="selectBoardManager" resultMap="extendReview">
+		select r_no, r_title, r_writer, r_writetime, r_d_no as d_no
+		from review
+		where r_d_no is not null
 	</select>
 	
 

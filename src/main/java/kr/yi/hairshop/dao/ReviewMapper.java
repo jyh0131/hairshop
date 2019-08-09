@@ -8,8 +8,7 @@ import kr.yi.hairshop.dto.Review;
 
 public interface ReviewMapper {
 	public List<Review> selectReview();
-	
-	
+	public List<Review> selectBoardManager();
 	
 
 }

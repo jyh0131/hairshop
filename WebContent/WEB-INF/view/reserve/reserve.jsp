@@ -567,9 +567,29 @@ textarea{
 			<br>
 			<hr>
 			<br>
+			
+			
+			
+			
 			<p id="guestText">
 				<label>고객명</label><input type="text" name="gName" id="gName"><br>
 				<label>핸드폰번호</label><input type="text" name="gTel" id="gTel" placeholder='"-"를 붙여서 입력해 주세요.'><br>
+				<script>
+					$(function() {
+						if(${guest.gNo }>0){
+							$("#gName").val('${guest.gName}');
+							$("#gTel").val('${guest.gTel}');
+							$("#gName").attr("disabled",true);
+							$("#gTel").attr("disabled",true);
+
+						}						
+					})
+				</script>
+				
+				
+				
+				
+				
 				
 				<br>
 					<input type="checkbox" id="privacy"><span class="underline">개인정보 수집 및 이용</span>안내에 동의 합니다.
@@ -672,10 +692,6 @@ textarea{
 							}
 						}
 					})
-				}
-					
-					
-					
 					
 					
 					

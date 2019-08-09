@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class Review {
 	private Guest rRNo;
+	private Designer rDNo;
 	private int rNo;
 	private String rTitle;
 	private String rWriter;
@@ -17,10 +18,12 @@ public class Review {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Review(Guest rRNo, int rNo, String rTitle, String rWriter, Date rWritetime, String rContent, String rFile,
-			boolean rDelete) {
+	
+	public Review(Guest rRNo, Designer rDNo, int rNo, String rTitle, String rWriter, Date rWritetime, String rContent,
+			String rFile, boolean rDelete) {
 		super();
 		this.rRNo = rRNo;
+		this.rDNo = rDNo;
 		this.rNo = rNo;
 		this.rTitle = rTitle;
 		this.rWriter = rWriter;
@@ -29,7 +32,23 @@ public class Review {
 		this.rFile = rFile;
 		this.rDelete = rDelete;
 	}
-	
+
+
+
+
+
+	public Designer getrDNo() {
+		return rDNo;
+	}
+
+
+
+	public void setrDNo(Designer rDNo) {
+		this.rDNo = rDNo;
+	}
+
+
+
 	public Guest getrRNo() {
 		return rRNo;
 	}

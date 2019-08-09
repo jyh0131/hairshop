@@ -167,6 +167,7 @@ ALTER TABLE hairshop.Level
 CREATE TABLE hairshop.Review (
 	r_no        INT         NOT NULL COMMENT '번호', -- 번호
 	r_g_no      INT         NULL     COMMENT '고객번호', -- 고객번호
+	r_d_no      INT         NULL     COMMENT '번호2', -- 번호2
 	r_writer    VARCHAR(20) NULL     COMMENT '글쓴이', -- 글쓴이
 	r_title     VARCHAR(50) NOT NULL COMMENT '제목', -- 제목
 	r_content   TEXT        NOT NULL COMMENT '내용', -- 내용
@@ -306,6 +307,16 @@ ALTER TABLE hairshop.Review
 		)
 		REFERENCES hairshop.Guest ( -- 손님
 			g_no -- 번호
+		);
+
+-- 후기
+ALTER TABLE hairshop.Review
+	ADD CONSTRAINT FK_Designer_TO_Review -- 디자이너 -> 후기
+		FOREIGN KEY (
+			r_d_no -- 번호2
+		)
+		REFERENCES hairshop.Designer ( -- 디자이너
+			d_no -- 번호
 		);
 
 -- 덧글
