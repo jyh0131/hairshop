@@ -29,12 +29,11 @@
 	}
 	#example th{
 		font-size: 13px;
-		color:#ccc;
+		color:#353535;
 	}
-	
-	#example_length, #example_info{
+	#example_info{
 		display: none;
-	}
+	} 
 	#example_wrapper{ 
 		position: relative;
 	}
@@ -94,22 +93,24 @@
 			</tr>
 		</c:forEach>
   </tbody>
-
 </table>
 	<c:if test="${Auth != null}"><!-- 비회원일시에 글쓰기 할수 없음 -->
 		<div id="write">
 			<a href="${pageContext.request.contextPath}/review/insert.do">글쓰기</a>
 		</div>	
 	</c:if>
-	
-	
-	
-	
-	
-	
 </section>
 <script>
-$("#example").DataTable({ });
+
+
+$("#example").DataTable({
+	lengthChange:false,
+	ordering:false,
+	stateSave:true,
+	
+	
+});
+
 </script>
 
 <%@ include file="../../include/footer.jsp" %>
