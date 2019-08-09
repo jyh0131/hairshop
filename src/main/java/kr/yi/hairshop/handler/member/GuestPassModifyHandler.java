@@ -4,44 +4,49 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.ibatis.session.SqlSession;
-
 import kr.yi.hairshop.controller.CommandHandler;
 import kr.yi.hairshop.dao.GuestMapper;
 import kr.yi.hairshop.dao.GuestMapperImpl;
 import kr.yi.hairshop.dto.Guest;
 import kr.yi.hairshop.dto.User;
-import kr.yi.hairshop.util.MyBatisSqlSessionFactory;
 
-public class PassCheckhandler implements CommandHandler {
+public class GuestPassModifyHandler implements CommandHandler {
 
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
+
 		if(req.getMethod().equalsIgnoreCase("get")) {
-			return "/WEB-INF/view/member/passCheck.jsp";
+			HttpSession session = req.getSession();
+			User user = (User) session.getAttribute("Auth");
+
+			GuestMapper dao = new GuestMapperImpl();
+			Guest guest = dao.selectById(user.getuId());
+			
+			req.setAttribute("guest", guest);
+			
+			return "/WEB-INF/view/member/guestPassModifyForm.jsp";
 		}else if(req.getMethod().equalsIgnoreCase("post")) {
 			
 			HttpSession session = req.getSession();
 			User user = (User) session.getAttribute("Auth");
 			
-			String id = user.getuId();
-			String pass = req.getParameter("password");
+			String id = user.getuId(); //auth에 저장된 id
+			String pass = req.getParameter("newPassword"); //입력된 pass 
 
 			GuestMapper dao = new GuestMapperImpl();
 			Guest guest = dao.selectById(id);
 			
-			if(guest.getgPassword().equals(pass)) {
-				
-				GuestMapper gDao = new GuestMapperImpl();
-				guest = gDao.selectById(id);
-				//System.out.println(guest.getgLGrade().getlGrade());
-				req.setAttribute("guest", guest);
-				
-				return "/WEB-INF/view/member/mypageForm.jsp";
-			}else {
-				return "/WEB-INF/view/member/passCheck.jsp";
-			}
+			guest.setgPassword(pass);
+			
+			int result = dao.updateGuestPassword(guest);
+			if(result == 1)
+				System.out.println("비밀번호 수정이 잘되었다");
+			
+			res.sendRedirect(req.getContextPath()+"/login/joinSeccess.do");
+			return null;
+			
 		}
+		
 		return null;
 	}
 

@@ -24,7 +24,6 @@
 #joinService form p{
  	margin-left:100px;
  	font-size: 12px;
- 	
 }
 #joinService form input{
 
@@ -58,11 +57,14 @@ $(function () {
 	
  	$("#serviceForm").submit(function () {
 		if($(".serviceCheck").eq(0).prop("checked")==false){
+			alert("회원 약관에 동의 해주세요");
 			return false;
 		}
 		if($(".serviceCheck").eq(1).prop("checked")==false){
+			alert("개인 정보 수집 및 이용에 동의 해주세요");
 			return false;
 		}
+		
 	})
 	
 	
@@ -106,7 +108,7 @@ $(function () {
 <section id="joinService">
 
 	<form action="${pageContext.request.contextPath}/login/joinServiceCheck.do" method="post" id="serviceForm">
-		<h3>회원약관</h3>
+		<h3>회원 약관</h3>
 		<p><textarea rows="8" cols="120" readonly="readonly" disabled >
 제 1 장 총칙
 제 1 조 (목적)

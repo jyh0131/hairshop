@@ -94,14 +94,12 @@
 			</select>
 		</P>
 		<p>
-			<input type="text" name="id" id="id" class="loiginFormInput"
-				placeholder="아이디를 입력하세요"> <span class="error">ID를
-				입력하세요</span>
+			<input type="text" name="id" id="id" class="loiginFormInput" placeholder="아이디를 입력하세요">
+			<span class="error">ID를 입력하세요</span>
 		</p>
 		<p>
-			<input type="password" name="password" id="pass"
-				class="loiginFormInput" placeholder="비밀번호를 입력하세요"> <span
-				class="error">비밀번호를 입력하세요</span>
+			<input type="password" name="password" id="pass" class="loiginFormInput" placeholder="비밀번호를 입력하세요">
+			<span class="error">비밀번호를 입력하세요</span>
 		</p>
 		<p>
 			<input type="submit" class="loiginFormInput" value="로그인">

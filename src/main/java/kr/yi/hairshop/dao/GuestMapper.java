@@ -13,11 +13,13 @@ public interface GuestMapper {
 	public Guest selectGuestByGNameGTel(Map<String, String> map);
 	public int insertGuest(Guest guest);
 	public int updateGuest2(Guest guest);
+	
 	public int deleteGuest(Guest guest);
 	public int insertGuestByWorkMain(Guest guest);
 	public int updateGuest(Guest guest);
 	/*web project 용*/
 	public Guest selectById(String id);
 	public int insertByNaver(Guest guest);
-
+	public int updateGuest3(Guest guest); //mypage에서 내정보 수정 tel, email, birth
+	public int updateGuestPassword(Guest guest);
 }

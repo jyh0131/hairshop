@@ -53,16 +53,38 @@
 <script>
 
 	$(function () {
+		var idcheck=0;
+		
 		$("#f1").submit(function() {
 			$(".error").css("display", "none")
 			$(".error2").css("display", "none")
 			
 			//빈 input태그가 존재하면 submit를 막는다
-			if(checkInputEmpty( $("input[name]") ) == false){
+			if(idcheck==0){
+				alert("ID중복확인을 진행해 주세요.");
+				idcheck=0;
 				return false;
+			}else{
+				
+				if(checkInputEmpty( $("input[name='id']") ) == false){
+					alert("아이디를 입력하세요");
+					return false;
+				}else if(checkInputEmpty( $("input[name='name']") ) == false){
+					alert("이름를 입력하세요");
+					return false;
+				}else if(checkInputEmpty( $("input[name='password']") ) == false){
+					alert("비밀번호를 입력하세요");
+					return false;
+				}else if(checkInputEmpty( $("input[name='tel']") ) == false){
+					alert("전화번호를 입력하세요");
+					return false;
+				}else if(checkInputEmpty( $("input[name='birth']") ) == false){
+					alert("생일을 입력하세요");
+					return false;
+				}
 			}
 			
-			var idcheck = /^[a-z0-9]{4,15}$/i;
+			var idcheck = /^[a-z0-9]{1,15}$/i;
 			var id = $("input[name='id']").val();
 			if( idcheck.test(id) == false ){
 				$("input[name='id']").next().css("display", "inline");
@@ -76,7 +98,7 @@
 				return false;
 			}
 			
-			var pwcheck = /^[a-zA-Z0-9!@#]{4,20}$/i;
+			var pwcheck = /^[a-zA-Z0-9!@#]{1,20}$/i;
 			var pw = $("input[name='password']").val();			
 			if( pwcheck.test(pw) == false ){
 				$("input[name='password']").next().css("display", "inline");
@@ -96,13 +118,14 @@
 				type:"get",
 				data:{"id" : $("#id").val() },
 				dataType:"json",
-				success:function(res){
+				success:function(res){ //res = 1 아이디가 있음, 0 아이디 없음 
 					console.log(res);
-					
-					if(res.check!=true){
+
+					if(res == 1){
 						confirm('ID가 존제합니다');
 					}else{
 						confirm('가입이 가능합니다');
+						idcheck = 1;
 					}
 
 				}
@@ -119,7 +142,7 @@
 		<p><span>(<span class="fontColorRed">*</span>)</span>는 필수 입니다</p>
 		<p>
 			<label><span>(<span class="fontColorRed">*</span>)</span>아이디</label>
-			<input class="input" type="text" name="id" id="id" value="${pram.id }" placeholder="영어,숫자 포함 6~15 자리">
+			<input class="input" type="text" name="id" id="id" value="${pram.id }" placeholder="영어,숫자 포함 1~15 자리">
 			<span class="error">ID(영어, 숫자 6~15)를 입력하세요</span>
 			<button id="btnCheck">ID 중복확인</button>
 			<c:if test="${duplicatedId == true }">
@@ -128,8 +151,8 @@
 		</p>
 		<p>
 			<label><span>(<span class="fontColorRed">*</span>)</span>비밀번호</label>
-			<input class="input" type="password" name="password" placeholder="영어,숫자,특수문자 포함 8~20자리">
-			<span class="error">비밀번호(영어, 숫자, 특수문자 포함, 8~20자)를 입력하세요</span>					
+			<input class="input" type="password" name="password" placeholder="영어,숫자,특수문자 포함 1~20자리">
+			<span class="error">비밀번호(영어, 숫자, 특수문자 포함, 1~20자)를 입력하세요</span>					
 		</p>
 		<p>
 			<label><span>(<span class="fontColorRed">*</span>)</span>비밀번호 확인</label>
@@ -144,16 +167,17 @@
 		</p>
 		<p>
 			<label><span>(<span class="fontColorRed">*</span>)</span>전화번호</label>
-			<input class="input" type="text" name="tel" placeholder="전화번호">
+			<input class="input" type="text" name="tel" placeholder="000-0000-0000 형식으로 입력하세요">
+		</p>
+		<p>
+			<label><span>(<span class="fontColorRed">*</span>)</span>생일</label>
+			<input class="input" type="date" name="birth" placeholder="생일">
 		</p>
 		<p>
 			<label>이메일</label>
 			<input class="input" type="email" name="email" placeholder="이메일">
 		</p>
-		<p>
-			<label>생일</label>
-			<input class="input" type="date" name="birth" placeholder="생일">
-		</p>			
+
 		<p>
 			<input type="submit" value="회원가입" id="btnSubmit">
 		</p>

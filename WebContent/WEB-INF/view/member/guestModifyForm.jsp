@@ -18,8 +18,6 @@
 	
 	padding-top: 40px;
 	padding-bottom: 40px;
-	
-	background-color: lightgreen;
 }
 #MMForm p{
 	padding-left: 100px;
@@ -52,7 +50,16 @@
 
 	$(function () {
 		$("#f1").submit(function() {
-			$(".error").css("display", "none")
+			
+			var dcheck = confirm("수정 하시겠습니까?");
+			if (dcheck == false){
+				alert("취소 하셨습니다");
+				return false;
+				
+			}else{
+				alert("수정 되었습니다");
+			}
+/* 			$(".error").css("display", "none")
 			$(".error2").css("display", "none")
 			
 			var pwcheck = /^[a-zA-Z0-9!@#]{4,20}$/i;
@@ -66,7 +73,7 @@
 			if( $("input[name='password']").val() != $("input[name='confirmPassword']").val() ){
 				$("input[name='confirmPassword']").next().next().css("display", "inline");
 				return false;
-			}
+			} */
 		})
 		
 	})
@@ -75,9 +82,9 @@
 
 <section id="MMForm">
 
-	<form action="${pageContext.request.contextPath}/member/guestModifyForm.do" method="post" id="f1">
+	<form action="${pageContext.request.contextPath}/member/guestModify.do" method="post" id="f1">
 
-		<p>
+<!-- 		<p>
 			<label>비밀번호</label>
 			<input class="input" type="password" name="password" placeholder="영어,숫자,특수문자 포함 8~20자리">
 			<span class="error">비밀번호(영어, 숫자, 특수문자 포함, 8~20자)를 입력하세요</span>					
@@ -87,7 +94,7 @@
 			<input class="input" type="password" name="confirmPassword" placeholder="비밀번호 확인">
 			<span class="error">비밀번호 확인란을 입력하세요</span>
 			<span class="error">비밀번호가 일치하지 않습니다</span>
-		</p>
+		</p> -->
 
 		<p>
 			<label>전화번호</label>

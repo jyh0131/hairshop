@@ -23,16 +23,25 @@ public class JoinHandler implements CommandHandler {
 		if(req.getMethod().equalsIgnoreCase("get")) {
 			return "/WEB-INF/view/login/joinForm.jsp";
 		}else if(req.getMethod().equalsIgnoreCase("post")) {
+			SimpleDateFormat sDate = new SimpleDateFormat("yyyy-MM-dd");
 			
 			String id = req.getParameter("id");
 			String password = req.getParameter("password");
 			String name = req.getParameter("name");
 			String tel = req.getParameter("tel");
+
 			String email = req.getParameter("email");
-			String birth = req.getParameter("birth");
+			if(email == null) {
+				email = "이메일 없음";
+			}
 			
-			SimpleDateFormat sDate = new SimpleDateFormat("yyyy-MM-dd");
-			Date birthDate = sDate.parse(birth);
+			String birth = req.getParameter("birth");
+			Date birthDate;
+			if(birth.isEmpty() != true) {
+				birthDate = new Date();				
+			}else {
+				birthDate = sDate.parse(birth);
+			}
 
 			Guest guest = new Guest();
 			guest.setgId(id);
@@ -41,7 +50,8 @@ public class JoinHandler implements CommandHandler {
 			guest.setgName(name);
 			guest.setgTel(tel);
 			guest.setgEmail(email);
-			guest.setgBirth(birthDate);
+			guest.setgBirth(birthDate);				
+
 			guest.setgJoin(new Date());
 			guest.setgPoint(5000); //웹회원가입 포인트 5000원
 			
@@ -57,13 +67,13 @@ public class JoinHandler implements CommandHandler {
 			GuestMapper dao = new GuestMapperImpl();
 			int result = dao.insertGuest(guest);
 			if(result==1) {
-				System.out.println("회원가입이 정상적으로 작동하였습니다");				
+				System.out.println("회원가입이 정상적으로 작동하였습니다");
 			}else {
 				System.out.println("회원가입 에러에러에러");
 			}
 			
-			return "/WEB-INF/view/login/loginForm.jsp";
-
+			res.sendRedirect(req.getContextPath()+"/login/loginSuccessForm.jsp");
+			return null;
 			
 		}
 		return null;
