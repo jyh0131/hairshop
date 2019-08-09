@@ -28,13 +28,9 @@ header #title img{
 	height: 90px;
 }
 
-header #topmenu ul{
-	
-}
 header #topmenu ul a{
 	color: black;
 }
-
 
 header #topmenu ul li{
 	width: 180px;
@@ -45,7 +41,31 @@ header #topmenu ul li{
 	float: left;
 	display: inline-block;
 }
+header #topmenu li:hover{
+	text-decoration: underline;
+}
+header #topmenuMgn{
 
+}
+header #topmenuMgn ul a{
+	color: black;
+	font-weight: bold;
+}
+
+header #topmenuMgn ul li{
+	width: 180px;
+	height: 60px;
+	line-height: 60px;
+	text-decoration: none;
+	text-align: center;
+	float: left;
+	display: inline-block;
+	color: white;
+	background-color: #aaa;
+}
+header #topmenuMgn li:hover{
+	background-color: black;
+}
 header #Idcheck{
 	width:230px;
 	height:30px;
@@ -82,31 +102,21 @@ header .mymenu a{
 	font-weight: bold;
 	line-height: 40px;
 }
-header #topmenu li:hover{
-	text-decoration: underline;
-}
-
 
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>
 	$(function () {
 		
-		$("#reserv").click(function() {
-			
-			var Auth = '${Auth.uId}';
-			
-			if( Auth == null || Auth == ""){
-				location.href="${pageContext.request.contextPath}/login.do";
-			}else{
-				if( ${Auth.uIsMgr } == true){
-					location.href="${pageContext.request.contextPath}/management/reserve.do";
-				}else{
-					location.href="${pageContext.request.contextPath}/reserve/reserveState.do";
-				}
-			}
-		})
+
 	})
+	
+	$(document).ready(function(){
+		if( ${Auth.uIsMgr } == true){
+			$("#topmenu").css("display", "none");
+		}
+	});
+	
 </script>
 
 </head>
@@ -130,11 +140,7 @@ header #topmenu li:hover{
 			</div>
 			
 			<div id="loginMenu">
-				<c:if test="${Auth.uIsMgr == true }">
-					<span class="mymenu"><a href="${pageContext.request.contextPath}/management/mgn.do">관리자 페이지</a></span>
-				</c:if>
 				<c:if test="${Auth.uIsMgr == false }">
-				
 					<!-- 일반회원일경우 -->
 					<c:if test="${Auth.uIsSns == false }">
 						<span class="mymenu"><a href="${pageContext.request.contextPath}/member/passCheck.do">마이 페이지</a></span>
@@ -157,6 +163,19 @@ header #topmenu li:hover{
 					<a href="#" id="reserv"><li>RESERVATION STATE</li></a>
 				</ul>
 			</div>
+			<c:if test="${Auth.uIsMgr == true }">
+			<div id="topmenuMgn">
+				<ul>
+					<a href="${pageContext.request.contextPath}/"><li>관리자페이지</li></a>
+					<a href="${pageContext.request.contextPath}/management/reserve.do"><li>예약관리</li></a>
+					<a href="${pageContext.request.contextPath}/guest/guestList.do"><li>회원관리</li></a>
+					<a href="${pageContext.request.contextPath}/management/gradeChange.do"><li>등급관리</li></a>
+					<a href="${pageContext.request.contextPath}/management/guestChange.do"><li>승급관리</li></a>
+					<a href="${pageContext.request.contextPath}/"><li>미정</li></a>
+				</ul>
+			</div>
+			</c:if>
+			
 		</header>
 		
 		
