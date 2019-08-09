@@ -16,17 +16,6 @@ public class Snsinfo {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Snsinfo(int snsGuestNo, String snsId, String snsType, String snsName, String snsProfile,
-			Date snsConnecteDate) {
-		super();
-		this.snsGuestNo = snsGuestNo;
-		this.snsId = snsId;
-		this.snsType = snsType;
-		this.snsName = snsName;
-		this.snsProfile = snsProfile;
-		this.snsConnecteDate = snsConnecteDate;
-	}
-
 	public Snsinfo(int snsNo, int snsGuestNo, String snsId, String snsType, String snsName, String snsProfile,
 			Date snsConnecteDate) {
 		super();
