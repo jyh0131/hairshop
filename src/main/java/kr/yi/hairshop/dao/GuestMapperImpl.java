@@ -70,13 +70,6 @@ public class GuestMapperImpl implements GuestMapper {
 	}
 
 	@Override
-	public Guest selectById(String id) {
-		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
-			return sqlSession.selectOne(namespace + ".selectById", id);
-		}
-	}
-
-	@Override
 	public Guest selectGuestByGNameGTel(Map<String, String> map) {
 		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
 			return sqlSession.selectOne(namespace + ".selectGuestByGNameGTel",map);
@@ -96,7 +89,14 @@ public class GuestMapperImpl implements GuestMapper {
 			return sqlSession.selectOne(namespace + ".selectGuestByNo",gNo);
 		}
 	}
-			
+
+	@Override
+	public Guest selectById(String id) {
+		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
+			return sqlSession.selectOne(namespace + ".selectById", id);
+		}
+	}
+	
 	@Override
 	public int insertByNaver(Guest guest) {
 		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {

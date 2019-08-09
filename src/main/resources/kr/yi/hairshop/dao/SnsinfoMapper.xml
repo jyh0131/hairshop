@@ -13,13 +13,13 @@
 	</resultMap>
 
 	<select id="selectById" resultType="Snsinfo">
-		select * from SNSinfo
+		select * from hairshop.snsinfo
 	</select>
 
 	<insert id="insertSnsinfo" parameterType="Snsinfo">
-		insert into snsinfo
+		insert into hairshop.snsinfo
 		(sns_g_no, sns_id, sns_type, sns_name, sns_profile, sns_connecte_date)
-		values(#{snsGuestNo}, #{snsType}, #{snsName}, #{snsProfile}, #{snsConnecteDate});
+		values(#{snsGuestNo}, #{snsId}, #{snsType}, #{snsName}, #{snsProfile}, #{snsConnecteDate});
 	</insert>
 
 

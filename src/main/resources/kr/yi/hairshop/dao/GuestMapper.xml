@@ -22,8 +22,7 @@
 		<result property="gSecession" column="g_secession"/>
 	</resultMap>
 
-	<select id="selectGuestByAll" resultType="Guest"
-		resultMap="extendsGuest">
+	<select id="selectGuestByAll" resultType="Guest" resultMap="extendsGuest">
 		SELECT g_no, g_id, g_password, g_l_grade as l_grade, g_name,
 		g_tel, g_email,
 		g_birth, g_join, g_point, g_memo
@@ -31,8 +30,7 @@
 		where g_secession = false
 	</select>
 	
-	<select id="selectGuestByNo" resultType="Guest"
-		resultMap="extendsGuest">
+	<select id="selectGuestByNo" resultType="Guest"	resultMap="extendsGuest">
 		SELECT g_no, g_id, g_password, g_l_grade as l_grade, g_name,
 		g_tel, g_email,
 		g_birth, g_join, g_point, g_memo
@@ -55,12 +53,6 @@
 		FROM guest
 		where g_name=#{gName}
 		and g_tel=#{gTel}
-	</select>
-	
-	<select id="selectById" resultType="Guest" resultMap="basicGuest">
-		select g_no, g_id, g_password, g_l_grade, g_name, g_tel, g_email, g_birth, g_join, g_point, g_memo, g_secession 
-		from guest
-		where g_id = #{id}
 	</select>
 	
 	<insert id="insertGuest" parameterType="Guest">
@@ -95,8 +87,24 @@
 	</update>
 	
 	<insert id="insertGuestByWorkMain"  useGeneratedKeys="true" keyProperty="gNo">
-		INSERT INTO hairshop.guest
+		insert into hairshop.guest
 		(g_name, g_tel,g_join)
-		VALUES(#{gName},#{gTel},#{gJoin});
+		values(#{gname},#{gtel},#{gjoin})
 	</insert>
+	
+	<!-- 웹 프로젝트 -->
+	<select id="selectById" resultType="Guest" resultMap="basicGuest">
+		select g_no, g_id, g_password, g_l_grade, g_name, g_tel, g_email, g_birth, g_join, g_point, g_memo, g_secession 
+		from hairshop.guest
+		where g_id = #{id}
+	</select>
+	
+	<insert id="insertByNaver" parameterType="Guest" useGeneratedKeys="true" keyProperty="gNo">
+		insert into hairshop.guest
+		(g_id, g_l_grade, g_name, g_tel, g_email, g_birth, g_join, g_point, g_memo)
+		values(#{gId}, #{gLGrade.lGrade}, #{gName}, #{gTel}, #{gEmail}, #{gBirth}, #{gJoin}, #{gPoint}, #{gMemo})
+	</insert>
+	
+	
+	
 </mapper>
