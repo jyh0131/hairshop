@@ -80,8 +80,6 @@
 	})
 </script>
 <section>
-${Auth.uId}
-${review.rWriter}
 	<div id="first">
 		<h4>${review.rTitle}</h4>
 		<p>${review.rWriter} | <fmt:formatDate value="${review.rWritetime}" pattern="yyyy.MM.dd"/></p>

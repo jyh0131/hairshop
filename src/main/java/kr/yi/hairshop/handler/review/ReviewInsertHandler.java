@@ -55,7 +55,7 @@ public class ReviewInsertHandler implements CommandHandler {
 			String rFile = multi.getFilesystemName("rFile");
 
 			Review review = new Review(rGNo, rWriter, rTitle, rContent, rFile);
-			System.out.println(review);
+//			System.out.println(review);
 
 			dao.insertReview(review);
 

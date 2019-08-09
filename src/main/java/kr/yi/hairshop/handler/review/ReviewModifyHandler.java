@@ -58,7 +58,7 @@ public class ReviewModifyHandler implements CommandHandler {
 			String rFile = multi.getFilesystemName("rFile");
 
 			Review review = new Review(rNo, rTitle, rContent, rFile);
-			System.out.println(review);
+//			System.out.println(review);
 
 			dao.updateReview(review);
 			res.sendRedirect(req.getContextPath() + "/review/review.do");
