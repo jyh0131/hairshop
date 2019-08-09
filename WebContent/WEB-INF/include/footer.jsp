@@ -10,12 +10,11 @@
 		text-align:center;
 		background:black;
 		color:white;
-		width: 100%;   
+		width: 1900px;   
 		line-height:20px;     
 		height:170px;  
 		margin:0 auto;
 		position: relative;
-		padding-left: 40px;
 		clear: both;
 	}
 	footer .foot1{
@@ -31,7 +30,7 @@
 	
 	footer div{
 		margin-top:15px;
-		width:100%;
+		width:1900px;
 		float: left;
 	}
 

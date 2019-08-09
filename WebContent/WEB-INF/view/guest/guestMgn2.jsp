@@ -191,7 +191,6 @@ $("#example").DataTable({ });
 $(function() {
 	$(document).on("click",".update",function(){
 		var gNo = $(this).parent().parent().find("#no").text().trim();
-		alert(gNo);
 		if($(this).text()=='수정'){
 			$("#updatePageBlack").fadeIn(500);
 			$.ajax({
