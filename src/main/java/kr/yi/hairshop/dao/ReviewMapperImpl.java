@@ -1,5 +1,6 @@
 package kr.yi.hairshop.dao;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -30,6 +31,41 @@ public class ReviewMapperImpl implements ReviewMapper{
 	public List<Review> selectBoardManager() {
 		try(SqlSession sqlSession=MyBatisSqlSessionFactory.openSession();){
 			return sqlSession.selectList(namespace+".selectBoardManager");
+		}
+	}
+	public void insertReview(Review review) throws SQLException {
+		try(SqlSession sqlSession=MyBatisSqlSessionFactory.openSession();){
+			sqlSession.insert(namespace + ".insertReview", review);
+			sqlSession.commit();
+			return;
+		}
+		
+	}
+
+	@Override
+	public void deleteReview(int rNo) throws SQLException {
+		try(SqlSession sqlSession=MyBatisSqlSessionFactory.openSession();){
+			sqlSession.delete(namespace + ".deleteReview", rNo);
+			sqlSession.commit();
+			return;
+		}
+		
+		
+	}
+
+	@Override
+	public Review selectListByNo(int rNo) throws SQLException {
+		try(SqlSession sqlSession=MyBatisSqlSessionFactory.openSession();){
+			return sqlSession.selectOne(namespace+".selectListByNo", rNo);
+		}
+	}
+
+	@Override
+	public void updateReview(Review review) throws SQLException {
+		try(SqlSession sqlSession=MyBatisSqlSessionFactory.openSession();){
+			sqlSession.update(namespace + ".updateReview", review);
+			sqlSession.commit();
+			return;
 		}
 	}
 

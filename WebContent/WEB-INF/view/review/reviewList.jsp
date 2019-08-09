@@ -29,12 +29,11 @@
 	}
 	#example th{
 		font-size: 13px;
-		color:#ccc;
+		color:#353535;
 	}
-	
-	#example_length, #example_info{
+	#example_info{
 		display: none;
-	}
+	} 
 	#example_wrapper{ 
 		position: relative;
 	}
@@ -50,8 +49,18 @@
 	}
 	#write{
 		position: absolute;
-		bottom:310px;
-		right:600px;
+		bottom:293px;
+		right:590px;
+	}
+	#write a{
+		text-decoration: none;
+		border:1px solid #ccc;
+		width: 60px;
+		height: 30px;
+		background-color: white;
+		border: 1px solid #ccc;
+		font-size: 13px;
+		padding:5px 10px;
 	}
 </style>
 <section>
@@ -65,13 +74,14 @@
 	    </tr>
   	</thead>
   <tbody>
+<%--   ${list } --%>
     <c:forEach var="review" items="${list }">
 			<tr>
 				<td id="no">
 					${review.rNo}
 				</td>
 				<td>
-					<a href="">${review.rTitle }</a>
+					<a href="${pageContext.request.contextPath}/review/detail.do?no=${review.rNo}">${review.rTitle }</a>
 				</td>
 				<td>
 					${review.rWriter }
@@ -83,14 +93,24 @@
 			</tr>
 		</c:forEach>
   </tbody>
-
 </table>
-	<div id="write">
-		<a href="${pageContext.request.contextPath}/review/insert.do">[글쓰기]</a>
-	</div>	
+	<c:if test="${Auth != null}"><!-- 비회원일시에 글쓰기 할수 없음 -->
+		<div id="write">
+			<a href="${pageContext.request.contextPath}/review/insert.do">글쓰기</a>
+		</div>	
+	</c:if>
 </section>
 <script>
-$("#example").DataTable({ });
+
+
+$("#example").DataTable({
+	lengthChange:false,
+	ordering:false,
+	stateSave:true,
+	
+	
+});
+
 </script>
 
 <%@ include file="../../include/footer.jsp" %>

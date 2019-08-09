@@ -79,6 +79,14 @@
 		g_point=#{gPoint}, g_memo=#{gMemo}
 		where g_no=#{gNo};
 	</update>
+	
+	<update id="updateGuest2">
+		UPDATE hairshop.guest
+		SET g_l_grade=#{gLGrade.lGrade}, g_name=#{gName},
+		g_tel=#{gTel}, g_email=#{gEmail}, g_birth=#{gBirth}, g_join=#{gJoin},
+		g_point=#{gPoint}, g_memo=#{gMemo}
+		where g_no=#{gNo};
+	</update>
 
 	<update id="deleteGuest">
 		update hairshop.guest

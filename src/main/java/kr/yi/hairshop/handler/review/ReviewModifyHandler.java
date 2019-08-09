@@ -1,6 +1,7 @@
 package kr.yi.hairshop.handler.review;
 
 import java.io.File;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,15 +17,23 @@ import kr.yi.hairshop.dto.Guest;
 import kr.yi.hairshop.dto.Review;
 import kr.yi.hairshop.dto.User;
 
-public class ReviewInsertHandler implements CommandHandler {
+public class ReviewModifyHandler implements CommandHandler {
 
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		if (req.getMethod().equalsIgnoreCase("get")) {
-
-			return "/WEB-INF/view/review/reviewForm.jsp";
+			int rNo = Integer.parseInt(req.getParameter("no")); 
+//			System.out.println("클릭한사람의 댓글번호->"+rNo); //클릭한 사람의 댓글번호
+			
+			ReviewMapper dao = new ReviewMapperImpl();
+			
+			Review list = dao.selectListByNo(rNo);
+			
+			req.setAttribute("list", list);
+			
+			return "/WEB-INF/view/review/reviewModifyForm.jsp";
 		} else if (req.getMethod().equalsIgnoreCase("post")) {
-
+		
 			String uploadPath = req.getRealPath("upload");
 
 			File dir = new File(uploadPath);
@@ -42,29 +51,21 @@ public class ReviewInsertHandler implements CommandHandler {
 			);
 			ReviewMapper dao = new ReviewMapperImpl();
 
-			HttpSession session = req.getSession();
-			User user = (User) session.getAttribute("Auth");
-			
-			int no = user.getmNo();
-			Guest rGNo = new Guest(no); //게스트번호(no를 Guest에 넣음)	
-			
-			String rWriter = user.getuId(); //글쓴이
-			
+			int rNo = Integer.parseInt(multi.getParameter("rNo"));
+			//입력한 값
 			String rTitle = multi.getParameter("rTitle");
-			System.out.println(rTitle);
 			String rContent = multi.getParameter("rContent");
 			String rFile = multi.getFilesystemName("rFile");
 
-			Review review = new Review(rGNo, rWriter, rTitle, rContent, rFile);
+			Review review = new Review(rNo, rTitle, rContent, rFile);
 //			System.out.println(review);
 
-			dao.insertReview(review);
-
+			dao.updateReview(review);
 			res.sendRedirect(req.getContextPath() + "/review/review.do");
 			return null;
-
 		}
 		return null;
+
 
 	}
 

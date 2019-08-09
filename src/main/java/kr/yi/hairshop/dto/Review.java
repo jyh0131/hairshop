@@ -6,10 +6,11 @@ public class Review {
 	private Guest rRNo;
 	private Designer rDNo;
 	private int rNo;
-	private String rTitle;
+	private Guest rGNo;
 	private String rWriter;
-	private Date rWritetime;
+	private String rTitle;
 	private String rContent;
+	private Date rWritetime;
 	private String rFile;
 	private boolean rDelete;
 	
@@ -25,28 +26,17 @@ public class Review {
 		this.rRNo = rRNo;
 		this.rDNo = rDNo;
 		this.rNo = rNo;
-		this.rTitle = rTitle;
 		this.rWriter = rWriter;
-		this.rWritetime = rWritetime;
+		this.rTitle = rTitle;
 		this.rContent = rContent;
+		this.rWritetime = rWritetime;
 		this.rFile = rFile;
 		this.rDelete = rDelete;
 	}
-
-
-
-
-
-	public Designer getrDNo() {
-		return rDNo;
+	public Review(Guest rGNo2, String rWriter2, String rTitle2, String rContent2, String rFile2) {
+		
+		
 	}
-
-
-
-	public void setrDNo(Designer rDNo) {
-		this.rDNo = rDNo;
-	}
-
 
 
 	public Guest getrRNo() {
@@ -55,17 +45,23 @@ public class Review {
 	public void setrRNo(Guest rRNo) {
 		this.rRNo = rRNo;
 	}
+	public Designer getrDNo() {
+		return rDNo;
+	}
+	public void setrDNo(Designer rDNo) {
+		this.rDNo = rDNo;
+	}
 	public int getrNo() {
 		return rNo;
 	}
 	public void setrNo(int rNo) {
 		this.rNo = rNo;
 	}
-	public String getrTitle() {
-		return rTitle;
+	public Guest getrGNo() {
+		return rGNo;
 	}
-	public void setrTitle(String rTitle) {
-		this.rTitle = rTitle;
+	public void setrGNo(Guest rGNo) {
+		this.rGNo = rGNo;
 	}
 	public String getrWriter() {
 		return rWriter;
@@ -73,17 +69,23 @@ public class Review {
 	public void setrWriter(String rWriter) {
 		this.rWriter = rWriter;
 	}
-	public Date getrWritetime() {
-		return rWritetime;
+	public String getrTitle() {
+		return rTitle;
 	}
-	public void setrWritetime(Date rWritetime) {
-		this.rWritetime = rWritetime;
+	public void setrTitle(String rTitle) {
+		this.rTitle = rTitle;
 	}
 	public String getrContent() {
 		return rContent;
 	}
 	public void setrContent(String rContent) {
 		this.rContent = rContent;
+	}
+	public Date getrWritetime() {
+		return rWritetime;
+	}
+	public void setrWritetime(Date rWritetime) {
+		this.rWritetime = rWritetime;
 	}
 	public String getrFile() {
 		return rFile;
@@ -97,12 +99,16 @@ public class Review {
 	public void setrDelete(boolean rDelete) {
 		this.rDelete = rDelete;
 	}
-
 	@Override
 	public String toString() {
-		return "Review [rRNo=" + rRNo + ", rNo=" + rNo + ", rTitle=" + rTitle + ", rWriter=" + rWriter + ", rWritetime="
-				+ rWritetime + ", rContent=" + rContent + ", rFile=" + rFile + ", rDelete=" + rDelete + "]";
+		return "Review [rRNo=" + rRNo + ", rDNo=" + rDNo + ", rNo=" + rNo + ", rGNo=" + rGNo + ", rWriter=" + rWriter
+				+ ", rTitle=" + rTitle + ", rContent=" + rContent + ", rWritetime=" + rWritetime + ", rFile=" + rFile
+				+ ", rDelete=" + rDelete + "]";
 	}
+
+
+
+	
 	
 	
 	

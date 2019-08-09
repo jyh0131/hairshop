@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ include file="../include/header.jsp" %>
+<%@ include file="../../include/header.jsp" %>
 
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css">
 <style>
@@ -71,9 +71,7 @@
 		window.addEventListener('load', function () {
 			naverLogin.getLoginStatus(function (status) {
 				if (status) {
-					console.log(naverLogin);
-					console.log(naverLogin.user.id);
-					console.log(naverLogin.user.name);
+					alert("SNS회원 가입");
 					
 					$("input[name='snsId']").val(naverLogin.user.id);
 					$("input[name='snsName']").val(naverLogin.user.name);
@@ -98,7 +96,7 @@
 
 <section id="joinForm">
 
-	<form action="${pageContext.request.contextPath}/snsJoin.do" method="post" id="f1">
+	<form action="${pageContext.request.contextPath}/login/snsJoin.do" method="post" id="f1">
 
 		<p><span>(<span class="fontColorRed">*</span>)</span>는 필수 입니다</p>
 		<p>
@@ -125,7 +123,7 @@
 </section>
 
 
-<%@ include file="../include/footer.jsp" %>
+<%@ include file="../../include/footer.jsp" %>
 
 
 

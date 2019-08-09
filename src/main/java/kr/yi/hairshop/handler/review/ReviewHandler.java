@@ -30,15 +30,7 @@ public class ReviewHandler implements CommandHandler {
 		}finally {
 			sqlSession.close();
 		}
-		
-		
-		
-		
-		
-		
-		
 		return "/WEB-INF/view/review/reviewList.jsp";
-		
 	}
 
 }

@@ -1,4 +1,4 @@
-package kr.yi.hairshop.handler.member;
+package kr.yi.hairshop.handler.login;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,7 +22,7 @@ public class LoginHandler implements CommandHandler {
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		if(req.getMethod().equalsIgnoreCase("get")) {
-			return "/WEB-INF/view/member/loginForm.jsp";
+			return "/WEB-INF/view/login/loginForm.jsp";
 		}else if(req.getMethod().equalsIgnoreCase("post")) {
 			
 			int isMgn = Integer.parseInt(req.getParameter("isMgn")); //mgn=0, guest=1
@@ -39,14 +39,14 @@ public class LoginHandler implements CommandHandler {
 				if(guest == null) { //회원없음
 					req.setAttribute("noMember", true);
 					System.out.println("회원 없음");
-					return "/WEB-INF/view/member/loginForm.jsp";
+					return "/WEB-INF/view/login/joinServiceCheck.jsp";
 				}else if(guest.getgPassword().equals(password) == false) { //비번 불일치
 					req.setAttribute("noPassword", true);
 					System.out.println("비번 불일치");
-					return "/WEB-INF/view/member/loginForm.jsp";
+					return "/WEB-INF/view/login/loginForm.jsp";
 				}
 				//로그인 된 사람의 정가 담긴 class 생성후 sesseion에 저장
-				User user = new User(guest.getgNo(), guest.getgName(), guest.getgId(), false); //false 손님
+				User user = new User(guest.getgNo(), guest.getgName(), guest.getgId(), false, false); //false 손님, false 일반회원
 				session.setAttribute("Auth", user);
 				
 			}else if(isMgn==0) {
@@ -57,15 +57,15 @@ public class LoginHandler implements CommandHandler {
 				if(designer == null) { //디자이너 없음
 					req.setAttribute("noMember", true);
 					System.out.println("회원 없음");
-					return "/WEB-INF/view/member/loginForm.jsp";
+					return "/WEB-INF/view/login/joinServiceCheck.jsp";
 				}else if(designer.getdPassword().equals(password) == false) { //비번 불일치
 					req.setAttribute("noPassword", true);
 					System.out.println("비번 불일치");
-					return "/WEB-INF/view/member/loginForm.jsp";
+					return "/WEB-INF/view/login/loginForm.jsp";
 				}
 				
 				//로그인 된 사람의 정가 담긴 class 생성후 sesseion에 저장
-				User user = new User(designer.getdNo(), designer.getdName(), designer.getdId(), true); //true 관리자
+				User user = new User(designer.getdNo(), designer.getdName(), designer.getdId(), true, false); //true 관리자, false 일반
 				session.setAttribute("Auth", user);
 			}
 			
