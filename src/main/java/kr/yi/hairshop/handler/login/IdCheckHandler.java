@@ -27,16 +27,16 @@ public class IdCheckHandler implements CommandHandler {
 			GuestMapper dao = new GuestMapperImpl();
 			Guest dbGuest = dao.selectById(newId);
 			
-			Map<String, Boolean> map = new HashMap<>();
+			int checkId = 0;
 
 			if(dbGuest == null) {
-				map.put("check", true);
+				checkId = 0; // 검색안됨
 			}else {
-				map.put("check", false);
+				checkId = 1; // 아이디 중복
 			}
 			
 			ObjectMapper om = new ObjectMapper();
-			String data = om.writeValueAsString(map);
+			String data = om.writeValueAsString(checkId);
 			
 			res.setContentType("application/json;charset=utf-8");
 			PrintWriter out = res.getWriter();

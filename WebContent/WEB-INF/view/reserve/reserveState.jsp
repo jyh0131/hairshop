@@ -39,6 +39,17 @@
 	width: 200px;
 }
 
+#reservState p{
+	width:756px;
+	text-align: left;
+	margin: 0 auto;
+	margin-top: 20px;
+}
+#reservState p a{
+	text-decoration: none;
+	font-size: 15px;
+	color: black;
+}
 
 
 </style>
@@ -95,12 +106,10 @@
 				</tr>
 			</c:forEach>
 		</table>
+		<p><a href="${pageContext.request.contextPath}/member/passCheck.do">mypage로 돌아가기</a></p>
 	</div>
 
-
-
-
-
+	
 
 
 </section>

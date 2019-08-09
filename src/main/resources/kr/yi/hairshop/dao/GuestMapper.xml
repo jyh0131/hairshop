@@ -64,6 +64,7 @@
 
 	</insert>
 
+	<!-- 전체내용 업데이트 -->
 	<update id="updateGuest">
 		UPDATE hairshop.guest
 		SET g_id=#{gId}, g_password=#{gPassword}, g_l_grade=#{gLGrade.lGrade}, g_name=#{gName},
@@ -72,11 +73,26 @@
 		where g_no=#{gNo};
 	</update>
 	
+	<!-- 업데이트 - id, pass 뺀것 -->
 	<update id="updateGuest2">
 		UPDATE hairshop.guest
 		SET g_l_grade=#{gLGrade.lGrade}, g_name=#{gName},
 		g_tel=#{gTel}, g_email=#{gEmail}, g_birth=#{gBirth}, g_join=#{gJoin},
 		g_point=#{gPoint}, g_memo=#{gMemo}
+		where g_no=#{gNo};
+	</update>
+	
+	<!-- mypage에서 내용 수정 tel, email, birth-->
+	<update id="updateGuest3">
+		UPDATE hairshop.guest
+		SET g_tel=#{gTel}, g_email=#{gEmail}, g_birth=#{gBirth}
+		where g_no=#{gNo};
+	</update>
+
+	<!-- mypage에서 비밀번호 변경 -->
+	<update id="updateGuestPassword">
+		UPDATE hairshop.guest
+		SET g_password=#{gPassword}
 		where g_no=#{gNo};
 	</update>
 
@@ -93,8 +109,8 @@
 	</insert>
 	
 	<!-- 웹 프로젝트 -->
-	<select id="selectById" resultType="Guest" resultMap="basicGuest">
-		select g_no, g_id, g_password, g_l_grade, g_name, g_tel, g_email, g_birth, g_join, g_point, g_memo, g_secession 
+	<select id="selectById" resultType="Guest" resultMap="extendsGuest">
+		select g_no, g_id, g_password, g_l_grade as l_grade , g_name, g_tel, g_email, g_birth, g_join, g_point, g_memo, g_secession 
 		from hairshop.guest
 		where g_id = #{id}
 	</select>
