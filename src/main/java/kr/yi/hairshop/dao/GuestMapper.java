@@ -12,10 +12,10 @@ public interface GuestMapper {
 	public Guest selectGuestByNo(int gNo);
 	public Guest selectGuestByGNameGTel(Map<String, String> map);
 	public int insertGuest(Guest guest);
-	public int updateGuest(Guest guest);
+	public int updateGuest2(Guest guest);
 	public int deleteGuest(Guest guest);
 	public int insertGuestByWorkMain(Guest guest);
-	
+	public int updateGuest(Guest guest);
 	/*web project 용*/
 	public Guest selectById(String id);
 	public int insertByNaver(Guest guest);

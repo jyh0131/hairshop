@@ -219,7 +219,9 @@ $(function() {
 					$("#gPoint").val(json.gPoint);
 					$("#gMemo").val(json.gMemo);
 				}
+				
 			})
+			
 		}
 		
 	})
@@ -280,18 +282,17 @@ $(document).on("click",".delete",function(){
 $("#f1").submit(function() {
 	var queryString = $("#f1").serialize();
 	console.log(queryString);
-	alert($("#f1").serialize());
 	$.ajax({
         type : 'post',
         url : '${pageContext.request.contextPath }/guest/guestUpdate.do',
         data : $("#f1").serialize(),
         dataType : 'json',
         success : function(json){
-            alert(json)
+        	$("#updatePageBlack").fadeOut(300);
         },
     });
 
-	return false;
+	return "${pageContext.request.contextPath }/guest/guestList.do";
 })
 </script>
 

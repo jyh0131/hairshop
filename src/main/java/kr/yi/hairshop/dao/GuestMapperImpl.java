@@ -28,6 +28,14 @@ public class GuestMapperImpl implements GuestMapper {
 	}
 
 	@Override
+	public int updateGuest2(Guest guest) {
+		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
+			int res = sqlSession.update(namespace + ".updateGuest2", guest);
+			sqlSession.commit();
+			return res;
+		}
+	}
+	@Override
 	public int updateGuest(Guest guest) {
 		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
 			int res = sqlSession.update(namespace + ".updateGuest", guest);
@@ -35,7 +43,6 @@ public class GuestMapperImpl implements GuestMapper {
 			return res;
 		}
 	}
-
 
 	@Override
 	public int deleteGuest(Guest guest) {
