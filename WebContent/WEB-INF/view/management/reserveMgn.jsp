@@ -342,9 +342,19 @@ div#updatePageBlack #updateCommit{
 									product+=work.productList[j].pName+",";
 							}
 							str+="<td>"+product+"</td>";
-							str+="<td>"+work.wEName.eName+"("+work.wEName.eSale+")</td>";
+							if(work.wEName==null){
+								str+="<td>일반</td>";
+							}
+							else{
+								str+="<td>"+work.wEName.eName+"("+work.wEName.eSale+")</td>";
+							}
 							
-							sumPrice=sumPrice/100*(100-Number(work.wEName.eSale));
+							
+							
+							
+							if(work.wEName!=null){
+								sumPrice=sumPrice/100*(100-Number(work.wEName.eSale));	
+							}
 							
 							str+="<td>"+sumPrice.toLocaleString()+"원</td>"
 							if(work.wWorkTime==null){
@@ -371,28 +381,32 @@ div#updatePageBlack #updateCommit{
 			$(this).css("border-top", "2px solid black");
 			$("#designer li").css("height", "50px")
 			$(this).css("height", "49px")
-			var date = new Date();
-			var day = date.getDate() + "";
-			$(this).css("background-color", "white");
 			
+			
+			 
+			
+			
+			$(this).css("background-color", "white");
+	
+			date=new Date(date);
 			$("table#reserved #reserveDate").text(date.getFullYear()+"년 "+(date.getMonth()+1)+"월 "+date.getDate()+"일");
 			
 			designer = $(this).text();
 			calendar(date.getFullYear(), date.getMonth());
 			
 			/* $("td").filter(function() {
-				return $(this).text() === day;
+				return $(this).text() == date.getDate();
 			}).css("background-color", "#fcfc90"); */
 			$("#calendar tr td").filter(function() {
-				return $(this).text() === day;
+				return $(this).text() == date.getDate();
 			}).click();
 			
 			
+			
 			$("#time tr td").css("background-color","white");
-			$("table#reserved #reserveTime").text("");
+			/* $("table#reserved #reserveTime").text(""); */
 			time="";
 			$("#reserveDesigner").text(designer);
-			
 			
 			$("article#reserve h1 span").text(designer);
 		})
@@ -706,15 +720,21 @@ div#updatePageBlack #updateCommit{
 						else{
 							str+="<td>"+work.wEName.eName+"</td>";
 						}
-						
-						sumPrice=sumPrice/100*(100-Number(work.wEName.eSale));
+						if(work.wEName!=null)
+							sumPrice=sumPrice/100*(100-Number(work.wEName.eSale));
 						
 						str+="<td>"+sumPrice.toLocaleString()+"원</td>"
+						
+						
+						
 						if(work.wWorkTime==null){
 							str+="<td>작업전</td>"
 						}else{
 							str+="<td>"+new Date(work.wWorkTime).format('yyyy-MM-dd a/p hh:mm')+"</td>"
 						}
+						
+						
+						
 						str+="<td><button>작업완료</button><button>수정</button><button>삭제</button><input id='hidden' type='hidden' value='"+work.wNo+"'/></td>";
 						str+="</tr>";
 						$("#searchTable").append(str);

@@ -70,6 +70,10 @@ section article#border div#guest{
 	margin: 2px;
 	margin-left: 10px;
 }
+section article#border div#guest button#commit{
+	display:block;
+	
+}
 section article#border div#form div#calendar {
 	width: 450px;
 }
@@ -87,6 +91,7 @@ section article#border div#form div#calendar h1 {
 	margin-bottom: 10px;
 	position: relative;
 }
+
 
 section article#border div#form div#calendar img#left {
 	position: absolute;
@@ -139,8 +144,6 @@ section article#border div#form div#mapForm img{
 
 
 
-
-
 section article#border div#form div#reservedForm{
 	display: none;
 }
@@ -165,6 +168,15 @@ div#form div#reservedForm div#reservedList table th:nth-child(4){
 }
 div#form div#reservedForm div#reservedList table th:nth-child(5){
 	width: 100px;
+}
+
+div#form div#reservedForm div#reservedList table th:nth-child(6){
+	padding:10px;
+	width: 40px;
+}
+
+div#form div#reservedForm div#reservedList table td button{
+	width: 40px;	
 }
 div#form div#reservedForm div#reservedList table td,div#form div#reservedForm div#reservedList table th{
 	border: 1px solid black;
@@ -212,12 +224,42 @@ section article#border div#guest p#guestText label{
 	width: 100px;
 }
 
+section article#border div#guest div#menuIcon{
+	display:block;
+	width:100%;
+	height: 120px;
+}
+
+section article#border div#guest div#menuIcon div{
+	width:80px;
+	height:100px;
+	float: left;
+	margin-right: 10px;
+	cursor: pointer;
+}
+section article#border div#guest div#menuIcon div:first-child{
+	margin-left:20px;
+	margin-right:20px;
+	text-align: center;
+}
+section article#border div#guest div#menuIcon img{
+	display:block;
+	
+	width: 80px;
+	height: 60px;
+}
+
+
+
+section article#border div#guest div#reserve{
+	clear: both;
+}
 section article#border div#guest div#reserve span{
 	color: #3B9838;
 	font-weight: bold;
 }
 .reserved{
-	color: #E5E5E5;
+	color: #E5E5E5 !important;
 	cursor: not-allowed !important;
 }
 
@@ -225,13 +267,10 @@ section article#border div#guest div#reserve span{
 	width:500px;
 	text-align: center;
 }
-textarea{
-	
-}
 </style>
 <script type="text/javascript">
 	var designer = "";
-	var date="";
+	var date=new Date();
 	var time="";
 	var hair="";
 	var haircount=0;
@@ -265,6 +304,9 @@ textarea{
 		calendar += "</tr>";
 		calendar += "<tr>";
 		
+		var nowDate = new Date();
+		
+		
 		for (var j = 0; j < t.getDay(); j++) {
 			calendar += "<td></td>";
 		}
@@ -272,8 +314,28 @@ textarea{
 
 			if (i % 7 == 0)
 				calendar += "</tr><tr>"
-			calendar += "<td class='day'>" + count + "</td>";
+			
+			if(year<nowDate.getFullYear()){
+				calendar += "<td class='reserved'>" + count + "</td>";
+			}else{
+				if(year==nowDate.getFullYear()){
+					if(month<=nowDate.getMonth()){
+						if(month==nowDate.getMonth() && count>=nowDate.getDate()){
+							calendar += "<td class='day'>" + count + "</td>";							
+						}else{
+							calendar += "<td class='reserved'>" + count + "</td>";
+						}
+					}else{
+						calendar += "<td class='day'>" + count + "</td>";
+					}
+					
+				}else{
+					calendar += "<td class='day'>" + count + "</td>";
+				}
+			}
 			count++;
+		
+
 		}
 		calendar += "</tr></table>";
 		$("#calendar").html(calendar);
@@ -405,12 +467,12 @@ textarea{
 			$(this).css("border-top", "2px solid black");
 			$("#designer li").css("height", "50px")
 			$(this).css("height", "49px")
-			var date = new Date();
-			var day = date.getDate() + "";
 			$(this).css("background-color", "white");
 			
-			$("#reserveDate").text(date.getFullYear()+"년 "+(date.getMonth()+1)+"월 "+date.getDate()+"일");
 			
+			date=new Date(date);
+			
+			$("#reserveDate").text(date.getFullYear()+"년 "+(date.getMonth()+1)+"월 "+date.getDate()+"일");
 			
 			designer = $(this).text();
 			calendar(date.getFullYear(), date.getMonth());
@@ -419,18 +481,42 @@ textarea{
 				return $(this).text() === day;
 			}).css("background-color", "#fcfc90"); */
 			$("#calendar tr td").filter(function() {
-				return $(this).text() === day;
+				return $(this).text() == date.getDate();
 			}).click();
 			
 			
 			$("#time tr td").css("background-color","white");
-			$("#reserveTime").text("");
-			time="";
 			$("#reserveDesigner").text(designer);
 		})
 		
-		
+		/* 첫화면 디자이너 셋팅 */
 		$("ul#designer li").eq(0).click();
+		
+		
+		/* 예약확인에서 예약 취소하기 */
+		$(document).on("click","button.delete",function() {
+			var wNo=$(this).prev().val();
+			var check=confirm("정말 예약을 취소 하시겠습니까?");
+			
+			if(check==true){
+				$.ajax({  
+					url : "${pageContext.request.contextPath }/management/deleteWork.do",
+					type : "get",
+					data : {
+								"wNo":wNo,
+							},
+					dataType : "json",
+					success : function(json) {
+						if(json>0){
+							alert("예약이 취소되었습니다.");
+							$("#menuIcon div").eq(1).click();							
+						}else{
+							alert("취소실패");
+						}
+					}
+				})			
+			}
+		})
 	})
 </script>
 <section>
@@ -516,9 +602,10 @@ textarea{
 							<th>작업시간</th>
 							<th>작업명</th>
 							<th>가격</th>
+							<th></th>
 						</tr>
 						<tr>
-							<td colspan="5">고객명,핸드폰번호를 입력해주세요</td>
+							<td colspan="6">고객명,핸드폰번호를 입력해주세요</td>
 						</tr>
 					</table>
 				</div>
@@ -532,45 +619,70 @@ textarea{
 			<p>대구 광역시 동구 방촌동</p>
 			<p>053-981-0000</p>
 			<p>00:00~22:00</p>
-			<div id="logo">
-				<span>예약하기</span>
-				<span>예약확인</span>
-				<span>오시는길</span>
-			</div>
-			
-			<script type="text/javascript">
-			
-				$("#logo span").eq(0).click(function() {
-					$("#reserveForm").show();
-					$("#mapForm").hide();
-					$("#reservedForm").hide();
-					$("#commit").text("예약신청");
-				})
-				$("#logo span").eq(1).click(function() {
-					$("#reserveForm").hide();
-					$("#mapForm").hide();
-					$("#reservedForm").show();
-					$("#commit").text("예약확인");
-				})
-					$("#logo span").eq(2).click(function() {
-					$("#reserveForm").hide();
-					$("#mapForm").show();
-					$("#reservedForm").hide();
-					var ps = new kakao.maps.services.Places(); 
-					ps.keywordSearch("영남인재교육원", placesSearchCB);
-					window.setTimeout(function() {
-					    map.relayout();
-					}, 0);
-				})
-			</script>
 			
 			<br>
 			<hr>
 			<br>
 			
 			
+			<div id="menuIcon">
+				<div>
+					<img src="${pageContext.request.contextPath}/images/reserve/time.png"><br>
+					<span>예약하기</span>
+				</div>
+				<div>
+					<img src="${pageContext.request.contextPath}/images/reserve/check.jpg"><br>
+					<span>예약확인</span>
+				</div>
+				<div >
+					<img src="${pageContext.request.contextPath}/images/reserve/come.PNG"><br>
+					<span>오시는길</span>
+				</div>
+			</div>
+			
+			<script type="text/javascript">
+				$(function() {
+					$("div#menuIcon div").eq(0).click(function() {
+						$("#reserveForm").show();
+						$("#mapForm").hide();
+						$("#reservedForm").hide();
+						$("#commit").text("예약신청");
+					})
+					$("div#menuIcon div").eq(1).click(function() {
+						$("#reserveForm").hide();
+						$("#mapForm").hide();
+						$("#reservedForm").show();
+						
+						$("#commit").text("예약확인");
+						$("#commit").click();
+					})
+					$("div#menuIcon div").eq(2).click(function() {
+						$("#reserveForm").hide();
+						$("#mapForm").show();
+						$("#reservedForm").hide();
+						var ps = new kakao.maps.services.Places(); 
+						ps.keywordSearch("영남인재교육원", placesSearchCB);
+						window.setTimeout(function() {
+						    map.relayout();
+						}, 0);
+					})
+				})
+				
+			</script>
+			<hr>
+			<br>
 			
 			
+			<div id="reserve">
+					<label>예약시간</label> : <span id="reserveDate"></span><span id="reserveTime"></span><br>
+					<label>디자이너</label> : <span id="reserveDesigner"></span><br>
+					<label>메뉴</label> : <span id="reserveProduct"></span><br>
+			</div>
+			
+			<br>
+			<hr>
+			<br>
+				
 			<p id="guestText">
 				<label>고객명</label><input type="text" name="gName" id="gName"><br>
 				<label>핸드폰번호</label><input type="text" name="gTel" id="gTel" placeholder='"-"를 붙여서 입력해 주세요.'><br>
@@ -581,31 +693,22 @@ textarea{
 							$("#gTel").val('${guest.gTel}');
 							$("#gName").attr("disabled",true);
 							$("#gTel").attr("disabled",true);
-
 						}						
 					})
 				</script>
 				
 				
-				
-				
-				
-				
 				<br>
 					<input type="checkbox" id="privacy"><span class="underline">개인정보 수집 및 이용</span>안내에 동의 합니다.
+					<br>
+					<br>
+					<button id="commit">예약신청</button>
 				</p>
+				
 				<br>
 				<hr>
 				<br>
-				<div id="reserve">
-					<label>예약시간</label> : <span id="reserveDate"></span><span id="reserveTime"></span><br>
-					<label>디자이너</label> : <span id="reserveDesigner"></span><br>
-					<label>메뉴</label> : <span id="reserveProduct"></span><br>
-				</div>
-				<br>
-				<hr>
-				<br>
-				<button id="commit">예약신청</button>
+				
 		</div>
 		
 		<script type="text/javascript">
@@ -642,18 +745,32 @@ textarea{
 											for(var j=0; j<work.productList.length; j++){
 												str+=work.productList[j].pName+",";	
 											}
+											
+											
+											
 											str=str.slice(0,-1);
 											str+="</td>";
 											str+="<td>"+work.wPriceTotal.toLocaleString()+"원</td>";
+											if(work.wWorkTime==null){
+												
+												str+="<td><input type='hidden' value='"+work.wNo+"'><button class='delete'>예약 취소</td>";	
+											}
+											else{
+												str+="<td></td>";
+											}
+											
+											
 											str+="</tr>";
+											
 											
 											$("#reservedList table").append(str);
 										}
 									}else{
 										var str="<tr>";
-										str+="<td colspan='5'> 예약된 정보가 없습니다. </td>";
+										str+="<td colspan='6'> 예약된 정보가 없습니다. </td>";
 										str+="</tr>";
 										$("#reservedList table").append(str);
+										$("#reservedList img").remove();
 										$("#reservedList").append("<img src='${pageContext.request.contextPath }/images/reserve/noreserved.PNG'>");
 									}
 										
@@ -686,27 +803,51 @@ textarea{
 								var reserveDesigner=$("#reserve span").eq(2).text();
 								var reserveProduct=$("#reserve span").eq(3).text();
 								
-								location.href="${pageContext.request.contextPath}/reserve/insertReserve.do?gName="+gName+"&gTel="+gTel
-										+"&reserveDate="+reserveDate+"&reserveTime="+reserveTime+"&reserveDesigner="+reserveDesigner
-										+"&reserveProduct="+reserveProduct;
+								
+								$.ajax({  
+									url : "${pageContext.request.contextPath}/reserve/insertReserve.do?",
+									type : "get",
+									data : {
+												"gName":gName,
+												"gTel":gTel,
+												"reserveDate":reserveDate,
+												"reserveTime":reserveTime,
+												"reserveDesigner":reserveDesigner,
+												"reserveProduct":reserveProduct
+											},
+									dataType : "json",
+									success : function(json) {
+										if(json>0){
+											alert("예약 완료되었습니다.");
+											$("#menuIcon div").eq(1).click();
+										}		
+									}
+								})
+								
+								
+								
 							}
 						}
 					})
 					
-					
-					
+										
 					if(${reserved }==true){
 						$("#gName").val('${gName}');
 						$("#gTel").val('${gTel}');
 						
 						$("#logo span").eq(1).click();
-						$("#commit").click();
-					};
+						
+					}
+					
+					
+					
+					
 				})
 				
 			</script>
 		
-		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e7a1993c6a8fe959ae3a03145152acfa&libraries=services,clusterer,drawing"></script>
+		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d12b5c6588fcf758d1a3d2f1e433c251&libraries=services,clusterer,drawing"></script>
+		<!-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d12b5c6588fcf758d1a3d2f1e433c251&libraries=services,clusterer,drawing"></script> -->
 		<script type="text/javascript">
 			// 마커를 클릭하면 장소명을 표출할 인포윈도우 입니다
 			var infowindow = new kakao.maps.InfoWindow({zIndex:1});

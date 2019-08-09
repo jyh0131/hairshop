@@ -1,5 +1,6 @@
 package kr.yi.hairshop.handler.reserve;
 
+import java.io.PrintWriter;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -11,6 +12,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.codehaus.jackson.map.ObjectMapper;
 
 import kr.yi.hairshop.controller.CommandHandler;
 import kr.yi.hairshop.dao.DesignerMapper;
@@ -38,6 +41,8 @@ public class InsertReserveHandler implements CommandHandler{
 		String reserveTime=req.getParameter("reserveTime");
 		String reserveDesigner=req.getParameter("reserveDesigner");
 		String reserveProduct=req.getParameter("reserveProduct");
+		
+		int result = 0;
 		List<String> pName=new ArrayList<String>();
 		for(int i=0; i<3; i++) {
 			if(reserveProduct.indexOf(",")>0) {
@@ -92,7 +97,7 @@ public class InsertReserveHandler implements CommandHandler{
 			WorkDialog work = new WorkDialog();
 			work.setwNo(wNo);
 			work.setwPriceTotal(sumPrice);
-			wDao.updateWorkPrice(work);
+			result=wDao.updateWorkPrice(work);
 		}
 		else {
 			Guest newGuest=new Guest();
@@ -118,10 +123,19 @@ public class InsertReserveHandler implements CommandHandler{
 				WorkDialog work = new WorkDialog();
 				work.setwNo(wNo);
 				work.setwPriceTotal(sumPrice);
-				wDao.updateWorkPrice(work);
+				result=wDao.updateWorkPrice(work);
 			}
 		}
-		res.sendRedirect(req.getContextPath()+"/reserve/form.do?reserved=true&gName="+URLEncoder.encode(gName, "utf-8")+"&gTel="+gTel);
+		System.out.println(result);
+		ObjectMapper om = new ObjectMapper();
+		String data = om.writeValueAsString(result);
+		
+		res.setContentType("application/json;charset=utf-8");
+		PrintWriter out = res.getWriter();
+		out.print(data);
+		out.flush();
+		
+		/*res.sendRedirect(req.getContextPath()+"/reserve/form.do?reserved=true&gName="+URLEncoder.encode(gName, "utf-8")+"&gTel="+gTel);*/
 		return null;
 	}
 
