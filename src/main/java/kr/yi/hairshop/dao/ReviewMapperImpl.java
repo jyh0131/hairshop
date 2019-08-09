@@ -69,4 +69,13 @@ public class ReviewMapperImpl implements ReviewMapper{
 		}
 	}
 
+	@Override
+	public int insertManagerBoard(Review review) {
+		try(SqlSession sqlSession=MyBatisSqlSessionFactory.openSession();){
+			int res=sqlSession.insert(namespace + ".insertManagerBoard", review);
+			sqlSession.commit();
+			return res;
+		}
+	}
+
 }

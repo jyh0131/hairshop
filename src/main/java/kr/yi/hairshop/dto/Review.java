@@ -71,6 +71,20 @@ public class Review {
 		this.rFile = rFile;
 	}
 
+	
+
+
+	public Review(Designer rDNo, String rWriter, String rTitle, String rContent, String rFile) {
+		super();
+		this.rDNo = rDNo;
+		this.rWriter = rWriter;
+		this.rTitle = rTitle;
+		this.rContent = rContent;
+		this.rFile = rFile;
+	}
+
+
+
 	public int getrNo() {
 		return rNo;
 	}

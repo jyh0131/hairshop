@@ -19,10 +19,10 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach var="review" items="${bList }">
+			<c:forEach var="review" items="${bList }"  step="1" varStatus="i">
 				<tr>
-					<td id="no">${review.rNo}</td>
-					<td><a href="">${review.rTitle }</a></td>
+					<td id="no">${i.index+1}</td>
+					<td><input type="hidden" value="${review.rNo }"><a href="">${review.rTitle }</a></td>
 					<td>${review.rWriter }</td>
 					<td><fmt:formatDate var="resultRegDt" value="${review.rWritetime}" pattern="yyyy.MM.dd" />${resultRegDt}</td>
 				</tr>
@@ -31,7 +31,7 @@
 
 	</table>
 	<div id="write">
-		<a href="${pageContext.request.contextPath}/review/insert.do">[글쓰기]</a>
+		<a href="${pageContext.request.contextPath}/board/managerInsert.do">[글쓰기]</a>
 	</div>
 </section>
 <script>

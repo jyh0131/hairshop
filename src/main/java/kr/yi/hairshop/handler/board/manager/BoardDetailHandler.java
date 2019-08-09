@@ -1,7 +1,5 @@
 package kr.yi.hairshop.handler.board.manager;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -10,19 +8,21 @@ import kr.yi.hairshop.dao.ReviewMapper;
 import kr.yi.hairshop.dao.ReviewMapperImpl;
 import kr.yi.hairshop.dto.Review;
 
-public class ManagerBoardHandler implements CommandHandler{
+public class BoardDetailHandler implements CommandHandler {
 
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
-		
-		ReviewMapper board = new ReviewMapperImpl();
-		
-		List<Review> bList=board.selectBoardManager();
-		System.out.println(bList.size());
-		
-		req.setAttribute("bList", bList);
-		
-		return "/WEB-INF/view/board/managerBoard.jsp";
-	}
 	
+			int rNo = Integer.parseInt(req.getParameter("no")); 
+//			System.out.println("나를 클릭했어요"+rNo); //클릭한 사람의 댓글번호
+			ReviewMapper dao = new ReviewMapperImpl();
+			
+			Review review  = dao.selectListByNo(rNo);
+			
+			req.setAttribute("review", review);
+			
+			return "/WEB-INF/view/review/reviewDetail.jsp";
+
+	}
+
 }

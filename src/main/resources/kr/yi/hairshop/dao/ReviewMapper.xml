@@ -11,7 +11,7 @@
 		<result property="rDelete" column="r_delete" />
 	</resultMap>
 	<resultMap type="Review" id="extendReview" extends="basicReview">
-		<association property="rRNo" resultMap="kr.yi.hairshop.dao.GuestMapper.basicGuest" />
+		<association property="rGNo" resultMap="kr.yi.hairshop.dao.GuestMapper.basicGuest" />
 		<association property="rDNo" resultMap="kr.yi.hairshop.dao.DesignerMapper.basicDesigner" />
 	</resultMap>
 
@@ -22,12 +22,18 @@
 		select r_no, r_title, r_writer, r_writetime, r_d_no as d_no
 		from review
 		where r_d_no is not null
+		order by r_writetime desc
 	</select>
 	
 	<insert id="insertReview" parameterType="Review" >
 		INSERT INTO review
 		(r_title, r_writer, r_writetime, r_content, r_file, r_g_no)
 		VALUES(#{rTitle}, #{rWriter}, now(), #{rContent}, #{rFile}, #{rGNo.gNo})
+	</insert>
+	<insert id="insertManagerBoard" parameterType="Review" >
+		INSERT INTO review
+		(r_title, r_writer, r_writetime, r_content, r_file, r_d_no)
+		VALUES(#{rTitle}, #{rWriter}, now(), #{rContent}, #{rFile}, #{rDNo.dNo})
 	</insert>
 
 	<update id="deleteReview">

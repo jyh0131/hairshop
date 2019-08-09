@@ -13,6 +13,7 @@
 		font-family: 'Libre Caslon Display', serif;
 	}
 	section{
+		min-width:900px;
 		width: 50%;
 		margin:0 auto;
 	}

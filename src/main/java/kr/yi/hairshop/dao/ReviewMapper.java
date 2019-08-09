@@ -13,5 +13,6 @@ public interface ReviewMapper {
 	public void deleteReview(int rNo) throws SQLException;
 	public Review selectListByNo(int rNo) throws SQLException;
 	public void updateReview(Review review) throws SQLException;
+	public int insertManagerBoard(Review review);
 
 }
