@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp" %>
-<link href="https://fonts.googleapis.com/css?family=Libre+Caslon+Display&display=swap" rel="stylesheet">
 <style>
 	*{
 		padding:0;
@@ -20,7 +19,7 @@
 	.hair{
 		float:left;
 		width: 230px;
-		padding:10px;
+		padding:10px 10px 30px 10px;
 	}
 	section img{
 		width: 175px;
@@ -36,31 +35,20 @@
 		width: 40%;
 		height:30px;
 		clear: both;
-		margin-bottom: 30px;
+		margin-bottom: 60px;
 	}
 	#hairlist ul{
 		list-style:none;
 		width:100%;
-		
 	}
 	#hairlist ul li{
 		float: left;
-		width: 25%;
+		width: 33%;
 		height: 30px;
 		line-height: 30px;
 		text-align: center;
-		font-size:20px;
-		font-family: 'Libre Caslon Display', serif;
-	
+		font-size:15px;
 	}	
-	/* #hairlist ul li a{
-		border:1px solid gray;
-		padding: 3px 5px 3px 5px;
-		border-radius: 8px;
-		background-color: #F6F6F6;
-	}	 */
-		
-	
 	#color .hair img{
 		width: 175px;
 		height: 242px;
@@ -73,25 +61,73 @@
 		font-size: 20px;
 		background: black;
 		border-radius: 5px;
-	}
-	#hairlist ul li:hover a{
-		color: white;
+		color:white;
 	}
 	
+	/*  */
 	
-	
-	
-	
-	
+	#top{
+		clear: both;
+		margin:0 auto;
+		font-size: 15px;
+		color:black;
+		border-radius: 5px;
+		background-color: #F6F6F6;
+		width: 18%;
+		height:30px;
+		text-align:center;
+		margin-bottom: 100px;
+	}
+	#top:hover{
+		background: black;
+		color:white;
+		font-size: 20px;
+	}
+	button #haircut{
+		background-color: black;
+		color:white;
+	}
+	#color {
+		font-size: 13px;
+	}
+	#color #bb{
+		color:#754C00;
+		text-align: right;
+		padding-right: 50px;
+	}
+	#color #sb{
+		color:#302600;
+		text-align: right;
+		padding-right: 50px;
+	}
+	#color #ob{
+		color:#665C00;
+		text-align: right;
+		padding-right: 50px;
+	}
+	#color #ar{
+		color:#670000;
+		text-align: right;
+		padding-right: 50px;
+	}
+	#color #pb{
+		color:#BA2B2B;
+		text-align: right;
+		padding-right: 50px;
+	}
+	#color #mb{
+		color:#060042;
+		text-align: right;
+		padding-right: 50px;
+	}
 </style>
 <section>
 	
 	<div id="hairlist">
 		<ul>
-			<li><a href="#cut" class="go_btn">cut</a></li>
-			<li><a href="#perm">perm</a></li>
-			<li><a href="#color">color</a></li>
-			<li><a href=".care">care</a></li>
+			<li id="hairCut">cut</li>
+			<li id="hairPerm">perm</li>
+			<li id="hairColor">color</li>
 		</ul>
 	</div>
 	
@@ -310,38 +346,41 @@
 			<a href="">
 				<img src="../images/color/babybrown.png">
 			</a>
-			<p>Baby Brown</p> 
+			<p id="bb">Baby Brown 베이비브라운</p> 
 		</div>
 		<div class="hair">
 			<a href="">
 				<img src="../images/color/skinbrown.png">
 			</a>
-			<p>Skin Brown <span id="colorsize2">스킨 브라운</span></p>
+			<p id="sb">Skin Brown 스킨브라운</p>
 		</div>
 		<div class="hair">
 			<a href="">
 				<img src="../images/color/olivebrown.png">
 			</a>
-			<p>Olive Brown</p>
+			<p id="ob">Olive Brown 올리브브라운</p>
 		</div>
 		<div class="hair">
 			<a href="">
 				<img src="../images/color/ororared.png">
 			</a>
-			<p>Aurora Red</p>
+			<p id="ar">Aurora Red 오로라레드</p>
 		</div>
 		<div class="hair">
 			<a href="">
 				<img src="../images/color/peachbrown.png">
 			</a>
-			<p>Peach Brown</p>
+			<p id="pb">Peach Brown 피치브라운</p>
 		</div>
 		<div class="hair">
 			<a href="">
 				<img src="../images/color/midnightblue.png">
 			</a>
-			<p>Midnight Blue</p>
+			<p id="mb">Midnight Blue 미드나잇블루</p>
 		</div>
+	</div>
+	<div id="top">
+  		<span id="topBtn">top</span>
 	</div>
 	</div>
 
@@ -351,24 +390,32 @@
 
 
 </section>
-<%@ include file="../include/footer.jsp" %>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js">
-</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>
 	$(function(){
-		var jj = $("#cut").offset();
-	
+		$("#topBtn").click(function(){ /* top으로 이동 */
+			$('html,body').animate({
+				scrollTop:0}, 1000);
+		})
+		$("#hairCut").click(function(){ /* cut로 이동 */
+			$('html,body').animate({
+				scrollTop:300}, 600);
+		})
+		$("#hairPerm").click(function(){
+			$('html,body').animate({
+				scrollTop:1800}, 2000);
+		})
 		
-		$(".go_btn").click(function(event){
-			event.preventDefault();
-			$('html,body').animate({scrollTop:$(this.hash).offset().top},500);
-		});
-		
-		
-		
+		$("#hairColor").click(function(){ /* color로 이동 */
+			$('html,body').animate({
+				scrollTop:5000}, 2000);
+		})
 	})
+	
+	
+	
 </script>
+<%@ include file="../include/footer.jsp" %>
 
 
 
