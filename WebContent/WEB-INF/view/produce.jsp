@@ -29,6 +29,7 @@
 	
 	}
 	#chahongimg{
+		
 		margin-top: 40px;
 		width: 950px;
 	}

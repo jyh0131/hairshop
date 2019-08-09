@@ -36,13 +36,14 @@ public class JoinHandler implements CommandHandler {
 
 			Guest guest = new Guest();
 			guest.setgId(id);
-			guest.setgName(name);
 			guest.setgPassword(password);
-			guest.setgTel(tel);			
+			guest.setgLGrade(new Level("브론즈")); //기본이 브론즈
+			guest.setgName(name);
+			guest.setgTel(tel);
 			guest.setgEmail(email);
 			guest.setgBirth(birthDate);
 			guest.setgJoin(new Date());
-			guest.setgLGrade(new Level("브론즈")); //기본이 브론즈
+			guest.setgPoint(5000); //웹회원가입 포인트 5000원
 			
 			HttpSession session = req.getSession(false);
 			

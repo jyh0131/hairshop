@@ -18,6 +18,21 @@ public class Review {
 		// TODO Auto-generated constructor stub
 	}
 
+	
+
+	public Review(int rNo, Designer rDNo, Guest rGNo, String rWriter, String rTitle, String rContent, Date rWritetime,
+			String rFile, boolean rDelete) {
+		super();
+		this.rNo = rNo;
+		this.rDNo = rDNo;
+		this.rGNo = rGNo;
+		this.rWriter = rWriter;
+		this.rTitle = rTitle;
+		this.rContent = rContent;
+		this.rWritetime = rWritetime;
+		this.rFile = rFile;
+		this.rDelete = rDelete;
+	}
 	public Designer getrDNo() {
 		return rDNo;
 	}

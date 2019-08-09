@@ -12,6 +12,7 @@ import kr.yi.hairshop.dao.GuestMapperImpl;
 import kr.yi.hairshop.dao.SnsinfoMapper;
 import kr.yi.hairshop.dao.SnsinfoMapperImpl;
 import kr.yi.hairshop.dto.Guest;
+import kr.yi.hairshop.dto.Level;
 import kr.yi.hairshop.dto.Snsinfo;
 
 public class SnsJoinHandler implements CommandHandler {
@@ -33,22 +34,31 @@ public class SnsJoinHandler implements CommandHandler {
 			String email = req.getParameter("snsEmail");
 			String tel = req.getParameter("tel");
 
-			System.out.println("**************************************");
-			System.out.println("회원가입 작업 여기에서 멈춤");
-			System.out.println("**************************************");
 			Guest guest = new Guest();
 			guest.setgId(id);
+			guest.setgLGrade(new Level("브론즈"));
 			guest.setgName(name);
-			guest.setgBirth(birthDate);
-			guest.setgEmail(email);
 			guest.setgTel(tel);
+			guest.setgEmail(email);
+			guest.setgBirth(birthDate);
+			guest.setgJoin(new Date());		
+			guest.setgPoint(0); //네이버 회원가입은 포인드 0
+
+			guest.setgMemo("네이버 회원가입");
+/*			String serivce3 = req.getParameter("serivce3");
+			if(serivce3 != null) {
+				guest.setgMemo("네이버 회원가입+광고동의");
+			}else {
+				guest.setgMemo("네이버 회원가입+광고X");
+			}
+*/			
 			GuestMapper gDao = new GuestMapperImpl();
 			int gNo = gDao.insertByNaver(guest);
 			
 			Snsinfo snsinfo = new Snsinfo();
-			snsinfo.setSnsNo(gNo);
+			snsinfo.setSnsGuestNo(gNo);
 			snsinfo.setSnsId(id);
-			snsinfo.setSnsType("login");
+			snsinfo.setSnsType("Naver Join");
 			snsinfo.setSnsName("naver");
 			snsinfo.setSnsProfile("무엇을?");
 			snsinfo.setSnsConnecteDate(new Date());
