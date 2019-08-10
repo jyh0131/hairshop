@@ -7,7 +7,6 @@
 <style>
 #gradeChange{
 	width:800px;
-	height:400px;
 	margin: 0 auto;
 	margin-top: 60px;
 	margin-bottom: 60px;

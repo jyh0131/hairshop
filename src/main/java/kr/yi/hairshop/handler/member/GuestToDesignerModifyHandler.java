@@ -27,10 +27,13 @@ public class GuestToDesignerModifyHandler implements CommandHandler {
 //		4. designer insert
 		
 		String nameId = req.getParameter("nameId");
-		String id = nameId.substring(4, nameId.length()-1);
+		int index = nameId.indexOf("(");
+		String id = nameId.substring(index+1);
+		id = id.substring(0, id.length()-1); //ajax로 넘어온 String에서 ID만 잘라내기
 		
 		GuestMapper gDao = new GuestMapperImpl();
 		Guest guest = gDao.selectById(id);
+		System.out.println("승급전 검색된 회원 정보 "+guest);
 		
 		Designer designer = new Designer();
 		designer.setdId(guest.getgId());
@@ -42,11 +45,14 @@ public class GuestToDesignerModifyHandler implements CommandHandler {
 		designer.setdGrade("인턴");
 		designer.setdMemo("승급디자이너");
 		
+		//승급된 회원 삭제
 		int result = gDao.deleteGuest(guest);
 		
 		DesignerMapper dDao = new DesignerMapperImpl();
 		result += dDao.insertDesigner(designer);
-//		System.out.println("승급결과는 " + result);
+		if(result == 2) {
+			System.out.println("회원삭제, 신규 디자이너 생성(회원기반)이 완료 되었다");	
+		}		
 		
 		ObjectMapper om = new ObjectMapper();
 		String data = om.writeValueAsString(designer); // json string으로 변환
