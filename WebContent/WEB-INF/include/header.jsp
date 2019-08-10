@@ -106,16 +106,24 @@ header .mymenu a{
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>
-	$(function () {
-		
 
-	})
+$(function () {
 	
-	$(document).ready(function(){
-		if( ${Auth.uIsMgr } == true){
-			$("#topmenu").css("display", "none");
-		}
-	});
+	$("#reserve").click(function() {
+
+		$("#reserve").css("background-color", "red");
+		return false;
+	})
+})
+
+$(document).ready(function(){
+	
+	if( ${Auth.uIsMgr } == true){
+		$("#topmenu").css("display", "none");
+	}
+	
+
+});
 	
 </script>
 
@@ -160,7 +168,7 @@ header .mymenu a{
 					<a href="${pageContext.request.contextPath}/view/video.do"><li>VIDEO</li></a>
 					<a href="${pageContext.request.contextPath}/review/review.do"><li>REVIEW</li></a>
 					<a href="${pageContext.request.contextPath}/reserve/form.do"><li>RESERVATION</li></a>
-					<a href="#" id="reserv"><li>RESERVATION STATE</li></a>
+					<a href="#" id="reserve"><li>RESERVATION STATE</li></a>
 				</ul>
 			</div>
 			<c:if test="${Auth.uIsMgr == true }">
