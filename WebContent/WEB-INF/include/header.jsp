@@ -191,6 +191,7 @@ $(document).ready(function(){
 					<a href="${pageContext.request.contextPath}/guest/guestList.do"><li>회원관리</li></a>
 					<a href="${pageContext.request.contextPath}/management/gradeChange.do"><li>등급관리</li></a>
 					<a href="${pageContext.request.contextPath}/management/guestChange.do"><li>승급관리</li></a>
+					<a href="${pageContext.request.contextPath}/management/chart.do"><li>차트통계</li></a>
 				</ul>
 			</div>
 			</c:if>

@@ -42,7 +42,7 @@ public class DeleteWorkHandler implements CommandHandler{
 		out.print(data);
 		out.flush();
 		
-		return null;
+		return "/WEB-INF/view/management/gradeChangeForm.jsp";
 	}
 
 }
