@@ -32,8 +32,11 @@ header #topmenu ul a{
 	color: black;
 }
 
+
+
+
 header #topmenu ul li{
-	width: 180px;
+	width: 145px;
 	height: 60px;
 	line-height: 60px;
 	text-decoration: none;
@@ -41,6 +44,13 @@ header #topmenu ul li{
 	float: left;
 	display: inline-block;
 }
+a#reserve li{
+	width:180px !important;
+	margin-left:10px;
+}
+
+
+
 header #topmenu li:hover{
 	text-decoration: underline;
 }
@@ -166,6 +176,7 @@ $(document).ready(function(){
 					<a href="${pageContext.request.contextPath}/view/produce.do"><li>INTRO</li></a>
 					<a href="${pageContext.request.contextPath}/view/hair.do"><li>HAIR</li></a>
 					<a href="${pageContext.request.contextPath}/view/video.do"><li>VIDEO</li></a>
+					<a href="${pageContext.request.contextPath}/board/managerList.do"><li>NOTICE</li></a>
 					<a href="${pageContext.request.contextPath}/review/review.do"><li>REVIEW</li></a>
 					<a href="${pageContext.request.contextPath}/reserve/form.do"><li>RESERVATION</li></a>
 					<a href="#" id="reserve"><li>RESERVATION STATE</li></a>
@@ -176,10 +187,10 @@ $(document).ready(function(){
 				<ul>
 					<a href="${pageContext.request.contextPath}/"><li>관리자페이지</li></a>
 					<a href="${pageContext.request.contextPath}/management/reserve.do"><li>예약관리</li></a>
+					<a href="${pageContext.request.contextPath}/board/managerList.do"><li>공지사항</li></a>
 					<a href="${pageContext.request.contextPath}/guest/guestList.do"><li>회원관리</li></a>
 					<a href="${pageContext.request.contextPath}/management/gradeChange.do"><li>등급관리</li></a>
 					<a href="${pageContext.request.contextPath}/management/guestChange.do"><li>승급관리</li></a>
-					<a href="${pageContext.request.contextPath}/"><li>미정</li></a>
 				</ul>
 			</div>
 			</c:if>
