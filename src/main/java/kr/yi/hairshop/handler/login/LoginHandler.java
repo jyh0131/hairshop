@@ -38,7 +38,7 @@ public class LoginHandler implements CommandHandler {
 				if(guest == null) { //회원없음
 					req.setAttribute("noMember", true);
 					System.out.println("회원 없음");
-					return "/WEB-INF/view/login/joinServiceCheck.jsp";
+					return "/WEB-INF/view/login/loginForm.jsp";
 				}else if(guest.getgPassword().equals(password) == false) { //비번 불일치
 					req.setAttribute("noPassword", true);
 					System.out.println("비번 불일치");
@@ -56,7 +56,7 @@ public class LoginHandler implements CommandHandler {
 				if(designer == null) { //디자이너 없음
 					req.setAttribute("noMember", true);
 					System.out.println("회원 없음");
-					return "/WEB-INF/view/login/joinServiceCheck.jsp";
+					return "/WEB-INF/view/login/loginForm.jsp";
 				}else if(designer.getdPassword().equals(password) == false) { //비번 불일치
 					req.setAttribute("noPassword", true);
 					System.out.println("비번 불일치");

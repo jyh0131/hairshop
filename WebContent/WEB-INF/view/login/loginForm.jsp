@@ -11,36 +11,30 @@
 	margin-top: 100px;
 	margin-bottom: 100px;
 }
-
 #loginform form {
 	width: 1080px;
 	margin: 0 auto;
 	padding-top: 40px;
 	padding-bottom: 40px;
 }
-
 #loginform p {
 	position: relative;
 	padding-left: 430px;
 	margin: 15px;
 }
-
 #loginform .loiginFormInput {
 	width: 180px;
 	height: 40px;
 	margin: 5px;
 }
-
 #loginform input #isMgn {
 	
 }
-
 #loginform .error {
 	position: absolute;
 	top: 18px;
 	left: 630px;
 }
-
 #loginform #naverIdLogin{
 	text-align: center;
 }
@@ -55,7 +49,8 @@
 		$("#f1").submit(function() {
 			$(".error").css("display", "none")
 			$(".error2").css("display", "none")
-
+			
+					
 			//빈 input태그가 존재하면 submit를 막는다
 			if (checkInputEmpty($("input[name]")) == false) {
 				return false;
@@ -66,10 +61,33 @@
 				$("input[name='password']").next().css("display", "inline");
 				return false;
 			}
+			
 			if ($("input[name='id']").val() == null) {
 				$("input[name='id']").next().css("display", "inline");
 				return false;
 			}
+			
+			
+
+			$.ajax({
+				url:"${pageContext.request.contextPath}/member/guestSelcetById.do",
+				type:"post",
+				data:{"id" : $("#id").val() },
+				dataType:"json",
+				success:function(data){
+					console.log(data); // data 1 = 같은 아이디가 있다, 0 아이디가 없다
+					
+					if(data==0){
+						alert("없는 아이디 입니다");
+						return false;
+					}
+
+					
+					
+				}
+			})
+			
+			
 		})
 		
 		var naverLogin = new naver.LoginWithNaverId({
@@ -105,25 +123,11 @@
 			<input type="submit" class="loiginFormInput" value="로그인">
 		</p>
 		
-		
 		<!-- 네이버아이디로로그인 버튼 노출 영역 -->
 		<p><div id="naverIdLogin"></div></p>
 		<!-- //네이버아이디로로그인 버튼 노출 영역 -->
 
-
-
-
 	</form>
-
-
-
-
-
-
-
-
-
-
 
 </section>
 
@@ -132,6 +136,13 @@
 
 
 <%@ include file="../../include/footer.jsp"%>
+
+
+
+
+
+
+
 
 
 
