@@ -107,13 +107,16 @@ header .mymenu a{
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>
 
+
 $(function () {
 	
-	$("#reserve").click(function() {
-
+	$("#reserve").submit(function(e) {
+		e.preventDefault();
 		$("#reserve").css("background-color", "red");
-		return false;
+		alert("되나?");
+		return false;		
 	})
+	
 })
 
 $(document).ready(function(){
@@ -122,6 +125,7 @@ $(document).ready(function(){
 		$("#topmenu").css("display", "none");
 	}
 	
+
 
 });
 	
@@ -168,7 +172,7 @@ $(document).ready(function(){
 					<a href="${pageContext.request.contextPath}/view/video.do"><li>VIDEO</li></a>
 					<a href="${pageContext.request.contextPath}/review/review.do"><li>REVIEW</li></a>
 					<a href="${pageContext.request.contextPath}/reserve/form.do"><li>RESERVATION</li></a>
-					<a href="#" id="reserve"><li>RESERVATION STATE</li></a>
+					<a href="${pageContext.request.contextPath}/reserve/form.do" id="reserve"><li>RESERVATION STATE</li></a>
 				</ul>
 			</div>
 			<c:if test="${Auth.uIsMgr == true }">

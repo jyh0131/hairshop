@@ -94,7 +94,49 @@
 		});
 		
 		$(".ddBtn").click(function() {
-			var newTitle = prompt("새로운 직책을 입력하세요", "실장 넘버원");
+			var nowGrade;
+			
+			$.ajax({
+				url:"${pageContext.request.contextPath}/member/designerGradeSelect.do",
+				type:"post",
+				data:{"id" : $(this).prev().val()},
+				dataType:"json",
+				success:function(data){
+					alert(data);
+					alert("되나?");
+					nowGrade = data;
+					
+					var newTitle = prompt("새로운 직책을 입력하세요", nowGrade);
+
+					var $this = $(this).parent().prev();
+					if (newTitle == null || newTitle == "") {
+						alert("취소 하였습니다");
+					} else {
+						
+						$.ajax({
+							url:"${pageContext.request.contextPath}/member/designerGradeModify.do",
+							type:"post",
+							data:{"id" : $(this).prev().val(), "title" : newTitle },
+							dataType:"json",
+							success:function(data){
+								if(data==1){
+									$this.text(newTitle);
+									alert("변경하였습니다");
+								}else{
+									alert("잠시 후 다시 시도 하세요");
+								}
+							}
+						})
+					}
+					
+					
+					
+					
+				}
+			})		
+			
+/* 			var newTitle = prompt("새로운 직책을 입력하세요", nowGrade);
+
 			var $this = $(this).parent().prev();
 			if (newTitle == null || newTitle == "") {
 				alert("취소 하였습니다");
@@ -114,7 +156,7 @@
 						}
 					}
 				})
-			}
+			} */
 		})	
 		
 	});
