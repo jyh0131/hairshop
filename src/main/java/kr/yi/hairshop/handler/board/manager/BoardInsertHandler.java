@@ -23,11 +23,25 @@ public class BoardInsertHandler implements CommandHandler {
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		if (req.getMethod().equalsIgnoreCase("get")) {
 
-			return "/WEB-INF/view/board/BoardInsertForm.jsp";
+			return "/WEB-INF/view/board/boardInsert.jsp";
 		} else if (req.getMethod().equalsIgnoreCase("post")) {
 
 			String uploadPath = req.getRealPath("upload");
+			
+			req.getRealPath("/");
+			//-> 현재 프로젝트 명 아래 폴더(..생략/tmp0/wtpwebapps/플젝명/)
 
+			req.getSession().getServletContext().getRealPath("");
+			//->현재 프로젝트 명까지(..생략/tmp0/wtpwebapps/플젝명)
+			 
+			this.getClass().getResource("").getPath();
+			//-> 현재 실행되는 자바가 위치한 폴더(..생략/tmp0/wtpwebapps/플젝명/WEB-INF/classes/com/***/controller/)
+
+			this.getClass().getResource("/").getPath();
+			//->현재 실행되는 자바의 최상위 폴더. (..생략/tmp0/wtpwebapps/플젝명/WEB-INF/classes/) 
+			
+			
+			
 			File dir = new File(uploadPath);
 			if (dir.exists() == false) {
 				dir.mkdir();
@@ -52,7 +66,6 @@ public class BoardInsertHandler implements CommandHandler {
 			String rWriter = user.getuId(); //글쓴이
 			
 			String rTitle = multi.getParameter("rTitle");
-			System.out.println(rTitle);
 			String rContent = multi.getParameter("rContent");
 			String rFile = multi.getFilesystemName("rFile");
 
@@ -60,7 +73,7 @@ public class BoardInsertHandler implements CommandHandler {
 
 			int result=dao.insertManagerBoard(review);
 
-			res.sendRedirect(req.getContextPath() + "/review/review.do");
+			res.sendRedirect(req.getContextPath() + "/board/managerList.do");
 			return null;
 
 		}

@@ -12,6 +12,8 @@ public interface EventMapper {
 	public int insert(Event event);
 	public int deleteByName(String name);
 	public int updateByName(Event event);
+
+	public List<Event> selectNowFastDay();
 	
 	
 }

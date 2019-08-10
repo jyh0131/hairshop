@@ -21,7 +21,7 @@ public class BoardDetailHandler implements CommandHandler {
 			
 			req.setAttribute("review", review);
 			
-			return "/WEB-INF/view/review/reviewDetail.jsp";
+			return "/WEB-INF/view/board/boardDetail.jsp";
 
 	}
 

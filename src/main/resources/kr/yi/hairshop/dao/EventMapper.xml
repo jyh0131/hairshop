@@ -31,4 +31,12 @@
 		delete from event where e_name=#{eName}
 	</delete>
 
+	<select id="selectNowFastDay" resultType="Event">
+		select * 
+		from event e 
+		where
+		e.e_startday&gt;=now()
+		order by curdate()-e.e_startday desc
+		limit 10;
+	</select>
 </mapper>

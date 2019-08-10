@@ -51,4 +51,11 @@ public class EventMapperImpl implements EventMapper {
 		}
 	}
 
+	@Override
+	public List<Event> selectNowFastDay() {
+		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
+			return sqlSession.selectList(namespace + ".selectNowFastDay");
+		}
+	}
+
 }

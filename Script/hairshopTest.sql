@@ -311,3 +311,9 @@ where g_id='ddd';
 
 
 
+
+select * 
+		from event e 
+		where now() <= e.e_startday 
+		order by now()-e.e_startday desc
+		limit 10;

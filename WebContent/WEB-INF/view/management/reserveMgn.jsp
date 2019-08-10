@@ -286,15 +286,14 @@ div#updatePageBlack #updateCommit{
 			var year = str.slice(0, 4);
 			var month = str.slice(str.indexOf(".") + 1);
 			calendar(year, month - 2);
-
+			$(".day").eq(0).click();
 		})
 		$(document).on('click', '#right', function() {
 			var str = $("#calendar h1").text();
 			var year = str.slice(0, 4);
 			var month = str.slice(str.indexOf(".") + 1);
-			console.log(year);
-			console.log(month);
 			calendar(year, month);
+			$(".day").eq(0).click();
 		})
 
 		$(document).on('click',".day",function() {

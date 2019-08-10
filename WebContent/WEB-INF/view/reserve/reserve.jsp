@@ -351,8 +351,7 @@ section article#border div#guest div#reserve span{
 			var year = str.slice(0, 4);
 			var month = str.slice(str.indexOf(".") + 1);
 			calendar(year, month - 2);
-			date="";
-
+			$(".day").eq(0).click();
 		})
 		$(document).on('click', '#right', function() {
 			var str = $("#calendar h1").text();
@@ -361,7 +360,7 @@ section article#border div#guest div#reserve span{
 			console.log(year);
 			console.log(month);
 			calendar(year, month);
-			date="";
+			$(".day").eq(0).click();
 		})
 
 		$(document).on('click',".day",function() {

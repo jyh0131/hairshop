@@ -22,7 +22,7 @@
 		select r_no, r_title, r_writer, r_writetime, r_d_no as d_no
 		from review
 		where r_d_no is not null
-		order by r_writetime desc
+		order by r_no desc
 	</select>
 	
 	<insert id="insertReview" parameterType="Review" >

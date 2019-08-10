@@ -68,6 +68,8 @@
 	margin: 150px auto 600px auto;
 	}
 	
+	
+	
 	.parallaxContainer {
 		background-repeat: no-repeat;
 		background-size: cover;
@@ -81,6 +83,37 @@
 	
 	.example2 {
 		background-image: url(http://www.chahongardor.com/wp-content/uploads/2019/02/ardor_8.jpg);
+	}
+	
+	#managerDiv{
+		background: url(${pageContext.request.contextPath }/images/etc/chahong.png);
+		background-repeat:no-repeat;
+		background-size:100% 100%;
+				
+		width:100%;
+		height: 400px;
+		margin:0 auto;
+		text-align: center;
+		padding:10%;
+	}
+	#managerDiv article h2{
+		font-size: 20px;
+		font-weight: bold;
+		margin-bottom: 10px;
+		margin-top:10px;
+	
+	}
+	
+	
+	
+	#managerDiv article{
+		float:left;
+		margin:10px;
+		width:26%;
+		background:rgba(255,255,255,0.7);
+		height:300px;
+		border: 1px solid black;
+		border-radius: 10px;
 	}
 </style>
 
@@ -145,7 +178,18 @@
 	</div>
 	
 	</div> <!-- << 있어야함 -->
-
+	
+	<div id="managerDiv">
+			<article>
+				<div><%@ include file="board/managerBoard.jsp"%></div>
+			</article>
+			<article>
+				<div><%@ include file="event/nowFastEvent.jsp" %></div>
+			</article>
+			<article>
+				<div>이슈이슈</div>
+			</article>
+	</div>
 	<div class="mov_box">
 		<!-- YouTube position -->
 		<div class="yt_wrap">
