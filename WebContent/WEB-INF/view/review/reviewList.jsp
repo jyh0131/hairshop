@@ -15,14 +15,13 @@
 		color: black;
 	}
 	section{
-		margin-top: 40px;
+		margin-top: 80px;
 		width: 100%;
 		height: 600px;
 	}
 	#example{
 		width: 800px;
 		text-align: center;
-		/* min-heigh:409px; */
 	}
 	#example td:nth-child(2){
 		text-align: left;
@@ -34,23 +33,26 @@
 	#example_info{
 		display: none;
 	} 
-	#example_wrapper{ 
+	#yellow{
+		width: 100%;
+		height: 20px;
 		position: relative;
+		/* background-color: yellow; */
 	}
 	#example_filter{  /* 검색창 */
 		position: absolute;
-		bottom:-100px;
-		left:800px;
+		top:-20px;
+		right:620px;
 	}
 	#example_paginate{ /* 페이지표시 */
 		position: absolute;
 		bottom:-50px;
 		left:800px;
 	}
-	#write{
+	#write{ /* 글쓰기 */
 		position: absolute;
-		bottom:293px;
-		right:590px;
+		top:250px;
+		right:550px; /* 580 */
 	}
 	#write a{
 		text-decoration: none;
@@ -64,6 +66,7 @@
 	}
 </style>
 <section>
+<div id="yellow"></div>
 	<table id="example" class="table table-bordered">
   	<thead>
     	<tr>
