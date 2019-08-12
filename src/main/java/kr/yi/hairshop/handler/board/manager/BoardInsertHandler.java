@@ -25,7 +25,7 @@ public class BoardInsertHandler implements CommandHandler {
 
 			return "/WEB-INF/view/board/boardInsert.jsp";
 		} else if (req.getMethod().equalsIgnoreCase("post")) {
-
+			
 			String uploadPath = req.getRealPath("upload");
 			
 			req.getRealPath("/");
