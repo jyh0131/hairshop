@@ -21,7 +21,7 @@
 		font-family: 'Arvo', serif;         
 	}  
 	footer .foot2{
-		font-family: 'Single Day', cursive;       
+		font-family: sans-serif;     
 	}    
 	footer #rights{
 		height: 40px;
@@ -49,7 +49,6 @@
 			</div>
 		</footer>
 	
-	</div>
 </body>
 </html>
 
