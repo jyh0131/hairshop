@@ -11,65 +11,152 @@
 	margin-top: 100px;
 	margin-bottom: 100px;
 }
-
 #loginform form {
 	width: 1080px;
 	margin: 0 auto;
 	padding-top: 40px;
 	padding-bottom: 40px;
 }
-
 #loginform p {
 	position: relative;
 	padding-left: 430px;
 	margin: 15px;
 }
-
 #loginform .loiginFormInput {
 	width: 180px;
 	height: 40px;
 	margin: 5px;
 }
-
 #loginform input #isMgn {
 	
 }
-
 #loginform .error {
 	position: absolute;
 	top: 18px;
 	left: 630px;
 }
-
 #loginform #naverIdLogin{
 	text-align: center;
 }
 </style>
 
 
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/common.js"></script>
 <script>
 	$(function() {
+		
+		//로그인 전에 아이디를 ajax로 검색해서 db에 있는지 없는지 판단한 결과가 저장되는 flag
+		var flag = false;
+		
 		$("#f1").submit(function() {
-			$(".error").css("display", "none")
-			$(".error2").css("display", "none")
+			alert("선택된 것은 "+$("select[name='isMgn']").val());
+			
+			if( $("select[name='isMgn']").val() == 0){
+				if(flag ==  false){
+					$.ajax({
+						url:"${pageContext.request.contextPath}/login/designerSelcetById.do",
+						type:"post",
+						data:{"id" : $("#id").val() },
+						dataType:"json",
+						success:function(data){
+							console.log(data); // data 1 같은 아이디가 있다, 0 아이디가 없다
+							if(data == 1){
+								alert("입력된 아이디와 같은 아이디가 DB에 있다");
+							}else{
+								alert("검색되지 않았다");
+							}
+							
+							if(data==0){
+								alert("없는 관리자 아이디 입니다");
+								
+								$(".error").css("display", "none")
+								$(".error2").css("display", "none")
+								
+								//빈 input태그가 존재하면 submit를 막는다
+								if (checkInputEmpty($("input[name]")) == false) {
+									return false;
+								}
 
-			//빈 input태그가 존재하면 submit를 막는다
-			if (checkInputEmpty($("input[name]")) == false) {
-				return false;
-			}
+								//입력 필드가 비어 있을때
+								if ($("input[name='password']").val() == null) {
+									$("input[name='password']").next().css("display", "inline");
+									return false;
+								}
+								
+								if ($("input[name='id']").val() == null) {
+									$("input[name='id']").next().css("display", "inline");
+									return false;
+								}
+							}else{
+								//로그인 전에 아이디를 ajax로 검색해서 db에 있는지 없는지 판단한 결과가 저장되는 flag
+								flag = true;
+								$("#f1").submit();
+								
+							}
+						}
+					})
+					
+					return false;
+				}					
+				
+				
+				
 
-			//입력 필드가 비어 있을때
-			if ($("input[name='password']").val() == null) {
-				$("input[name='password']").next().css("display", "inline");
-				return false;
+			}else{
+				
+				if(flag ==  false){
+					$.ajax({
+						url:"${pageContext.request.contextPath}/login/guestSelcetById.do",
+						type:"post",
+						data:{"id" : $("#id").val() },
+						dataType:"json",
+						success:function(data){
+							console.log(data); // data 1 = 같은 아이디가 있다, 0 아이디가 없다
+							if(data == 1){
+								alert("입력된 아이디와 같은 아이디가 DB에 있다");
+							}else{
+								alert("검색되지 않았다");
+							}
+							
+							if(data==0){
+								alert("없는 아이디 입니다");
+								
+								$(".error").css("display", "none")
+								$(".error2").css("display", "none")
+								
+								//빈 input태그가 존재하면 submit를 막는다
+								if (checkInputEmpty($("input[name]")) == false) {
+									return false;
+								}
+
+								//입력 필드가 비어 있을때
+								if ($("input[name='password']").val() == null) {
+									$("input[name='password']").next().css("display", "inline");
+									return false;
+								}
+								
+								if ($("input[name='id']").val() == null) {
+									$("input[name='id']").next().css("display", "inline");
+									return false;
+								}
+							}else{
+								//로그인 전에 아이디를 ajax로 검색해서 db에 있는지 없는지 판단한 결과가 저장되는 flag
+								flag = true;
+								$("#f1").submit();
+								
+							}
+						}
+					})
+					
+					return false;
+				}	
+				
 			}
-			if ($("input[name='id']").val() == null) {
-				$("input[name='id']").next().css("display", "inline");
-				return false;
-			}
+			
+		
+			
+			
 		})
 		
 		var naverLogin = new naver.LoginWithNaverId({
@@ -105,25 +192,13 @@
 			<input type="submit" class="loiginFormInput" value="로그인">
 		</p>
 		
-		
 		<!-- 네이버아이디로로그인 버튼 노출 영역 -->
-		<p><div id="naverIdLogin"></div></p>
+
+			<div id="naverIdLogin"></div>
+
 		<!-- //네이버아이디로로그인 버튼 노출 영역 -->
 
-
-
-
 	</form>
-
-
-
-
-
-
-
-
-
-
 
 </section>
 
@@ -132,6 +207,13 @@
 
 
 <%@ include file="../../include/footer.jsp"%>
+
+
+
+
+
+
+
 
 
 

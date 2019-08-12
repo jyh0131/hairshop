@@ -122,23 +122,26 @@ header div#chat{
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>
 
-
-
 $(function () {
 	
-	$("#reserve").click(function() {
-
+	//a 태그 막고 팝업 실행 시키기
+	
+	$("#reserve").click(function(e) {
+		e.preventDefault();
 		$("#reserve").css("background-color", "red");
+		alert("되나?");
 		return false;
 	})
+
+	
 })
 
+// 관리자 로그인 시 
 $(document).ready(function(){
-	
-	if( ${Auth.uIsMgr } == true){
+ 	
+	<c:if test="${Auth.uIsMgr == true }">
 		$("#topmenu").css("display", "none");
-	}
-	
+	</c:if>
 
 });
 	
@@ -186,7 +189,7 @@ $(document).ready(function(){
 					<a href="${pageContext.request.contextPath}/board/managerList.do"><li>NOTICE</li></a>
 					<a href="${pageContext.request.contextPath}/review/review.do"><li>REVIEW</li></a>
 					<a href="${pageContext.request.contextPath}/reserve/form.do"><li>RESERVATION</li></a>
-					<a href="#" id="reserve"><li>RESERVATION STATE</li></a>
+					<a href="${pageContext.request.contextPath}/reserve/form.do" id="reserve"><li>RESERVATION STATE</li></a>
 				</ul>
 			</div>
 			<c:if test="${Auth.uIsMgr == true }">

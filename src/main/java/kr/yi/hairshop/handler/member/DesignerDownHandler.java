@@ -22,31 +22,48 @@ public class DesignerDownHandler implements CommandHandler {
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
 
 //		1. Designer id로 불러오기
-//		2. Designer 기반으로 guest 생성
+//		2. id로 guest를 검색해서 이전 회원 정보가 있는지 확인
+//			2.1 회원정보가 있으면 >> 회원을 복구
+//			2.2 회원정보가 없으면 >> Designer 기반으로 guest 생성
 //		3. Designer 삭제(gSecession set)
-//		4. guest insert
 
 		String id = req.getParameter("id");
 		
 		GuestMapper gDao = new GuestMapperImpl();
 		DesignerMapper dDao = new DesignerMapperImpl();
 		
-		Designer des = dDao.selelctDesignerById(id);
-		Guest guest = new Guest();
+		Designer designer = dDao.selelctDesignerById(id);
+		Guest guest = gDao.selectById(designer.getdId());
 		
-		guest.setgId(des.getdId());
-		guest.setgPassword(des.getdPassword());
-		guest.setgLGrade(new Level("브론즈"));
-		guest.setgName(des.getdName());
-		guest.setgTel(des.getdTel());
-		guest.setgBirth(des.getdBirth());
-		guest.setgJoin(des.getdJoin());
-		guest.setgMemo("회사다녔던사람");
+		int result = 0;
 		
-		int result = dDao.deleteDesigner(des.getdNo());
-		result += gDao.insertGuest(guest);
-		
-		System.out.println("강등결과는 "+result);
+		if(guest == null) { //동일한 id로 검색된 회원이 없을때
+			
+			guest = new Guest();
+			guest.setgId(designer.getdId());
+			guest.setgPassword(designer.getdPassword());
+			guest.setgLGrade(new Level("브론즈"));
+			guest.setgName(designer.getdName());
+			guest.setgTel(designer.getdTel());
+			guest.setgBirth(designer.getdBirth());
+			guest.setgJoin(designer.getdJoin());
+			guest.setgMemo("회사다녔던사람");
+			
+			result = gDao.insertGuest(guest); //생성된 guest 삽입
+			
+		}else {
+			String memo = guest.getgMemo();
+			guest.setgMemo(memo + ", 회사다녔던사람");
+			guest.setgSecession(false); // 이전에 삭제되었던 회원 복구
+			
+			result = gDao.updateGuest(guest);
+		}
+
+		result += dDao.deleteDesigner(designer.getdNo());
+
+		if(result == 2) {
+			System.out.println("디자이너가 회원으로 강등 되었다");	
+		}	
 		
 		ObjectMapper om = new ObjectMapper();
 		String data = om.writeValueAsString(result); // json string으로 변환
