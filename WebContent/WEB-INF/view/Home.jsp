@@ -18,6 +18,9 @@
 <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
 
 <style>
+	#topDiv{
+		height: 100%;
+	}
 	#div1 {
 		background-color: white;
 		top:0;
@@ -31,7 +34,7 @@
 		width: 1900px;
 		margin:0 auto;
 		height: 593px;
-		position: static;
+		position: relative;
 	}  
 	.wrap_home img{
 		width:800px;
@@ -61,7 +64,7 @@
 	}
 	
 	#section{
-		height: 1400px;
+		height: 2954px;
 	}
 	
 	.lead {
@@ -74,7 +77,7 @@
 		background-repeat: no-repeat;
 		background-size: cover;
 		background-attachment: fixed;
-		height: 700px;
+		height: 937px;
 	}
 	
 	.example1 {
@@ -82,8 +85,10 @@
 	}
 	
 	.example2 {
-		background-image: url(http://www.chahongardor.com/wp-content/uploads/2019/02/ardor_8.jpg);
-	}
+	 		background-image: url(http://www.chahongardor.com/wp-content/uploads/2019/02/ardor_8.jpg);
+ 	}
+	
+	
 	
 	#managerDiv{
 		background: url(${pageContext.request.contextPath }/images/etc/chahong.png);
@@ -137,7 +142,6 @@
 		    captions: true,
 		    slideWidth: 1900,
 		    pause:2000,
-		    autoControls:true
 		  });
 		});
 	
@@ -158,58 +162,64 @@
 
 
 <body>
-	
-	<div>
-	<div id="section">
-		<div class="example1 parallaxContainer" data-slim-prx-speed="20">
-			<div class="container"></div>
+	<div id="topDiv">
+		<div>
+			<div id="section">
+				<div class="example1 parallaxContainer">
+					
+				</div>	
+				
+				<div class="example2 parallaxContainer">
+					
+				</div>
+				
+				<div class="mov_box">
+				<!-- YouTube position -->
+				<div class="yt_wrap">
+					<div id="player1" class="yt_box"></div>
+				</div>
+				</div>
+				
+			</div>
+			
+			<div id=div1><%@ include file="../include/header.jsp"%></div>
+			<div class="jquery-script-center">
+				<div class="jquery-script-ads">
+				</div>
+			</div>
+			
+			
+		
 		</div>
-
-		<div class="example2 parallaxContainer">
-			<div class="container"></div>
+		
+			
+		<div id="managerDiv">
+				<article>
+					<div><%@ include file="board/managerBoard.jsp"%></div>
+				</article>
+				<article>
+					<div><%@ include file="event/nowFastEvent.jsp" %></div>
+				</article>
+				<article>
+					<div>이슈이슈</div>
+				</article>
 		</div>
-		<p class="lead"></p>
-	</div>
+		
+		
+		
 	
-	<div id=div1><%@ include file="../include/header.jsp"%></div>
-	<div class="jquery-script-center">
-		<div class="jquery-script-ads">
+		
+		<div class="wrap_home">
+			<div class="bxslider"> 
+			    <div><img src="${pageContext.request.contextPath }/images/hair/33.jpg" title="Korea Nail Cup"></div>
+			  	<div><img src="${pageContext.request.contextPath }/images/hair/44.jpg" title="Korea Nail Expo Cup"></div>
+			  	<div><img src="${pageContext.request.contextPath }/images/hair/55.jpg" title="K-Beauty Olympic"></div>
+			  	<div><img src="${pageContext.request.contextPath }/images/hair/66.jpg" title="대구국제뷰티엑스포"></div>
+			  	<div><img src="${pageContext.request.contextPath }/images/hair/77.jpg" title="스타킹월드뷰티콘테스트"></div>
+			</div>
 		</div>
-	</div>
 	
 	</div>
-	
-	<div id="managerDiv">
-			<article>
-				<div><%@ include file="board/managerBoard.jsp"%></div>
-			</article>
-			<article>
-				<div><%@ include file="event/nowFastEvent.jsp" %></div>
-			</article>
-			<article>
-				<div>이슈이슈</div>
-			</article>
-	</div>
-	
-	
-	
-	<div class="mov_box">
-		<!-- YouTube position -->
-		<div class="yt_wrap">
-			<div id="player1" class="yt_box"></div>
-		</div>
-	</div>
-	
-	<div class="wrap_home">
-		<div class="bxslider"> 
-		    <div><img src="${pageContext.request.contextPath }/images/hair/33.jpg" title="Korea Nail Cup"></div>
-		  	<div><img src="${pageContext.request.contextPath }/images/hair/44.jpg" title="Korea Nail Expo Cup"></div>
-		  	<div><img src="${pageContext.request.contextPath }/images/hair/55.jpg" title="K-Beauty Olympic"></div>
-		  	<div><img src="${pageContext.request.contextPath }/images/hair/66.jpg" title="대구국제뷰티엑스포"></div>
-		  	<div><img src="${pageContext.request.contextPath }/images/hair/77.jpg" title="스타킹월드뷰티콘테스트"></div>
-		</div>
-	</div>
-	
 	
 	<script src="${pageContext.request.contextPath}/js/ytmultiple.js"></script>
 	<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
@@ -263,6 +273,7 @@
 			s.parentNode.insertBefore(ga, s);
 		})();
 	</script>
+	
 </body>
 
 <%@ include file="../include/footer.jsp"%>
