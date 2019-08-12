@@ -53,7 +53,7 @@
     	}else{
     		myMessage=rendomNum+" : "+ inputMessage.value + "\n";
     	}
-    	textarea.value += myMessage+"\n";
+    	textarea.value += myMessage;
         webSocket.send('${Auth.uName} : '+inputMessage.value);
         inputMessage.value = "";
         
