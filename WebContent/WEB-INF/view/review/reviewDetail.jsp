@@ -32,26 +32,26 @@
 		width: 100%;
 		padding-top:20px;
 		padding-bottom:20px;
-		margin-bottom:20px;
 		border-bottom:1px solid #353535;
 	}
 	#aaa{
 		position: relative;
 		width: 100%;
 		height: 50px;
-		margin-top:20px;
+		margin-top:10px;
 	} 
 	#aaa #list{
 		position: absolute;
 		top:10px;
 		left:0;
+		width: 100%;
+		height: 30px;
 	}
 	#aaa #md{
 		position: absolute;
-		top:10px;
+		top:0;
 		right: 0;
 	}
-	
 	#aaa a{
 		text-decoration: none;
 		border:1px solid #ccc;
@@ -63,55 +63,163 @@
 		font-size: 13px;
 		padding:10px;
 	}
-	.comment{
-		margin-top:20px;
+	.comment{ /* 댓글 div */
+		margin-top:40px;
 		width: 100%;
 		height: 40%;
 		position: relative;
+		margin-bottom: 40px;
+		background-color: #F6F6F6;
 	}
-	.comment table{
-		border-top:1px solid #ccc;
-		border-bottom:1px solid #ccc;
+	.comment table{ /* 댓글쓰는 공간 */
+		border:none;
 		width: 100%;
 		height: 60px;
-	}
-	.comment table input{
-		background-color: white;
-		border:none;
-		font-size: 16px;
+		
+		padding:30px 15px 20px 30px;
 	}
 	textarea{
-		width: 80%;
+		width: 90%;
 		height: 60px;
 		resize: none;
+		border:1px solid #ccc;
 	}
 	textarea:focus{
 		outline: none;
 	}
-	.comment button{
+	.comment #deugrok{
+		width:60px;
+		height: 62px;
 		background-color: white;
 		border: 1px solid #ccc;
 		color:#5D5D5D;
 		font-size: 13px;
 		padding:10px;
 		position: absolute;
-		top:50px;
+		top:35x;
 		right: 20px;
+	}
+	.comment #onlycomment{
+		padding:10px;
+		font-size: 14px;
+		
+	}
+	.comment .commentM{
+		width:100%;
+		height:20px;	
+		text-align: right;
+	}
+	
+	.comment #commentFirst{
+		width: 100%;
+		height: 20px;
+		margin-bottom: 10px;
+	}
+	.comment #commentContent{
+		width: 100%;
+		height: 40px;
+		border-bottom:1px dotted #5D5D5D;
+		margin-bottom: 10px;
+	
+	}
+	.comment #cwriter{
+		margin-right: 10px;
+		font-weight: bold;
+		color:#353535;
+	}
+	.comment #commentFirst{ 
+		color:#747474;
 	}
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>
 	$(function(){
-		$("#delete").click(function(){
+		$("#delete").click(function(){ /* 리뷰게시물 삭제 */
 			var a = confirm("삭제하시겠습니까?");
 			if(a==true){
 				location.href = "${pageContext.request.contextPath}/review/delete.do?no=${review.rNo}";
 			}
 				return false;
 		})
+		
+		/* 댓글 삭제하려고 함 */
+		
+		$(".btnDelete").click(function(){
+			if (!confirm("삭제하시겠습니까?")) {
+			        return;
+			    }
+			
+			var rNo = $(this).attr("data-rno"); //리뷰번호
+			var $btn = $(this); //삭제버튼
+			
+			$.ajax({
+				url:"${pageContext.request.contextPath}/comment/delete.do",
+				type:"get",
+				data:{"rNo":rNo}, //핸들러에서 파라미터값이랑 동일.
+				dataType:"json",
+				success:function(json){
+					console.log(json); 
+					
+					if(json.success == true){
+						$btn.closest("#commentFirst").remove();	
+						$btn.closest("#commentContent").remove();
+						
+						
+					}
+				}
+			})
+		})
+		
+		
+		/* 댓글 등록하려고 함 */
+		$(".btninsert").click(function(){
+			if ($.trim($("#cContent").val()) == "") {
+		        alert("댓글 내용을 입력해주세요.");
+		        $("#cContent").focus();
+		        return;
+		    }
+
+			if (!confirm("등록하시겠습니까?")) {
+		        return;
+		    }
+			
+			var rNo = $(this).attr("data-rno"); //리뷰번호
+			var gNo = $(this).attr("data-gno"); //손님번호
+			var cWriter = $("#cWriter").val(); //작성자
+			var cContent = $("#cContent").val(); //댓글내용
+			
+			$.ajax({
+				url:"${pageContext.request.contextPath}/comment/insert.do",
+				type:"get",
+				data:{"rNo":rNo, "cContent":cContent, "cWriter":cWriter, "gNo":gNo}, //핸들러에서 파라미터값이랑 동일.
+				dataType:"json",
+				success:function(json){
+					console.log(json); 
+					
+					
+					var str="<span id='cwriter'>"+json.cWriter+"</span>";
+					str+=new Date(comment.cWritetime).format('yyyy-MM-dd hh:mm');
+					str+="<button class='btnModify'>"+"수정";
+					str+="</button>";
+					str+="<button class='btnModify'>"+"삭제";
+					str+="</button></div>";
+					str+="<div id='commentContent'>"+json.cContent+"</div>";
+					$("#coco").append(str);
+				}
+			})
+			
+		})
+		
+		
+		
+		
+		
 	})
 </script>
 <section>
+${Auth }<br>
+${review }<br>
+${list }
 	<div id="first">
 		<h4>${review.rTitle}</h4>
 		<p>${review.rWriter} | <fmt:formatDate value="${review.rWritetime}" pattern="yyyy.MM.dd"/></p>
@@ -133,68 +241,53 @@
 	</c:if> 
 	</div>	
 	</div>
+
 	<div class="comment">
-				<c:if test="${Auth!=null}"><!-- 댓글삽입하는곳 / 로그인했을때만 -->
+	<div id="onlycomment"><!-- 댓글리스트가 보여야해 -->
+		<c:forEach var="Comment" items="${list }">
+			<div id="coco">
+			<div id="commentFirst">
+				<span id="cwriter">${Comment.cWriter}</span>
+				<fmt:formatDate value="${Comment.cWritetime }" pattern="yyyy.MM.dd hh:mm"/>
+				<div class="commentM">
+					<button class="btnModify">수정</button>
+					<button class="btnDelete" data-rno="${review.rNo}" >삭제</button>
+				</div>
+			</div>
+			<div id="commentContent">
+				${Comment.cContent }
+			</div>
+			</div>
+		</c:forEach>
+	</div>
+			<c:if test="${Auth!=null}"><!-- 댓글삽입하는곳 / 로그인했을때만 -->
 					<table>
 						<tr>
 							<td>
-								<input type="text" name="cWriter" disabled="disabled" id="cWriter" value="${Auth.uId }">
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<textarea name="cContent"></textarea>
-								<button>등록</button>
-							</td>
-						</tr>
-					</table>
-					</c:if>
-				</div>
-		<div class="comment">
+								<!-- 댓글작성자 -->
+								<input type="hidden" name="cWriter" disabled="disabled" id="cWriter" value="${Auth.uId }">
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<textarea name="cContent" id="cContent" placeholder="댓글을 입력하세요"></textarea>
+									<button id="deugrok" class="btninsert" data-rno="${review.rNo}" data-gno="${review.rGNo.gNo}">등록</button>
+								</td>
+						
+							</tr>
+						</table>
+				</c:if>
 			<c:if test="${Auth==null}"><!-- 로그인 하지 않았다면 로그인유도 -->
-					<table border="1">
+					<table>
 						<tr>
 							<td>
-								댓글을 작성하려면 로그인 해주세요. <a href="#">[로그인]</a>
+								댓글을 작성하려면 로그인 해주세요. <a href="${pageContext.request.contextPath}/login/login.do">[로그인]</a>
 							</td>
 						</tr>
 					</table>
 			</c:if>	
 		</div>		
-	<!-- 댓글 -->
-	<%-- <c:if test="${Auth != null }">
-		<form id="">
-			<input type="hidden" name="cNo" value="">
-		</form>
-		<c:forEach var="comment" items="${list }">
-			<tr>
-				<td>
-						${comment.cWriter }<br>
-						${comment.cContent }<br>
-				</td>
-				<td>
-					${comment.cWritetime }
-				</td>
-				<c:if test="#{comment.cWriter == Auth.uId }">
-					<td>
-						<a href="#">수정</a>
-						<a href="#">삭제</a>
-					</td>
-				</c:if>
-			</tr>
-				
-			
-		</c:forEach>
-	</c:if>
-	 --%>
-	
-	
-	
-	
-	
-	
-	
 	
 </section>
-
 <%@ include file="../../include/footer.jsp" %>
+

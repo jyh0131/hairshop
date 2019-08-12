@@ -18,18 +18,9 @@ public class ReviewHandler implements CommandHandler {
 
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
-		SqlSession sqlSession = null;
-		try {
-			sqlSession = MyBatisSqlSessionFactory.openSession();
-			ReviewMapper dao = ReviewMapperImpl.getInstance(sqlSession);
+			ReviewMapper dao = new ReviewMapperImpl();
 			List<Review> list = dao.selectReview();
 			req.setAttribute("list", list);
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally {
-			sqlSession.close();
-		}
 		return "/WEB-INF/view/review/reviewList.jsp";
 	}
 

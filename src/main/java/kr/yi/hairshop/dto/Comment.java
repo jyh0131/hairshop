@@ -5,8 +5,8 @@ import java.util.Date;
 public class Comment {
 
 	private int cNo;
-	private int gNo;
-	private int rNo;
+	private Guest gNo;
+	private Review rNo;
 	private String cWriter; //컬럼추가해야함. 작성자
 	private Date cWritetime; //컬럼추가해야함. 작성일
 	private String cContent;
@@ -15,7 +15,17 @@ public class Comment {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Comment(int cNo, int gNo, int rNo, String cWriter, Date cWritetime, String cContent, Boolean cDelete) {
+	
+	public Comment(Guest gNo, Review rNo, String cWriter, String cContent, Date cWritetime) {
+		super();
+		this.gNo = gNo;
+		this.rNo = rNo;
+		this.cWriter = cWriter;
+		this.cContent = cContent;
+		this.cWritetime = cWritetime;
+	}
+
+	public Comment(int cNo, Guest gNo, Review rNo, String cWriter, Date cWritetime, String cContent, Boolean cDelete) {
 		super();
 		this.cNo = cNo;
 		this.gNo = gNo;
@@ -25,24 +35,30 @@ public class Comment {
 		this.cContent = cContent;
 		this.cDelete = cDelete;
 	}
+
 	public int getcNo() {
 		return cNo;
 	}
 	public void setcNo(int cNo) {
 		this.cNo = cNo;
 	}
-	public int getgNo() {
+	
+	public Guest getgNo() {
 		return gNo;
 	}
-	public void setgNo(int gNo) {
+
+	public void setgNo(Guest gNo) {
 		this.gNo = gNo;
 	}
-	public int getrNo() {
+
+	public Review getrNo() {
 		return rNo;
 	}
-	public void setrNo(int rNo) {
+
+	public void setrNo(Review rNo) {
 		this.rNo = rNo;
 	}
+
 	public String getcWriter() {
 		return cWriter;
 	}

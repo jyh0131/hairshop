@@ -15,7 +15,7 @@
 		color: black;
 	}
 	section{
-		margin-top: 80px;
+		margin-top: 70px;
 		width: 100%;
 		height: 600px;
 	}
@@ -41,25 +41,26 @@
 	}
 	#example_filter{  /* 검색창 */
 		position: absolute;
-		top:-20px;
-		right:620px;
+		bottom:-40px;
+		left:580px;
 	}
 	#example_paginate{ /* 페이지표시 */
 		position: absolute;
 		bottom:-50px;
-		left:800px;
+		right:550px;
 	}
 	#write{ /* 글쓰기 */
 		position: absolute;
-		top:250px;
-		right:550px; /* 580 */
+		top:235px;
+		right:590px;
+		
 	}
 	#write a{
 		text-decoration: none;
 		border:1px solid #ccc;
 		width: 60px;
 		height: 30px;
-		background-color: white;
+		background-color:#F6F6F6;
 		border: 1px solid #ccc;
 		font-size: 13px;
 		padding:5px 10px;
