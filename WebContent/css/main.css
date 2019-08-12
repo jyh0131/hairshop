@@ -1,0 +1,260 @@
+@charset "UTF-8";
+
+*{
+	margin:0;
+	padding:0;
+	list-style: none;
+}
+body{
+	
+}
+
+
+@media screen and (min-width:1200px){
+
+/* header */
+
+header{
+	width:100%;
+	height:90px;
+	background-color: rgba(0,0,0,0.7);
+	position: absolute;
+	top:0;
+	left:0;
+}
+#toggle{
+	display: none;
+}
+
+header #icon{
+	float:left;
+	margin-top:10px;
+	margin-left:10px;
+}
+header p{
+	float:left;
+	line-height: 90px;
+	margin-left:10px;
+	font-family: '궁서체';
+	color:white;
+	text-shadow: 1px 1px 1px #ccc;
+}
+header #menu{
+	float:right;
+}
+header #menu li{
+	float:left;
+	line-height: 90px;
+	margin-left:20px;
+	margin-right:50px;
+	font-family: Roboto,'굴림';
+
+}
+header #menu li a{
+	text-decoration: none;
+	color:white;
+}
+
+/* section */
+section{
+
+}
+section #main1{
+	width:100%;
+	height:600px;
+	background: url("../images/mobileSample/main_img.jpeg") no-repeat;
+	background-size: cover;
+}
+section p{
+	text-align: center;
+	font-size: 3em;
+	text-decoration: underline;
+}
+section #main2{
+	margin:0 auto;
+	width:60%;
+
+}
+section #left{
+	width:60%;
+	float:left;
+}
+section #img1{
+	width:100%;
+}
+section #img2{
+	width:49.5%;
+	float:left;
+}
+section #img3{
+	width:49.5%;
+	float:right;
+}
+section #right{
+	width:39.5%;
+	float:right;
+}
+section #img4{
+	
+}
+
+
+section #img1 img{
+	width:100%;
+}
+section #img2 img{
+	width:100%;
+}
+section #img3 img{
+	width:100%;
+}
+section #img4 img{
+	width:100%;
+}
+section #img4  {
+	width:100%;
+}
+
+/* footer */
+footer{
+	clear:both;
+	height:60px;
+	background-color: black;
+	color:white;
+	text-align: center;
+	line-height: 60px;
+}
+
+}
+
+
+@media all and (max-width:1199px){
+/* header */
+
+input#toggle:checked ~div#menu{
+	display: block;
+	background-color: rgba(0,0,0,0.7);
+	z-index: 1;
+	height:600px;
+	
+}
+header{
+	width:100%;
+	height:50px;
+ 	background-color: black;
+}
+header #toggle{
+	display: none;
+}
+header #icon img{
+	display: none;
+}
+header label{
+	display:block;
+	background-image: url("../images/mobileSample/menu.png");
+	background-size:cover;
+	display:block;
+	width:30px;
+	height:30px;
+	float:left;
+	position:absolute;
+	top:10px;
+	left:10px;
+}
+header p{
+	width:100%;
+	float:left;
+	line-height: 50px;
+	font-family: '굴림';
+	color:white;
+	text-align: center;
+
+}
+header #menu{
+	display:none;
+	clear:both;
+	background-color: rgba(0,0,0,0.7);
+	z-index: 100;
+	height:600px;
+ 	position: absolute;
+	width:100%;
+	top:50px;
+	left:0;
+}
+header #menu li{
+	text-align:center;
+	line-height: 50px;
+	font-family: Roboto,'굴림';
+	border-bottom:1px solid white;
+}
+header #menu li a{
+	text-decoration: none;
+	color:white;
+}
+
+/* section */
+section{
+
+}
+section #main1{
+	width:100%;
+	height:254px;
+	background: url("../images/mobileSample/main_img2.jpg") no-repeat;
+	background-size: cover;
+}
+section p{
+	text-align: center;
+	font-size: 16px;
+	font-weight: bold;
+}
+section #main2{
+	margin:0 auto;
+	width:90%;
+}
+section #left{
+	width:100%;
+	float:left;
+}
+section #img1{
+	width:100%;
+}
+section #img2{
+	width:49.5%;
+	float:left;
+}
+section #img3{
+	width:49.5%;
+	float:right;
+}
+section #right{
+	width:100%;
+	float:right;
+}
+section #img4{
+	width:100%;	
+}
+section #img1 img{
+	width:100%;
+}
+section #img2 img{
+	width:100%;
+}
+section #img3 img{
+	width:100%;
+}
+section #img4 img{
+	display: none;
+}
+/* footer */
+footer{
+	clear:both;
+	height:50px;
+	background-color: black;
+	color:white;
+	text-align: center;
+	line-height: 50px;
+}	
+	
+}
+
+

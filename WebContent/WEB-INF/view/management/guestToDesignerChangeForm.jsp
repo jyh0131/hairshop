@@ -7,7 +7,6 @@
 <style>
 #guestChange{
 	width:800px;
-	height:400px;
 	margin: 0 auto;
 	margin-top: 60px;
 	margin-bottom: 60px;
@@ -66,6 +65,7 @@
 		
 		//회원 승급 버튼
 		$(document).on("click","#gChangeBtn",function(){
+			
 			$.ajax({
 				url:"${pageContext.request.contextPath}/member/guestToDesignerModify.do",
 				type:"post",
@@ -75,23 +75,22 @@
 					if(data != null){
 						alert("승급하였습니다");
 						console.log(data);
-						$("#ddTable").append("<tr><td>"+data.dName+"</td><td>"+data.dGrade+"</td><td><input type='hidden' value='"+data.dId+"' class='dId'><button class='downBtn'>강 등</button><button class='delBtn'>삭 제</button></td></tr>");
+						$("#ddTable").append("<tr><td>"+data.dName+"</td><td>"+data.dGrade+"</td><td><input type='hidden' value="+data.dId+" class='dId'><button class='downBtn'>강 등</button><button class='delBtn'>삭 제</button></td></tr>");
 	
 					}else{
 						alert("정상적으로 작업되지 않았습니다.");
 					}
 				}
 			})
+			
 		})
+		
 		
 		
 	})
 	
-	
-	$(document).ready(function() {
-		
 		//디자이너 삭제 버튼
-		$(".delBtn").click(function() {
+		$(document).on("click",".delBtn",function(){
 			var del = confirm("삭제 하시겠습니까?");
 			var $this = $(this).parent().parent();
 			
@@ -113,11 +112,12 @@
 						}
 					}
 				})
-			}
-		})
+			}			
+		})	
+		
 		
 		//디자이너 회원으로 강등하는 버튼
-		$(".downBtn").click(function () {
+		$(document).on("click",".downBtn",function(){
 			var down = confirm("강등 하시겠습니까?");
 			var $this = $(this).parent().parent();
 			
@@ -138,13 +138,9 @@
 						}
 					}
 				})
-			}
-		})
-		
-		
-		
-		
-	});
+			}			
+		})	
+
 	
 </script>
 
@@ -178,7 +174,7 @@
 				<c:forEach var="designer" items="${dList }">
 				<tr>
 					<td>${designer.dName}</td>
-					<td>${designer.dGrade}</td>
+					<td>${designer.dGrade}</td>					
 					<td>
 						<input type="hidden" value="${designer.dId }" class="dId">
 						<button class="downBtn">강 등</button>

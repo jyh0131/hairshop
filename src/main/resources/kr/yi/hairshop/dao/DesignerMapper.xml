@@ -66,7 +66,8 @@
 
 	<update id="updateDesigner">
 		UPDATE designer
-		SET d_id=#{dId}, d_password=#{dPassword}, d_grade=#{dGrade}, d_name=#{dName}, d_tel=#{dTel}, d_tel2=#{dTel2}, d_addr=#{dAddr}, d_addr2=#{dAddr2}, d_addr3=#{dAddr3}, d_birth=#{dBirth}, d_join=#{dJoin}, d_memo=#{dMemo}
+		SET d_id=#{dId}, d_password=#{dPassword}, d_grade=#{dGrade}, d_name=#{dName}, d_tel=#{dTel}, 
+		d_tel2=#{dTel2}, d_addr=#{dAddr}, d_addr2=#{dAddr2}, d_addr3=#{dAddr3}, d_birth=#{dBirth}, d_join=#{dJoin}, d_memo=#{dMemo}, d_secession=#{dSecession}
 		WHERE d_no=#{dNo}
 	</update>
 	
