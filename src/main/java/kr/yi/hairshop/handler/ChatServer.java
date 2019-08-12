@@ -21,11 +21,6 @@ public class ChatServer {
 	//클라이언트로부터 메시지가 도책했을경우 처리방법
 	@OnMessage
 	public void onMessage(String message, Session session) throws IOException {
-		System.out.println(message);
-		
-		
-		
-		
 		
 		synchronized (clients) {
 			// Iterate over the connected sessions
