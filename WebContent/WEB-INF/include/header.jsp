@@ -17,7 +17,7 @@
 <style>
 
 header{
-	width: 1080px;
+	width: 60%;
 	height: 155px;
 	margin:0 auto;
 	margin-top: 20px;
@@ -27,13 +27,13 @@ header #title{
 	text-align: center;
 }
 header #title img{
-	height: 90px;
+	height: 60%;
 }
 header #topmenu ul a{
 	color: black;
 }
 header #topmenu ul li{
-	width: 145px;
+	width: 13%;
 	height: 60px;
 	line-height: 60px;
 	text-decoration: none;
@@ -71,7 +71,7 @@ header #topmenuMgn li:hover{
 	background-color: black; 
 }
 header #Idcheck{
-	width:230px;
+	min-width:15%;
 	height:30px;
 	position: absolute;
 	display: inline;
