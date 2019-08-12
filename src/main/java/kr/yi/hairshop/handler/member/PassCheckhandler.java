@@ -4,14 +4,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.ibatis.session.SqlSession;
-
 import kr.yi.hairshop.controller.CommandHandler;
 import kr.yi.hairshop.dao.GuestMapper;
 import kr.yi.hairshop.dao.GuestMapperImpl;
 import kr.yi.hairshop.dto.Guest;
 import kr.yi.hairshop.dto.User;
-import kr.yi.hairshop.util.MyBatisSqlSessionFactory;
 
 public class PassCheckhandler implements CommandHandler {
 
