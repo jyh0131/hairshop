@@ -190,6 +190,9 @@
 				<div>이슈이슈</div>
 			</article>
 	</div>
+	
+	
+	
 	<div class="mov_box">
 		<!-- YouTube position -->
 		<div class="yt_wrap">
