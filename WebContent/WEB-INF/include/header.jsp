@@ -63,7 +63,7 @@ header #topmenuMgn ul li{
 	text-decoration: none;
 	text-align: center;
 	float: left;
-	display: inline-block;
+	display: inline-block; 
 	color: white;
 	background-color: #aaa;
 }
