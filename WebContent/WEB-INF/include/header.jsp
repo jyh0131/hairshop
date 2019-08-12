@@ -106,12 +106,32 @@ header .mymenu a{
 	font-weight: bold;
 	line-height: 40px;
 }
+
+header div#chat textarea{
+	background-color: rgba(0,0,0,0.5);
+	color: white;
+}
 header div#chat{
 	position: fixed;
-	
-	right:0;
+	right:-5px;
 	top:200px;
+	padding:0;
+	z-index: 100;
 }
+
+
+header button#chatShow{
+	position: fixed;
+	right:0;
+	top:180px;
+	border-radius:5px;
+	background: rgba(255,255,255,0.5);
+}
+
+
+
+
+
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>
@@ -123,7 +143,6 @@ $(function () {
 	$("#reserve").click(function(e) {
 		e.preventDefault();
 		$("#reserve").css("background-color", "red");
-		alert("되나?");
 		return false;
 	})
 
@@ -199,10 +218,29 @@ $(document).ready(function(){
 				</ul>
 			</div>
 			</c:if>
+			<button id="chatShow">채팅 숨기기</button>
 			<div id="chat">
+			
 				<%@ include file="../../ChatClient.jsp"%>
 			</div>
+			
+			<script>
+				$("#chatShow").click(function() {
+					$("#chat").slideToggle();
+					if($(this).text()=='채팅 숨기기'){
+						$(this).text("채팅 보이기");
+					}else{
+						$(this).text("채팅 숨기기");
+					}
+					
+				})
+			</script>
 		</header>
+		
+		
+	
+	
+	
 		
 		
 					
