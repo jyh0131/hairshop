@@ -113,13 +113,19 @@ header div#chat textarea{
 }
 header div#chat{
 	position: fixed;
-	right:0;
+	right:-5px;
 	top:200px;
+	padding:0;
+	z-index: 100;
 }
+
+
 header button#chatShow{
 	position: fixed;
 	right:0;
 	top:180px;
+	border-radius:5px;
+	background: rgba(255,255,255,0.5);
 }
 
 
@@ -137,7 +143,6 @@ $(function () {
 	$("#reserve").click(function(e) {
 		e.preventDefault();
 		$("#reserve").css("background-color", "red");
-		alert("되나?");
 		return false;
 	})
 
@@ -213,7 +218,7 @@ $(document).ready(function(){
 				</ul>
 			</div>
 			</c:if>
-			<button id="chatShow">감추기</button>
+			<button id="chatShow">채팅 숨기기</button>
 			<div id="chat">
 			
 				<%@ include file="../../ChatClient.jsp"%>
@@ -222,10 +227,10 @@ $(document).ready(function(){
 			<script>
 				$("#chatShow").click(function() {
 					$("#chat").slideToggle();
-					if($(this).text()=='감추기'){
-						$(this).text("보이기");
+					if($(this).text()=='채팅 숨기기'){
+						$(this).text("채팅 보이기");
 					}else{
-						$(this).text("감추기");
+						$(this).text("채팅 숨기기");
 					}
 					
 				})

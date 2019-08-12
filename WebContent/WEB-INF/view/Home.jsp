@@ -95,7 +95,7 @@
 		background-repeat:no-repeat;
 		background-size:100% 100%;
 				
-		width:100%;
+		width:80%;
 		height: 400px;
 		margin:0 auto;
 		text-align: center;
@@ -114,7 +114,7 @@
 	#managerDiv article{
 		float:left;
 		margin:10px;
-		width:26%;
+		width:30%;
 		background:rgba(255,255,255,0.7);
 		height:300px;
 		border: 1px solid black;

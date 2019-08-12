@@ -20,7 +20,7 @@
 	$(function() {
 		var nowDate=new Date();
 		var data;
-		var arr;
+		var arr=new Array();
 		var options = {
 				title : '총 매출 통계',
 				curveType : 'function',
@@ -36,7 +36,19 @@
 			success : function(json) {
 				console.log(json);
 				
-				arr= [
+				arr[0]=['Month',nowDate.getFullYear()+"년"];
+				for(var i=1; i<13; i++){
+					arr[i]=new Array();
+					for(var j=1; j<2; j++){
+						arr[i][0]=i;
+						arr[i][j]=0;
+					}
+				}
+				
+				
+				console.log(arr)
+				
+				/* arr= [
 					['Month',nowDate.getFullYear()+"년"],
 					[1,0],
 					[2,0],
@@ -50,7 +62,7 @@
 					[10,0],
 					[11,0],
 					[12,0]
-				]
+				] */
 				
 				console.log(arr);
 				
@@ -120,8 +132,6 @@
 						[11,0],
 						[12,0]
 					]
-					
-					arr[1][1]=31;
 					
 					console.log(arr);
 					

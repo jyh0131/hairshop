@@ -1,11 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
- <fieldset>
+<style>
+	fieldset#chatFiled{
+		border: 0;
+		width:230px;
+	}
+	fieldset#chatFiled input[type="text"]{
+		width:100%;
+		margin: 0;
+	}
+	fieldset#chatFiled input[type="submit"]{
+		display: none;
+	}
+	
+	
+</style>
+ <fieldset id="chatFiled">
      <textarea id="messageWindow" rows="10" cols="30" readonly="true"></textarea>
-     <br/>
      <input id="inputMessage" type="text"/>
-     <input type="submit" value="send" onclick="send()" />
+     <input type="submit" value="" onclick="send()" />
  </fieldset>
 <script type="text/javascript">
 	var randomNum=Math.floor(Math.random() * 899) + 100;
