@@ -27,7 +27,6 @@ public class DesignerDownHandler implements CommandHandler {
 //			2.2 회원정보가 없으면 >> Designer 기반으로 guest 생성
 //		3. Designer 삭제(gSecession set)
 
-
 		String id = req.getParameter("id");
 		
 		GuestMapper gDao = new GuestMapperImpl();
@@ -50,17 +49,21 @@ public class DesignerDownHandler implements CommandHandler {
 			guest.setgJoin(designer.getdJoin());
 			guest.setgMemo("회사다녔던사람");
 			
+			result = gDao.insertGuest(guest); //생성된 guest 삽입
+			
 		}else {
 			String memo = guest.getgMemo();
 			guest.setgMemo(memo + ", 회사다녔던사람");
-			guest.setgSecession(false); // 삭제 복구
+			guest.setgSecession(false); // 이전에 삭제되었던 회원 복구
 			
 			result = gDao.updateGuest(guest);
 		}
 
 		result += dDao.deleteDesigner(designer.getdNo());
-		
-		System.out.println("강등결과는 "+result);
+
+		if(result == 2) {
+			System.out.println("디자이너가 회원으로 강등 되었다");	
+		}	
 		
 		ObjectMapper om = new ObjectMapper();
 		String data = om.writeValueAsString(result); // json string으로 변환

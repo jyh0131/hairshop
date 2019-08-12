@@ -8,11 +8,14 @@ import javax.servlet.http.HttpServletResponse;
 import org.codehaus.jackson.map.ObjectMapper;
 
 import kr.yi.hairshop.controller.CommandHandler;
+import kr.yi.hairshop.dao.DesignerMapper;
+import kr.yi.hairshop.dao.DesignerMapperImpl;
 import kr.yi.hairshop.dao.GuestMapper;
 import kr.yi.hairshop.dao.GuestMapperImpl;
+import kr.yi.hairshop.dto.Designer;
 import kr.yi.hairshop.dto.Guest;
 
-public class GuestSelcetByIdHandler implements CommandHandler {
+public class DesignerSelcetByIdHandler implements CommandHandler {
 
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
@@ -21,12 +24,13 @@ public class GuestSelcetByIdHandler implements CommandHandler {
 		}else if(req.getMethod().equalsIgnoreCase("post")) {
 			
 			String id = req.getParameter("id");
-			System.out.println("검색할 게스트의 아이디는 "+id);
-			GuestMapper dao = new GuestMapperImpl();
-			Guest guest = dao.selectById(id);
+			System.out.println("검색할 디자이너의 아이디는 "+id);
+			DesignerMapper dao = new DesignerMapperImpl();
+			Designer designer = dao.selelctDesignerById(id);
+			
 			int result = 0;
 			
-			if(guest != null) { // 1 = 같은 아이디가 있다, 0 아이디가 없다
+			if(designer != null) { // 1 = 같은 아이디가 있다, 0 아이디가 없다
 				result = 1;
 				System.out.println("아이디가 db에 있다");
 			}else {

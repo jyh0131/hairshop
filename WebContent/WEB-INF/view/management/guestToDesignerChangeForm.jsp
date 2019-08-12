@@ -65,6 +65,7 @@
 		
 		//회원 승급 버튼
 		$(document).on("click","#gChangeBtn",function(){
+			
 			$.ajax({
 				url:"${pageContext.request.contextPath}/member/guestToDesignerModify.do",
 				type:"post",
@@ -81,16 +82,15 @@
 					}
 				}
 			})
+			
 		})
+		
 		
 		
 	})
 	
-	
-	$(document).ready(function() {
-		
 		//디자이너 삭제 버튼
-		$(".delBtn").click(function() {
+		$(document).on("click",".delBtn",function(){
 			var del = confirm("삭제 하시겠습니까?");
 			var $this = $(this).parent().parent();
 			
@@ -112,11 +112,12 @@
 						}
 					}
 				})
-			}
-		})
+			}			
+		})	
+		
 		
 		//디자이너 회원으로 강등하는 버튼
-		$(".downBtn").click(function () {
+		$(document).on("click",".downBtn",function(){
 			var down = confirm("강등 하시겠습니까?");
 			var $this = $(this).parent().parent();
 			
@@ -137,13 +138,9 @@
 						}
 					}
 				})
-			}
-		})
-		
-		
-		
-		
-	});
+			}			
+		})	
+
 	
 </script>
 

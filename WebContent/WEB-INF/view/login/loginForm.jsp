@@ -41,49 +41,112 @@
 </style>
 
 
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/common.js"></script>
 <script>
 	$(function() {
 		
-		$("#f1").submit(function(e) {
-			e.preventDefault();
+		//로그인 전에 아이디를 ajax로 검색해서 db에 있는지 없는지 판단한 결과가 저장되는 flag
+		var flag = false;
+		
+		$("#f1").submit(function() {
 			
-			$.ajax({
-				url:"${pageContext.request.contextPath}/login/guestSelcetById.do",
-				type:"post",
-				data:{"id" : $("#id").val() },
-				dataType:"json",
-				success:function(data){
-					console.log(data); // data 1 = 같은 아이디가 있다, 0 아이디가 없다
-					
-					if(data==0){
-						alert("없는 아이디 입니다");
-						
-						$(".error").css("display", "none")
-						$(".error2").css("display", "none")
-						
-						//빈 input태그가 존재하면 submit를 막는다
-						if (checkInputEmpty($("input[name]")) == false) {
-							return false;
-						}
+			if( $("select[name='isMgn']").val() ){
+				if(flag ==  false){
+					$.ajax({
+						url:"${pageContext.request.contextPath}/login/designerSelcetById.do",
+						type:"post",
+						data:{"id" : $("#id").val() },
+						dataType:"json",
+						success:function(data){
+							console.log(data); // data 1 = 같은 아이디가 있다, 0 아이디가 없다
+							alert(data);
+							
+							if(data==0){
+								alert("없는 관리자 아이디 입니다");
+								
+								$(".error").css("display", "none")
+								$(".error2").css("display", "none")
+								
+								//빈 input태그가 존재하면 submit를 막는다
+								if (checkInputEmpty($("input[name]")) == false) {
+									return false;
+								}
 
-						//입력 필드가 비어 있을때
-						if ($("input[name='password']").val() == null) {
-							$("input[name='password']").next().css("display", "inline");
-							return false;
+								//입력 필드가 비어 있을때
+								if ($("input[name='password']").val() == null) {
+									$("input[name='password']").next().css("display", "inline");
+									return false;
+								}
+								
+								if ($("input[name='id']").val() == null) {
+									$("input[name='id']").next().css("display", "inline");
+									return false;
+								}
+							}else{
+								//로그인 전에 아이디를 ajax로 검색해서 db에 있는지 없는지 판단한 결과가 저장되는 flag
+								flag = true;
+								$("#f1").submit();
+								
+							}
 						}
-						
-						if ($("input[name='id']").val() == null) {
-							$("input[name='id']").next().css("display", "inline");
-							return false;
+					})
+					
+					return false;
+				}					
+				
+				
+				
+
+			}else{
+				
+				if(flag ==  false){
+					$.ajax({
+						url:"${pageContext.request.contextPath}/login/guestSelcetById.do",
+						type:"post",
+						data:{"id" : $("#id").val() },
+						dataType:"json",
+						success:function(data){
+							console.log(data); // data 1 = 같은 아이디가 있다, 0 아이디가 없다
+							alert(data);
+							
+							if(data==0){
+								alert("없는 아이디 입니다");
+								
+								$(".error").css("display", "none")
+								$(".error2").css("display", "none")
+								
+								//빈 input태그가 존재하면 submit를 막는다
+								if (checkInputEmpty($("input[name]")) == false) {
+									return false;
+								}
+
+								//입력 필드가 비어 있을때
+								if ($("input[name='password']").val() == null) {
+									$("input[name='password']").next().css("display", "inline");
+									return false;
+								}
+								
+								if ($("input[name='id']").val() == null) {
+									$("input[name='id']").next().css("display", "inline");
+									return false;
+								}
+							}else{
+								//로그인 전에 아이디를 ajax로 검색해서 db에 있는지 없는지 판단한 결과가 저장되는 flag
+								flag = true;
+								$("#f1").submit();
+								
+							}
 						}
-						
-						return false;
-					}
-				}
-			}) 
+					})
+					
+					return false;
+				}	
+				
+			}
+			
+		
+			
 			
 		})
 		
@@ -121,7 +184,9 @@
 		</p>
 		
 		<!-- 네이버아이디로로그인 버튼 노출 영역 -->
-		<p><div id="naverIdLogin"></div></p>
+
+			<div id="naverIdLogin"></div>
+
 		<!-- //네이버아이디로로그인 버튼 노출 영역 -->
 
 	</form>
