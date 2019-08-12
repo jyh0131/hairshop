@@ -42,8 +42,8 @@
 		where r_no=#{rNo}
 	</update>
 
-	<select id="selectListByNo" resultType="Review">
-		select r_no, r_title, r_writer, r_writetime, r_content, r_file, r_g_no as rGNo from review where r_no=#{rNo}
+	<select id="selectListByNo" resultMap="extendReview">
+		select r_no, r_title, r_writer, r_writetime, r_content, r_file, r_g_no as g_no from review where r_no=#{rNo}
 	</select>
 
 	<update id="updateReview" parameterType="Review">

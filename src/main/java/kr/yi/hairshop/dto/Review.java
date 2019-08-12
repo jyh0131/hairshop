@@ -33,6 +33,9 @@ public class Review {
 		this.rFile = rFile;
 		this.rDelete = rDelete;
 	}
+	public Review(int rNo) {
+		this.rNo = rNo;
+	}
 	public Designer getrDNo() {
 		return rDNo;
 	}

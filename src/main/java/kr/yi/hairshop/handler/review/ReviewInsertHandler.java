@@ -26,7 +26,8 @@ public class ReviewInsertHandler implements CommandHandler {
 		} else if (req.getMethod().equalsIgnoreCase("post")) {
 
 			String uploadPath = req.getRealPath("upload");
-
+			System.out.println(uploadPath);
+			
 			File dir = new File(uploadPath);
 			if (dir.exists() == false) {
 				dir.mkdir();
