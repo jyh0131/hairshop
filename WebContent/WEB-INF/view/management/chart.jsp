@@ -13,6 +13,7 @@
 <section>
 	<div id="curve_chart" style="width: 1100px; height: 500px"></div>
 	<button id="add">추가</button>
+	<button id="sub">삭제</button>
 </section>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -20,6 +21,7 @@
 	$(function() {
 		var nowDate=new Date();
 		var data;
+		var year=nowDate.getFullYear();
 		var arr=new Array();
 		var options = {
 				title : '총 매출 통계',
@@ -29,62 +31,9 @@
 				}
 			};
 		
-		$.ajax({
-			url : "${pageContext.request.contextPath}/management/chart.do",
-			type : "post",
-			dataType : "json",
-			success : function(json) {
-				console.log(json);
-				
-				arr[0]=['Month',nowDate.getFullYear()+"년"];
-				for(var i=1; i<13; i++){
-					arr[i]=new Array();
-					for(var j=1; j<2; j++){
-						arr[i][0]=i;
-						arr[i][j]=0;
-					}
-				}
-				
-				
-				console.log(arr)
-				
-				/* arr= [
-					['Month',nowDate.getFullYear()+"년"],
-					[1,0],
-					[2,0],
-					[3,0],
-					[4,0],
-					[5,0],
-					[6,0],
-					[7,0],
-					[8,0],
-					[9,0],
-					[10,0],
-					[11,0],
-					[12,0]
-				] */
-				
-				console.log(arr);
-				
-				
-				for(var i=0; i<json.length; i++){
-					var date=new Date(json[i].wReserveTime);
-					arr[date.getMonth()][1]=Number(arr[date.getMonth(),1])+json[i].wPriceTotal!=null ? Number(json[i].wPriceTotal):0;
-					
-				}
-				console.log(arr);
-				
-				
-				
-				google.charts.load('current', {
-					'packages' : [ 'corechart' ]
-				});
-				
-				google.charts.setOnLoadCallback(drawChart);
-				
-				
-			}
-		})
+		
+		
+		
 		
 		
 		function drawChart() {
@@ -109,39 +58,49 @@
 		
 		
 		
-		$("#add").click(function() {
+		function chartDraw(){
 			$.ajax({
 				url : "${pageContext.request.contextPath}/management/chart.do",
 				type : "post",
+				data : {
+					"year":year
+				},
 				dataType : "json",
 				success : function(json) {
 					console.log(json);
 					
-					arr= [
-						['Month','2019년'],
-						[1,0],
-						[2,0],
-						[3,0],
-						[4,0],
-						[5,0],
-						[6,0],
-						[7,0],
-						[8,0],
-						[9,0],
-						[10,0],
-						[11,0],
-						[12,0]
-					]
+					arr[0]=new Array();
+					arr[0][0]="month";
+					
+					for(var i=1; i<Number(nowDate.getFullYear())-Number(year)+2; i++){
+						arr[0][i]=Number(nowDate.getFullYear())-i+1+"년";
+					}
+					
+					
+					for(var i=1; i<13; i++){
+						arr[i]=new Array();
+						arr[i][0]=i;
+						for(var j=1; j<Number(nowDate.getFullYear())-Number(year)+2; j++){
+							arr[i][j]=0;
+						}
+					}
+					
+					
 					
 					console.log(arr);
 					
 					
 					for(var i=0; i<json.length; i++){
 						var date=new Date(json[i].wReserveTime);
-						arr[date.getMonth()][1]=Number(arr[date.getMonth(),1])+json[i].wPriceTotal!=null ? Number(json[i].wPriceTotal):0;
+						for(var j=1; j<Number(nowDate.getFullYear())-Number(year)+2; j++){
+							console.log(j)
+							if(date.getFullYear()==arr[0][j].slice(0,4)){
+								arr[date.getMonth()+1][j]=Number(arr[date.getMonth()+1,j])+json[i].wPriceTotal!=null ? Number(json[i].wPriceTotal):0;
+							}
+						}
+						
 						
 					}
-					console.log(arr);
 					
 					
 					
@@ -154,31 +113,27 @@
 					
 				}
 			})
+		}
+		
+		$("#add").click(function() {
+			year--;
 			
-			google.charts.setOnLoadCallback(drawChart);
+			chartDraw();
+			
 			
 		})
+	
 		$("#sub").click(function() {
-			arr= [
-				['Month','2019년'],
-				[1,0],
-				[2,0],
-				[3,0],
-				[4,0],
-				[5,0],
-				[6,0],
-				[7,0],
-				[8,0],
-				[9,0],
-				[10,0],
-				[11,0],
-				[12,0]
-			]
+			if(year!=nowDate.getFullYear())
+				year++;
 			
-			
-			google.charts.setOnLoadCallback(drawChart);
-			
+			chartDraw();
 		})
+		
+		
+		
+		year++;
+		$("#add").click();
 		
 	})
 	
