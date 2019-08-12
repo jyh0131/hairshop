@@ -229,6 +229,26 @@ ALTER TABLE hairshop.SNSinfo
 ALTER TABLE hairshop.SNSinfo
 	MODIFY COLUMN sns_no INT NOT NULL AUTO_INCREMENT COMMENT '번호';
 
+-- 채팅
+CREATE TABLE hairshop.Toak (
+	to_no      INT          NOT NULL COMMENT '채팅번호', -- 채팅번호
+	to_date    DATETIME     NULL     COMMENT '작성날짜', -- 작성날짜
+	to_content VARCHAR(100) NULL     COMMENT '내용', -- 내용
+	to_g_no    INT          NULL     COMMENT '작성자', -- 작성자
+	to_d_no    INT          NULL     COMMENT '번호' -- 번호
+)
+COMMENT '채팅';
+
+-- 채팅
+ALTER TABLE hairshop.Toak
+	ADD CONSTRAINT PK_Toak -- 채팅 기본키
+		PRIMARY KEY (
+			to_no -- 채팅번호
+		);
+
+ALTER TABLE hairshop.Toak
+	MODIFY COLUMN to_no INT NOT NULL AUTO_INCREMENT COMMENT '채팅번호';
+
 -- 작업일지
 ALTER TABLE hairshop.WorkDialog
 	ADD CONSTRAINT FK_Event_TO_WorkDialog -- 이벤트 -> 작업일지
@@ -347,4 +367,24 @@ ALTER TABLE hairshop.SNSinfo
 		)
 		REFERENCES hairshop.Guest ( -- 손님
 			g_no -- 번호
+		);
+
+-- 채팅
+ALTER TABLE hairshop.Toak
+	ADD CONSTRAINT FK_Guest_TO_Toak -- 손님 -> 채팅
+		FOREIGN KEY (
+			to_g_no -- 작성자
+		)
+		REFERENCES hairshop.Guest ( -- 손님
+			g_no -- 번호
+		);
+
+-- 채팅
+ALTER TABLE hairshop.Toak
+	ADD CONSTRAINT FK_Designer_TO_Toak -- 디자이너 -> 채팅
+		FOREIGN KEY (
+			to_d_no -- 번호
+		)
+		REFERENCES hairshop.Designer ( -- 디자이너
+			d_no -- 번호
 		);

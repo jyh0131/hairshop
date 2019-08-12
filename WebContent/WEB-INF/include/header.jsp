@@ -112,7 +112,12 @@ header .mymenu a{
 	font-weight: bold;
 	line-height: 40px;
 }
-
+header div#chat{
+	position: fixed;
+	
+	right:0;
+	top:0;
+}
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>
@@ -195,7 +200,9 @@ $(document).ready(function(){
 				</ul>
 			</div>
 			</c:if>
-			
+			<div id="chat">
+				<%@ include file="../../ChatClient.jsp"%>
+			</div>
 		</header>
 		
 		
