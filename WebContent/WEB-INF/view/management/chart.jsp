@@ -20,6 +20,7 @@
 	$(function() {
 		var nowDate=new Date();
 		var data;
+		var year=nowDate.getFullYear();
 		var arr=new Array();
 		var options = {
 				title : '총 매출 통계',
@@ -37,6 +38,12 @@
 				console.log(json);
 				
 				arr[0]=['Month',nowDate.getFullYear()+"년"];
+				
+				for(var i=1; i<Number(nowDate.getFullYear())-Number(year)+2; i++){
+					arr[0][i]=Number(nowDate.getFullYear())-i+1;
+				}
+				
+				
 				for(var i=1; i<13; i++){
 					arr[i]=new Array();
 					for(var j=1; j<2; j++){
@@ -64,7 +71,6 @@
 					[12,0]
 				] */
 				
-				console.log(arr);
 				
 				
 				for(var i=0; i<json.length; i++){
@@ -72,7 +78,6 @@
 					arr[date.getMonth()][1]=Number(arr[date.getMonth(),1])+json[i].wPriceTotal!=null ? Number(json[i].wPriceTotal):0;
 					
 				}
-				console.log(arr);
 				
 				
 				
@@ -110,6 +115,9 @@
 		
 		
 		$("#add").click(function() {
+			year++;
+			
+			
 			$.ajax({
 				url : "${pageContext.request.contextPath}/management/chart.do",
 				type : "post",
@@ -159,6 +167,8 @@
 			
 		})
 		$("#sub").click(function() {
+			year--;
+			
 			arr= [
 				['Month','2019년'],
 				[1,0],

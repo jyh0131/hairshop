@@ -114,11 +114,7 @@
 	#managerDiv article{
 		float:left;
 		margin:10px;
-<<<<<<< HEAD
-		min-width:26%;
-=======
 		width:30%;
->>>>>>> branch 'master' of https://github.com/jyh0131/hairshop.git
 		background:rgba(255,255,255,0.7);
 		height:300px;
 		border: 1px solid black;
