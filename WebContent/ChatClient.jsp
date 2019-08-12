@@ -8,6 +8,7 @@
      <input type="submit" value="send" onclick="send()" />
  </fieldset>
 <script type="text/javascript">
+	var rendomNum=Math.floor(Math.random() * 899) + 100;
     var textarea = document.getElementById("messageWindow");
     //웹서버가 로컬에 있으며 포트는 8080번을 사용하고 이클립 기준으로 프로젝트 이름이 hairshop이고
     //서버에서 웹 소켓 자바 소스의 @ServerEndpoint어노테이션이 broadcasting을 호출하는것
@@ -35,18 +36,25 @@
       onMessage(event)
     };
     function onMessage(event) {
-        textarea.value += "상대 : " + event.data + "\n";
+        textarea.value += event.data + "\n";
     }
     function onOpen(event) {
-        textarea.value += "연결 성공\n";
+        textarea.value += "저희 헤어샵 방문해주세셔 감사합니다.\n";
+        textarea.value += "도배는 하지말아주세요!!\n";
     }
     function onError(event) {
       alert(event.data);
     }
     
     function send() {
-        textarea.value += "나 : " + inputMessage.value + "\n";
-        webSocket.send(inputMessage.value);
+    	var myMessage="";
+    	if('${Auth.uName}'!=null){
+			myMessage='${Auth.uName} : '+ inputMessage.value + "\n";
+    	}else{
+    		myMessage=rendomNum+" : "+ inputMessage.value + "\n";
+    	}
+    	textarea.value += myMessage+"\n";
+        webSocket.send('${Auth.uName} : '+inputMessage.value);
         inputMessage.value = "";
         
         const top=$("#messageWindow").prop('scrollHeight');
