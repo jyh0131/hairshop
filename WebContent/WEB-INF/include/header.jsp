@@ -110,22 +110,22 @@ header .mymenu a{
 
 $(function () {
 	
-	$("#reserve").submit(function(e) {
+	//a 태그 막고 팝업 실행 시키기
+	$("#reserve").click(function(e) {
 		e.preventDefault();
 		$("#reserve").css("background-color", "red");
 		alert("되나?");
-		return false;		
+		return false;
 	})
 	
 })
 
+// 관리자 로그인 시 
 $(document).ready(function(){
-	
-	if( ${Auth.uIsMgr } == true){
+ 	
+	<c:if test="${Auth.uIsMgr == true }">
 		$("#topmenu").css("display", "none");
-	}
-	
-
+	</c:if>
 
 });
 	

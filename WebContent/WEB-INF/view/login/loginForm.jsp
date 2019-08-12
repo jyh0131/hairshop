@@ -46,31 +46,12 @@
 <script src="${pageContext.request.contextPath}/js/common.js"></script>
 <script>
 	$(function() {
-		$("#f1").submit(function() {
-			$(".error").css("display", "none")
-			$(".error2").css("display", "none")
+		
+		$("#f1").submit(function(e) {
+			e.preventDefault();
 			
-					
-			//빈 input태그가 존재하면 submit를 막는다
-			if (checkInputEmpty($("input[name]")) == false) {
-				return false;
-			}
-
-			//입력 필드가 비어 있을때
-			if ($("input[name='password']").val() == null) {
-				$("input[name='password']").next().css("display", "inline");
-				return false;
-			}
-			
-			if ($("input[name='id']").val() == null) {
-				$("input[name='id']").next().css("display", "inline");
-				return false;
-			}
-			
-			
-
 			$.ajax({
-				url:"${pageContext.request.contextPath}/member/guestSelcetById.do",
+				url:"${pageContext.request.contextPath}/login/guestSelcetById.do",
 				type:"post",
 				data:{"id" : $("#id").val() },
 				dataType:"json",
@@ -79,14 +60,30 @@
 					
 					if(data==0){
 						alert("없는 아이디 입니다");
+						
+						$(".error").css("display", "none")
+						$(".error2").css("display", "none")
+						
+						//빈 input태그가 존재하면 submit를 막는다
+						if (checkInputEmpty($("input[name]")) == false) {
+							return false;
+						}
+
+						//입력 필드가 비어 있을때
+						if ($("input[name='password']").val() == null) {
+							$("input[name='password']").next().css("display", "inline");
+							return false;
+						}
+						
+						if ($("input[name='id']").val() == null) {
+							$("input[name='id']").next().css("display", "inline");
+							return false;
+						}
+						
 						return false;
 					}
-
-					
-					
 				}
-			})
-			
+			}) 
 			
 		})
 		

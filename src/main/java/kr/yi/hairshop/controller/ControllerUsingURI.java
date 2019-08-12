@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+@SuppressWarnings("serial")
 public class ControllerUsingURI extends HttpServlet {
 
 	private HashMap<String, CommandHandler> commandHandlerMap = new HashMap<>();
@@ -61,6 +62,7 @@ public class ControllerUsingURI extends HttpServlet {
 		if(command.indexOf(req.getContextPath()) == 0) { //챕터16으로 시작한다면
 			command = command.substring(req.getContextPath().length()); //챕터를 짜르고 커맨드만 짤라서 커맨드에 넣엉
 		}
+		System.out.println("controllerUsingUri"+command);
 		
 		CommandHandler handler = commandHandlerMap.get(command); //커맨드에 해당하는 클래스를 받음
 		if(handler == null) { //커맨드가 없다면 널핸들러 들어가도록
