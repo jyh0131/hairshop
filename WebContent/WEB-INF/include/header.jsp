@@ -7,6 +7,7 @@
 <head>
 
 <meta charset="UTF-8">
+<meta name="viewport" content="width=divice-width, initial-scale=1">
 <link rel="favicon" href="${pageContext.request.contextPath}/images/favicon.ico">
 <title>차홍아르더</title>
 
@@ -14,6 +15,7 @@
 <script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
 <script src="${pageContext.request.contextPath}/js/common.js"></script>
 <style>
+
 header{
 	width: 1080px;
 	height: 155px;
@@ -27,14 +29,9 @@ header #title{
 header #title img{
 	height: 90px;
 }
-
 header #topmenu ul a{
 	color: black;
 }
-
-
-
-
 header #topmenu ul li{
 	width: 145px;
 	height: 60px;
@@ -48,9 +45,6 @@ a#reserve li{
 	width:180px !important;
 	margin-left:10px;
 }
-
-
-
 header #topmenu li:hover{
 	text-decoration: underline;
 }

@@ -50,7 +50,6 @@
 		var flag = false;
 		
 		$("#f1").submit(function() {
-			alert("선택된 것은 "+$("select[name='isMgn']").val());
 			
 			if( $("select[name='isMgn']").val() == 0){
 				if(flag ==  false){
@@ -61,11 +60,6 @@
 						dataType:"json",
 						success:function(data){
 							console.log(data); // data 1 같은 아이디가 있다, 0 아이디가 없다
-							if(data == 1){
-								alert("입력된 아이디와 같은 아이디가 DB에 있다");
-							}else{
-								alert("검색되지 않았다");
-							}
 							
 							if(data==0){
 								alert("없는 관리자 아이디 입니다");
@@ -113,11 +107,6 @@
 						dataType:"json",
 						success:function(data){
 							console.log(data); // data 1 = 같은 아이디가 있다, 0 아이디가 없다
-							if(data == 1){
-								alert("입력된 아이디와 같은 아이디가 DB에 있다");
-							}else{
-								alert("검색되지 않았다");
-							}
 							
 							if(data==0){
 								alert("없는 아이디 입니다");
