@@ -31,13 +31,13 @@
 	}
 
 	.wrap_home{
-		width: 1900px;
+		min-width: 100%;
 		margin:0 auto;
 		height: 593px;
 		position: relative;
 	}  
 	.wrap_home img{
-		width:800px;
+		min-width:800px;
 		height: 500px;
 		margin: 0 auto;
 	}
@@ -45,7 +45,7 @@
 		background-color: lightgray;
 	}
 	#images{
-		width: 70%;
+		min-width: 70%;
 		margin: 0 auto;
 		height: 900px;
 	}
@@ -55,7 +55,7 @@
 		padding:10px;
 	}
 	#images img{
-		width: 175px;
+		min-width: 175px;
 		height:261px;
 	}
 	#images a{
@@ -95,7 +95,7 @@
 		background-repeat:no-repeat;
 		background-size:100% 100%;
 				
-		width:100%;
+		min-width:100%;
 		height: 400px;
 		margin:0 auto;
 		text-align: center;
@@ -114,7 +114,7 @@
 	#managerDiv article{
 		float:left;
 		margin:10px;
-		width:26%;
+		min-width:26%;
 		background:rgba(255,255,255,0.7);
 		height:300px;
 		border: 1px solid black;

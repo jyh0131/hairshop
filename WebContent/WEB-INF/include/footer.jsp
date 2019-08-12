@@ -10,7 +10,7 @@
 		text-align:center;
 		background:black;
 		color:white;
-		width: 1900px;   
+		width: 100%;   
 		line-height:20px;     
 		height:170px;  
 		margin:0 auto;
@@ -30,7 +30,7 @@
 	
 	footer div{
 		margin-top:15px;
-		width:1900px;
+		width:100%;
 		float: left;
 	}
 
