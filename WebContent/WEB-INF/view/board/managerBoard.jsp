@@ -21,12 +21,14 @@
 		overflow: auto;
 		-ms-overflow-style: none;
 	}
+	
+	
+	
 	::-webkit-scrollbar {
 		display:none;
 	}
 	div#board table{
 		width:95%;
-		height: 180px;
 	}
 	div#board input{
 		width:50px;

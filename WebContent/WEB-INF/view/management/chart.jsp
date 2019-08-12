@@ -26,10 +26,8 @@
 		console.log(arr);
 		
 		for(var i=0; i<5; i++){
-		    arr[i][1] it is 5;
-		    
-		    
-		};
+		    arr[i][0] = 12;
+		}
 		
 		
 		
