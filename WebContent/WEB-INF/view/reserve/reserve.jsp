@@ -483,8 +483,14 @@ section article#border div#guest div#reserve span{
 				return $(this).text() == date.getDate();
 			}).click();
 			
-			
+			/* 초기화 작업 */
+			time="";
+			hair="";
+			haircount=0;
 			$("#time tr td").css("background-color","white");
+			$("#item tr td").css("background-color","white");
+			$("#reserveTime").text("");
+			$("#reserveProduct").text("");
 			$("#reserveDesigner").text(designer);
 		})
 		
@@ -845,7 +851,7 @@ section article#border div#guest div#reserve span{
 				
 			</script>
 		
-		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d12b5c6588fcf758d1a3d2f1e433c251&libraries=services,clusterer,drawing"></script>
+		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d21ad01c96aff8d55b25508bcfc6aa05&libraries=services,clusterer,drawing"></script>
 		<!-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d12b5c6588fcf758d1a3d2f1e433c251&libraries=services,clusterer,drawing"></script> -->
 		<script type="text/javascript">
 			// 마커를 클릭하면 장소명을 표출할 인포윈도우 입니다

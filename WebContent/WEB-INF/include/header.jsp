@@ -106,12 +106,26 @@ header .mymenu a{
 	font-weight: bold;
 	line-height: 40px;
 }
+
+header div#chat textarea{
+	background-color: rgba(0,0,0,0.5);
+	color: white;
+}
 header div#chat{
 	position: fixed;
-	
 	right:0;
 	top:200px;
 }
+header button#chatShow{
+	position: fixed;
+	right:0;
+	top:180px;
+}
+
+
+
+
+
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>
@@ -199,10 +213,29 @@ $(document).ready(function(){
 				</ul>
 			</div>
 			</c:if>
+			<button id="chatShow">감추기</button>
 			<div id="chat">
+			
 				<%@ include file="../../ChatClient.jsp"%>
 			</div>
+			
+			<script>
+				$("#chatShow").click(function() {
+					$("#chat").slideToggle();
+					if($(this).text()=='감추기'){
+						$(this).text("보이기");
+					}else{
+						$(this).text("감추기");
+					}
+					
+				})
+			</script>
 		</header>
+		
+		
+	
+	
+	
 		
 		
 					

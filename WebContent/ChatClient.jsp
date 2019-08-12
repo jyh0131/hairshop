@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 
  <fieldset>
-     <textarea id="messageWindow" rows="10" cols="50" readonly="true"></textarea>
+     <textarea id="messageWindow" rows="10" cols="30" readonly="true"></textarea>
      <br/>
      <input id="inputMessage" type="text"/>
      <input type="submit" value="send" onclick="send()" />
@@ -36,11 +36,10 @@
       onMessage(event)
     };
     function onMessage(event) {
-        textarea.value += event.data + "\n";
+        textarea.value += event.data;
     }
     function onOpen(event) {
-        textarea.value += "저희 헤어샵 방문해주세셔 감사합니다.\n";
-        textarea.value += "도배는 하지말아주세요!!\n";
+        textarea.value += "저희 헤어샵을 방문해주셔서 감사합니다. 도배는 하지말아주세요!!\n";
     }
     function onError(event) {
       alert(event.data);
@@ -53,8 +52,6 @@
     	}else{
     		myMessage='손님'+randomNum+" : "+ inputMessage.value + "\n";
     	}
-    	
-    	 
     	
     	textarea.value += myMessage;
         webSocket.send(myMessage);
