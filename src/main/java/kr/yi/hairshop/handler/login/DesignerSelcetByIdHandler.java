@@ -35,7 +35,7 @@ public class DesignerSelcetByIdHandler implements CommandHandler {
 				System.out.println("아이디가 db에 있다");
 			}else {
 				result = 0;
-				System.out.println("아이디가 db에 있다");
+				System.out.println("아이디가 db에 없다");
 			}
 			  
 			ObjectMapper om = new ObjectMapper();
