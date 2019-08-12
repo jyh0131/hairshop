@@ -57,7 +57,7 @@ header #topmenuMgn ul a{
 }
 
 header #topmenuMgn ul li{
-	width: 180px;
+	width: 152px;
 	height: 60px;
 	line-height: 60px;
 	text-decoration: none;
