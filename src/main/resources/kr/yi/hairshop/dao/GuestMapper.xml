@@ -69,7 +69,7 @@
 		UPDATE hairshop.guest
 		SET g_id=#{gId}, g_password=#{gPassword}, g_l_grade=#{gLGrade.lGrade}, g_name=#{gName},
 		g_tel=#{gTel}, g_email=#{gEmail}, g_birth=#{gBirth}, g_join=#{gJoin},
-		g_point=#{gPoint}, g_memo=#{gMemo}
+		g_point=#{gPoint}, g_memo=#{gMemo}, g_secession=#{gSecession}
 		where g_no=#{gNo};
 	</update>
 	
