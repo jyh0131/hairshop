@@ -159,7 +159,7 @@
 
 <body>
 	
-	
+	<div>
 	<div id="section">
 		<div class="example1 parallaxContainer" data-slim-prx-speed="20">
 			<div class="container"></div>
@@ -177,7 +177,7 @@
 		</div>
 	</div>
 	
-	</div> <!-- << 있어야함 -->
+	</div>
 	
 	<div id="managerDiv">
 			<article>
@@ -190,6 +190,8 @@
 				<div>이슈이슈</div>
 			</article>
 	</div>
+	
+	
 	<div class="mov_box">
 		<!-- YouTube position -->
 		<div class="yt_wrap">
