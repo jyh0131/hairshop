@@ -139,6 +139,7 @@
 		on w_g_no=g.g_no
 		left join level l
 		on l.l_grade=g.g_l_grade
+		order by w_reservTime asc
 	</select>
 	
 	<select id="selectByfivejoinMap" resultMap="resultWorkDialogfivejoin">

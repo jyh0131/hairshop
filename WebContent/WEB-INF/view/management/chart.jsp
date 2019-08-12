@@ -3,38 +3,32 @@
 <%@ include file="../../include/header.jsp"%>
 
 <style>
-	div#curve_chart{
+	section{
 		clear: both;
+		width:1080px;
+		margin: 0 auto;
 	}
+	
 </style>
 <section>
-	<div id="curve_chart" style="width: 900px; height: 500px"></div>
+	<div id="curve_chart" style="width: 1100px; height: 500px"></div>
+	<button id="add">추가</button>
 </section>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
 	$(function() {
-		
-		var arr= [[],[]]; //배열선언
-
-		arr[0][0] = 1;
-		arr[0][1] = 2;
-		arr[0][2] = 3;
-		arr[0][3] = 4;
-		arr[0][4] = 5;	
-
-		console.log(arr);
-		
-		for(var i=0; i<5; i++){
-		    arr[i][0] = 12;
-		}
-		
-		
-		
-		console.log(arr);
-		
+		var nowDate=new Date();
 		var data;
-
+		var arr;
+		var options = {
+				title : '총 매출 통계',
+				curveType : 'function',
+				legend : {
+					position : 'bottom'
+				}
+			};
+		
 		$.ajax({
 			url : "${pageContext.request.contextPath}/management/chart.do",
 			type : "post",
@@ -42,39 +36,142 @@
 			success : function(json) {
 				console.log(json);
 				
+				arr= [
+					['Month',nowDate.getFullYear()+"년"],
+					[1,0],
+					[2,0],
+					[3,0],
+					[4,0],
+					[5,0],
+					[6,0],
+					[7,0],
+					[8,0],
+					[9,0],
+					[10,0],
+					[11,0],
+					[12,0]
+				]
+				
+				console.log(arr);
+				
+				
+				for(var i=0; i<json.length; i++){
+					var date=new Date(json[i].wReserveTime);
+					arr[date.getMonth()][1]=Number(arr[date.getMonth(),1])+json[i].wPriceTotal!=null ? Number(json[i].wPriceTotal):0;
+					
+				}
+				console.log(arr);
+				
+				
+				
 				google.charts.load('current', {
 					'packages' : [ 'corechart' ]
 				});
 				
 				google.charts.setOnLoadCallback(drawChart);
 				
-				function drawChart() {
+				
+			}
+		})
+		
+		
+		function drawChart() {
 					data = google.visualization.arrayToDataTable(
-							[
+						/* 	[
 								[ 'Month', 'Sales', 'Expenses' ],
-								[ '2004', 1000, 400 ],
-								[ '2005', 1170, 460 ],
-								[ '2006', 660, 1120 ],
-								[ '2007', 1030, 540 ] 
-							]
-					
+								[ '1', 1000, 400 ],
+								[ '2', 1170, 460 ],
+								[ '3', 660, 1120 ],
+								[ '4', 1030, 540 ] 
+							] */
+					arr
 					);
 
-					var options = {
-						title : '총 매출 통계',
-						curveType : 'function',
-						legend : {
-							position : 'bottom'
-						}
-					};
+					
 
 					var chart = new google.visualization.LineChart(document
 							.getElementById('curve_chart'));
 
 					chart.draw(data, options);
 				}
-			}
+		
+		
+		
+		$("#add").click(function() {
+			$.ajax({
+				url : "${pageContext.request.contextPath}/management/chart.do",
+				type : "post",
+				dataType : "json",
+				success : function(json) {
+					console.log(json);
+					
+					arr= [
+						['Month','2019년'],
+						[1,0],
+						[2,0],
+						[3,0],
+						[4,0],
+						[5,0],
+						[6,0],
+						[7,0],
+						[8,0],
+						[9,0],
+						[10,0],
+						[11,0],
+						[12,0]
+					]
+					
+					arr[1][1]=31;
+					
+					console.log(arr);
+					
+					
+					for(var i=0; i<json.length; i++){
+						var date=new Date(json[i].wReserveTime);
+						arr[date.getMonth()][1]=Number(arr[date.getMonth(),1])+json[i].wPriceTotal!=null ? Number(json[i].wPriceTotal):0;
+						
+					}
+					console.log(arr);
+					
+					
+					
+					google.charts.load('current', {
+						'packages' : [ 'corechart' ]
+					});
+					
+					google.charts.setOnLoadCallback(drawChart);
+					
+					
+				}
+			})
+			
+			google.charts.setOnLoadCallback(drawChart);
+			
 		})
+		$("#sub").click(function() {
+			arr= [
+				['Month','2019년'],
+				[1,0],
+				[2,0],
+				[3,0],
+				[4,0],
+				[5,0],
+				[6,0],
+				[7,0],
+				[8,0],
+				[9,0],
+				[10,0],
+				[11,0],
+				[12,0]
+			]
+			
+			
+			google.charts.setOnLoadCallback(drawChart);
+			
+		})
+		
 	})
+	
 </script>
+
 <%@ include file="../../include/footer.jsp"%>
