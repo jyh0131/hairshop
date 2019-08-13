@@ -50,6 +50,8 @@
     };
     function onMessage(event) {
         textarea.value += event.data;
+        const top=$("#messageWindow").prop('scrollHeight');
+        $("#messageWindow").scrollTop(top);
     }
     function onOpen(event) {
         textarea.value += "저희 헤어샵을 방문해주셔서 감사합니다. 도배는 하지말아주세요!!\n";

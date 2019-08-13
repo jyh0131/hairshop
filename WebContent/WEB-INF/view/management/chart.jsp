@@ -7,11 +7,15 @@
 		clear: both;
 		width:1080px;
 		margin: 0 auto;
+		margin-bottom:100px;
+		margin-top:100px;
+		text-align: center;
 	}
 	
 </style>
 <section>
-	<div id="curve_chart" style="width: 1100px; height: 500px"></div>
+	
+	<div id="columnchart_material" style="width: 1100px; height: 500px;"></div>
 	<button id="add">추가</button>
 	<button id="sub">삭제</button>
 </section>
@@ -23,14 +27,19 @@
 		var data;
 		var year=nowDate.getFullYear();
 		var arr=new Array();
-		var options = {
+	/* 	var options = {
 				title : '총 매출 통계',
 				curveType : 'function',
 				legend : {
 					position : 'bottom'
 				}
-			};
-		
+			}; */
+			var options = {
+			          chart: {
+			            title: '총 매출 현황',
+			            subtitle: '월/년 차트 통계',
+			          }
+			        };
 		
 		
 		
@@ -50,10 +59,19 @@
 
 					
 
-					var chart = new google.visualization.LineChart(document
+					/* var chart = new google.visualization.LineChart(document
 							.getElementById('curve_chart'));
 
-					chart.draw(data, options);
+					chart.draw(data, options); */
+					
+					
+					
+					
+					
+					
+					var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+			
+			        chart.draw(data, google.charts.Bar.convertOptions(options));
 				}
 		
 		
@@ -70,7 +88,7 @@
 					console.log(json);
 					
 					arr[0]=new Array();
-					arr[0][0]="month";
+					arr[0][0]="월 별";
 					
 					for(var i=1; i<Number(nowDate.getFullYear())-Number(year)+2; i++){
 						arr[0][i]=Number(nowDate.getFullYear())-i+1+"년";
@@ -93,9 +111,8 @@
 					for(var i=0; i<json.length; i++){
 						var date=new Date(json[i].wReserveTime);
 						for(var j=1; j<Number(nowDate.getFullYear())-Number(year)+2; j++){
-							console.log(j)
 							if(date.getFullYear()==arr[0][j].slice(0,4)){
-								arr[date.getMonth()+1][j]=Number(arr[date.getMonth()+1,j])+json[i].wPriceTotal!=null ? Number(json[i].wPriceTotal):0;
+								arr[date.getMonth()+1][j]+=Number(arr[date.getMonth()+1,j])+json[i].wPriceTotal!=null ? Number(json[i].wPriceTotal):0;
 							}
 						}
 						
@@ -104,12 +121,16 @@
 					
 					
 					
-					google.charts.load('current', {
+					/* google.charts.load('current', {
 						'packages' : [ 'corechart' ]
 					});
 					
-					google.charts.setOnLoadCallback(drawChart);
+					google.charts.setOnLoadCallback(drawChart); */
 					
+					
+					
+					 google.charts.load('current', {'packages':['bar']});
+				     google.charts.setOnLoadCallback(drawChart);
 					
 				}
 			})
