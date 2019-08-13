@@ -15,7 +15,6 @@
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
 
-<link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
 
 <style>
 	#topDiv{
@@ -120,6 +119,23 @@
 		border: 1px solid black;
 		border-radius: 10px;
 	}
+	
+	@media all and (max-width:1000px){
+		#managerDiv{
+			padding:10%;
+			height: 900px;
+			margin:0;
+			
+		}
+		#managerDiv article{
+			width:100%;
+			
+		}
+	
+	
+	}
+	
+	
 </style>
 
 <!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"
@@ -184,8 +200,7 @@
 			
 			<div id=div1><%@ include file="../include/header.jsp"%></div>
 			<div class="jquery-script-center">
-				<div class="jquery-script-ads">
-				</div>
+				
 			</div>
 			
 			

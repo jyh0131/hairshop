@@ -13,7 +13,6 @@
 	}
 	div#board{
 		width:90%;
-		height:80%;
 		height:200px;
 		padding:5%;
 		text-align: center;
@@ -21,7 +20,11 @@
 		overflow: auto;
 		-ms-overflow-style: none;
 	}
-	
+	@media all and (max-width:1199px){
+		div#board{
+			height:170px;
+		}
+	}
 	
 	
 	::-webkit-scrollbar {
