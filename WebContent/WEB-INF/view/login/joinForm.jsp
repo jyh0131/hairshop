@@ -5,7 +5,9 @@
 
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css">
 <style>
-#joinForm section{
+@media screen and (min-width:1200px){
+
+#joinForm{
 	width:1080px;
 	margin: 0 auto;
 	margin-top: 30px;
@@ -46,7 +48,51 @@
 	width: 100px;
 	height: 40px;
 }
+}
 
+@media all and (max-width:1199px){
+#joinForm{
+	width:100%;
+	margin: 0 auto;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+#joinForm form{
+	width: 95%;
+	margin: 0 auto;
+	
+	padding-top: 10px;
+	padding-bottom: 10px;
+	position: relative;
+}
+#joinForm p{
+	width: 100%;
+	height: 60px;
+	line-height: 60px;
+}
+#joinForm p input{
+	height: 30px;
+}
+#joinForm label{
+	height:100%;
+	width: 150px;
+	line-height: 60px;
+	float: left;
+}
+#joinForm #btnCheck{
+	position: absolute;
+	top: 118px;
+	left: 150px;
+}
+#joinForm p:last-child{
+	text-align: center;
+}
+#joinForm #btnSubmit{
+	width: 50%;
+	height: 50px;
+}
+
+}
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/common.js"></script>

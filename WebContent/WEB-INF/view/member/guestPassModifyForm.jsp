@@ -6,6 +6,7 @@
 
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css">
 <style>
+@media screen and (min-width:1200px){
 #MFMForm{
 	width:1080px;
 	height: 400px;
@@ -51,6 +52,51 @@
 #MFMForm #btnCheck{
 	width: 100px;
 	height: 40px;
+}
+}
+
+@media all and (max-width:1199px){
+#MFMForm {
+	width:100%;
+	margin: 0 auto;
+	margin-top: 40px;
+	margin-bottom: 40px;
+	font-size: 15px;
+}
+#MFMForm fieldset{
+	width: 90%;
+	margin: 0 auto;
+}
+#MFMForm form{
+	width: 100%;
+	margin: 0 auto;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+#MFMForm form h1{
+	margin: 10px;
+	text-align: center;
+}
+#MFMForm p{
+	width: 100%;
+	height: 60px;
+	line-height: 60px;
+}
+#MFMForm p input{
+	height: 30px;
+}
+#MFMForm label{
+	line-height: 60px;
+	width: 150px;
+	float: left;
+}
+#MFMForm form p:last-child{
+	text-align: center;
+}
+#MFMForm form #btnSubmit{
+	width: 50%;
+	height: 50px;
+}
 }
 </style>
 
@@ -145,7 +191,10 @@ $(function () {
 	<fieldset>
 	
 		<form action="${pageContext.request.contextPath}/member/guestPassModify.do" method="post" id="f1">
-			<p><h1>비밀 번호 변경</h1></p>
+			
+			<h1>비밀 번호 변경</h1>
+			
+			
 	 		<p>
 				<label>현재 비밀번호</label>
 				<input class="input" type="password" name="nowPassword" placeholder="비밀번호를 입력하세요"><br>
@@ -154,7 +203,7 @@ $(function () {
 	
 	 		<p>
 				<label>새로운 비밀번호</label>
-				<input class="input" type="password" name="newPassword" placeholder="영어,숫자,특수문자 포함 8~20자리"><br>
+				<input class="input" type="password" name="newPassword" placeholder="영어,숫자,특수문자 포함 1~20자리"><br>
 				<span class="error">비밀번호(영어, 숫자, 특수문자 포함, 1~20자)를 입력하세요</span>
 			</p>
 			
