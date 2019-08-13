@@ -17,7 +17,8 @@
 
 
 <style>
-	#topDiv{
+@media screen and (min-width:1200px){
+#topDiv{
 		height: 100%;
 	}
 	#div1 {
@@ -119,6 +120,122 @@
 		border: 1px solid black;
 		border-radius: 10px;
 	}
+<<<<<<< HEAD
+
+}
+
+@media all and (max-width:1199px){
+	#topDiv{
+		height: 100%;
+	}
+	#div1 {
+		background-color: white;
+		top:0;
+		width: 100%;
+		opacity: 0.9;
+		z-index: 1;
+		position: fixed;
+	}
+
+	.wrap_home{
+		min-width: 100%;
+		margin:0 auto;
+		height: 716px;
+		position: relative;
+	}  
+	.wrap_home img{
+		min-width:800px;
+		height: 500px;
+		margin: 0 auto;
+	}
+	.bxslider div{
+		background-color: lightgray;
+	}
+	#images{
+		min-width: 70%;
+		margin: 0 auto;
+		height: 900px;
+	}
+	#images div{
+		float:left;
+		width: 230px;
+		padding:10px;
+	}
+	#images img{
+		min-width: 175px;
+		height:261px;
+	}
+	#images a{
+		text-decoration: none;
+		color:black;
+	}
+	
+	#section{
+		height: 1874px;
+	}
+	
+	.lead {
+	margin: 150px auto 600px auto;
+	}
+	yt_wrap{
+		display: none;
+	}
+	
+	
+	.parallaxContainer {
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-attachment: fixed;
+		height: 937px;
+	}
+	
+	.example1 {
+		background-image: url(http://www.chahongardor.com/wp-content/uploads/2019/02/ardor_.jpg);
+	}
+	
+	.example2 {
+	 		background-image: url(http://www.chahongardor.com/wp-content/uploads/2019/02/ardor_8.jpg);
+ 	}
+	
+	.mov_box {
+	position: relative;
+	width: 100%;
+	height: 63%;
+	overflow: hidden;  
+}     
+	
+	#managerDiv{
+		background: url(http://www.chahongardor.com/wp-content/uploads/2019/02/2018-19-ss9.jpg);
+		background-repeat:no-repeat;
+		background-size:100% 100%;
+				
+		width:80%;
+		height: 400px;
+		margin:0 auto;
+		text-align: center;
+		padding:10%;
+	}
+	#managerDiv article h2{
+		font-size: 20px;
+		font-weight: bold;
+		margin-bottom: 10px;
+		margin-top:10px;
+	
+	}
+	
+	
+	
+	#managerDiv article{
+		float:left;
+		margin:10px;
+		width:30%;
+		background:rgba(255,255,255,0.7);
+		height:300px;
+		border: 1px solid black;
+		border-radius: 10px;
+	}
+
+}
 	
 	@media all and (max-width:1000px){
 		#managerDiv{
