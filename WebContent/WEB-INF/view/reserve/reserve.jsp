@@ -291,21 +291,28 @@ section article#border div#guest div#reserve span{
 	}
 	
 	section article#border {
-		width:98% !important;
+		width:96% !important;
 		padding:2%;
-		
 		height: auto !important;
 		
 	}
 	
 	
-	
-	
 	section div#form div#reserveForm{
+		float:right;
 		width:98% !important;
 		padding:2%;
 	}
-	section div#form{
+	
+	
+	section article#border div#guest {
+		float:left;
+		margin:0 !important;
+		padding:2.5%;
+		width:92%;
+	}
+	section article#border div#form{
+		float:right !important;
 		height: auto !important;
 		width:92% !important;
 		padding:2.5% !important;
@@ -343,18 +350,13 @@ section article#border div#guest div#reserve span{
 		width: 90% !important;
 	}
 	
-	section article#border div#guest {
+	section article#border div#form div#reservedForm div#reservedList {
 		
 	}
-	section article#border div#guest {
+	section article#border div#form div#reservedForm div#reservedList img{
+		width:80%;
+	}
 	
-	}
-	section article#border div#guest {
-		margin:0 !important;
-		padding:2.5%;
-		float: none;
-		width:92%;
-	}
 		
 	
 	
@@ -765,6 +767,9 @@ section article#border div#guest div#reserve span{
 						
 						$("#commit").text("예약확인");
 						$("#commit").click();
+						 var offset = $("#designerList").offset();
+						$('html, body').animate({
+							scrollTop:offset.top}, 1000);
 					})
 					$("div#menuIcon div").eq(2).click(function() {
 						$("#reserveForm").hide();
