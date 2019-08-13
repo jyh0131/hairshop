@@ -5,6 +5,8 @@
 
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css">
 <style>
+@media screen and (min-width:1200px){
+
 #loginform section {
 	width: 1080px;
 	margin: 0 auto;
@@ -38,6 +40,21 @@
 #loginform #naverIdLogin{
 	text-align: center;
 }
+}
+
+@media all and (max-width:1199px){
+
+#loginform section {
+	width: 100%;
+	margin: 0 auto;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+#loginform form{
+
+}
+}
+
 </style>
 
 

@@ -91,7 +91,7 @@
 	
 	
 	#managerDiv{
-		background: url(${pageContext.request.contextPath }/images/etc/chahong.png);
+		background: url(http://www.chahongardor.com/wp-content/uploads/2019/02/2018-19-ss9.jpg);
 		background-repeat:no-repeat;
 		background-size:100% 100%;
 				
