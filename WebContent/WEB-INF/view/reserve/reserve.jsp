@@ -59,17 +59,17 @@ section article#border div#form {
 	width:520px;
 	height:1100px;
 	padding: 20px;  
-	margin: 2px;
 	float: left;
 }
+
+
 section article#border div#guest{
+	float:right;
 	width:320px;
 	height:1100px;
 	background:white;
 	display: inline-block;
 	padding: 20px;
-	margin: 2px;
-	margin-left: 10px;
 }
 section article#border div#guest button#commit{
 	display:block;
@@ -185,6 +185,12 @@ div#form div#reservedForm div#reservedList table td,div#form div#reservedForm di
 section article#border div#form div#map input{
 	
 }
+section article#border table#time{
+	margin-top:20px;
+	border-collapse: collapse;
+	width: 450px;
+	height: 100px;
+}
 section article#border table#time td {
 	float: left;
 	border: 1px solid black;
@@ -192,10 +198,8 @@ section article#border table#time td {
 	cursor: pointer;
 }       
            
-section article#border table#time {
-	border-collapse: collapse;
-	width: 450px;
-	height: 100px;
+section article#border table#item{
+	margin-top:20px;
 }
 section article#border table#item td {
 	width: 100px;
@@ -269,18 +273,91 @@ section article#border div#guest div#reserve span{
 	text-align: center;
 }
 
+.toggle{
+	display: none;
+}
 
+@media all and (max-width:510px){
+	#designer li{
+		width:80px !important;
+	}
+	
+	
+}
 @media all and (max-width:1199px){
 	section{
 		width:100%;
+		padding:0;
 	}
-	article#border{
-		width:90%;
+	
+	section article#border {
+		width:98% !important;
+		padding:2%;
+		
+		height: auto !important;
+		
 	}
-	section div#designerList
-		width:80%;
+	
+	
+	
+	
+	section div#form div#reserveForm{
+		width:98% !important;
+		padding:2%;
 	}
-
+	section div#form{
+		height: auto !important;
+		width:92% !important;
+		padding:2.5% !important;
+		
+	}
+	
+	
+	section div#designerList{
+		width:92%;
+		height:auto !important;
+		padding:2.5%;
+	}
+	.show{
+		display: none;
+	}
+	
+	.hide{
+		display: none;
+	}
+	.toggle{
+		display: block;
+	}
+	
+	
+	
+	section article#border div#form div#calendar table{
+		width:100%;
+	}
+	section article#border div#form div#calendar{
+		width: 90% !important;
+		
+	}
+	
+	section article#border table#time {
+		width: 90% !important;
+	}
+	
+	section article#border div#guest {
+		
+	}
+	section article#border div#guest {
+	
+	}
+	section article#border div#guest {
+		margin:0 !important;
+		padding:2.5%;
+		float: none;
+		width:92%;
+	}
+		
+	
+	
 }
 
 </style>
@@ -538,31 +615,41 @@ section article#border div#guest div#reserve span{
 				})			
 			}
 		})
+		$(".show").click(function() {
+			$(this).next().next().slideDown();
+		})
+		$(".toggle").click(function() {
+			
+			$(this).next().slideToggle();
+		})
+		
 	})
 </script>
 <section>
 	
 	<article id="border">
 		<div id="designerList">
-			<h1 id="title">예약하기</h1>
+			<h3 class="show">디자이너 선택</h3>
+			<h3 class="toggle">디자이너 선택</h3>
+			<div class="hide">
 			<ul id="designer">
-			
 				<c:forEach var="list" items="${dList}">
 					<li>${list.dName } ${list.dGrade }</li>
 				</c:forEach>
 			</ul>
+			</div>
 		</div>
 		<div id="form">
 			<div id="reserveForm">
-				<h3>날짜 선택</h3>
-				<div id="calendar"></div>
+				<h3 class="show">날짜 선택</h3>
+				<h3 class="toggle">날짜 선택</h3>
+				<div id="calendar" class="hide"></div>
 				<br>
 				<hr>
 				<br>
-				<h3>시간 선택</h3>
-				<br>
-	
-	
+				<h3 class="show">시간 선택</h3>
+				<h3 class="toggle">시간 선택</h3>
+				<div  class="hide">
 				<table id="time">
 					<tr>
 						<td>08:00</td>
@@ -589,12 +676,14 @@ section article#border div#guest div#reserve span{
 					
 					</tr>
 				</table>
+				</div>
 				<br>
 				<hr>
 				<br>
 				
-				<h3>메뉴 선택</h3>
-				<br>
+				<h3 class="show">메뉴 선택</h3>
+				<h3 class="toggle">메뉴 선택</h3>
+				<div class="hide">
 				<table id="item">
 					<tr>
 						<c:forEach var="product" items="${pList}">
@@ -602,7 +691,7 @@ section article#border div#guest div#reserve span{
 						</c:forEach>
 					</tr>
 				</table>
-			
+				</div>
 			</div>
 			<div id="mapForm">
 				<button id="search">검색</button><input type="text">
