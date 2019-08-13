@@ -15,7 +15,7 @@
 <script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
 <script src="${pageContext.request.contextPath}/js/common.js"></script>
 <style>
-
+@media screen and (min-width:1200px){
 header{
 	width: 60%;
 	height: 155px;
@@ -118,8 +118,6 @@ header div#chat{
 	padding:0;
 	z-index: 100;
 }
-
-
 header button#chatShow{
 	position: fixed;
 	right:0;
@@ -127,8 +125,10 @@ header button#chatShow{
 	border-radius:5px;
 	background: rgba(255,255,255,0.5);
 }
+}
+@media all and (max-width:1199px){
 
-
+}
 
 
 
