@@ -120,7 +120,6 @@
 		border: 1px solid black;
 		border-radius: 10px;
 	}
-<<<<<<< HEAD
 
 }
 
@@ -140,12 +139,12 @@
 	.wrap_home{
 		min-width: 100%;
 		margin:0 auto;
-		height: 716px;
+		height: 312px;
 		position: relative;
 	}  
 	.wrap_home img{
-		min-width:800px;
-		height: 500px;
+		min-width:360px;
+		height: 300px;
 		margin: 0 auto;
 	}
 	.bxslider div{
@@ -171,15 +170,13 @@
 	}
 	
 	#section{
-		height: 1874px;
+		height: 640px;
 	}
 	
 	.lead {
 	margin: 150px auto 600px auto;
 	}
-	yt_wrap{
-		display: none;
-	}
+	
 	
 	
 	.parallaxContainer {
@@ -191,17 +188,21 @@
 	
 	.example1 {
 		background-image: url(http://www.chahongardor.com/wp-content/uploads/2019/02/ardor_.jpg);
+		background-size: 100% 100%;
 	}
 	
 	.example2 {
 	 		background-image: url(http://www.chahongardor.com/wp-content/uploads/2019/02/ardor_8.jpg);
+	 		background-size: 360px;
+	 		display: none;
  	}
 	
 	.mov_box {
 	position: relative;
 	width: 100%;
 	height: 63%;
-	overflow: hidden;  
+	overflow: hidden;
+	display: none;  
 }     
 	
 	#managerDiv{
