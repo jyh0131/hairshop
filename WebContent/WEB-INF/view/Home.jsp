@@ -123,15 +123,13 @@
 	@media all and (max-width:1000px){
 		#managerDiv{
 			padding:10%;
-			height: 900px;
+			height: 1000px;
 			margin:0;
-			
 		}
 		#managerDiv article{
 			width:100%;
 			
 		}
-	
 	
 	}
 	

@@ -49,6 +49,7 @@ section article#border {
 	display:inline-block;
 }
 
+
 section article#border div#designerList{
 	background-color: white;
 } 
@@ -267,6 +268,21 @@ section article#border div#guest div#reserve span{
 	width:500px;
 	text-align: center;
 }
+
+
+@media all and (max-width:1199px){
+	section{
+		width:100%;
+	}
+	article#border{
+		width:90%;
+	}
+	section div#designerList
+		width:80%;
+	}
+
+}
+
 </style>
 <script type="text/javascript">
 	var designer = "";
