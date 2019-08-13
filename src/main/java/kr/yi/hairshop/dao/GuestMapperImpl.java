@@ -123,5 +123,12 @@ public class GuestMapperImpl implements GuestMapper {
 			return res;
 		}
 	}
+
+	@Override
+	public Guest selectGuestByEmail(String email) {
+		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
+			return sqlSession.selectOne(namespace + ".selectGuestByEmail",email);
+		}
+	}
 	
 }
