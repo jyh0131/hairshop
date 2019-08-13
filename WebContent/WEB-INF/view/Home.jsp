@@ -120,6 +120,7 @@
 		border: 1px solid black;
 		border-radius: 10px;
 	}
+<<<<<<< HEAD
 
 }
 
@@ -235,6 +236,22 @@
 	}
 
 }
+	
+	@media all and (max-width:1000px){
+		#managerDiv{
+			padding:10%;
+			height: 900px;
+			margin:0;
+			
+		}
+		#managerDiv article{
+			width:100%;
+			
+		}
+	
+	
+	}
+	
 	
 </style>
 
