@@ -349,4 +349,5 @@ ALTER TABLE hairshop.SNSinfo
 		REFERENCES hairshop.Guest ( -- 손님
 			g_no -- 번호
 		);
-
+alter table hairshop.comment add column c_writer varcharacter(20);
+alter table hairshop.comment add column c_writetime Date;
