@@ -18,7 +18,6 @@ public class ChartHandler implements CommandHandler {
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		if(req.getMethod().equalsIgnoreCase("get")) {
-		
 			return "/WEB-INF/view/management/chart.jsp";
 		}
 		else if(req.getMethod().equalsIgnoreCase("post")) {
