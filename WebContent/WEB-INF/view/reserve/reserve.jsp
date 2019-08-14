@@ -312,7 +312,7 @@ section article#border div#guest div#reserve span{
 		width:92%;
 	}
 	section article#border div#form{
-		float:right !important;
+		float:left !important;
 		height: auto !important;
 		width:92% !important;
 		padding:2.5% !important;
@@ -628,7 +628,64 @@ section article#border div#guest div#reserve span{
 	})
 </script>
 <section>
-	
+	<div id="guest">
+			<img src="${pageContext.request.contextPath}/images/reserve/reserve.jpg">
+			<h2>차홍아르더 본점</h2>
+			<p>대구 광역시 동구 방촌동</p>
+			<p>053-981-0000</p>
+			<p>00:00~22:00</p>
+			
+			<br>
+			<hr>
+			<br>
+			
+			
+			<div id="menuIcon">
+				<div>
+					<img src="${pageContext.request.contextPath}/images/reserve/time.png"><br>
+					<span>예약하기</span>
+				</div>
+				<div>
+					<img src="${pageContext.request.contextPath}/images/reserve/check.jpg"><br>
+					<span>예약확인</span>
+				</div>
+				<div >
+					<img src="${pageContext.request.contextPath}/images/reserve/come.PNG"><br>
+					<span>오시는길</span>
+				</div>
+			</div>
+			
+			
+			<hr>
+			<br>
+			
+			
+			<div id="reserve">
+					<label>예약시간</label> : <span id="reserveDate"></span><span id="reserveTime"></span><br>
+					<label>디자이너</label> : <span id="reserveDesigner"></span><br>
+					<label>메뉴</label> : <span id="reserveProduct"></span><br>
+			</div>
+			
+			<br>
+			<hr>
+			<br>
+				
+			<p id="guestText">
+				<label>고객명</label><input type="text" name="gName" id="gName"><br>
+				<label>핸드폰번호</label><input type="text" name="gTel" id="gTel" placeholder='"-"를 붙여서 입력해 주세요.'><br>
+				
+				<br>
+					<input type="checkbox" id="privacy"><span class="underline">개인정보 수집 및 이용</span>안내에 동의 합니다.
+					<br>
+					<br>
+					<button id="commit">예약신청</button>
+				</p>
+				
+				<br>
+				<hr>
+				<br>
+				
+		</div>
 	<article id="border">
 		<div id="designerList">
 			<h3 class="show">디자이너 선택</h3>
@@ -725,7 +782,7 @@ section article#border div#guest div#reserve span{
 		</div>
             
 
-		<div id="guest">
+		<div id="guest" class="hide">
 			<img src="${pageContext.request.contextPath}/images/reserve/reserve.jpg">
 			<h2>차홍아르더 본점</h2>
 			<p>대구 광역시 동구 방촌동</p>
@@ -752,7 +809,50 @@ section article#border div#guest div#reserve span{
 				</div>
 			</div>
 			
-			<script type="text/javascript">
+			
+			<hr>
+			<br>
+			
+			
+			<div id="reserve">
+					<label>예약시간</label> : <span id="reserveDate"></span><span id="reserveTime"></span><br>
+					<label>디자이너</label> : <span id="reserveDesigner"></span><br>
+					<label>메뉴</label> : <span id="reserveProduct"></span><br>
+			</div>
+			
+			<br>
+			<hr>
+			<br>
+				
+			<p id="guestText">
+				<label>고객명</label><input type="text" name="gName" id="gName"><br>
+				<label>핸드폰번호</label><input type="text" name="gTel" id="gTel" placeholder='"-"를 붙여서 입력해 주세요.'><br>
+				
+				<br>
+					<input type="checkbox" id="privacy"><span class="underline">개인정보 수집 및 이용</span>안내에 동의 합니다.
+					<br>
+					<br>
+					<button id="commit">예약신청</button>
+				</p>
+				
+				<br>
+				<hr>
+				<br>
+				
+		</div>
+		
+		
+		<script>
+				$(function() {
+					if(${guest.gNo }>0){
+						$("#gName").val('${guest.gName}');
+						$("#gTel").val('${guest.gTel}');
+						$("#gName").attr("disabled",true);
+						$("#gTel").attr("disabled",true);
+					}						
+				})
+			</script>
+		<script type="text/javascript">
 				$(function() {
 					$("div#menuIcon div").eq(0).click(function() {
 						$("#reserveForm").show();
@@ -784,47 +884,7 @@ section article#border div#guest div#reserve span{
 				})
 				
 			</script>
-			<hr>
-			<br>
-			
-			
-			<div id="reserve">
-					<label>예약시간</label> : <span id="reserveDate"></span><span id="reserveTime"></span><br>
-					<label>디자이너</label> : <span id="reserveDesigner"></span><br>
-					<label>메뉴</label> : <span id="reserveProduct"></span><br>
-			</div>
-			
-			<br>
-			<hr>
-			<br>
-				
-			<p id="guestText">
-				<label>고객명</label><input type="text" name="gName" id="gName"><br>
-				<label>핸드폰번호</label><input type="text" name="gTel" id="gTel" placeholder='"-"를 붙여서 입력해 주세요.'><br>
-				<script>
-					$(function() {
-						if(${guest.gNo }>0){
-							$("#gName").val('${guest.gName}');
-							$("#gTel").val('${guest.gTel}');
-							$("#gName").attr("disabled",true);
-							$("#gTel").attr("disabled",true);
-						}						
-					})
-				</script>
-				
-				
-				<br>
-					<input type="checkbox" id="privacy"><span class="underline">개인정보 수집 및 이용</span>안내에 동의 합니다.
-					<br>
-					<br>
-					<button id="commit">예약신청</button>
-				</p>
-				
-				<br>
-				<hr>
-				<br>
-				
-		</div>
+		
 		
 		<script type="text/javascript">
 				$(function() {
