@@ -68,11 +68,12 @@ public class JoinHandler implements CommandHandler {
 			int result = dao.insertGuest(guest);
 			if(result==1) {
 				System.out.println("회원가입이 정상적으로 작동하였습니다");
+				
 			}else {
 				System.out.println("회원가입 에러에러에러");
 			}
 			
-			res.sendRedirect(req.getContextPath()+"/login/loginSuccessForm.jsp");
+			res.sendRedirect(req.getContextPath()+"/login/joinSuccess.do");
 			return null;
 			
 		}

@@ -32,7 +32,7 @@
 
 <section id="joinSuccess">
 	
-	<h1>회원가입에 성공하셨습니다</h1>
+	<h1>비밀번호 변경에 성공하셨습니다</h1>
 	<a href="${pageContext.request.contextPath}/login/login.do"><h3><span id="lcolor">로그인</span> 하세요</h3></a>
 
 </section>

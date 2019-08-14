@@ -39,14 +39,12 @@
 	width: 150px;
 	float: left;
 }
-#joinForm #btnSubmit{
-	width: 100px;
+#joinForm .sBtn{
+	width: 140px;
 	height: 40px;
-	margin-left: 150px;
 }
-#joinForm #btnCheck{
-	width: 100px;
-	height: 40px;
+#joinForm p:last-child{
+	padding-left: 250px;
 }
 }
 
@@ -87,7 +85,7 @@
 #joinForm p:last-child{
 	text-align: center;
 }
-#joinForm #btnSubmit{
+#joinForm .sBtn{
 	width: 50%;
 	height: 50px;
 }
@@ -97,18 +95,62 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/common.js"></script>
 <script>
+	var duplicateID = 0;
+	
+	$(document).ready(function(){
+
+	    $("#btnSubmit").attr("disabled","disabled");
+	    
+	})
 
 	$(function () {
-		var idcheck=0;
+		
+		$("#btnReset").click(function() {
+			duplicateID = 0;
+			$("input[name='id']").val("");
+			$("input[name='name']").val("");
+			$("input[name='password']").val("");
+			
+			$("input[name='id']").removeAttr("disabled");
+			
+		})
+		
+		$("#btnCheck").click(function() {
+			$.ajax({
+				url:"${pageContext.request.contextPath}/login/idCheckHandler.do",
+				type:"get",
+				data:{"id" : $("#id").val() },
+				dataType:"json",
+				success:function(res){ //res = 1 아이디가 있음, 0 아이디 없음 
+					console.log(res);
+					
+					if($("#id").val() != ""){
+						if(res == 1){
+							confirm('ID가 존제합니다');
+							duplicateID = 0;
+						}else{
+							confirm('가입이 가능합니다');
+							duplicateID = 1;
+							$("#btnSubmit").removeAttr("disabled");
+							$("input[name='id']").attr("disabled","disabled");
+						}						
+					}else{
+						alert("아이디를 입력하세요");
+					}
+
+				}
+			})
+		})
+		
 		
 		$("#f1").submit(function() {
 			$(".error").css("display", "none")
 			$(".error2").css("display", "none")
 			
 			//빈 input태그가 존재하면 submit를 막는다
-			if(idcheck==0){
+			if(duplicateID==0){
 				alert("ID중복확인을 진행해 주세요.");
-				idcheck=0;
+				duplicateID=0;
 				return false;
 			}else{
 				
@@ -137,13 +179,6 @@
 				return false;
 			}
 			
-			var namecheck = /^[가-힣]{1,5}$/;			
-			var name = $("input[name='name']").val();
-			if( namecheck.test(name) == false ){
-				$("input[name='name']").next().css("display", "inline");
-				return false;
-			}
-			
 			var pwcheck = /^[a-zA-Z0-9!@#]{1,20}$/i;
 			var pw = $("input[name='password']").val();			
 			if( pwcheck.test(pw) == false ){
@@ -156,41 +191,48 @@
 				$("input[name='confirmPassword']").next().next().css("display", "inline");
 				return false;
 			}
-		})
-		
-		$("#btnCheck").click(function() {
-			$.ajax({
-				url:"${pageContext.request.contextPath}/login/idCheckHandler.do",
-				type:"get",
-				data:{"id" : $("#id").val() },
-				dataType:"json",
-				success:function(res){ //res = 1 아이디가 있음, 0 아이디 없음 
-					console.log(res);
+			
+			var namecheck = /^[가-힣]{1,5}$/;			
+			var name = $("input[name='name']").val();
+			if( namecheck.test(name) == false ){
+				$("input[name='name']").next().css("display", "inline");
+				return false;
+			}
+			
+			var birth = $("input[name='birth']").val();
+			if ( birth == null){
+				$("input[name='birth']").next().css("display", "inline");
+				return false;
+			}
 
-					if(res == 1){
-						confirm('ID가 존제합니다');
-					}else{
-						confirm('가입이 가능합니다');
-						idcheck = 1;
-					}
+			var email = $("input[name='email']").val();
+			if ( email == null){
+				$("input[name='email']").next().css("display", "inline");
+				return false;
+			}
+			
+			
 
-				}
-			})
 		})
 	})
+
+	
+	
 
 </script>
 
 <section id="joinForm">
 
 	<form action="${pageContext.request.contextPath}/login/join.do" method="post" id="f1">
-
-		<p><span>(<span class="fontColorRed">*</span>)</span>는 필수 입니다</p>
+		
+		<p>ID중복확인을 하면 회원가입 버튼이 활성화됩니다.</p>
+		<p><span>(<span class="fontColorRed">*</span>)</span>는 필수 입니다.</p>
+		
 		<p>
 			<label><span>(<span class="fontColorRed">*</span>)</span>아이디</label>
 			<input class="input" type="text" name="id" id="id" value="${pram.id }" placeholder="영어,숫자 포함 1~15 자리">
 			<span class="error">ID(영어, 숫자 6~15)를 입력하세요</span>
-			<button id="btnCheck">ID 중복확인</button>
+			<button type="button" id="btnCheck" class="sBtn">ID 중복확인</button>
 			<c:if test="${duplicatedId == true }">
 				<span class="error2">이미 사용중인 ID입니다</span>
 			</c:if>
@@ -214,18 +256,21 @@
 		<p>
 			<label><span>(<span class="fontColorRed">*</span>)</span>전화번호</label>
 			<input class="input" type="text" name="tel" placeholder="000-0000-0000 형식으로 입력하세요">
+			<span class="error">전화번호를 입력하세요</span>
 		</p>
 		<p>
 			<label><span>(<span class="fontColorRed">*</span>)</span>생일</label>
 			<input class="input" type="date" name="birth" placeholder="생일">
+			<span class="error">생일을 입력하세요</span>
 		</p>
 		<p>
-			<label>이메일</label>
+			<label><span>(<span class="fontColorRed">*</span>)</span>이메일</label>
 			<input class="input" type="email" name="email" placeholder="이메일">
+			<span class="error">이메일을 입력하세요</span>
 		</p>
-
 		<p>
-			<input type="submit" value="회원가입" id="btnSubmit">
+			<input type="submit" value="회원가입" id="btnSubmit" class="sBtn">
+			<input type="button" value="리셋" id="btnReset" class="sBtn">
 		</p>
 
 	

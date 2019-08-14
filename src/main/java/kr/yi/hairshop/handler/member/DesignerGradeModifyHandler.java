@@ -19,9 +19,9 @@ public class DesignerGradeModifyHandler implements CommandHandler {
 
 		String id = req.getParameter("id");	
 		String title = req.getParameter("title");
-		
 		DesignerMapper dao = new DesignerMapperImpl();
 		
+		System.out.println("id 가지고 오냐"+id);
 		Designer designer = dao.selelctDesignerById(id);
 		designer.setdGrade(title);
 		

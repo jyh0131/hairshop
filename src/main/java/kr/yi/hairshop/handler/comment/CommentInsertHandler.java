@@ -34,12 +34,14 @@ public class CommentInsertHandler implements CommandHandler {
 		Guest gNo = new Guest(gno);
 		Review rNo = new Review(rno);
 		Date now = new Date();
-		
-		Comment comment = new Comment(gNo, rNo, cWriter, cContent, now);
+		int cNo = dao.selectAll().size()+1;
+		Comment comment = new Comment(cNo, gNo, rNo, cWriter, now,cContent);
 		dao.insertComment(comment);
-//		req.setCharacterEncoding("utf-8");
+		res.setContentType("application/json;charset=utf-8"); //한글 안깨지게!!
+		
+		
 		ObjectMapper om = new ObjectMapper();
-		String json = om.writeValueAsString(comment); //{succes:true}
+		String json = om.writeValueAsString(comment); 
 		
 		PrintWriter out = res.getWriter();
 		out.print(json);

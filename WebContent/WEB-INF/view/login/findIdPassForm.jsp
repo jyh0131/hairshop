@@ -11,26 +11,61 @@
 	margin: 0 auto;
 	margin-top: 30px;
 	margin-bottom: 30px;
-	
 	text-align: center;
+}
+#IPfinder h1{
+	margin: 20px;
 }
 #IPfinder #idFinder{
 	width: 70%;
-	height: 200px;
 	background-color: lightgreen;
+	padding-bottom:15px;
+	padding-top:15px;
 	margin: 0 auto;
 }
-
-#IPfinder #passFinder{
+#IPfinder #passReset{
 	width: 70%;
-	height: 200px;
-	background-color: lightblue;
+	background-color: #ccc;
+	padding-bottom:15px;
+	padding-top:15px;
 	margin: 0 auto;
 }
 
+#IPfinder p{
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
-@media all and (max-width:1199px){
+#IPfinder input{
+	width: 30%;
+	height: 40px;
+}
+}
 
+@media all and (max-width:1199px){
+#IPfinder{
+	width:100%;
+	margin: 0 auto;
+	margin-top: 30px;
+	margin-bottom: 30px;
+	text-align: center;
+}
+#IPfinder h1{
+	margin: 20px;
+}
+#IPfinder #idFinder{
+	width: 70%;
+	background-color: lightgreen;
+	padding-bottom:15px;
+	padding-top:15px;
+	margin: 0 auto;
+}
+#IPfinder #passReset{
+	width: 70%;
+	background-color: #ccc;
+	padding-bottom:15px;
+	padding-top:15px;
+	margin: 0 auto;
+}
 }
 </style>
 
@@ -48,13 +83,13 @@ $(function() {
 			dataType:"json",
 			success:function(res){ //res = 1 아이디가 있음, 0 아이디 없음 
 				console.log(res);
-
+				
 				if(res == 1){
 					alert("아이디를 이메일로 발송하였습니다");
+					$("#idFindEmail").val("");
 				}else{
 					alert("이메일이 검색되지 않았습니다");
 				}
-
 			}
 		})
 	})
@@ -69,16 +104,15 @@ $(function() {
 				console.log(res);
 
 				if(res == 1){
-					alert("임시 비밀번호를 전송하였습니다");
+					alert("임시 비밀번호를 이메일로 전송하였습니다");
+					$("#id").val("");
+					$("#passFindEmail").val("");
 				}else{
 					alert("다시 시도하세요");
 				}
-
 			}
 		})
 	})
-	
-	
 })
 
 </script>
@@ -86,23 +120,21 @@ $(function() {
 
 
 <section id="IPfinder">
+
 	<h1>아이디/비밀번호 찾기</h1>
 
 	<div id="idFinder">
-		<p>아이디 찾기(가입시 사용한 이메일을 입력하세요)</p>
+		<p><h3>아이디 찾기</h3>(가입시 사용한 이메일을 입력하세요)</p>
 		<p><input type="text" id="idFindEmail" placeholder="이메일을 입력하세요"></p>
 		<p><input type="button" value="전송" id="idChecker"></p>
 	</div>
 	
 	<div id="passReset">
-		<p>비밀번호 찾기</p>
-		<p><label>아이디</label><input type="text" id="id" placeholder="이메일을 입력하세요"></p>		
-		<p><label>이메일</label><input type="text" id="passFindEmail" placeholder="이메일을 입력하세요"></p>
+		<p><h3>비밀번호 찾기</h3></p>
+		<p><input type="text" id="id" placeholder="아이디를 입력하세요"></p>		
+		<p><input type="text" id="passFindEmail" placeholder="이메일을 입력하세요"></p>
 		<p><input type="button" value="전송" id="passChecker"></p>
-	
-	
 	</div>
-
 
 </section>
 
@@ -110,3 +142,51 @@ $(function() {
 
 
 <%@ include file="../../include/footer.jsp" %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

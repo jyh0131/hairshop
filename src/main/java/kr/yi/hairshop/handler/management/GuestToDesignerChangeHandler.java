@@ -22,7 +22,7 @@ public class GuestToDesignerChangeHandler implements CommandHandler {
 		HttpSession session = req.getSession(false);
 		session.setAttribute("dList", dList);
 		
-		return "/WEB-INF/view/management/guestToDesignerChangeForm.jsp";
+		return "/WEB-INF/view/management/designerChangeForm.jsp";
 	}
 
 }

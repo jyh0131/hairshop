@@ -28,9 +28,9 @@ public class CommentMapperImpl implements CommentMapper{
 	}
 
 	@Override
-	public void deleteComment(int rNo) throws SQLException {
+	public void deleteComment(int cNo) throws SQLException {
 		try(SqlSession sqlSession=MyBatisSqlSessionFactory.openSession();){
-			sqlSession.delete(namespace + ".deleteComment", rNo);
+			sqlSession.delete(namespace + ".deleteComment", cNo);
 			sqlSession.commit();
 			return;
 		}
@@ -42,6 +42,29 @@ public class CommentMapperImpl implements CommentMapper{
 			sqlSession.insert(namespace + ".insertComment", comment);
 			sqlSession.commit();
 			return;
+		}
+	}
+
+	@Override
+	public void updateComment(Comment comment) throws SQLException {
+		try(SqlSession sqlSession=MyBatisSqlSessionFactory.openSession();){
+			sqlSession.update(namespace + ".updateComment", comment);
+			sqlSession.commit();
+			return;
+		}
+	}
+
+	@Override
+	public List<Comment> selectAll() throws SQLException {
+		try(SqlSession sqlSession=MyBatisSqlSessionFactory.openSession();){
+			return sqlSession.selectList(namespace+".selectAll");
+		}
+	}
+
+	@Override
+	public List<Comment> selectAllByrNo(int rNo) throws SQLException {
+		try(SqlSession sqlSession=MyBatisSqlSessionFactory.openSession();){
+			return sqlSession.selectList(namespace+".selectAllByrNo", rNo);
 		}
 	}
 	

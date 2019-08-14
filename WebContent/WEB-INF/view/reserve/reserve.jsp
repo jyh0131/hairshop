@@ -267,6 +267,10 @@ section article#border div#guest div#reserve span{
 	color: #E5E5E5 !important;
 	cursor: not-allowed !important;
 }
+.prevDay{
+	color: #E5E5E5 !important;
+	cursor: not-allowed !important;
+}
 
 #reservedList img{
 	width:500px;
@@ -276,6 +280,9 @@ section article#border div#guest div#reserve span{
 .toggle{
 	display: none;
 }
+
+
+
 
 @media all and (max-width:510px){
 	#designer li{
@@ -312,7 +319,7 @@ section article#border div#guest div#reserve span{
 		width:92%;
 	}
 	section article#border div#form{
-		float:right !important;
+		float:left !important;
 		height: auto !important;
 		width:92% !important;
 		padding:2.5% !important;
@@ -325,13 +332,7 @@ section article#border div#guest div#reserve span{
 		height:auto !important;
 		padding:2.5%;
 	}
-	.show{
-		display: none;
-	}
 	
-	.hide{
-		display: none;
-	}
 	.toggle{
 		display: block;
 	}
@@ -401,6 +402,31 @@ section article#border div#guest div#reserve span{
 		
 		var nowDate = new Date();
 		
+		$("#time td").removeClass("prevDay");
+		
+		if(year==nowDate.getFullYear()){
+			if(month<=nowDate.getMonth()){
+				if(month==nowDate.getMonth()){
+					for(var j=0; j<$("#time td").length; j++){
+						var hour=$("#time td").eq(j).text().slice(0,2);
+						var minute=$("#time td").eq(j).text().slice(3,5);
+						if(hour<nowDate.getHours()){
+							$("#time td").eq(j).addClass("prevDay");
+						}else if(hour==nowDate.getHours()){
+							if(minute<nowDate.getMinutes()){
+								$("#time td").eq(j).addClass("prevDay");
+							}
+						}
+						
+					}
+				}else{
+					$("#time td").addClass("prevDay");
+				}
+			}
+		}else if(year<nowDate.getFullYear()){
+			$("#time td").addClass("prevDay");
+		}
+		
 		
 		for (var j = 0; j < t.getDay(); j++) {
 			calendar += "<td></td>";
@@ -415,8 +441,10 @@ section article#border div#guest div#reserve span{
 			}else{
 				if(year==nowDate.getFullYear()){
 					if(month<=nowDate.getMonth()){
+						
 						if(month==nowDate.getMonth() && count>=nowDate.getDate()){
-							calendar += "<td class='day'>" + count + "</td>";							
+							calendar += "<td class='day'>" + count + "</td>";
+							
 						}else{
 							calendar += "<td class='reserved'>" + count + "</td>";
 						}
@@ -439,7 +467,7 @@ section article#border div#guest div#reserve span{
 
 	$(function() {
 		var calDate = new Date();
-		calendar(calDate.getFullYear(), calDate.getMonth());
+		/* calendar(calDate.getFullYear(), calDate.getMonth()); */
 
 		$(document).on('click', '#left', function() {
 			var str = $("#calendar h1").text();
@@ -500,6 +528,8 @@ section article#border div#guest div#reserve span{
 						}
 					}
 				}
+						
+				
 			})
 
 		})
@@ -510,7 +540,9 @@ section article#border div#guest div#reserve span{
 				alert("날짜를 먼저 선택해주세용");
 			}else{
 				if($(this).hasClass("reserved")){
-					alert("이미 예약되었습니다.")
+					alert("이미 예약되었습니다.");
+				}else if($(this).hasClass("prevDay")){
+					alert("이미 지난날짜는 예약이 불가능합니다.");
 				}else{
 					$("#time tr td").css("background-color","white");
 					$(this).css("background-color","#fcfc90");
@@ -752,7 +784,52 @@ section article#border div#guest div#reserve span{
 				</div>
 			</div>
 			
-			<script type="text/javascript">
+			
+			<hr>
+			<br>
+			
+			
+			<div id="reserve">
+					<label>예약시간</label> : <span id="reserveDate"></span><span id="reserveTime"></span><br>
+					<label>디자이너</label> : <span id="reserveDesigner"></span><br>
+					<label>메뉴</label> : <span id="reserveProduct"></span><br>
+			</div>
+			
+			<br>
+			<hr>
+			<br>
+				
+			<p id="guestText">
+				<label>고객명</label><input type="text" name="gName" id="gName"><br>
+				<label>핸드폰번호</label><input type="text" name="gTel" id="gTel" placeholder='"-"를 붙여서 입력해 주세요.'><br>
+				
+				
+				
+				<br>
+					<input type="checkbox" id="privacy"><span class="underline">개인정보 수집 및 이용</span>안내에 동의 합니다.
+					<br>
+					<br>
+					<button id="commit">예약신청</button>
+				</p>
+				
+				<br>
+				<hr>
+				<br>
+				
+		</div>
+		
+		
+		<script>
+					$(function() {
+						if(${guest.gNo }>0){
+							$("#gName").val('${guest.gName}');
+							$("#gTel").val('${guest.gTel}');
+							$("#gName").attr("disabled",true);
+							$("#gTel").attr("disabled",true);
+						}						
+					})
+				</script>
+		<script type="text/javascript">
 				$(function() {
 					$("div#menuIcon div").eq(0).click(function() {
 						$("#reserveForm").show();
@@ -784,47 +861,7 @@ section article#border div#guest div#reserve span{
 				})
 				
 			</script>
-			<hr>
-			<br>
-			
-			
-			<div id="reserve">
-					<label>예약시간</label> : <span id="reserveDate"></span><span id="reserveTime"></span><br>
-					<label>디자이너</label> : <span id="reserveDesigner"></span><br>
-					<label>메뉴</label> : <span id="reserveProduct"></span><br>
-			</div>
-			
-			<br>
-			<hr>
-			<br>
-				
-			<p id="guestText">
-				<label>고객명</label><input type="text" name="gName" id="gName"><br>
-				<label>핸드폰번호</label><input type="text" name="gTel" id="gTel" placeholder='"-"를 붙여서 입력해 주세요.'><br>
-				<script>
-					$(function() {
-						if(${guest.gNo }>0){
-							$("#gName").val('${guest.gName}');
-							$("#gTel").val('${guest.gTel}');
-							$("#gName").attr("disabled",true);
-							$("#gTel").attr("disabled",true);
-						}						
-					})
-				</script>
-				
-				
-				<br>
-					<input type="checkbox" id="privacy"><span class="underline">개인정보 수집 및 이용</span>안내에 동의 합니다.
-					<br>
-					<br>
-					<button id="commit">예약신청</button>
-				</p>
-				
-				<br>
-				<hr>
-				<br>
-				
-		</div>
+		
 		
 		<script type="text/javascript">
 				$(function() {

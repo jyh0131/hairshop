@@ -20,6 +20,7 @@
 		float:left;
 		width: 230px;
 		padding:10px 10px 30px 10px;
+		cursor: pointer;
 	}
 	section img{
 		width: 175px;
@@ -39,7 +40,6 @@
 	}
 	#hairlist ul{
 		list-style:none;
-		width:100%;
 	}
 	#hairlist ul li{
 		float: left;
@@ -48,6 +48,7 @@
 		line-height: 30px;
 		text-align: center;
 		font-size:15px;
+		
 	}	
 	#color .hair img{
 		width: 175px;
@@ -62,9 +63,8 @@
 		background: black;
 		border-radius: 5px;
 		color:white;
+		cursor: pointer;
 	}
-	
-	/*  */
 	
 	#top{
 		clear: both;
@@ -72,11 +72,15 @@
 		font-size: 15px;
 		color:black;
 		border-radius: 5px;
-		background-color: #F6F6F6;
-		width: 18%;
+		background-color: #ccc;
+		width: 5%;
 		height:30px;
 		text-align:center;
 		margin-bottom: 100px;
+		position: fixed;
+		bottom: 400px;
+		right:350px;
+		cursor: pointer;
 	}
 	#top:hover{
 		background: black;
@@ -120,6 +124,36 @@
 		text-align: right;
 		padding-right: 50px;
 	}
+	.detail{
+		display: none;
+		z-index:100;
+		position:fixed;
+		left:0;
+		top:0;
+		width:900px;
+		height: 1000px;
+		background: rgba(0,0,0,0.9);
+		padding:20px 30%;
+		display: none;
+		color:#D5D5D5;
+	}
+	.detailhair{
+		width: 675px;
+		height: 900px;
+		position: relative;
+	}
+	.detailclose{
+		cursor:pointer;
+		position: absolute;
+		bottom: 120px;
+		right: 750px;
+	}
+	.detail .detailcolor{
+		width: 675px !important;
+		height: 900px !important;
+	}
+	
+	
 </style>
 <section>
 	
@@ -135,259 +169,397 @@
 	<!-- 커트사진 -->	
 	<div id="cut">
 		<div class="hair">
-			<a href="">
-				<img src="../images/cut/feminine.png">
-			</a>
+			<img src="../images/cut/feminine.png" class="smallhair">
+				<div class="detail"><!-- 제이쿼리 클릭하면 헤어 상세보기 창 -->
+					<img src="../images/cut/feminine.jpg" class="detailhair">
+					<div class="detailclose">[닫기]</div>
+				</div>
 		</div>	
 		<div class="hair">
-			<a href="">
-				<img src="../images/cut/hug.png">
-			</a>
+			
+				<img src="../images/cut/hug.png" class="smallhair">
+				<div class="detail">
+				<img src="../images/cut/hug.jpg" class="detailhair">
+				<div class="detailclose">[닫기]</div>
+			</div>
 		</div>	
 		<div class="hair">
-			<a href="">
-				<img src="../images/cut/hush.png">
-			</a>
+			
+				<img src="../images/cut/hush.png" class="smallhair">
+				<div class="detail">
+				<img src="../images/cut/hush.jpg" class="detailhair">
+				<div class="detailclose">[닫기]</div>
+			</div>
 		</div>	
 		<div class="hair">
-			<a href="">
-				<img src="../images/cut/sand.png">
-			</a>
+			
+				<img src="../images/cut/sand.png" class="smallhair">
+			<div class="detail">
+				<img src="../images/cut/sand.jpg" class="detailhair">
+				<div class="detailclose">[닫기]</div>
+			</div>
 		</div>	
 		<div class="hair">
-			<a href="">
-				<img src="../images/cut/tassel.png">
-			</a>
+			
+				<img src="../images/cut/tassel.png" class="smallhair"> 
+			<div class="detail">
+				<img src="../images/cut/tassel.jpg" class="detailhair">
+				<div class="detailclose">[닫기]</div>
+			</div>
 		</div>
 		<div class="hair">
-			<a href="">
-				<img src="../images/cut/bebe.png">
-			</a>
+			
+				<img src="../images/cut/bebe.png" class="smallhair">
+				<div class="detail">
+				<img src="../images/cut/bebe.jpg" class="detailhair">
+				<div class="detailclose">[닫기]</div>
+			</div>
 		</div>
 		<div class="hair">
-			<a href="">
-				<img src="../images/cut/bird.png">
-			</a>
+			
+				<img src="../images/cut/bird.png" class="smallhair">
+					<div class="detail">
+				<img src="../images/cut/bird.jpg" class="detailhair">
+				<div class="detailclose">[닫기]</div>
+			</div>
 		</div>
 		<div class="hair">
-			<a href="">
-				<img src="../images/cut/bonnie.png">
-			</a>
+			
+				<img src="../images/cut/bonnie.png" class="smallhair">
+				<div class="detail">
+				<img src="../images/cut/bonnie.jpg" class="detailhair">
+				<div class="detailclose">[닫기]</div>
+			</div>
 		</div>
 		<div class="hair">
-			<a href="">
-				<img src="../images/cut/born.png">
-			</a>
+		
+				<img src="../images/cut/born.png" class="smallhair">
+					<div class="detail">
+				<img src="../images/cut/born.jpg" class="detailhair">
+				<div class="detailclose">[닫기]</div>
+			</div>
 		</div>
 		<div class="hair">
-			<a href="">
-				<img src="../images/cut/brooke.png">
-			</a>
+			
+				<img src="../images/cut/brooke.png" class="smallhair">
+					<div class="detail">
+				<img src="../images/cut/brooke.jpg" class="detailhair">
+				<div class="detailclose">[닫기]</div>
+			</div>
 		</div>
 		<div class="hair">
-			<a href="">
-				<img src="../images/cut/build.png">
-			</a>
+			
+				<img src="../images/cut/build.png" class="smallhair">
+					<div class="detail">
+				<img src="../images/cut/build.jpg" class="detailhair">
+				<div class="detailclose">[닫기]</div>
+			</div>
 		</div>
 		<div class="hair">
-			<a href="">
-				<img src="../images/cut/frill.png">
-			</a>
+			
+				<img src="../images/cut/frill.png" class="smallhair">
+					<div class="detail">
+				<img src="../images/cut/frill.jpg" class="detailhair">
+				<div class="detailclose">[닫기]</div>
+			</div>
 		</div>
 		<div class="hair">
-			<a href="">
-				<img src="../images/cut/gureum.png">
-			</a>
+		
+				<img src="../images/cut/gureum.png" class="smallhair">
+				<div class="detail">
+				<img src="../images/cut/gureum.jpg" class="detailhair">
+				<div class="detailclose">[닫기]</div>
+			</div>
 		</div>
 		<div class="hair">
-			<a href="">
-				<img src="../images/cut/hole.png">
-			</a>
+			
+				<img src="../images/cut/hole.png" class="smallhair">
+					<div class="detail">
+				<img src="../images/cut/hole.jpg" class="detailhair">
+				<div class="detailclose">[닫기]</div>
+			</div>
 		</div>
 		<div class="hair">
-			<a href="">
-				<img src="../images/cut/humming.png">
-			</a>
+			
+				<img src="../images/cut/humming.png" class="smallhair">
+				<div class="detail">
+				<img src="../images/cut/humming.jpg" class="detailhair">
+				<div class="detailclose">[닫기]</div>
+			</div>
 		</div>
 		<div class="hair">
-			<a href="">
-				<img src="../images/cut/lea.png">
-			</a>
+		
+				<img src="../images/cut/lea.png" class="smallhair">
+				<div class="detail">
+				<img src="../images/cut/lea.jpg" class="detailhair">
+				<div class="detailclose">[닫기]</div>
+			</div>
 		</div>
 			<div class="hair">
-			<a href="">
-				<img src="../images/cut/mods.png">
-			</a>
+			
+				<img src="../images/cut/mods.png" class="smallhair">
+					<div class="detail">
+				<img src="../images/cut/mods.jpg" class="detailhair">
+				<div class="detailclose">[닫기]</div>
+			</div>
 		</div>
 		<div class="hair">
-			<a href="">
-				<img src="../images/cut/ruffle.png">
-			</a>
+			
+				<img src="../images/cut/ruffle.png" class="smallhair">
+					<div class="detail">
+				<img src="../images/cut/ruffle.jpg" class="detailhair">
+				<div class="detailclose">[닫기]</div>
+			</div>
 		</div>
 		<div class="hair">
-			<a href="">
-				<img src="../images/cut/smooth.png">
-			</a>
+			
+				<img src="../images/cut/smooth.png" class="smallhair">
+				<div class="detail">
+				<img src="../images/cut/smooth.jpg" class="detailhair">
+				<div class="detailclose">[닫기]</div>
+			</div>
 		</div>
 		<div class="hair">
-			<a href="">
-				<img src="../images/cut/v.png">
-			</a>
+		
+				<img src="../images/cut/v.png" class="smallhair">
+					<div class="detail">
+				<img src="../images/cut/v.jpg" class="detailhair">
+				<div class="detailclose">[닫기]</div>
+			</div>
 		</div>
 	</div>
 	<!-- 펌사진 -->	
 	<div id="perm">
 		<div class="hair">
-			<a href="">
-				<img src="../images/perm/balloon.png">
-			</a>
+			
+				<img src="../images/perm/balloon.png" class="smallhair">
+			<div class="detail">
+				<img src="../images/perm/balloon.jpg" class="detailhair">
+				<div class="detailclose">[닫기]</div>
+			</div>
 		</div>	
 		<div class="hair">
-			<a href="">
-				<img src="../images/perm/build.png">
-			</a>
+			
+				<img src="../images/perm/build.png" class="smallhair">
+			<div class="detail">
+				<img src="../images/perm/build.jpg" class="detailhair">
+				<div class="detailclose">[닫기]</div>
+			</div>
 		</div>	
 		<div class="hair">
-			<a href="">
-				<img src="../images/perm/diann.png">
-			</a>
+			
+				<img src="../images/perm/diann.png" class="smallhair">
+			<div class="detail">
+				<img src="../images/perm/diann.jpg" class="detailhair">
+				<div class="detailclose">[닫기]</div>
+			</div>
 		</div>	
 		<div class="hair">
-			<a href="">
-				<img src="../images/perm/egg.png">
-			</a>
+			
+				<img src="../images/perm/egg.png" class="smallhair">
+			<div class="detail">
+				<img src="../images/perm/egg.jpg" class="detailhair">
+				<div class="detailclose">[닫기]</div>
+			</div>
 		</div>	
 		<div class="hair">
-			<a href="">
-				<img src="../images/perm/rain.png">
-			</a>
+		
+				<img src="../images/perm/rain.png" class="smallhair">
+			<div class="detail">
+				<img src="../images/perm/rain.jpg" class="detailhair">
+				<div class="detailclose">[닫기]</div>
+			</div>
 		</div>	
 		<div class="hair">
-			<a href="">
-				<img src="../images/perm/ruffle.png">
-			</a>
+			
+				<img src="../images/perm/ruffle.png" class="smallhair">
+			<div class="detail">
+				<img src="../images/perm/ruffle.jpg" class="detailhair">
+				<div class="detailclose">[닫기]</div>
+			</div>
 		</div>	
 		<div class="hair">
-			<a href="">
-				<img src="../images/perm/air.png">
-			</a>
+			
+				<img src="../images/perm/air.png" class="smallhair">
+			<div class="detail">
+				<img src="../images/perm/air.jpg" class="detailhair">
+				<div class="detailclose">[닫기]</div>
+			</div>
 		</div>	
 		<div class="hair">
-			<a href="">
-				<img src="../images/perm/alice.png">
-			</a>
+		
+				<img src="../images/perm/alice.png" class="smallhair">
+			<div class="detail">
+				<img src="../images/perm/alice.jpg" class="detailhair">
+				<div class="detailclose">[닫기]</div>
+			</div>
 		</div>	
 		<div class="hair">
-			<a href="">
-				<img src="../images/perm/cotton.png">
-			</a>
+			
+				<img src="../images/perm/cotton.png" class="smallhair">
+			<div class="detail">
+				<img src="../images/perm/cotton.jpg" class="detailhair">
+				<div class="detailclose">[닫기]</div>
+			</div>
 		</div>	
 		<div class="hair">
-			<a href="">
-				<img src="../images/perm/easy.png">
-			</a>
+			
+				<img src="../images/perm/easy.png" class="smallhair">
+			<div class="detail">
+				<img src="../images/perm/easy.jpg" class="detailhair">
+				<div class="detailclose">[닫기]</div>
+			</div>
 		</div>	
 		<div class="hair">
-			<a href="">
-				<img src="../images/perm/feminine.png">
-			</a>
+			
+				<img src="../images/perm/feminine.png" class="smallhair">
+			<div class="detail">
+				<img src="../images/perm/feminine.jpg" class="detailhair">
+				<div class="detailclose">[닫기]</div>
+			</div>
 		</div>	
 		<div class="hair">
-			<a href="">
-				<img src="../images/perm/flower.png">
-			</a>
+			
+				<img src="../images/perm/flower.png" class="smallhair">
+			<div class="detail">
+				<img src="../images/perm/flower.jpg" class="detailhair">
+				<div class="detailclose">[닫기]</div>
+			</div>
 		</div>	
 	
 			<div class="hair">
-			<a href="">
-				<img src="../images/perm/frill.png">
-			</a>
+			
+				<img src="../images/perm/frill.png" class="smallhair">
+			<div class="detail">
+				<img src="../images/perm/frill.jpg" class="detailhair">
+				<div class="detailclose">[닫기]</div>
+			</div>
 		</div>	
 		<div class="hair">
-			<a href="">
-				<img src="../images/perm/hole.png">
-			</a>
+			
+				<img src="../images/perm/hole.png" class="smallhair">
+			<div class="detail">
+				<img src="../images/perm/hole.jpg" class="detailhair">
+				<div class="detailclose">[닫기]</div>
+			</div>
 		</div>	
 		<div class="hair">
-			<a href="">
-				<img src="../images/perm/hug.png">
-			</a>
+			
+				<img src="../images/perm/hug.png" class="smallhair">
+		<div class="detail">
+				<img src="../images/perm/hug.jpg" class="detailhair">
+				<div class="detailclose">[닫기]</div>
+			</div>
 		</div>	
 		<div class="hair">
-			<a href="">
-				<img src="../images/perm/jelly.png">
-			</a>
+		
+				<img src="../images/perm/jelly.png" class="smallhair">
+			<div class="detail">
+				<img src="../images/perm/jelly.jpg" class="detailhair">
+				<div class="detailclose">[닫기]</div>
+			</div>
 		</div>	
 		<div class="hair">
-			<a href="">
-				<img src="../images/perm/pleats.png">
-			</a>
+		
+				<img src="../images/perm/pleats.png" class="smallhair">
+			<div class="detail">
+				<img src="../images/perm/pleats.jpg" class="detailhair">
+				<div class="detailclose">[닫기]</div>
+			</div>
 		</div>	
 		<div class="hair">
-			<a href="">
-				<img src="../images/perm/pog.png">
-			</a>
+		
+				<img src="../images/perm/fog.png" class="smallhair">
+		<div class="detail">
+				<img src="../images/perm/fog.jpg" class="detailhair">
+				<div class="detailclose">[닫기]</div>
+			</div>
 		</div>
 		<div class="hair">
-			<a href="">
-				<img src="../images/perm/tammy.png">
-			</a>
+		
+				<img src="../images/perm/tammy.png" class="smallhair">
+		<div class="detail">
+				<img src="../images/perm/tammy.jpg" class="detailhair">
+				<div class="detailclose">[닫기]</div>
+			</div>
 		</div>	
 		<div class="hair">
-			<a href="">
-				<img src="../images/perm/wind.png">
-			</a>
+		
+				<img src="../images/perm/wind.png" class="smallhair">
+	<div class="detail">
+				<img src="../images/perm/wind.jpg" class="detailhair">
+				<div class="detailclose">[닫기]</div>
+			</div>
 		</div>
 	</div>
 	
 	<!-- 염색컬러사진 -->	
 	<div id="color">
 		<div class="hair">
-			<a href="">
-				<img src="../images/color/babybrown.png">
-			</a>
+		
+				<img src="../images/color/babybrown.png" class="smallhair">
+		
 			<p id="bb">Baby Brown 베이비브라운</p> 
+			<div class="detail">
+				<img src="../images/color/bb.jpg" class="detailcolor">
+				<div class="detailclose">[닫기]</div>
+			</div>
 		</div>
 		<div class="hair">
-			<a href="">
-				<img src="../images/color/skinbrown.png">
-			</a>
+	
+				<img src="../images/color/skinbrown.png" class="smallhair">
+		
 			<p id="sb">Skin Brown 스킨브라운</p>
+			<div class="detail">
+				<img src="../images/color/sb.jpg" class="detailcolor">
+				<div class="detailclose">[닫기]</div>
+			</div>
 		</div>
 		<div class="hair">
-			<a href="">
-				<img src="../images/color/olivebrown.png">
-			</a>
+		
+				<img src="../images/color/olivebrown.png" class="smallhair">
+		
 			<p id="ob">Olive Brown 올리브브라운</p>
+			<div class="detail">
+				<img src="../images/color/ob.jpg" class="detailcolor">
+				<div class="detailclose">[닫기]</div>
+			</div>
 		</div>
 		<div class="hair">
-			<a href="">
-				<img src="../images/color/ororared.png">
-			</a>
+		
+				<img src="../images/color/ororared.png" class="smallhair">
+		
 			<p id="ar">Aurora Red 오로라레드</p>
+			<div class="detail">
+				<img src="../images/color/ar.jpg" class="detailcolor">
+				<div class="detailclose">[닫기]</div>
+			</div>
 		</div>
 		<div class="hair">
-			<a href="">
-				<img src="../images/color/peachbrown.png">
-			</a>
+		
+				<img src="../images/color/peachbrown.png" class="smallhair">
+
 			<p id="pb">Peach Brown 피치브라운</p>
+			<div class="detail">
+				<img src="../images/color/pb.jpg" class="detailcolor">
+				<div class="detailclose">[닫기]</div>
+			</div>
 		</div>
 		<div class="hair">
-			<a href="">
-				<img src="../images/color/midnightblue.png">
-			</a>
+
+				<img src="../images/color/midnightblue.png" class="smallhair">
+	
 			<p id="mb">Midnight Blue 미드나잇블루</p>
+			<div class="detail">
+				<img src="../images/color/mb.jpg" class="detailcolor">
+				<div class="detailclose">[닫기]</div>
+			</div>
 		</div>
 	</div>
 	<div id="top">
   		<span id="topBtn">top</span>
 	</div>
 	</div>
-
-
-
-
-
 
 </section>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -405,14 +577,22 @@
 			$('html,body').animate({
 				scrollTop:1800}, 2000);
 		})
-		
 		$("#hairColor").click(function(){ /* color로 이동 */
 			$('html,body').animate({
-				scrollTop:5000}, 2000);
+				scrollTop:3000}, 2000);
 		})
+		
+		/* 헤어 클릭하면 상세보기 */
+		$(".hair").click(function(){
+			$(this).find(".detail").fadeIn(500);
+		})
+		/* 상세보기 창 닫어라 */
+		$(document).on("click", ".detailclose", function(){
+			$(this).parent().fadeOut(500);
+		})
+		
+		
 	})
-	
-	
 	
 </script>
 <%@ include file="../include/footer.jsp" %>

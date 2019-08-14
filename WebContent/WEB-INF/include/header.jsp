@@ -7,7 +7,7 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=divice-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="favicon" href="${pageContext.request.contextPath}/images/favicon.ico">
 <title>차홍아르더</title>
 
@@ -37,7 +37,7 @@ header #topmenu ul a{
 	color: black;
 }
 header #topmenu ul li{
-	width: 13%;
+	width: 16.6%;
 	height: 60px;
 	line-height: 60px;
 	text-decoration: none;
@@ -52,8 +52,11 @@ a#reserve li{
 header #topmenu li:hover{
 	text-decoration: underline;
 }
+header #topmenu li#mgnMenu{
+	background-color: #aaa;
+}
 header #topmenuMgn{
-
+	z-index: 10000000;
 }
 header #topmenuMgn ul a{
 	color: black;
@@ -61,7 +64,7 @@ header #topmenuMgn ul a{
 }
 
 header #topmenuMgn ul li{
-	width: 152px;
+	width: 20%;
 	height: 60px;
 	line-height: 60px;
 	text-decoration: none;
@@ -71,9 +74,25 @@ header #topmenuMgn ul li{
 	color: white;
 	background-color: #aaa;
 }
+
+
+
+
 header #topmenuMgn li:hover{
 	background-color: black; 
 }
+
+header #topmenuMgn ul #submenu{
+	display: none;
+	position: absolute;
+	top:50;
+	left:0;
+	width:100%;
+}
+
+
+
+
 header #Idcheck{
 	min-width:15%;
 	height:30px;
@@ -129,6 +148,20 @@ header button#chatShow{
 	border-radius:5px;
 	background: rgba(255,255,255,0.5);
 }
+
+header #submenu{
+	display: none;
+
+}
+header #submenu li{
+	z-index: 10000;
+}
+
+
+
+
+
+
 }
 
 @media all and (max-width:1199px){
@@ -190,9 +223,7 @@ header #topmenuMgn ul li{
 	background-color: #aaa;
 	font-size: 25px;
 }
-header #topmenuMgn li:hover{
-	background-color: black; 
-}
+
 header #Idcheck{
 	width:100%;
 	height: 30px;
@@ -205,7 +236,6 @@ header #Idcheck{
 	right:0px;
 	text-align: right;
  */
-	
 	text-align: center;
 }
 header #Idcheck span{
@@ -299,9 +329,9 @@ $(function () {
 	
 	//a 태그 막고 팝업 실행 시키기
 	
-	$("#reserve").click(function(e) {
-		e.preventDefault();
+	$("#reserve").click(function() {
 		$("#reserve").css("background-color", "red");
+		alert("로그인 해주세요");
 		return false;
 	})
 	
@@ -317,7 +347,15 @@ $(function () {
 $(document).ready(function(){
  	
 	<c:if test="${Auth.uIsMgr == true }">
-		$("#topmenu").css("display", "none");
+		$("#topmenu").find("li").css("width", "14.2%");
+		$("#topmenuMgn").css("width", "100%");
+		$("#topmenuMgn").find("li").css("width", "100%");
+
+		$("#mgnMenu").click(function(){
+			   $("#submenu").slideToggle("slow");
+		});
+		
+		//$("#topmenu").css("display", "none");
 	</c:if>
 
 });
@@ -341,7 +379,7 @@ $(document).ready(function(){
 				<div id="menuBtnSlide">
 					<div id="Idcheck">
 						<c:if test="${Auth != null }">
-							<span><a href="${pageContext.request.contextPath}/member/mypage.do">${Auth.uName}</a>님</span>
+							<span>${Auth.uName}님</span>
 							<span><a href="${pageContext.request.contextPath}/login/logout.do">LogOut</a></span>
 						</c:if>
 						<c:if test="${Auth == null }">
@@ -372,23 +410,26 @@ $(document).ready(function(){
 							<a href="${pageContext.request.contextPath}/board/managerList.do"><li>NOTICE</li></a>
 							<a href="${pageContext.request.contextPath}/review/review.do"><li>REVIEW</li></a>
 							<a href="${pageContext.request.contextPath}/reserve/form.do"><li>RESERVATION</li></a>
-							<a href="${pageContext.request.contextPath}/reserve/form.do" id="reserve"><li>RESERVATION STATE</li></a>
+							
+							<c:if test="${Auth.uIsMgr == true }">
+							<li id="mgnMenu">관리자메뉴
+								<div id="topmenuMgn">
+									<ul id="submenu">
+										<a href="${pageContext.request.contextPath}/management/reserve.do"><li>예약관리</li></a>
+										<a href="${pageContext.request.contextPath}/guest/guestList.do"><li>회원관리</li></a>
+										<a href="${pageContext.request.contextPath}/management/designerList.do"><li>디자이너관리</li></a>
+										<a href="${pageContext.request.contextPath}/management/chart.do"><li>차트통계</li></a>
+									</ul>
+								</div>							
+							</li>
+							</c:if>
+							
 						</ul>
 					</div>
-					<c:if test="${Auth.uIsMgr == true }">
-					<div id="topmenuMgn">
-						<ul>
-							<a href="${pageContext.request.contextPath}/"><li>관리자페이지</li></a>
-							<a href="${pageContext.request.contextPath}/management/reserve.do"><li>예약관리</li></a>
-							<a href="${pageContext.request.contextPath}/board/managerList.do"><li>공지사항</li></a>
-							<a href="${pageContext.request.contextPath}/guest/guestList.do"><li>회원관리</li></a>
-							<a href="${pageContext.request.contextPath}/management/gradeChange.do"><li>등급관리</li></a>
-							<a href="${pageContext.request.contextPath}/management/guestChange.do"><li>승급관리</li></a>
-							<a href="${pageContext.request.contextPath}/management/chart.do"><li>차트통계</li></a>
-						</ul>
-					</div>
+					
+
 				</div>
-				</c:if>
+				
 			</div>
 			
 			<button id="chatShow">채팅 숨기기</button>

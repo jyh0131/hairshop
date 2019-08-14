@@ -1,4 +1,4 @@
-package kr.yi.hairshop.handler.login;
+package kr.yi.hairshop.util;
 
 import java.util.Properties;
 import java.util.Random;
@@ -12,9 +12,9 @@ import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-public class Email {
+public class EmailSander {
 
-	public void idSander(String id) {
+	public void idSander(String id, String email) {
 		String host = "smtp.naver.com"; // 네이버일 경우 네이버 계정, gmail경우 gmail 계정
 		String user = "kyg0816@naver.com"; //발신자의 이메일 아이디를 입력
 		String password = "wjrwjrwjr2896!"; //발신자 이메일의 패스워드를 입력
@@ -35,7 +35,7 @@ public class Email {
             MimeMessage message = new MimeMessage(session);
             message.setFrom(new InternetAddress(user));
             
-            message.addRecipient(Message.RecipientType.TO, new InternetAddress("younggak@gmail.com"));
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
             message.setSubject("아이디 확인 메일");
             message.setText("요청하신 아이디는 "+id+" 입니다");
 
@@ -50,7 +50,7 @@ public class Email {
 		return;
 	}
 	
-	public void passSander(String pass) {
+	public void passSander(String pass, String email) {
 		String host = "smtp.naver.com"; // 네이버일 경우 네이버 계정, gmail경우 gmail 계정
 		String user = "kyg0816@naver.com"; //발신자의 이메일 아이디를 입력
 		String password = "wjrwjrwjr2896!"; //발신자 이메일의 패스워드를 입력
@@ -71,9 +71,9 @@ public class Email {
             MimeMessage message = new MimeMessage(session);
             message.setFrom(new InternetAddress(user));
             
-            message.addRecipient(Message.RecipientType.TO, new InternetAddress("younggak@gmail.com"));
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
             message.setSubject("임시 비밀번호 발송");
-            message.setText("입시 비밀 번호는 "+pass+" 입니다");
+            message.setText("임시 비밀 번호는 "+pass+" 입니다");
 
             Transport.send(message); ////전송
             System.out.println("message sent successfully...");

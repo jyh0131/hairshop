@@ -143,30 +143,8 @@ $(function () {
 			$("input[name='newPasswordConfirm']").next().next().css("display", "inline");
 			return false;
 		}
-/* 
 
-		$.ajax({
-			url:"${pageContext.request.contextPath}/member/guestPassModifyCheck.do",
-			type:"post",
-			data:{"pass" : $("#nowPassword").val() },
-			dataType:"json",
-			success:function(data){
-				console.log(data);
-				
-				if(data == 0){
-					alert("비밀번호를 확인 해주세요 : 아작스")
-					passCheck = 0; // 실패
-				}else{
-					passCheck = 1; // 성공
-				}
-			}
-		})
-		
-		if(data==0){
-			return false;
-		}
-
- */		var pwcheck = /^[a-zA-Z0-9!@#]{2,20}$/i;
+		var pwcheck = /^[a-zA-Z0-9!@#]{1,20}$/i;
 		var pw = $("input[name='newPassword']").val();			
 		if( pwcheck.test(pw) == false ){
 			$("input[name='newPassword']").next().next().css("display", "inline");
