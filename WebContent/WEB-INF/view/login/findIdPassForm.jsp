@@ -84,8 +84,10 @@ $(function() {
 			success:function(res){ //res = 1 아이디가 있음, 0 아이디 없음 
 				console.log(res);
 
+				
 				if(res == 1){
 					alert("아이디를 이메일로 발송하였습니다");
+					$("#idFindEmail").val("");
 				}else{
 					alert("이메일이 검색되지 않았습니다");
 				}
@@ -104,6 +106,8 @@ $(function() {
 
 				if(res == 1){
 					alert("임시 비밀번호를 이메일로 전송하였습니다");
+					$("#id").val("");
+					$("#passFindEmail").val("");
 				}else{
 					alert("다시 시도하세요");
 				}
