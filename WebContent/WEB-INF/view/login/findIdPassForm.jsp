@@ -11,7 +11,6 @@
 	margin: 0 auto;
 	margin-top: 30px;
 	margin-bottom: 30px;
-	
 	text-align: center;
 }
 #IPfinder h1{
@@ -24,7 +23,6 @@
 	padding-top:15px;
 	margin: 0 auto;
 }
-
 #IPfinder #passReset{
 	width: 70%;
 	background-color: #ccc;
@@ -44,7 +42,30 @@
 }
 }
 @media all and (max-width:1199px){
-
+#IPfinder{
+	width:100%;
+	margin: 0 auto;
+	margin-top: 30px;
+	margin-bottom: 30px;
+	text-align: center;
+}
+#IPfinder h1{
+	margin: 20px;
+}
+#IPfinder #idFinder{
+	width: 70%;
+	background-color: lightgreen;
+	padding-bottom:15px;
+	padding-top:15px;
+	margin: 0 auto;
+}
+#IPfinder #passReset{
+	width: 70%;
+	background-color: #ccc;
+	padding-bottom:15px;
+	padding-top:15px;
+	margin: 0 auto;
+}
 }
 </style>
 
@@ -82,7 +103,7 @@ $(function() {
 				console.log(res);
 
 				if(res == 1){
-					alert("임시 비밀번호를 전송하였습니다");
+					alert("임시 비밀번호를 이메일로 전송하였습니다");
 				}else{
 					alert("다시 시도하세요");
 				}
