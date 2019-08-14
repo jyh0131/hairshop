@@ -165,10 +165,6 @@
 					return false;
 				}	
 			}
-			
-		
-			
-			
 		})
 		
 		var naverLogin = new naver.LoginWithNaverId({

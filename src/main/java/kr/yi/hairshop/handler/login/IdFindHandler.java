@@ -11,6 +11,7 @@ import kr.yi.hairshop.controller.CommandHandler;
 import kr.yi.hairshop.dao.GuestMapper;
 import kr.yi.hairshop.dao.GuestMapperImpl;
 import kr.yi.hairshop.dto.Guest;
+import kr.yi.hairshop.util.EmailSander;
 
 public class IdFindHandler  implements CommandHandler{
 
@@ -19,12 +20,12 @@ public class IdFindHandler  implements CommandHandler{
 		
 		
 		if(req.getMethod().equalsIgnoreCase("post")) {
-			Email emailSander = new Email();
+			EmailSander emailSander = new EmailSander();
 			
-			String e = req.getParameter("email");
+			String email = req.getParameter("email");
 			
 			GuestMapper dao = new GuestMapperImpl();
-			Guest dbGuest = dao.selectGuestByEmail(e);
+			Guest dbGuest = dao.selectGuestByEmail(email);
 			System.out.println(dbGuest);
 			int checkEmail=0;
 
@@ -32,7 +33,7 @@ public class IdFindHandler  implements CommandHandler{
 				checkEmail = 0; //실패
 			}else {
 				checkEmail = 1; //성공
-				emailSander.idSander(dbGuest.getgId());				
+				emailSander.idSander(dbGuest.getgId(), email);				
 			}
 			
 			ObjectMapper om = new ObjectMapper();
