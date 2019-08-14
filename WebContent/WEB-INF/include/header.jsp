@@ -53,7 +53,7 @@ header #topmenu li:hover{
 	text-decoration: underline;
 }
 header #topmenuMgn{
-
+	z-index: 10000000;
 }
 header #topmenuMgn ul a{
 	color: black;
@@ -74,6 +74,18 @@ header #topmenuMgn ul li{
 header #topmenuMgn li:hover{
 	background-color: black; 
 }
+
+header #topmenuMgn ul #submenu{
+	display: none;
+	position: absolute;
+	top:50;
+	left:0;
+	width:100%;
+}
+
+
+
+
 header #Idcheck{
 	min-width:15%;
 	height:30px;
@@ -129,6 +141,20 @@ header button#chatShow{
 	border-radius:5px;
 	background: rgba(255,255,255,0.5);
 }
+
+header #submenu{
+	display: none;
+
+}
+header #submenu li{
+	z-index: 10000;
+}
+
+
+
+
+
+
 }
 
 @media all and (max-width:1199px){
@@ -314,7 +340,15 @@ $(function () {
 $(document).ready(function(){
  	
 	<c:if test="${Auth.uIsMgr == true }">
-		$("#topmenu").css("display", "none");
+		$("#topmenu").find("li").css("width", "14.2%");
+		$("#topmenuMgn").css("width", "100%");
+		$("#topmenuMgn").find("li").css("width", "100%");
+
+		$("#mgnMenu").click(function(){
+			   $("#submenu").slideToggle("slow");
+		});
+		
+		//$("#topmenu").css("display", "none");
 	</c:if>
 
 });
@@ -369,20 +403,26 @@ $(document).ready(function(){
 							<a href="${pageContext.request.contextPath}/board/managerList.do"><li>NOTICE</li></a>
 							<a href="${pageContext.request.contextPath}/review/review.do"><li>REVIEW</li></a>
 							<a href="${pageContext.request.contextPath}/reserve/form.do"><li>RESERVATION</li></a>
+							
+							<c:if test="${Auth.uIsMgr == true }">
+							<li id="mgnMenu">관리자메뉴
+								<div id="topmenuMgn">
+									<ul id="submenu">
+										<a href="${pageContext.request.contextPath}/management/reserve.do"><li>예약관리</li></a>
+										<a href="${pageContext.request.contextPath}/guest/guestList.do"><li>회원관리</li></a>
+										<a href="${pageContext.request.contextPath}/management/designerList.do"><li>디자이너관리</li></a>
+										<a href="${pageContext.request.contextPath}/management/chart.do"><li>차트통계</li></a>
+									</ul>
+								</div>							
+							</li>
+							</c:if>
+							
 						</ul>
 					</div>
-					<c:if test="${Auth.uIsMgr == true }">
-					<div id="topmenuMgn">
-						<ul>
-							<a href="${pageContext.request.contextPath}/management/reserve.do"><li>예약관리</li></a>
-							<a href="${pageContext.request.contextPath}/board/managerList.do"><li>공지사항</li></a>
-							<a href="${pageContext.request.contextPath}/guest/guestList.do"><li>회원관리</li></a>
-							<a href="${pageContext.request.contextPath}/management/designerList.do"><li>디자이너관리</li></a>
-							<a href="${pageContext.request.contextPath}/management/chart.do"><li>차트통계</li></a>
-						</ul>
-					</div>
+					
+
 				</div>
-				</c:if>
+				
 			</div>
 			
 			<button id="chatShow">채팅 숨기기</button>
