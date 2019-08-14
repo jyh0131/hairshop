@@ -99,13 +99,7 @@
 		top:35x;
 		right: 20px;
 	}
-	.comment .btnModify, .btnCancle{
-		background-color: white;
-		border: 1px solid #ccc;
-		color:#5D5D5D;
-		font-size: 13px;
-		padding:10px;
-	}
+	
 	.comment #onlycomment{
 		padding:10px;
 		font-size: 14px;
@@ -118,7 +112,6 @@
 	
 	.comment .commentFirst{
 		width: 100%;
-		height: 60px;
 		margin-bottom: 10px;
 	}
 	/* .comment #commentContent{
@@ -138,11 +131,15 @@
 	}
 	.comment .commentFirst .ccontent{
 		color:black;
+		width:80%;
+	}
+	#ccontent{
+		width: 600px;
 	}
 	.comment .modifyComment{ /* 수정댓글창 */
 		display:none;
 		width: 716px;
-		height: 80px;
+		height: 62px;
 		padding-top:10px;
 		padding-left:10px;
 		position: relative;
@@ -158,16 +155,6 @@
 		position: absolute;
 		top:35x;
 		right: 5px;
-	}
-	.comment .modifyComment .btnCancle{ /* 취소버튼 */
-		width:60px;
-		height:20px;
-		position: absolute;
-		top:-15px;
-		right: 5px;
-		padding:0;
-		background-color: white;
-		border: 1px solid #ccc;
 	}
 	
 	.pointLine{
@@ -212,7 +199,7 @@
 					
 					if(json.success == true){
 						$btn.closest(".commentFirst").remove();
-						$btn.parent().find(".pointLine").remove();
+						
 					}
 				}
 			})
@@ -249,14 +236,14 @@
 					str+="<span id='cwriter'>"+json.cWriter+"</span>";
 					str+=new Date(json.cWritetime).format('yyyy.MM.dd a/p hh:mm');
 					str+="<div class='modifyComment'><textarea name='ModicContent' class='ModicContent'>${Comment.cContent }</textarea>";
-					str+="<button id='deugrok' class='btnModify' data-cno='"+json.cNo+"'>"+"수정";
-					str+="</button><button class='btnCancle'>"+"수정취소"+"</button></div><div class='commentM'>";
+					str+="<button class='btnModify' data-cno='"+json.cNo+"'data-rno='"+json.rNo.rNo+"'>"+"수정";
+					str+="</button></div><div class='commentM'>";
 					str+="<button class='btnM' data-cno='"+json.cNo+"'>"+"수정";
 					str+="</button> ";
 					str+="<button class='btnDelete' data-cno='"+json.cNo+"'>"+"삭제";
 					str+="</button></div>";
-					str+="<span class='ccontent'>"+json.cContent+"</span></div>";
-					str+="<hr class='pointLine'>"
+					str+="<div id='ccontent'><span class='ccontent'>"+json.cContent+"</span></div>";
+					str+="<hr class='pointLine'></div>"
 					
 					$("#onlycomment").append(str);
 					
@@ -266,33 +253,11 @@
 		})
 		
 		
-		/* 수정버튼 눌렀을때 수정창 나와랏 */
+		/* 수정버튼 눌렀을때 수정텍스트 나와 */
 		$(document).on("click", ".btnM", function(){ 
-			//그 위치에 추가 되게, 수정삭제버튼 사라지고 
-			//var $btn = $(this); //수정버튼
-			
-			var index = $(".btnM").index(this);
-			$(".btnM").index(this);
-			$(".commentM").eq(index).hide();
-			$(".modifyComment").eq(index).show();
-			$(".commentFirst").eq(index).css("height","80px");
-			
-			//원래내용나오지마라
-			$(".ccontent").eq(index).css("display","none");
-			
-		})
-		
-		
-		 /* 수정취소 눌렀을때 없어져랏 */
-		$(document).on("click", ".btnCancle", function(){
-			//var $btn = $(this); //수정버튼
-			var index = $(".btnCancle").index(this);
-			$(".btnCancle").index(this);
-			//수정하려고했던거 나오지마라
-			$(".modifyComment").eq(index).hide();
-			//원래리스트 보여주라
-			//부모를 document.body로 바꾸고 
-			
+			$(this).parent().hide(); //삭제,수정버튼사라졋
+			$(this).parent().next("#ccontent").hide(); //내용사라졋
+			$(this).parent().prev(".modifyComment").show(); //수정텍스트나왔
 			
 		})
 		
@@ -305,11 +270,10 @@
 		        return;
 		    }
 			
-			
-			
-			var cNo = $(this).attr("data-cno"); //리뷰번호
+			var cNo = $(this).attr("data-cno"); //댓글번호
 			var rNo = $(this).attr("data-rno"); //리뷰번호
 			var cContent = $(this).parent().find(".ModicContent").val(); //수정하려는 내용
+			
 			$.ajax({
 				url:"${pageContext.request.contextPath}/comment/modify.do",
 				type:"get",
@@ -322,15 +286,15 @@
 						var str="<div class='commentFirst'>"; 
 						str+="<span id='cwriter'>"+json[i].cWriter+"</span>";
 						str+=new Date(json[i].cWritetime).format('yyyy.MM.dd a/p hh:mm');
-						str+="<div class='modifyComment'><textarea name='ModicContent' class='ModicContent'>${Comment.cContent }</textarea>";
-						str+="<button id='deugrok' class='btnModify' data-cno='"+json[i].cNo+"'>"+"수정";
-						str+="</button><button class='btnCancle'>"+"수정취소"+"</button></div><div class='commentM'>";
+						str+="<div class='modifyComment'><textarea name='ModicContent' class='ModicContent'>"+json[i].cContent+"</textarea>";
+						str+="<button class='btnModify' data-cno='"+json[i].cNo+"'data-rno='"+json[i].rNo.rNo+"'>"+"수정";
+						str+="</button></div><div class='commentM'>";
 						str+="<button class='btnM' data-cno='"+json[i].cNo+"'>"+"수정";
 						str+="</button> ";
 						str+="<button class='btnDelete' data-cno='"+json[i].cNo+"'>"+"삭제";
 						str+="</button></div>";
-						str+="<span class='ccontent'>"+json[i].cContent+"</span></div>";
-						str+="<hr class='pointLine'>"
+						str+="<div id='ccontent'><span class='ccontent'>"+json[i].cContent+"</span></div>";
+						str+="<hr class='pointLine'></div>";
 						
 						$("#onlycomment").append(str);
 					}
@@ -347,7 +311,7 @@
 <section>
 <%-- ${Auth }<br>
 ${review }<br>
-${list } --%>
+${list }--%>
 	<div id="first">
 		<h4>${review.rTitle}</h4>
 		<p>${review.rWriter} | <fmt:formatDate value="${review.rWritetime}" pattern="yyyy.MM.dd"/></p>
@@ -380,15 +344,19 @@ ${list } --%>
 				<div class="modifyComment"><!-- 수정수정수정수정수정수정 -->
 					<textarea name="ModicContent" class="ModicContent" placeholder="댓글을 입력하세요">${Comment.cContent }</textarea>
 					<button class="btnModify" data-cno="${Comment.cNo}" data-rno="${review.rNo }">수정</button>
-					<button class="btnCancle">수정취소</button>
 				</div>
-				<div class="commentM">
-					<button class="btnM" data-cno="${Comment.cNo}">수정</button>
-					<button class="btnDelete" data-cno="${Comment.cNo}" >삭제</button>
+					<div class="commentM">
+						<c:if test="${Auth.uId == Comment.cWriter}">
+							<button class="btnM" data-cno="${Comment.cNo}">수정</button>
+							<button class="btnDelete" data-cno="${Comment.cNo}" >삭제</button>
+						</c:if>
+					</div>
+				<div id="ccontent">
+					<span class="ccontent">${Comment.cContent }</span>
 				</div>
-				<span class="ccontent">${Comment.cContent }</span>
+				<hr class="pointLine">
 			</div>
-			<hr class="pointLine">
+			
 		</c:forEach>
 	</div>
 			<c:if test="${Auth!=null}"><!-- 댓글삽입하는곳 / 로그인했을때만 -->
