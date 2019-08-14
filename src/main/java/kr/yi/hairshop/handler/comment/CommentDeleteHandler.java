@@ -19,12 +19,13 @@ public class CommentDeleteHandler implements CommandHandler {
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		
-		int rNo = Integer.parseInt(req.getParameter("rNo"));
-		System.out.println(rNo);
+		int cNo = Integer.parseInt(req.getParameter("cNo"));
+		System.out.println("cNo여기있어"+cNo);
 		try {
 			CommentMapper dao = new CommentMapperImpl();
+			dao.deleteComment(cNo);
 			System.out.println(dao);
-			dao.deleteComment(rNo);
+			
 			Map<String, Boolean> map = new HashMap<String, Boolean>();
 			map.put("success", true);
 			

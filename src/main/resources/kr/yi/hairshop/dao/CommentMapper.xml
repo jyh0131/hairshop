@@ -27,8 +27,21 @@
 	</update>
 	
 	<insert id="insertComment" parameterType="Comment">
-		INSERT INTO comment (g_no, r_no, c_content, c_writer, c_writetime)
-		VALUES(#{gNo.gNo}, #{rNo.rNo}, #{cContent}, #{cWriter}, now());
+		INSERT INTO comment (c_no, g_no, r_no, c_content, c_writer, c_writetime)
+		VALUES(#{cNo}, #{gNo.gNo}, #{rNo.rNo}, #{cContent}, #{cWriter}, now());
 	</insert>
 
+	<update id="updateComment" parameterType="Comment">
+		UPDATE comment
+		SET c_content=#{cContent}, c_writetime=now()
+		WHERE c_no=#{cNo}
+	</update>
+
+	<select id="selectAll" resultMap="extendComment">
+		select * from comment
+	</select>
+	
+	<select id="selectAllByrNo" resultMap="extendComment">
+		select * from comment where r_no=#{rNo} and c_delete=0
+	</select>
 </mapper>
