@@ -12,13 +12,14 @@ import kr.yi.hairshop.controller.CommandHandler;
 import kr.yi.hairshop.dao.GuestMapper;
 import kr.yi.hairshop.dao.GuestMapperImpl;
 import kr.yi.hairshop.dto.Guest;
+import kr.yi.hairshop.util.EmailSander;
 
 public class PassResetHandler implements CommandHandler {
 
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		if(req.getMethod().equalsIgnoreCase("post")) {
-			Email emailSander = new Email();
+			EmailSander emailSander = new EmailSander();
 			
 			String id = req.getParameter("id");
 			String email = req.getParameter("email");
@@ -35,7 +36,7 @@ public class PassResetHandler implements CommandHandler {
 				dbGuest.setgPassword(newPass);
 				
 				passReset = dao.updateGuestPassword(dbGuest);
-				emailSander.passSander(newPass);
+				emailSander.passSander(newPass, email);
 				
 				ObjectMapper om = new ObjectMapper();
 				String data = om.writeValueAsString(passReset);

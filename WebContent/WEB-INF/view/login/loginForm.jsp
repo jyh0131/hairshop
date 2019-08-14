@@ -10,8 +10,6 @@
 #loginform {
 	width: 1080px;
 	margin: 0 auto;
-	margin-top: 100px;
-	margin-bottom: 100px;
 }
 #loginform form {
 	width: 1080px;
@@ -165,10 +163,6 @@
 					return false;
 				}	
 			}
-			
-		
-			
-			
 		})
 		
 		var naverLogin = new naver.LoginWithNaverId({
