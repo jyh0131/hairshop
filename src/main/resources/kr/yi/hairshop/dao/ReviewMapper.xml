@@ -16,7 +16,7 @@
 	</resultMap>
 
 	<select id="selectReview" resultType="Review">
-		select r_no, r_title, r_writer, r_writetime from review where r_delete=0 order by r_no desc
+		select r_no, r_title, r_writer, r_writetime from review where r_delete=0 and r_d_no=null order by r_no desc
 	</select>
 	<select id="selectBoardManager" resultMap="extendReview">
 		select r_no, r_title, r_writer, r_writetime, r_d_no as d_no
