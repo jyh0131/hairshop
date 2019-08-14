@@ -14,9 +14,9 @@
 #guestChange h3{
 	margin: 10px;
 }
-#guestChange #ggChange .ggC{
+#guestChange #gTodChange .ggC{
 	margin: 5px;
-	width: 120px;
+	width: 150px;
 	height: 30px;
 }
 #guestChange #ddChange table{
@@ -24,7 +24,7 @@
 	text-align: center;
 }
 #guestChange #ddChange table button{
-	width: 50px;
+	width: 80px;
 }
 #guestChange #ddChange table th, tr, td{
 	border: 1px solid #ddd;
@@ -36,7 +36,7 @@
 	width: 120px;
 }
 #guestChange #ddChange table th:nth-child(3) {
-	width: 120px;
+	width: 260px;
 }
 
 </style>
@@ -75,7 +75,7 @@
 					if(data != null){
 						alert("승급하였습니다");
 						console.log(data);
-						$("#ddTable").append("<tr><td>"+data.dName+"</td><td>"+data.dGrade+"</td><td><input type='hidden' value="+data.dId+" class='dId'><button class='downBtn'>강 등</button><button class='delBtn'>삭 제</button></td></tr>");
+						$("#ddTable").append("<tr><td>"+data.dName+"</td><td>"+data.dGrade+"</td><td><input type='hidden' value="+data.dId+" class='dId'><button class='downBtn'>강 등</button><button class='modifyBtn'>직책 수정</button><button class='delBtn'>삭 제</button></td></tr>");
 	
 					}else{
 						alert("정상적으로 작업되지 않았습니다.");
@@ -139,8 +139,48 @@
 					}
 				})
 			}			
-		})	
+		})
+		
+		//수정
+		$(document).on("click",".modifyBtn",function(){
+			var nowGrade;
+			var $TDtitle = $(this).parent().prev();
+			var $id = $(this).prev().prev().val();
+			
+			$.ajax({
+				url:"${pageContext.request.contextPath}/member/designerGradeSelect.do",
+				type:"post",
+				data:{"id" : $(this).prev().prev().val()},
+				dataType:"json",
+				success:function(data){
+					nowGrade = data;
+					
+					var newTitle = prompt("새로운 직책을 입력하세요", nowGrade);
 
+					var $this = $(this).parent().prev();
+					
+					if (newTitle == null || newTitle == "") {
+						alert("취소 하였습니다");
+					} else {
+						
+						$.ajax({
+							url:"${pageContext.request.contextPath}/member/designerGradeModify.do",
+							type:"post",
+							data:{"id" : $id, "title" : newTitle },
+							dataType:"json",
+							success:function(data){
+								if(data==1){
+									$TDtitle.text(newTitle);
+									alert("변경하였습니다");
+								}else{
+									alert("잠시 후 다시 시도 하세요");
+								}
+							}
+						})
+					}
+				}
+			})		
+		})
 	
 </script>
 
@@ -149,7 +189,8 @@
 
 	<div id="gTodChange"> <!-- 게스트를 디자이너로 등급 변경 -->
 		<h3>회원을 직원으로 승급</h3>
-		<input type="text" id="name" class="ggC" placeholder="이름 검색"><button id="ggBtn" class="ggC">검색</button>
+		<input type="text" id="name" class="ggC" placeholder="이름 검색">
+		<button id="ggBtn" class="ggC">검색</button>
 		<br><br>
 		<div id="ggResult">
 			<!-- 검색결과가 출력 -->
@@ -168,7 +209,7 @@
 				<tr>
 					<th>이름</th>
 					<th>직책</th>
-					<th></th>
+					<th>기능</th>
 				</tr>
 				
 				<c:forEach var="designer" items="${dList }">
@@ -178,6 +219,7 @@
 					<td>
 						<input type="hidden" value="${designer.dId }" class="dId">
 						<button class="downBtn">강 등</button>
+						<button class="modifyBtn">직책 수정</button>
 						<button class="delBtn">삭 제</button>
 					</td>
 				</tr>
@@ -185,19 +227,34 @@
 				
 			</table>
 		</div>
-
-
-
 	</div>
-
-
-
-
 </section>
 
-
-
-
-
-
 <%@ include file="../../include/footer.jsp" %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

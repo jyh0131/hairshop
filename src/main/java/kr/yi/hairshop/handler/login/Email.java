@@ -73,7 +73,7 @@ public class Email {
             
             message.addRecipient(Message.RecipientType.TO, new InternetAddress("younggak@gmail.com"));
             message.setSubject("임시 비밀번호 발송");
-            message.setText("입시 비밀 번호는 "+pass+" 입니다");
+            message.setText("임시 비밀 번호는 "+pass+" 입니다");
 
             Transport.send(message); ////전송
             System.out.println("message sent successfully...");
