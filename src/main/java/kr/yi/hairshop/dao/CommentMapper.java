@@ -8,7 +8,11 @@ import kr.yi.hairshop.dto.Comment;
 public interface CommentMapper {
 	
 	public List<Comment> selectComment(int rNo);
-	public void deleteComment(int rNo) throws SQLException;
-//	public void updateReview(Review review) throws SQLException;
+	public void deleteComment(int cNo) throws SQLException;
+	public void updateComment(Comment comment) throws SQLException;
 	public void insertComment(Comment comment) throws SQLException;
+	
+	public List<Comment> selectAll() throws SQLException;
+	public List<Comment> selectAllByrNo(int rNo) throws SQLException;
+	
 }

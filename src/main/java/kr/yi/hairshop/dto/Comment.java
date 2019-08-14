@@ -16,6 +16,13 @@ public class Comment {
 		// TODO Auto-generated constructor stub
 	}
 	
+	public Comment(int cNo, Date cWritetime, String cContent) {
+		super();
+		this.cNo = cNo;
+		this.cWritetime = cWritetime;
+		this.cContent = cContent;
+	}
+
 	public Comment(Guest gNo, Review rNo, String cWriter, String cContent, Date cWritetime) {
 		super();
 		this.gNo = gNo;
@@ -34,6 +41,18 @@ public class Comment {
 		this.cWritetime = cWritetime;
 		this.cContent = cContent;
 		this.cDelete = cDelete;
+	}
+
+	
+
+	public Comment(int cNo, Guest gNo, Review rNo, String cWriter, Date cWritetime, String cContent) {
+		super();
+		this.cNo = cNo;
+		this.gNo = gNo;
+		this.rNo = rNo;
+		this.cWriter = cWriter;
+		this.cWritetime = cWritetime;
+		this.cContent = cContent;
 	}
 
 	public int getcNo() {
