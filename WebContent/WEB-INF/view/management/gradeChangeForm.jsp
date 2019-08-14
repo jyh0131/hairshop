@@ -134,7 +134,7 @@
 				}
 			})		
 			
-/* 			var newTitle = prompt("새로운 직책을 입력하세요", nowGrade);
+			var newTitle = prompt("새로운 직책을 입력하세요", nowGrade);
 
 			var $this = $(this).parent().prev();
 			if (newTitle == null || newTitle == "") {
@@ -155,7 +155,7 @@
 						}
 					}
 				})
-			} */
+			} 
 		})	
 		
 	});
