@@ -74,6 +74,9 @@ div#updatePage h1#title{
 	width:15px;
 	height: 15px;
 }
+.dataTables_wrapper .dataTables_info{
+	display: none;
+}
 
 div#updatePageBlack select{
 	height: 25px;
