@@ -34,13 +34,13 @@
 #IPfinder p{
 	margin-top: 10px;
 	margin-bottom: 10px;
-	
 }
 #IPfinder input{
 	width: 30%;
 	height: 40px;
 }
 }
+
 @media all and (max-width:1199px){
 #IPfinder{
 	width:100%;
@@ -83,7 +83,6 @@ $(function() {
 			dataType:"json",
 			success:function(res){ //res = 1 아이디가 있음, 0 아이디 없음 
 				console.log(res);
-
 				
 				if(res == 1){
 					alert("아이디를 이메일로 발송하였습니다");
@@ -111,7 +110,6 @@ $(function() {
 				}else{
 					alert("다시 시도하세요");
 				}
-
 			}
 		})
 	})
@@ -122,6 +120,7 @@ $(function() {
 
 
 <section id="IPfinder">
+
 	<h1>아이디/비밀번호 찾기</h1>
 
 	<div id="idFinder">
@@ -135,10 +134,7 @@ $(function() {
 		<p><input type="text" id="id" placeholder="아이디를 입력하세요"></p>		
 		<p><input type="text" id="passFindEmail" placeholder="이메일을 입력하세요"></p>
 		<p><input type="button" value="전송" id="passChecker"></p>
-	
-	
 	</div>
-
 
 </section>
 
@@ -146,3 +142,51 @@ $(function() {
 
 
 <%@ include file="../../include/footer.jsp" %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
