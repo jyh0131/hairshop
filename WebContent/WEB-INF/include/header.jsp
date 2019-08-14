@@ -52,6 +52,9 @@ a#reserve li{
 header #topmenu li:hover{
 	text-decoration: underline;
 }
+header #topmenu li#mgnMenu{
+	background-color: #aaa;
+}
 header #topmenuMgn{
 	z-index: 10000000;
 }
@@ -71,6 +74,10 @@ header #topmenuMgn ul li{
 	color: white;
 	background-color: #aaa;
 }
+
+
+
+
 header #topmenuMgn li:hover{
 	background-color: black; 
 }
