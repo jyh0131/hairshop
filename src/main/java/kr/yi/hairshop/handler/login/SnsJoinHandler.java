@@ -20,11 +20,8 @@ public class SnsJoinHandler implements CommandHandler {
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		if(req.getMethod().equalsIgnoreCase("get")) {
-			System.out.println("실행파일 :SnsJoinHandler.java > get으로 왔다간다");
 			return "/WEB-INF/view/login/snsJoinForm.jsp";
 		}else if (req.getMethod().equalsIgnoreCase("post")) {
-			System.out.println("sns 회원가입을 실행 중이다");
-			System.out.println("실행파일 :SnsJoinHandler.java > post으로 왔다");
 			
 			String id = req.getParameter("snsId");
 			String name = req.getParameter("snsName");
@@ -66,11 +63,7 @@ public class SnsJoinHandler implements CommandHandler {
 			SnsinfoMapper sDao = new SnsinfoMapperImpl();
 			int result = sDao.insertSnsinfo(snsinfo);
 			
-			System.out.println("실행파일 :SnsJoinHandler.java > post로 와서 guest, snsinfo 생성 했는 지 확인 하자");
-			System.out.println("guest가 나오는가? "+guest);
-			System.out.println("snsinfo가 나오는가? "+snsinfo);
-			
-			return "/WEB-INF/view/login/loginForm.jsp";
+			return "/WEB-INF/view/login/joinSuccessForm.jsp";
 		}
 		
 		return null;

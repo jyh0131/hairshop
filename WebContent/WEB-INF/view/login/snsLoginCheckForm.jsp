@@ -18,13 +18,7 @@
 		window.addEventListener('load', function () {
 			naverLogin.getLoginStatus(function (status) {
 				if (status) {
-					alert("로그인창에서 네이버 로그인 버튼을 클릭해서 여기에 왔다");
-					alert("네이버 로그인 정보가 세션에 저장되었다");
-					alert("실행파일 : snsLoginCheckForm.jsp 로그인되었다");
-					alert("저장된 네이버 정보 중 id를 handler로 넘긴다 ");
-				
 				$("#naverId").val(naverLogin.user.id);		
-
 
 				$("#btn").click();
 
