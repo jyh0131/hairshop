@@ -99,7 +99,6 @@
 		top:35x;
 		right: 20px;
 	}
-	
 	.comment #onlycomment{
 		padding:10px;
 		font-size: 14px;
@@ -109,18 +108,10 @@
 		height:20px;	
 		text-align: right;
 	}
-	
 	.comment .commentFirst{
 		width: 100%;
 		margin-bottom: 10px;
 	}
-	/* .comment #commentContent{
-		width: 100%;
-		height: 40px;
-		border-bottom:1px dotted #5D5D5D;
-		margin-bottom: 10px;
-	
-	} */
 	.comment #cwriter{
 		margin-right: 10px;
 		font-weight: bold;
@@ -308,18 +299,13 @@
 						str+="</div><div id='ccontent'><span class='ccontent'>"+json[i].cContent+"</span></div>";
 						str+="<hr class='pointLine'></div>";
 						
-						//자기꺼의 자기 수정삭제만 나오도록 여기서 처리하면 안되?
-						
-						
 						$("#onlycomment").append(str);
 					}
-					
 					
 				}
 			})
 		}) 
 
-		
 		
 	})
 </script>
@@ -335,7 +321,6 @@ ${list }--%>
 		${review.rContent}
 		<img src="/hairshop/upload/${review.rFile }">
 	</div>	
-			
 	<div id="aaa">
 		<div id="list">
 			<a href="${pageContext.request.contextPath}/review/review.do">목록보기</a>
@@ -401,7 +386,6 @@ ${list }--%>
 					</table>
 			</c:if>	
 		</div>		
-	
 </section>
 <%@ include file="../../include/footer.jsp" %>
 
