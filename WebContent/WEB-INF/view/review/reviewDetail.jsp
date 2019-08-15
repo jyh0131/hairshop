@@ -156,16 +156,27 @@
 		top:35x;
 		right: 5px;
 	}
-	
 	.pointLine{
 		width:100%;
 		margin-top:10px;
 		margin-bottom:10px;
 		border:0.5px dotted #5D5D5D;
-		
 	}
-	
-	
+	#commentlogin{
+		text-decoration: underline;
+	}
+	#commentloginbytable{
+		border:1px solid #ccc;
+		color:#353535;
+		height: 62px;
+		font-size: 13px;
+	}
+	#commentloginbytable a{
+		color:#353535;
+	}
+	#blblbl {
+		width:730px;
+	}
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>
@@ -215,10 +226,6 @@
 		        return;
 		    }
 
-			if (!confirm("등록하시겠습니까?")) {
-		        return;
-		    }
-			
 			var rNo = $(this).attr("data-rno"); //리뷰번호
 			var gNo = $(this).attr("data-gno"); //손님번호
 			var cWriter = $("#cWriter").val(); //작성자
@@ -232,24 +239,22 @@
 				success:function(json){
 					console.log(json); 
 					
-					$("#onlycomment").empty();
-					for(var i=0; i<json.length; i++){
-						var str="<div class='commentFirst'>"; 
-						str+="<span id='cwriter'>"+json[i].cWriter+"</span>";
-						str+=new Date(json[i].cWritetime).format('yyyy.MM.dd a/p hh:mm');
-						str+="<div class='modifyComment'><textarea name='ModicContent' class='ModicContent'>"+json[i].cContent+"</textarea>";
-						str+="<button class='btnModify' data-cno='"+json[i].cNo+"'data-rno='"+json[i].rNo.rNo+"'>"+"수정";
-						str+="</button></div><div class='commentM'>";
-						str+="<button class='btnM' data-cno='"+json[i].cNo+"'>"+"수정";
-						str+="</button> ";
-						str+="<button class='btnDelete' data-cno='"+json[i].cNo+"'>"+"삭제";
-						str+="</button></div>";
-						str+="<div id='ccontent'><span class='ccontent'>"+json[i].cContent+"</span></div>";
-						str+="<hr class='pointLine'></div>";
+					var str="<div class='commentFirst'>"; 
+					str+="<span id='cwriter'>"+json.cWriter+"</span>";
+					str+=new Date(json.cWritetime).format('yyyy.MM.dd a/p hh:mm');
+					str+="<div class='modifyComment'><textarea name='ModicContent' class='ModicContent' placeholder='후기게시판이 더 훈훈해지는 댓글 부탁드립니다.'>"+json.cContent+"</textarea>";
+					str+="<button class='btnModify' data-cno='"+json.cNo+"'data-rno='"+json.rNo.rNo+"'>"+"수정";
+					str+="</button></div><div class='commentM'>";
+					str+="<button class='btnM' data-cno='"+json.cNo+"'>"+"수정";
+					str+="</button> ";
+					str+="<button class='btnDelete' data-cno='"+json.cNo+"'>"+"삭제";
+					str+="</button></div>";
+					str+="<div id='ccontent'><span class='ccontent'>"+json.cContent+"</span></div>";
+					str+="<hr class='pointLine'></div>"
 						
 						
 					$("#onlycomment").append(str);
-					}
+					
 				}
 			})
 			$("#cContent").val("");
@@ -291,16 +296,16 @@
 						var str="<div class='commentFirst'>"; 
 						str+="<span id='cwriter'>"+json[i].cWriter+"</span>";
 						str+=new Date(json[i].cWritetime).format('yyyy.MM.dd a/p hh:mm');
-						str+="<div class='modifyComment'><textarea name='ModicContent' class='ModicContent'>"+json[i].cContent+"</textarea>";
+						str+="<div class='modifyComment'><textarea name='ModicContent' class='ModicContent' placeholder='후기게시판이 더 훈훈해지는 댓글 부탁드립니다.'>"+json[i].cContent+"</textarea>";
 						str+="<button class='btnModify' data-cno='"+json[i].cNo+"'data-rno='"+json[i].rNo.rNo+"'>"+"수정";
-						str+="</button></div>";
+						str+="</button></div><div class='commentM'>";
 							if(auth== json[i].cWriter){
-								str+="<div class='commentM'><button class='btnM' data-cno='"+json[i].cNo+"'>"+"수정";
+								str+="<button class='btnM' data-cno='"+json[i].cNo+"'>"+"수정";
 								str+="</button> ";
 								str+="<button class='btnDelete' data-cno='"+json[i].cNo+"'>"+"삭제";
-								str+="</button></div>";
+								str+="</button>";
 							}
-						str+="<div id='ccontent'><span class='ccontent'>"+json[i].cContent+"</span></div>";
+						str+="</div><div id='ccontent'><span class='ccontent'>"+json[i].cContent+"</span></div>";
 						str+="<hr class='pointLine'></div>";
 						
 						//자기꺼의 자기 수정삭제만 나오도록 여기서 처리하면 안되?
@@ -352,7 +357,7 @@ ${list }--%>
 				<span id="cwriter">${Comment.cWriter}</span>
 				<fmt:formatDate value="${Comment.cWritetime }" pattern="yyyy.MM.dd hh:mm"/>
 				<div class="modifyComment"><!-- 수정수정수정수정수정수정 -->
-					<textarea name="ModicContent" class="ModicContent" placeholder="댓글을 입력하세요">${Comment.cContent }</textarea>
+					<textarea name="ModicContent" class="ModicContent" placeholder="후기게시판이 더 훈훈해지는 댓글 부탁드립니다.">${Comment.cContent }</textarea>
 					<button class="btnModify" data-cno="${Comment.cNo}" data-rno="${review.rNo }">수정</button>
 				</div>
 					<div class="commentM">
@@ -387,10 +392,10 @@ ${list }--%>
 						</table>
 				</c:if>
 			<c:if test="${Auth==null}"><!-- 로그인 하지 않았다면 로그인유도 -->
-					<table>
+					<table id="blblbl">
 						<tr>
-							<td>
-								댓글을 작성하려면 로그인 해주세요. <a href="${pageContext.request.contextPath}/login/login.do">[로그인]</a>
+							<td id="commentloginbytable">
+								&nbsp;&nbsp;댓글을 작성하려면 <a href="${pageContext.request.contextPath}/login/login.do"><span id="commentlogin">로그인</span></a> 해주세요.
 							</td>
 						</tr>
 					</table>

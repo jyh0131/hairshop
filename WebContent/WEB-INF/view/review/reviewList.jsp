@@ -65,6 +65,11 @@
 		font-size: 13px;
 		padding:5px 10px;
 	}
+	#reviewtitle #rtitle:hover{
+		text-decoration: underline;
+		color:#5D5D5D;
+	}
+	
 </style>
 <section>
 <div id="yellow"></div>
@@ -84,8 +89,8 @@
 				<td id="no">
 					${review.rNo}
 				</td>
-				<td>
-					<a href="${pageContext.request.contextPath}/review/detail.do?no=${review.rNo}">${review.rTitle }</a>
+				<td id="reviewtitle">
+					<a href="${pageContext.request.contextPath}/review/detail.do?no=${review.rNo}"><span id="rtitle">${review.rTitle }</span></a>
 				</td>
 				<td>
 					${review.rWriter }
