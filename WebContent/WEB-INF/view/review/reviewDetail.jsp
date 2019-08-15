@@ -232,21 +232,24 @@
 				success:function(json){
 					console.log(json); 
 					
-					var str="<div class='commentFirst'>"; 
-					str+="<span id='cwriter'>"+json.cWriter+"</span>";
-					str+=new Date(json.cWritetime).format('yyyy.MM.dd a/p hh:mm');
-					str+="<div class='modifyComment'><textarea name='ModicContent' class='ModicContent'>${Comment.cContent }</textarea>";
-					str+="<button class='btnModify' data-cno='"+json.cNo+"'data-rno='"+json.rNo.rNo+"'>"+"수정";
-					str+="</button></div><div class='commentM'>";
-					str+="<button class='btnM' data-cno='"+json.cNo+"'>"+"수정";
-					str+="</button> ";
-					str+="<button class='btnDelete' data-cno='"+json.cNo+"'>"+"삭제";
-					str+="</button></div>";
-					str+="<div id='ccontent'><span class='ccontent'>"+json.cContent+"</span></div>";
-					str+="<hr class='pointLine'></div>"
-					
+					$("#onlycomment").empty();
+					for(var i=0; i<json.length; i++){
+						var str="<div class='commentFirst'>"; 
+						str+="<span id='cwriter'>"+json[i].cWriter+"</span>";
+						str+=new Date(json[i].cWritetime).format('yyyy.MM.dd a/p hh:mm');
+						str+="<div class='modifyComment'><textarea name='ModicContent' class='ModicContent'>"+json[i].cContent+"</textarea>";
+						str+="<button class='btnModify' data-cno='"+json[i].cNo+"'data-rno='"+json[i].rNo.rNo+"'>"+"수정";
+						str+="</button></div><div class='commentM'>";
+						str+="<button class='btnM' data-cno='"+json[i].cNo+"'>"+"수정";
+						str+="</button> ";
+						str+="<button class='btnDelete' data-cno='"+json[i].cNo+"'>"+"삭제";
+						str+="</button></div>";
+						str+="<div id='ccontent'><span class='ccontent'>"+json[i].cContent+"</span></div>";
+						str+="<hr class='pointLine'></div>";
+						
+						
 					$("#onlycomment").append(str);
-					
+					}
 				}
 			})
 			$("#cContent").val("");
@@ -258,7 +261,7 @@
 			$(this).parent().hide(); //삭제,수정버튼사라졋
 			$(this).parent().next("#ccontent").hide(); //내용사라졋
 			$(this).parent().prev(".modifyComment").show(); //수정텍스트나왔
-			
+			 
 		})
 		
 		
@@ -274,6 +277,8 @@
 			var rNo = $(this).attr("data-rno"); //리뷰번호
 			var cContent = $(this).parent().find(".ModicContent").val(); //수정하려는 내용
 			
+			var auth = $('input[name=cWriter]').val();
+			
 			$.ajax({
 				url:"${pageContext.request.contextPath}/comment/modify.do",
 				type:"get",
@@ -288,13 +293,18 @@
 						str+=new Date(json[i].cWritetime).format('yyyy.MM.dd a/p hh:mm');
 						str+="<div class='modifyComment'><textarea name='ModicContent' class='ModicContent'>"+json[i].cContent+"</textarea>";
 						str+="<button class='btnModify' data-cno='"+json[i].cNo+"'data-rno='"+json[i].rNo.rNo+"'>"+"수정";
-						str+="</button></div><div class='commentM'>";
-						str+="<button class='btnM' data-cno='"+json[i].cNo+"'>"+"수정";
-						str+="</button> ";
-						str+="<button class='btnDelete' data-cno='"+json[i].cNo+"'>"+"삭제";
 						str+="</button></div>";
+							if(auth== json[i].cWriter){
+								str+="<div class='commentM'><button class='btnM' data-cno='"+json[i].cNo+"'>"+"수정";
+								str+="</button> ";
+								str+="<button class='btnDelete' data-cno='"+json[i].cNo+"'>"+"삭제";
+								str+="</button></div>";
+							}
 						str+="<div id='ccontent'><span class='ccontent'>"+json[i].cContent+"</span></div>";
 						str+="<hr class='pointLine'></div>";
+						
+						//자기꺼의 자기 수정삭제만 나오도록 여기서 처리하면 안되?
+						
 						
 						$("#onlycomment").append(str);
 					}
