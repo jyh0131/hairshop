@@ -22,4 +22,5 @@ public interface GuestMapper {
 	public int insertByNaver(Guest guest);
 	public int updateGuest3(Guest guest); //mypage에서 내정보 수정 tel, email, birth
 	public int updateGuestPassword(Guest guest);
+	public Guest selectGuestByEmail(String email);
 }

@@ -5,6 +5,7 @@
 
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css">
 <style>
+@media screen and (min-width:1200px){
 #passChecker{
 	width: 1080px;
 	height: 450px;
@@ -30,6 +31,35 @@
 	height: 200px;
 	margin: 0 auto;
 	margin-top: 100px;
+}
+}
+
+@media all and (max-width:1199px){
+
+#passChecker{
+	width: 100%;
+	margin: 0 auto;
+	text-align: center;
+}
+#passChecker form{
+	width: 80%;
+	margin: 10px;
+	margin: 0 auto;
+}	
+#passChecker form input{
+	width: 70%;
+	height: 40px;
+	margin: 10px;
+}
+
+#passChecker fieldset{
+	width: 70%;
+	margin: 0 auto;
+	margin-top: 80px;
+	margin-bottom: 80px;
+	padding: 20px;
+}
+
 }
 </style>
 

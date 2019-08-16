@@ -49,6 +49,7 @@ section article#border {
 	display:inline-block;
 }
 
+
 section article#border div#designerList{
 	background-color: white;
 } 
@@ -58,17 +59,17 @@ section article#border div#form {
 	width:520px;
 	height:1100px;
 	padding: 20px;  
-	margin: 2px;
 	float: left;
 }
+
+
 section article#border div#guest{
+	float:right;
 	width:320px;
 	height:1100px;
 	background:white;
 	display: inline-block;
 	padding: 20px;
-	margin: 2px;
-	margin-left: 10px;
 }
 section article#border div#guest button#commit{
 	display:block;
@@ -184,6 +185,12 @@ div#form div#reservedForm div#reservedList table td,div#form div#reservedForm di
 section article#border div#form div#map input{
 	
 }
+section article#border table#time{
+	margin-top:20px;
+	border-collapse: collapse;
+	width: 450px;
+	height: 100px;
+}
 section article#border table#time td {
 	float: left;
 	border: 1px solid black;
@@ -191,10 +198,8 @@ section article#border table#time td {
 	cursor: pointer;
 }       
            
-section article#border table#time {
-	border-collapse: collapse;
-	width: 450px;
-	height: 100px;
+section article#border table#item{
+	margin-top:20px;
 }
 section article#border table#item td {
 	width: 100px;
@@ -262,11 +267,102 @@ section article#border div#guest div#reserve span{
 	color: #E5E5E5 !important;
 	cursor: not-allowed !important;
 }
+.prevDay{
+	color: #E5E5E5 !important;
+	cursor: not-allowed !important;
+}
 
 #reservedList img{
 	width:500px;
 	text-align: center;
 }
+
+.toggle{
+	display: none;
+}
+
+
+
+
+@media all and (max-width:510px){
+	#designer li{
+		width:80px !important;
+	}
+	
+	
+}
+@media all and (max-width:1199px){
+	section{
+		width:100%;
+		padding:0;
+	}
+	
+	section article#border {
+		width:96% !important;
+		padding:2%;
+		height: auto !important;
+		
+	}
+	
+	
+	section div#form div#reserveForm{
+		float:right;
+		width:98% !important;
+		padding:2%;
+	}
+	
+	
+	section article#border div#guest {
+		float:left;
+		margin:0 !important;
+		padding:2.5%;
+		width:92%;
+	}
+	section article#border div#form{
+		float:left !important;
+		height: auto !important;
+		width:92% !important;
+		padding:2.5% !important;
+		
+	}
+	
+	
+	section div#designerList{
+		width:92%;
+		height:auto !important;
+		padding:2.5%;
+	}
+	
+	.toggle{
+		display: block;
+	}
+	
+	
+	
+	section article#border div#form div#calendar table{
+		width:100%;
+	}
+	section article#border div#form div#calendar{
+		width: 90% !important;
+		
+	}
+	
+	section article#border table#time {
+		width: 90% !important;
+	}
+	
+	section article#border div#form div#reservedForm div#reservedList {
+		
+	}
+	section article#border div#form div#reservedForm div#reservedList img{
+		width:80%;
+	}
+	
+		
+	
+	
+}
+
 </style>
 <script type="text/javascript">
 	var designer = "";
@@ -306,6 +402,31 @@ section article#border div#guest div#reserve span{
 		
 		var nowDate = new Date();
 		
+		$("#time td").removeClass("prevDay");
+		
+		if(year==nowDate.getFullYear()){
+			if(month<=nowDate.getMonth()){
+				if(month==nowDate.getMonth()){
+					for(var j=0; j<$("#time td").length; j++){
+						var hour=$("#time td").eq(j).text().slice(0,2);
+						var minute=$("#time td").eq(j).text().slice(3,5);
+						if(hour<nowDate.getHours()){
+							$("#time td").eq(j).addClass("prevDay");
+						}else if(hour==nowDate.getHours()){
+							if(minute<nowDate.getMinutes()){
+								$("#time td").eq(j).addClass("prevDay");
+							}
+						}
+						
+					}
+				}else{
+					$("#time td").addClass("prevDay");
+				}
+			}
+		}else if(year<nowDate.getFullYear()){
+			$("#time td").addClass("prevDay");
+		}
+		
 		
 		for (var j = 0; j < t.getDay(); j++) {
 			calendar += "<td></td>";
@@ -320,8 +441,10 @@ section article#border div#guest div#reserve span{
 			}else{
 				if(year==nowDate.getFullYear()){
 					if(month<=nowDate.getMonth()){
+						
 						if(month==nowDate.getMonth() && count>=nowDate.getDate()){
-							calendar += "<td class='day'>" + count + "</td>";							
+							calendar += "<td class='day'>" + count + "</td>";
+							
 						}else{
 							calendar += "<td class='reserved'>" + count + "</td>";
 						}
@@ -344,7 +467,7 @@ section article#border div#guest div#reserve span{
 
 	$(function() {
 		var calDate = new Date();
-		calendar(calDate.getFullYear(), calDate.getMonth());
+		/* calendar(calDate.getFullYear(), calDate.getMonth()); */
 
 		$(document).on('click', '#left', function() {
 			var str = $("#calendar h1").text();
@@ -405,6 +528,8 @@ section article#border div#guest div#reserve span{
 						}
 					}
 				}
+						
+				
 			})
 
 		})
@@ -415,7 +540,9 @@ section article#border div#guest div#reserve span{
 				alert("날짜를 먼저 선택해주세용");
 			}else{
 				if($(this).hasClass("reserved")){
-					alert("이미 예약되었습니다.")
+					alert("이미 예약되었습니다.");
+				}else if($(this).hasClass("prevDay")){
+					alert("이미 지난날짜는 예약이 불가능합니다.");
 				}else{
 					$("#time tr td").css("background-color","white");
 					$(this).css("background-color","#fcfc90");
@@ -483,8 +610,14 @@ section article#border div#guest div#reserve span{
 				return $(this).text() == date.getDate();
 			}).click();
 			
-			
+			/* 초기화 작업 */
+			time="";
+			hair="";
+			haircount=0;
 			$("#time tr td").css("background-color","white");
+			$("#item tr td").css("background-color","white");
+			$("#reserveTime").text("");
+			$("#reserveProduct").text("");
 			$("#reserveDesigner").text(designer);
 		})
 		
@@ -516,31 +649,41 @@ section article#border div#guest div#reserve span{
 				})			
 			}
 		})
+		$(".show").click(function() {
+			$(this).next().next().slideDown();
+		})
+		$(".toggle").click(function() {
+			
+			$(this).next().slideToggle();
+		})
+		
 	})
 </script>
 <section>
 	
 	<article id="border">
 		<div id="designerList">
-			<h1 id="title">예약하기</h1>
+			<h3 class="show">디자이너 선택</h3>
+			<h3 class="toggle">디자이너 선택</h3>
+			<div class="hide">
 			<ul id="designer">
-			
 				<c:forEach var="list" items="${dList}">
 					<li>${list.dName } ${list.dGrade }</li>
 				</c:forEach>
 			</ul>
+			</div>
 		</div>
 		<div id="form">
 			<div id="reserveForm">
-				<h3>날짜 선택</h3>
-				<div id="calendar"></div>
+				<h3 class="show">날짜 선택</h3>
+				<h3 class="toggle">날짜 선택</h3>
+				<div id="calendar" class="hide"></div>
 				<br>
 				<hr>
 				<br>
-				<h3>시간 선택</h3>
-				<br>
-	
-	
+				<h3 class="show">시간 선택</h3>
+				<h3 class="toggle">시간 선택</h3>
+				<div  class="hide">
 				<table id="time">
 					<tr>
 						<td>08:00</td>
@@ -567,12 +710,14 @@ section article#border div#guest div#reserve span{
 					
 					</tr>
 				</table>
+				</div>
 				<br>
 				<hr>
 				<br>
 				
-				<h3>메뉴 선택</h3>
-				<br>
+				<h3 class="show">메뉴 선택</h3>
+				<h3 class="toggle">메뉴 선택</h3>
+				<div class="hide">
 				<table id="item">
 					<tr>
 						<c:forEach var="product" items="${pList}">
@@ -580,7 +725,7 @@ section article#border div#guest div#reserve span{
 						</c:forEach>
 					</tr>
 				</table>
-			
+				</div>
 			</div>
 			<div id="mapForm">
 				<button id="search">검색</button><input type="text">
@@ -639,35 +784,7 @@ section article#border div#guest div#reserve span{
 				</div>
 			</div>
 			
-			<script type="text/javascript">
-				$(function() {
-					$("div#menuIcon div").eq(0).click(function() {
-						$("#reserveForm").show();
-						$("#mapForm").hide();
-						$("#reservedForm").hide();
-						$("#commit").text("예약신청");
-					})
-					$("div#menuIcon div").eq(1).click(function() {
-						$("#reserveForm").hide();
-						$("#mapForm").hide();
-						$("#reservedForm").show();
-						
-						$("#commit").text("예약확인");
-						$("#commit").click();
-					})
-					$("div#menuIcon div").eq(2).click(function() {
-						$("#reserveForm").hide();
-						$("#mapForm").show();
-						$("#reservedForm").hide();
-						var ps = new kakao.maps.services.Places(); 
-						ps.keywordSearch("영남인재교육원", placesSearchCB);
-						window.setTimeout(function() {
-						    map.relayout();
-						}, 0);
-					})
-				})
-				
-			</script>
+			
 			<hr>
 			<br>
 			
@@ -685,16 +802,7 @@ section article#border div#guest div#reserve span{
 			<p id="guestText">
 				<label>고객명</label><input type="text" name="gName" id="gName"><br>
 				<label>핸드폰번호</label><input type="text" name="gTel" id="gTel" placeholder='"-"를 붙여서 입력해 주세요.'><br>
-				<script>
-					$(function() {
-						if(${guest.gNo }>0){
-							$("#gName").val('${guest.gName}');
-							$("#gTel").val('${guest.gTel}');
-							$("#gName").attr("disabled",true);
-							$("#gTel").attr("disabled",true);
-						}						
-					})
-				</script>
+				
 				
 				
 				<br>
@@ -709,6 +817,51 @@ section article#border div#guest div#reserve span{
 				<br>
 				
 		</div>
+		
+		
+		<script>
+					$(function() {
+						if(${guest.gNo }>0){
+							$("#gName").val('${guest.gName}');
+							$("#gTel").val('${guest.gTel}');
+							$("#gName").attr("disabled",true);
+							$("#gTel").attr("disabled",true);
+						}						
+					})
+				</script>
+		<script type="text/javascript">
+				$(function() {
+					$("div#menuIcon div").eq(0).click(function() {
+						$("#reserveForm").show();
+						$("#mapForm").hide();
+						$("#reservedForm").hide();
+						$("#commit").text("예약신청");
+					})
+					$("div#menuIcon div").eq(1).click(function() {
+						$("#reserveForm").hide();
+						$("#mapForm").hide();
+						$("#reservedForm").show();
+						
+						$("#commit").text("예약확인");
+						$("#commit").click();
+						 var offset = $("#designerList").offset();
+						$('html, body').animate({
+							scrollTop:offset.top}, 1000);
+					})
+					$("div#menuIcon div").eq(2).click(function() {
+						$("#reserveForm").hide();
+						$("#mapForm").show();
+						$("#reservedForm").hide();
+						var ps = new kakao.maps.services.Places(); 
+						ps.keywordSearch("영남인재교육원", placesSearchCB);
+						window.setTimeout(function() {
+						    map.relayout();
+						}, 0);
+					})
+				})
+				
+			</script>
+		
 		
 		<script type="text/javascript">
 				$(function() {
@@ -845,7 +998,7 @@ section article#border div#guest div#reserve span{
 				
 			</script>
 		
-		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d12b5c6588fcf758d1a3d2f1e433c251&libraries=services,clusterer,drawing"></script>
+		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d21ad01c96aff8d55b25508bcfc6aa05&libraries=services,clusterer,drawing"></script>
 		<!-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d12b5c6588fcf758d1a3d2f1e433c251&libraries=services,clusterer,drawing"></script> -->
 		<script type="text/javascript">
 			// 마커를 클릭하면 장소명을 표출할 인포윈도우 입니다

@@ -6,18 +6,17 @@
 
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css">
 <style>
+@media screen and (min-width:1200px){
 #mypage{
 	width:1080px;
 	height:600px;
 	margin: 0 auto;
 	text-align: center;
 }
-
 #mypage #mpWrap{
 	width:1080px;
 	margin: 0 auto;
 	text-align: center;
-	
 	margin-top: 30px;
 	margin-bottm: 60px;
 }
@@ -72,6 +71,49 @@
 }
 #mypage #myMenuBtn a {
 	text-decoration: none;
+}
+}
+
+@media all and (max-width:1199px){
+
+#mypage{
+	width:100%;
+	margin: 0 auto;
+	text-align: center;
+}
+#mypage #mpHeader{
+	margin: 15px;
+}
+#mypage #mybio table{
+	border-collapse: collapse;
+	margin: 0 auto;
+}
+#mypage #mybio table th, td, tr{
+	border: 1px solid #ddd;
+	height: 40px;
+}
+#mypage #myMenuBtn {
+	width: 80%;
+	margin: 0 auto;
+}
+#mypage #myMenuBtn div{
+	width: 100%;
+	height: 40px;
+	color: black;
+	display:inline-block;
+	background-color: #eee;
+	line-height: 40px;
+	text-align: center;
+	margin: 5px;
+}
+#mypage #myMenuBtn{
+	margin-top: 40px;
+	margin-bottom: 40px;
+}
+
+#mypage #myMenuBtn a {
+	text-decoration: none;
+}
 }
 </style>
     

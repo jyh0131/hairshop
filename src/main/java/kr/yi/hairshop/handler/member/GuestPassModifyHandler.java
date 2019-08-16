@@ -42,6 +42,9 @@ public class GuestPassModifyHandler implements CommandHandler {
 			if(result == 1)
 				System.out.println("비밀번호 수정이 잘되었다");
 			
+			session = req.getSession(false);
+			session.setAttribute("Auth", null);			
+			
 			res.sendRedirect(req.getContextPath()+"/login/joinSeccess.do");
 			return null;
 			

@@ -5,6 +5,8 @@
 
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css">
 <style>
+@media screen and (min-width:1200px){
+
 #joinService{
 	width:1080px;
 	margin: 0 auto;
@@ -32,7 +34,6 @@
 	color: red;
 	margin-left: 0px;
 }
-
 #joinService #joinServiceBtnP{
 	text-align: center;
 	margin-left: 0px;
@@ -48,6 +49,40 @@
 	margin-top: 40px;
 	margin-bottom: 10px;
 }
+}
+
+@media all and (max-width:1199px){
+
+#joinService{
+	width:100%;
+	margin: 0 auto;
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+#joinService h3{
+	margin-top: 20px;
+}
+#joinService form .serviceCheck{
+	width: 20px;
+}
+
+#joinService #joinServiceBtnP{
+	width: 100%;
+	text-align: center;
+}
+#joinService #joinServiceBtn{
+	width: 70%;
+	height: 40px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+#joinService #naverP{
+	text-align: center;
+	margin: 0 auto;
+}
+}
+
 </style>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -171,7 +206,8 @@ $(function () {
 1. 기업마당 사이트는 회원이나 제3자에 의해 표출된 의견을 승인하거나 반대하거나 수정하지 않습니다. 기업마당 사이트는 어떠한 경우라도 회원이 서비스에 담긴 정보에 의존해 얻은 이득이나 입은 손해에 대해 책임이 없습니다. 금전적 거래등과 관련하여 어떠한 책임도 부담하지 아니하고, 회원이 서비스의 이용과 관련하여 기대하는 이익에 관하여 책임을 부담하지 않습니다.
 제 16 조 (재판관할)
 1. 기업마당 사이트와 이용자 간에 발생한 서비스 이용에 관한 분쟁에 대하여는 대한민국 법을 적용하며, 본 분쟁으로 인한 소는 대한민국의 법원에 제기합니다.
-		</textarea><br><input type="checkbox" class="serviceCheck" name="service1" value="service1"> 이용약관에 동의합니다.(<span class="rColor">필수</span>)</p>
+		</textarea>
+		<br><input type="checkbox" class="serviceCheck" name="service1" value="service1"> 이용약관에 동의합니다.(<span class="rColor">필수</span>)</p>
 		
 		<h3>개인정보 수집 및 이용 동의</h3>
 		<p><textarea rows="8" cols="120" readonly="readonly" disabled >
@@ -207,7 +243,10 @@ IP주소, 쿠키, 서비스 이용기록, 방문기록 등
 - 전문가 정보는 기업애로상담을 위한 목적으로 수집하나 보유하지 않고 비즈니스사업단으로 시스템연계 제공함
 4. 동의거부권 및 불이익
 정보주체는 개인정보 수집에 동의를 거부할 권리가 있습니다. 다만, 필수 항목에 대한 동의를 거부할 시 저희가 제공하는 서비스를 이용할 수 없습니다.
-		</textarea><br><input type="checkbox" class="serviceCheck" name="service2" value="service2"> 개인정보 수집ㆍ이용에 동의합니다.(<span class="rColor">필수</span>)</p>
+		</textarea>
+		
+		<br><input type="checkbox" class="serviceCheck" name="service2" value="service2"> 개인정보 수집ㆍ이용에 동의합니다.(<span class="rColor">필수</span>)</p>
+	
 	
 		<h3>마케팅/홍보의 수집 및 이용 동의</h3>
 		<p><textarea rows="6" cols="120" readonly="readonly" disabled >
@@ -222,14 +261,18 @@ IP주소, 쿠키, 서비스 이용기록, 방문기록 등
 이용목적의 달성 후 지체없이 파기
 4. 동의거부권 및 불이익
 개인정보의 마케팅/홍보의 수집 및 이용 동의를 거부하시더라도 회원 가입 시 제한은 없습니다. 다만, 마케팅 활용 서비스 안내 및 참여에 제한이 있을 수 있습니다.		
-		</textarea><br><input type="checkbox" name="service3" value="service3"> 마케팅/홍보를 위하여 귀하의 개인정보를 이용하는데 동의합니다.(선택)</p>
+		</textarea>
+		<br>
+		<input type="checkbox" name="service3" value="service3"> 마케팅/홍보를 위하여 귀하의 개인정보를 이용하는데 동의합니다.(선택)</p>
 		
 		<p id="joinServiceBtnP">
 			<input type="submit" value="동의 하고 회원가입 하기" id="joinServiceBtn">
 		</p>
 		
 		<!-- 네이버아이디로로그인 버튼 노출 영역 -->
-		<p><div id="naverIdLogin"></div></p>
+		<div id="naverP">
+			<div id="naverIdLogin"></div>
+		</div>
 		<!-- //네이버아이디로로그인 버튼 노출 영역 -->
 	</form>
 

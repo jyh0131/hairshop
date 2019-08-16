@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$("#category1").load("load2_data.html #category1-1");
+
+		$(document).on("change", "#category1 select", function() {
+			$("#category2").empty();
+			$("#category3").empty();
+			$(".result").empty();
+			var target = $(this).find("option:selected").attr("data-target"); //#category2-1
+			$("#category2").load("load2_data.html " + target);
+			
+		})
+
+		$(document).on("change", "#category2 select", function() {
+			
+			var target = $(this).find("option:selected").attr("data-target");
+			if (target == null) {
+				$("#category3").remove();
+			}else{
+				$("#category3").load("load2_data.html " + target);
+			}
+		})
+		
+		$(document).on("change","#category3 select",function(){
+			var value1 = $("#category1 select").val();
+			var value2 = $("#category2 select").val();
+			var value3 = $("#category3 select").val();
+			
+			$(".result").text(value1+">"+value2+">"+value3);
+		})
+	
+	})
+</script>
+</head>
+<body>
+	<h1 class="title">동적 드롭다운</h1>
+	<div class="exec">
+		<span id="category1"></span>
+		<span id="category2"></span>
+		<span id="category3"></span>
+	</div>
+	<div class="result"></div>
+</body>
+</html>

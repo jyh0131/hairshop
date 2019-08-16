@@ -10,7 +10,7 @@
 		text-align:center;
 		background:black;
 		color:white;
-		width: 1900px;   
+		width: 100%;   
 		line-height:20px;     
 		height:170px;  
 		margin:0 auto;
@@ -21,7 +21,7 @@
 		font-family: 'Arvo', serif;         
 	}  
 	footer .foot2{
-		font-family: 'Single Day', cursive;       
+		font-family: sans-serif;     
 	}    
 	footer #rights{
 		height: 40px;
@@ -30,7 +30,7 @@
 	
 	footer div{
 		margin-top:15px;
-		width:1900px;
+		width:100%;
 		float: left;
 	}
 
@@ -49,7 +49,6 @@
 			</div>
 		</footer>
 	
-	</div>
 </body>
 </html>
 

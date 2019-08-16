@@ -6,6 +6,7 @@
 
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css">
 <style>
+@media screen and (min-width:1200px){
 #MMForm section{
 	width:1080px;
 	margin: 0 auto;
@@ -42,6 +43,46 @@
 	width: 100px;
 	height: 40px;
 }
+}
+
+@media all and (max-width:1199px){
+
+#MMForm{
+	width:100%;
+	margin: 0 auto;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+#MMForm form{
+	width: 95%;
+	margin: 0 auto;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+#MMForm p{
+	width: 100%;
+	height: 60px;
+	line-height: 60px;
+}
+#MMForm p input{
+	height: 30px;
+}
+#MMForm label{
+	height:100%;
+	width: 150px;
+	line-height: 60px;
+	float: left;
+}
+#MMForm p:last-child{
+	text-align: center;
+}
+#MMForm #btnSubmit{
+	width: 50%;
+	height: 50px;
+}
+
+}
+
 
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -59,21 +100,7 @@
 			}else{
 				alert("수정 되었습니다");
 			}
-/* 			$(".error").css("display", "none")
-			$(".error2").css("display", "none")
-			
-			var pwcheck = /^[a-zA-Z0-9!@#]{4,20}$/i;
-			var pw = $("input[name='password']").val();			
-			if( pwcheck.test(pw) == false ){
-				$("input[name='password']").next().css("display", "inline");
-				return false;
-			}
-			
-			//password가 일치하지 않을때
-			if( $("input[name='password']").val() != $("input[name='confirmPassword']").val() ){
-				$("input[name='confirmPassword']").next().next().css("display", "inline");
-				return false;
-			} */
+
 		})
 		
 	})
@@ -83,18 +110,6 @@
 <section id="MMForm">
 
 	<form action="${pageContext.request.contextPath}/member/guestModify.do" method="post" id="f1">
-
-<!-- 		<p>
-			<label>비밀번호</label>
-			<input class="input" type="password" name="password" placeholder="영어,숫자,특수문자 포함 8~20자리">
-			<span class="error">비밀번호(영어, 숫자, 특수문자 포함, 8~20자)를 입력하세요</span>					
-		</p>
-		<p>
-			<label>비밀번호 확인</label>
-			<input class="input" type="password" name="confirmPassword" placeholder="비밀번호 확인">
-			<span class="error">비밀번호 확인란을 입력하세요</span>
-			<span class="error">비밀번호가 일치하지 않습니다</span>
-		</p> -->
 
 		<p>
 			<label>전화번호</label>

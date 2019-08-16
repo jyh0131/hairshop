@@ -7,6 +7,8 @@
 <link rel="stylesheet" href="/resources/demos/style.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>
 <style>
 section {
 	width: 1050px;
@@ -304,7 +306,6 @@ div#updatePageBlack #updateCommit{
 			var month = str.slice(str.indexOf(".")+1,str.length);
 			var day = $(this).text();
 			date=year+"-"+month+"-"+day;
-			$("table#reserved #reserveDate").text(year+"년 "+month+"월 "+day+"일 ");
 			$("#time tr td").removeClass("reserved");
 			$("table#reserved td").remove();
 			$.ajax({  
@@ -348,9 +349,6 @@ div#updatePageBlack #updateCommit{
 								str+="<td>"+work.wEName.eName+"("+work.wEName.eSale+")</td>";
 							}
 							
-							
-							
-							
 							if(work.wEName!=null){
 								sumPrice=sumPrice/100*(100-Number(work.wEName.eSale));	
 							}
@@ -363,7 +361,7 @@ div#updatePageBlack #updateCommit{
 							}
 							str+="<td><button>작업완료</button><button>수정</button><button>삭제</button><input id='hidden' type='hidden' value='"+work.wNo+"'/></td>";
 							str+="</tr>";
-							$("table#reserved").append(str);
+							$("table#reserved tbody").append(str);
 						}
 					}else{
 						$("table#reserved").append("<tr><td colspan='9'>예약이 하나도없네요ㅋㅋㅋㅋ</td></tr>");
@@ -388,7 +386,6 @@ div#updatePageBlack #updateCommit{
 			$(this).css("background-color", "white");
 	
 			date=new Date(date);
-			$("table#reserved #reserveDate").text(date.getFullYear()+"년 "+(date.getMonth()+1)+"월 "+date.getDate()+"일");
 			
 			designer = $(this).text();
 			calendar(date.getFullYear(), date.getMonth());
@@ -478,6 +475,11 @@ div#updatePageBlack #updateCommit{
 				}
 			}
 			if($(this).text()=='수정'){
+				for(var i=0; i<3; i++){
+					pIndex[i]=0;
+				}
+				$("#uppNameList").val("선택하세요.");
+				
 				
 				$("#updatePageBlack").fadeIn(300);
 				$.ajax({  
@@ -520,9 +522,15 @@ div#updatePageBlack #updateCommit{
 											+")<img src='${pageContext.request.contextPath }/images/reserve/x2.jpg'></span>");
 							
 						}
-						$("#upeName").val(json[0].wEName.eName+"("+json[0].wEName.eSale+")");
+						if(json[0].wEName==null){
+							alert(json[0].wEName)
+							alert("213213");
+							$("#upeName").val("일반(0)");
+						}else{
+							$("#upeName").val(json[0].wEName.eName+"("+json[0].wEName.eSale+")");
+						}
 						
-						sumPrice=sumPrice/100*(100-Number(json[0].wEName.eSale))
+						sumPrice=sumPrice/100*(100-Number(json[0].wEName!=null||json[0].wEName==0?json[0].wEName.eSale:1))
 						
 						$("#upwPriceTotal").val(sumPrice.toLocaleString()+"원");
 						
@@ -533,7 +541,6 @@ div#updatePageBlack #updateCommit{
 							
 						}
 						
-					
 					}
 				})
 			}
@@ -634,7 +641,12 @@ div#updatePageBlack #updateCommit{
 	
 	$("#f1").submit(function() {
 		var queryString = $("#f1").serialize();
-		console.log(queryString);
+		
+		if($("#uppNameList").val()=='선택하세요.'){
+			alert("이벤트를 선택해 주세요.");
+			return false;
+		}
+		
 		$.ajax({
             type : 'POST',
             url : '${pageContext.request.contextPath }/management/updateWork.do',
@@ -752,6 +764,8 @@ div#updatePageBlack #updateCommit{
 		<h1 id="title">예약관리</h1>
 		
 	<article id="">
+	
+	
 		<h1>회원 예약 검색</h1>
 		<input type="text" id="searchText"><button id="search">검색</button>
 		
@@ -769,6 +783,7 @@ div#updatePageBlack #updateCommit{
 			<th></th>
 		</tr>
 		
+		
 		</table>
 	</article>
 	<article>
@@ -780,28 +795,49 @@ div#updatePageBlack #updateCommit{
 		</ul>
 	</article>
 	<article>
-		<h1>날짜 선택</h1>
+		<h1>날짜 선택</h1><br>
 		<div id="calendar"></div>
+		<!-- <label>시작일 : </label><input type="date" id="startDay"><br><br>
+		<label>종료일 : </label><input type="date" id="endDay"> -->
+		
 	</article>
 	<article id="reserve">
+	
+	
 		<h1><span></span>님의 예약 현황</h1>
-		<table id="reserved">
-		<tr>
-			<th>예약일시</th>
-			<th>손님명</th>
-			<th>손님전화번호</th>
-			<th>손님등급</th>
-			<th>작업명</th>
-			<th>이벤트</th>
-			<th>가격</th>
-			<th>완료일시</th>
-			<th></th>
-		</tr>
+		<table id="reserved" class="table table-bordered">
+		<thead>
+			<tr>
+				<th>예약일시</th>
+				<th>손님명</th>
+				<th>손님전화번호</th>
+				<th>손님등급</th>
+				<th>작업명</th>
+				<th>이벤트</th>
+				<th>가격</th>
+				<th>완료일시</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
 		
+		</tbody>
 		</table>
 	</article>
+	<script>
 	
-
+	
+	
+	
+		$("#reserved").DataTable({
+			lengthChange:false,
+			ordering:false,
+			stateSave:true,
+			
+			
+		});
+	
+	</script>
 	
 </section>
 <div id="updatePageBlack">
@@ -846,7 +882,7 @@ div#updatePageBlack #updateCommit{
 			<label>손님명 : </label><input type="text" name="upgName" id="upgName" disabled><br>
 			<label>손님전화번호 : </label><input type="text" name="upgTel" id="upgTel" disabled><br>
 			<label>손님등급 : </label>
-			<select name="upgLGrade" id="upgLGrade">
+			<select name="upgLGrade" id="upgLGrade" disabled>
 				<option>일반</option>
 				<c:forEach var="l" items="${lList}">
 					<option>${l.lGrade}</option>

@@ -1,11 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
- <fieldset>
-     <textarea id="messageWindow" rows="10" cols="50" readonly="true"></textarea>
-     <br/>
+<style>
+	fieldset#chatFiled{
+		border: 0;
+		width:230px;
+	}
+	fieldset#chatFiled input[type="text"]{
+		width:100%;
+		margin: 0;
+	}
+	fieldset#chatFiled input[type="submit"]{
+		display: none;
+	}
+	
+	
+</style>
+ <fieldset id="chatFiled">
+     <textarea id="messageWindow" rows="10" cols="30" readonly="true"></textarea>
      <input id="inputMessage" type="text"/>
-     <input type="submit" value="send" onclick="send()" />
+     <input type="submit" value="" onclick="send()" />
  </fieldset>
 <script type="text/javascript">
 	var randomNum=Math.floor(Math.random() * 899) + 100;
@@ -36,14 +49,15 @@
       onMessage(event)
     };
     function onMessage(event) {
-        textarea.value += event.data + "\n";
+        textarea.value += event.data;
+        const top=$("#messageWindow").prop('scrollHeight');
+        $("#messageWindow").scrollTop(top);
     }
     function onOpen(event) {
-        textarea.value += "저희 헤어샵 방문해주세셔 감사합니다.\n";
-        textarea.value += "도배는 하지말아주세요!!\n";
+        textarea.value += "저희 헤어샵을 방문해주셔서 감사합니다. 도배는 하지말아주세요!!\n";
     }
     function onError(event) {
-      alert(event.data);
+      /* alert(event.data); */
     }
     
     function send() {
@@ -53,8 +67,6 @@
     	}else{
     		myMessage='손님'+randomNum+" : "+ inputMessage.value + "\n";
     	}
-    	
-    	 
     	
     	textarea.value += myMessage;
         webSocket.send(myMessage);

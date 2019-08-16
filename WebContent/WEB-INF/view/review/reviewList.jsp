@@ -15,14 +15,13 @@
 		color: black;
 	}
 	section{
-		margin-top: 40px;
+		margin-top: 70px;
 		width: 100%;
 		height: 600px;
 	}
 	#example{
 		width: 800px;
 		text-align: center;
-		/* min-heigh:409px; */
 	}
 	#example td:nth-child(2){
 		text-align: left;
@@ -34,36 +33,46 @@
 	#example_info{
 		display: none;
 	} 
-	#example_wrapper{ 
+	#yellow{
+		width: 100%;
+		height: 20px;
 		position: relative;
+		/* background-color: yellow; */
 	}
 	#example_filter{  /* 검색창 */
 		position: absolute;
-		bottom:-100px;
-		left:800px;
+		bottom:-40px;
+		left:580px;
 	}
 	#example_paginate{ /* 페이지표시 */
 		position: absolute;
 		bottom:-50px;
-		left:800px;
+		right:550px;
 	}
-	#write{
+	#write{ /* 글쓰기 */
 		position: absolute;
-		bottom:293px;
+		top:235px;
 		right:590px;
+		
 	}
 	#write a{
 		text-decoration: none;
 		border:1px solid #ccc;
 		width: 60px;
 		height: 30px;
-		background-color: white;
+		background-color:#F6F6F6;
 		border: 1px solid #ccc;
 		font-size: 13px;
 		padding:5px 10px;
 	}
+	#reviewtitle #rtitle:hover{
+		text-decoration: underline;
+		color:#5D5D5D;
+	}
+	
 </style>
 <section>
+<div id="yellow"></div>
 	<table id="example" class="table table-bordered">
   	<thead>
     	<tr>
@@ -80,8 +89,8 @@
 				<td id="no">
 					${review.rNo}
 				</td>
-				<td>
-					<a href="${pageContext.request.contextPath}/review/detail.do?no=${review.rNo}">${review.rTitle }</a>
+				<td id="reviewtitle">
+					<a href="${pageContext.request.contextPath}/review/detail.do?no=${review.rNo}"><span id="rtitle">${review.rTitle }</span></a>
 				</td>
 				<td>
 					${review.rWriter }

@@ -68,8 +68,35 @@
 	<br>
 	<p id="button">
 		<input type="submit" value="등록">
-		<input type="reset" value="취소">
+		
+			<input type="reset" value="취소" id="inputreset">
 	</p>
 	</form>
 </section>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+	$(function(){
+		$("#inputreset").click(function(){
+			location.href="/hairshop/review/review.do";
+			
+		})
+	})
+</script>
 <%@ include file="../../include/footer.jsp" %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
