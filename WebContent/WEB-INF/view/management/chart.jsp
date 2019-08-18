@@ -159,7 +159,6 @@ section {
 				
 			}
 			else if(value=='월별'){
-				alert("월별")
 				chartDraw=function(){
 					$.ajax({
 						url : "${pageContext.request.contextPath}/management/chart.do",
