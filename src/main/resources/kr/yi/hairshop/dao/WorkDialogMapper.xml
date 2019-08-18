@@ -41,6 +41,20 @@
 		<collection property="productList" resultMap="kr.yi.hairshop.dao.ProductMapper.basicProduct"/>
 	</resultMap>
 	
+	<resultMap type="WorkDialog" id="guestJoin">
+		<id property='id' column='ID' />
+		<result property="wWorkTime" column="w_workTime" />
+		<result property="wReservTime" column="w_reservTime" />
+		<result property="wPriceTotal" column="sum(w_priceTotal)" />
+		<association property="wGNo" resultMap="kr.yi.hairshop.dao.GuestMapper.basicGuest"/>
+	</resultMap>
+	
+	<resultMap type="WorkDialog" id="DesignerJoin" extends="basicWorkDialog">
+		<association property="wGNo" resultMap="kr.yi.hairshop.dao.GuestMapper.basicGuest"/>
+	</resultMap>
+	
+	
+	
 <!-- 	<resultMap type="" id="" extends="basicWorkDialog">
 		<association property="wDNo" resultMap="kr.yi.hairshop.dao.DesignerMapper.extendsDesigner"/>
 		<association property="wEName" resultMap="kr.yi.hairshop.dao.EventMapper.basicEvent"/>
@@ -319,6 +333,15 @@
 		order by w_reservTime desc
 	</select>
 	
+	<select id="selectGPriceLimit" resultMap="guestJoin">
+		select sum(w_priceTotal), w_g_no, g_no, g_name
+		from workdialog w
+		left join guest g 
+		on w.w_g_no=g.g_no
+		where w.w_reservTime between #{dStart} and #{dEnd}
+		group by g_name
+		order by sum(w_priceTotal) desc limit #{lStart},#{lSize}
+	</select>
 
 	
 </mapper>

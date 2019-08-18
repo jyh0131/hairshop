@@ -229,25 +229,26 @@ section article#border div#guest p#guestText label{
 	width: 100px;
 }
 
-section article#border div#guest div#menuIcon{
+section article#border div#form div#menuIcon{
 	display:block;
 	width:100%;
 	height: 120px;
 }
 
-section article#border div#guest div#menuIcon div{
+section article#border div#form div#menuIcon div{
 	width:80px;
 	height:100px;
 	float: left;
-	margin-right: 10px;
+	margin-right: 40px;
 	cursor: pointer;
 }
-section article#border div#guest div#menuIcon div:first-child{
+
+section article#border div#form div#menuIcon div:first-child{
 	margin-left:20px;
-	margin-right:20px;
+	margin-right:50px;
 	text-align: center;
 }
-section article#border div#guest div#menuIcon img{
+section article#border div#form div#menuIcon img{
 	display:block;
 	
 	width: 80px;
@@ -402,30 +403,7 @@ section article#border div#guest div#reserve span{
 		
 		var nowDate = new Date();
 		
-		$("#time td").removeClass("prevDay");
 		
-		if(year==nowDate.getFullYear()){
-			if(month<=nowDate.getMonth()){
-				if(month==nowDate.getMonth()){
-					for(var j=0; j<$("#time td").length; j++){
-						var hour=$("#time td").eq(j).text().slice(0,2);
-						var minute=$("#time td").eq(j).text().slice(3,5);
-						if(hour<nowDate.getHours()){
-							$("#time td").eq(j).addClass("prevDay");
-						}else if(hour==nowDate.getHours()){
-							if(minute<nowDate.getMinutes()){
-								$("#time td").eq(j).addClass("prevDay");
-							}
-						}
-						
-					}
-				}else{
-					$("#time td").addClass("prevDay");
-				}
-			}
-		}else if(year<nowDate.getFullYear()){
-			$("#time td").addClass("prevDay");
-		}
 		
 		
 		for (var j = 0; j < t.getDay(); j++) {
@@ -528,9 +506,40 @@ section article#border div#guest div#reserve span{
 						}
 					}
 				}
-						
+					
 				
 			})
+			
+			var nowDate = new Date();
+			
+			$("#time td").removeClass("prevDay");
+			
+			if(year==nowDate.getFullYear()){
+				if(month<=nowDate.getMonth()+1){
+					if(month==nowDate.getMonth()+1){
+						
+						if(day==nowDate.getDate()){
+							for(var j=0; j<$("#time td").length; j++){
+								var hour=$("#time td").eq(j).text().slice(0,2);
+								var minute=$("#time td").eq(j).text().slice(3,5);
+								if(hour<nowDate.getHours()){
+									$("#time td").eq(j).addClass("prevDay");
+								}else if(hour==nowDate.getHours()){
+									if(minute<nowDate.getMinutes()){
+										$("#time td").eq(j).addClass("prevDay");
+									}
+								}
+								
+							}
+						}
+					}else{
+						$("#time td").addClass("prevDay");
+					}
+				}
+			}else if(year<nowDate.getFullYear()){
+				$("#time td").addClass("prevDay");
+			}
+			
 
 		})
 		
@@ -674,6 +683,23 @@ section article#border div#guest div#reserve span{
 			</div>
 		</div>
 		<div id="form">
+		
+		
+		<div id="menuIcon">
+				<div>
+					<img src="${pageContext.request.contextPath}/images/reserve/time.png"><br>
+					<span>예약하기</span>
+				</div>
+				<div>
+					<img src="${pageContext.request.contextPath}/images/reserve/check.jpg"><br>
+					<span>예약확인</span>
+				</div>
+				<div >
+					<img src="${pageContext.request.contextPath}/images/reserve/come.PNG"><br>
+					<span>오시는길</span>
+				</div>
+			</div>
+		
 			<div id="reserveForm">
 				<h3 class="show">날짜 선택</h3>
 				<h3 class="toggle">날짜 선택</h3>
@@ -764,25 +790,8 @@ section article#border div#guest div#reserve span{
 			<p>053-981-0000</p>
 			<p>00:00~22:00</p>
 			
-			<br>
-			<hr>
-			<br>
 			
 			
-			<div id="menuIcon">
-				<div>
-					<img src="${pageContext.request.contextPath}/images/reserve/time.png"><br>
-					<span>예약하기</span>
-				</div>
-				<div>
-					<img src="${pageContext.request.contextPath}/images/reserve/check.jpg"><br>
-					<span>예약확인</span>
-				</div>
-				<div >
-					<img src="${pageContext.request.contextPath}/images/reserve/come.PNG"><br>
-					<span>오시는길</span>
-				</div>
-			</div>
 			
 			
 			<hr>
@@ -835,16 +844,23 @@ section article#border div#guest div#reserve span{
 						$("#reserveForm").show();
 						$("#mapForm").hide();
 						$("#reservedForm").hide();
+						$("#designerList").slideDown();
+						
 						$("#commit").text("예약신청");
+						var offset = $("article#border").offset();
+						$('html, body').animate({
+							scrollTop:offset.top}, 1000);
 					})
 					$("div#menuIcon div").eq(1).click(function() {
 						$("#reserveForm").hide();
 						$("#mapForm").hide();
 						$("#reservedForm").show();
 						
+						$("#designerList").slideUp();
+						
 						$("#commit").text("예약확인");
 						$("#commit").click();
-						 var offset = $("#designerList").offset();
+						 var offset = $("article#border").offset();
 						$('html, body').animate({
 							scrollTop:offset.top}, 1000);
 					})
@@ -852,13 +868,20 @@ section article#border div#guest div#reserve span{
 						$("#reserveForm").hide();
 						$("#mapForm").show();
 						$("#reservedForm").hide();
+						$("#designerList").slideUp();
 						var ps = new kakao.maps.services.Places(); 
 						ps.keywordSearch("영남인재교육원", placesSearchCB);
 						window.setTimeout(function() {
 						    map.relayout();
 						}, 0);
+						var offset = $("article#border").offset();
+						$('html, body').animate({
+							scrollTop:offset.top}, 1000);
 					})
 				})
+				
+			
+				
 				
 			</script>
 		

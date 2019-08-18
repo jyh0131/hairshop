@@ -432,6 +432,7 @@ $(document).ready(function(){
 				
 			</div>
 			
+			
 			<button id="chatShow">채팅 숨기기</button>
 			<div id="chat">
 				<%@ include file="../../ChatClient.jsp"%>
@@ -439,10 +440,13 @@ $(document).ready(function(){
 			
 			<script>
 				$("#chatShow").click(function() {
-					$("#chat").slideToggle();
+					
 					if($(this).text()=='채팅 숨기기'){
+						$("#chat").animate({right:"-230px"},1000);
 						$(this).text("채팅 보이기");
 					}else{
+						
+						$("#chat").animate({right:"0px"},1000);
 						$(this).text("채팅 숨기기");
 					}
 					
