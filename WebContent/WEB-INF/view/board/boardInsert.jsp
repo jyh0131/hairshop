@@ -43,7 +43,7 @@
 
 
 <section>
-	<form action="${pageContext.request.contextPath}/board/managerInsert.do" method="post" enctype="multipart/form-data">
+	<form action="${pageContext.request.contextPath}/board/managerInsert.do" id="f1" method="post" enctype="multipart/form-data">
 	<p>
 		<label>이름</label>
 		<input type="text" name="rWriter" disabled="disabled" id="rWriter" value="${Auth.uId }">	
@@ -66,13 +66,19 @@
 	</p>
 	<br>
 	<p id="button">
-		<input type="submit" value="등록">
+		<input id="bbBtn" type="button" value="등록">
 		<input type="reset" value="취소">
 	</p>
 	</form>
 </section>
 
 <script type="text/javascript">
+
+	$("#bbBtn").click(function () {
+		oEditors.getById['weditor'].exec('UPDATE_CONTENTS_FIELD', []);
+		$("#f1").submit();
+	})
+
 	var oEditors = [];
 	nhn.husky.EZCreator.createInIFrame({
 	    oAppRef: oEditors,
@@ -80,12 +86,7 @@
 	    sSkinURI: "${pageContext.request.contextPath}/se2/SmartEditor2Skin.html",
 	    fCreator: "createSEditor2"
 	});
-	
-/* 	function pasteHTML(filepath){
-		var sHTML = '<img src="${pageContext.request.contextPath}/se2/upload/'+filepath+'">';
-		oEditors.getById["weditor"].exec("PASTE_HTML", [sHTML]);
-	}
- */	
+
 </script> 
 
 <%@ include file="../../include/footer.jsp" %>
