@@ -56,7 +56,6 @@ public class ChartHandler implements CommandHandler {
 				map.put("lSize", lSize);
 				
 				List<WorkDialog> wList=wDao.selectGPriceLimit(map);
-				
 				System.out.println(wList.size());
 				
 				ObjectMapper om = new ObjectMapper();
@@ -67,6 +66,7 @@ public class ChartHandler implements CommandHandler {
 				out.print(data);
 				out.flush();
 				
+				return null;
 			}
 			else if(flag!=null&&flag.equals("고객 매출금액 월별")) {
 				int lastArray[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
@@ -86,7 +86,7 @@ public class ChartHandler implements CommandHandler {
 				map.put("lStart", lStart);
 				map.put("lSize", lSize);
 				
-				List<WorkDialog> wList=wDao.selectGCountLimit(map);
+				List<WorkDialog> wList=wDao.selectGPriceLimit(map);
 				
 				System.out.println(wList.size());
 				
@@ -98,6 +98,7 @@ public class ChartHandler implements CommandHandler {
 				out.print(data);
 				out.flush();
 				
+				return null;
 			}
 			else if(flag!=null&&flag.equals("고객 방문수 년별")) {
 				int lSize=Integer.parseInt(req.getParameter("lSize"));
@@ -129,6 +130,7 @@ public class ChartHandler implements CommandHandler {
 				out.print(data);
 				out.flush();
 				
+				return null;
 			}
 			else if(flag!=null&&flag.equals("고객 방문수 월별")) {
 				int lastArray[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
@@ -147,7 +149,7 @@ public class ChartHandler implements CommandHandler {
 				map.put("lStart", lStart);
 				map.put("lSize", lSize);
 				
-				List<WorkDialog> wList=wDao.selectGPriceLimit(map);
+				List<WorkDialog> wList=wDao.selectGCountLimit(map);
 				
 				System.out.println(wList.size());
 				
@@ -159,6 +161,134 @@ public class ChartHandler implements CommandHandler {
 				out.print(data);
 				out.flush();
 				
+				return null;
+			}
+			if(flag!=null&&flag.equals("디자이너 금액실적 년별")) {
+				int lSize=Integer.parseInt(req.getParameter("lSize"));
+				int lStart=Integer.parseInt(req.getParameter("lStart"));
+				
+				
+				Map<String, Object> map = new HashMap<String, Object>();
+				
+				String dStart = year+"-01-01";
+				String dEnd = year+"-12-31";
+				
+				System.out.println("lStart:"+lStart);
+				System.out.println("lSize:"+lSize);
+				
+				map.put("dStart", dStart);
+				map.put("dEnd", dEnd);
+				map.put("lStart", lStart);
+				map.put("lSize", lSize);
+				
+				List<WorkDialog> wList=wDao.selectDPriceLimit(map);
+				
+				System.out.println(wList.size());
+				
+				ObjectMapper om = new ObjectMapper();
+				String data = om.writeValueAsString(wList);
+				
+				res.setContentType("application/json;charset=utf-8");
+				PrintWriter out = res.getWriter();
+				out.print(data);
+				out.flush();
+				
+				return null;
+			}
+			else if(flag!=null&&flag.equals("디자이너 금액실적 월별")) {
+				int lastArray[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+				
+				int lSize=Integer.parseInt(req.getParameter("lSize"));
+				int lStart=Integer.parseInt(req.getParameter("lStart"));
+				
+				
+				Map<String, Object> map = new HashMap<String, Object>();
+				
+				
+				String dStart = year+"-"+month+"-01";
+				String dEnd = year+"-"+month+"-"+lastArray[month-1];
+				
+				map.put("dStart", dStart);
+				map.put("dEnd", dEnd);
+				map.put("lStart", lStart);
+				map.put("lSize", lSize);
+				
+				List<WorkDialog> wList=wDao.selectDPriceLimit(map);
+				
+				System.out.println(wList.size());
+				
+				ObjectMapper om = new ObjectMapper();
+				String data = om.writeValueAsString(wList);
+				
+				res.setContentType("application/json;charset=utf-8");
+				PrintWriter out = res.getWriter();
+				out.print(data);
+				out.flush();
+				
+				return null;
+			}
+			else if(flag!=null&&flag.equals("디자이너 커트횟수 년별")) {
+				int lSize=Integer.parseInt(req.getParameter("lSize"));
+				int lStart=Integer.parseInt(req.getParameter("lStart"));
+				
+				
+				Map<String, Object> map = new HashMap<String, Object>();
+				
+				String dStart = year+"-01-01";
+				String dEnd = year+"-12-31";
+				
+				System.out.println("lStart:"+lStart);
+				System.out.println("lSize:"+lSize);
+				
+				map.put("dStart", dStart);
+				map.put("dEnd", dEnd);
+				map.put("lStart", lStart);
+				map.put("lSize", lSize);
+				
+				List<WorkDialog> wList=wDao.selectDCountLimit(map);
+				
+				System.out.println(wList.size());
+				
+				ObjectMapper om = new ObjectMapper();
+				String data = om.writeValueAsString(wList);
+				
+				res.setContentType("application/json;charset=utf-8");
+				PrintWriter out = res.getWriter();
+				out.print(data);
+				out.flush();
+				
+				return null;
+			}
+			else if(flag!=null&&flag.equals("디자이너 커트횟수 월별")) {
+				int lastArray[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+				
+				int lSize=Integer.parseInt(req.getParameter("lSize"));
+				int lStart=Integer.parseInt(req.getParameter("lStart"));
+				
+				
+				Map<String, Object> map = new HashMap<String, Object>();
+				
+				String dStart = year+"-"+month+"-01";
+				String dEnd = year+"-"+month+"-"+lastArray[month-1];
+				
+				map.put("dStart", dStart);
+				map.put("dEnd", dEnd);
+				map.put("lStart", lStart);
+				map.put("lSize", lSize);
+				
+				List<WorkDialog> wList=wDao.selectDCountLimit(map);
+				
+				System.out.println(wList.size());
+				
+				ObjectMapper om = new ObjectMapper();
+				String data = om.writeValueAsString(wList);
+				
+				res.setContentType("application/json;charset=utf-8");
+				PrintWriter out = res.getWriter();
+				out.print(data);
+				out.flush();
+				
+				return null;
 			}
 			else {
 				List<WorkDialog> wList=wDao.selectByAll();
@@ -171,6 +301,7 @@ public class ChartHandler implements CommandHandler {
 				out.print(data);
 				out.flush();
 			
+				
 			}
 			
 		}

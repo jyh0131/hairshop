@@ -56,6 +56,26 @@
 		<result property="wPriceTotal" column="count(w_priceTotal)" />
 		<association property="wGNo" resultMap="kr.yi.hairshop.dao.GuestMapper.basicGuest"/>
 	</resultMap>
+	<resultMap type="WorkDialog" id="designerPriceJoin">
+		<id property='wNo' column='ID' />
+		<result property="wWorkTime" column="w_workTime" />
+		<result property="wReservTime" column="w_reservTime" />
+		<result property="wPriceTotal" column="sum(w_priceTotal)" />
+		<association property="wDNo" resultMap="kr.yi.hairshop.dao.DesignerMapper.basicDesigner"/>
+	</resultMap>
+	<resultMap type="WorkDialog" id="designerCountJoin">
+		<id property='wNo' column='ID' />
+		<result property="wWorkTime" column="w_workTime" />
+		<result property="wReservTime" column="w_reservTime" />
+		<result property="wPriceTotal" column="count(w_priceTotal)" />
+		<association property="wDNo" resultMap="kr.yi.hairshop.dao.DesignerMapper.basicDesigner"/>
+	</resultMap>
+	
+	
+	
+	
+	<!--  -->
+	
 	
 	<resultMap type="WorkDialog" id="DesignerJoin" extends="basicWorkDialog">
 		<association property="wGNo" resultMap="kr.yi.hairshop.dao.GuestMapper.basicGuest"/>
@@ -357,6 +377,26 @@
 		on w.w_g_no=g.g_no
 		where w.w_reservTime between #{dStart} and #{dEnd}
 		group by g_name
+		order by count(w_priceTotal) desc limit #{lStart},#{lSize}
+	</select>
+	
+	
+	<select id="selectDPriceLimit" resultMap="designerPriceJoin">
+		select sum(w_priceTotal), w_d_no, d_no, d_name
+		from workdialog w
+		left join designer d
+		on w.w_d_no=d.d_no
+		where w.w_reservTime between #{dStart} and #{dEnd}
+		group by d_name
+		order by sum(w_priceTotal) desc limit #{lStart},#{lSize}
+	</select>
+	<select id="selectDCountLimit" resultMap="designerCountJoin">
+		select count(w_priceTotal), w_d_no, d_no, d_name
+		from workdialog w
+		left join designer d
+		on w.w_d_no=d.d_no
+		where w.w_reservTime between #{dStart} and #{dEnd}
+		group by d_name
 		order by count(w_priceTotal) desc limit #{lStart},#{lSize}
 	</select>
 

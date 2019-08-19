@@ -157,6 +157,7 @@ section article#border div#form div#reservedForm div#reservedList{
 }
 section article#border div#form div#reservedForm div#reservedList table{
 	border-collapse: collapse;
+	width:90%;
 }
 
 div#form div#reservedForm div#reservedList table th:nth-child(1){

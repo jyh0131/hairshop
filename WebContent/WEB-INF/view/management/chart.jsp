@@ -57,21 +57,7 @@ section .exec span select{
 		
 	var chartDraw= function() {}
 	
-	var options = {
-			
-		chart : {
-		title : '총 매출 현황',
-		subtitle : '월/년/일 차트 통계'
-		},
-		vAxis: {
-			format: 'decimal'
-			
-		},
-		boxStyle: {
-			rx:10,
-			ry:10
-		}
-	};
+	var options = {};
 	
 	
 	function drawChart() {
@@ -93,10 +79,35 @@ section .exec span select{
 		
 		chart.draw(data, options); */
 		
-		var chart = new google.charts.Bar(document
-		.getElementById('columnchart_material'));
+		var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
 		
 		chart.draw(data, google.charts.Bar.convertOptions(options));
+	}
+	
+	
+	/* 파이차트 */
+	function drawChartPie() {
+		data = google.visualization.arrayToDataTable(
+		/* 	[
+			[ 'Month', 'Sales', 'Expenses' ],
+			[ '1', 1000, 400 ],
+			[ '2', 1170, 460 ],
+			[ '3', 660, 1120 ],
+			[ '4', 1030, 540 ] 
+		] */
+		arr);
+		
+		var formatter = new google.visualization.NumberFormat({pattern:'###,###'});
+		formatter.format(data,1);
+		
+		/* var chart = new google.visualization.LineChart(document
+		.getElementById('curve_chart'));
+		
+		chart.draw(data, options); */
+		
+		var chart = new google.visualization.PieChart(document.getElementById('columnchart_material'));
+
+        chart.draw(data, options);
 	}
 	
 	
@@ -114,209 +125,30 @@ section .exec span select{
 		
 	})
 
-	$(document).on("change", "#category3 select", function() {
-		var value = $("#category3 select").val();
-		
-		lSize=10;
-		lStart=0;
-		
-		if($("#category2-2").val()=='매출금액'){
-			
-			if(value=='년별'){
-				chartDraw=function(){
-					$.ajax({
-						url : "${pageContext.request.contextPath}/management/chart.do",
-						type : "post",
-						data : {
-							"year":year,
-							"lSize":lSize,
-							"lStart":lStart,
-							"flag":"고객 매출금액 년별"
-						},
-						
-						
-						dataType : "json",
-						success : function(res) {
-							
-							arr = new Array();
-							arr[0] = new Array();
-							arr[0][0] = "고객 매출 순위"+(lStart+1)+"~"+((lStart)+lSize);
-							
-							arr[0][1] = year + "년";
-							
-							for (var i = 1; i < res.length+1; i++) {
-								arr[i] = new Array();
-								arr[i][0] = res[i-1].wGNo.gName;
-								arr[i][1] = res[i-1].wPriceTotal;
-							}
-							
-							console.log(arr);
-							
-							
-							google.charts.load('current', {
-								'packages' : [ 'bar' ]
-							});
-							google.charts.setOnLoadCallback(drawChart);
-						}
-					})
 	
-					
-				}
-				
-				lStart=lStart-10;
-				$("#add").click();
-				
-			}
-			else if(value=='월별'){
-				chartDraw=function(){
-					$.ajax({
-						url : "${pageContext.request.contextPath}/management/chart.do",
-						type : "post",
-						data : {
-							"year":year,
-							"month":month,
-							"lSize":lSize,
-							"lStart":lStart,
-							"flag":"고객 매출금액 월별"
-						},
-						
-						
-						dataType : "json",
-						success : function(res) {
-							
-							arr = new Array();
-							arr[0] = new Array();
-							arr[0][0] = "고객 매출 순위"+(lStart+1)+"~"+((lStart)+lSize);
-							
-							arr[0][1] = month + "월";
-							
-							for (var i = 1; i < res.length+1; i++) {
-								arr[i] = new Array();
-								arr[i][0] = res[i-1].wGNo.gName;
-								arr[i][1] = res[i-1].wPriceTotal;
-							}
-							
-							console.log(arr);
-							
-							
-							google.charts.load('current', {
-								'packages' : [ 'bar' ]
-							});
-							google.charts.setOnLoadCallback(drawChart);
-						}
-					})
-	
-					
-				}
-				
-				lStart=lStart-10;
-				$("#add").click();
-				
-			}
-		}
-		
-		
-		else if($("#category2-2").val()=='방문수'){
-
-			if(value=='년별'){
-				chartDraw=function(){
-					$.ajax({
-						url : "${pageContext.request.contextPath}/management/chart.do",
-						type : "post",
-						data : {
-							"year":year,
-							"lSize":lSize,
-							"lStart":lStart,
-							"flag":"고객 방문수 년별"
-						},
-						
-						
-						dataType : "json",
-						success : function(res) {
-							
-							arr = new Array();
-							arr[0] = new Array();
-							arr[0][0] = "고객 방문 순위"+(lStart+1)+"~"+((lStart)+lSize);
-							
-							arr[0][1] = year + "년";
-							
-							for (var i = 1; i < res.length+1; i++) {
-								arr[i] = new Array();
-								arr[i][0] = res[i-1].wGNo.gName;
-								arr[i][1] = res[i-1].wPriceTotal;
-							}
-							
-							console.log(arr);
-							
-							
-							google.charts.load('current', {
-								'packages' : [ 'bar' ]
-							});
-							google.charts.setOnLoadCallback(drawChart);
-						}
-					})
-	
-					
-				}
-				
-				lStart=lStart-10;
-				$("#add").click();
-				
-			}
-			else if(value=='월별'){
-				chartDraw=function(){
-					$.ajax({
-						url : "${pageContext.request.contextPath}/management/chart.do",
-						type : "post",
-						data : {
-							"year":year,
-							"month":month,
-							"lSize":lSize,
-							"lStart":lStart,
-							"flag":"고객 방문수 월별"
-						},
-						
-						
-						dataType : "json",
-						success : function(res) {
-							
-							arr = new Array();
-							arr[0] = new Array();
-							arr[0][0] = "고객 방문 순위"+(lStart+1)+"~"+((lStart)+lSize);
-							
-							arr[0][1] = month + "월";
-							
-							for (var i = 1; i < res.length+1; i++) {
-								arr[i] = new Array();
-								arr[i][0] = res[i-1].wGNo.gName;
-								arr[i][1] = res[i-1].wPriceTotal;
-							}
-							
-							console.log(arr);
-							
-							
-							google.charts.load('current', {
-								'packages' : [ 'bar' ]
-							});
-							google.charts.setOnLoadCallback(drawChart);
-						}
-					})
-	
-					
-				}
-				
-				lStart=lStart-10;
-				$("#add").click();
-				
-			}
-			
-		}
-	})
 	$(document).on("change", "#category2 select", function() {
 		var value2 = $("#category2 select").val();
 		year = nowDate.getFullYear();
 		month = nowDate.getMonth()+1;
 		day = nowDate.getDate();
+		
+		options={
+			
+			chart : {
+			title : '총 매출 현황',
+			subtitle : '월/년/일 차트 통계'
+			},
+			vAxis: {
+				format: 'decimal'
+				
+			},
+			boxStyle: {
+				rx:10,
+				ry:10
+			}
+		};
+		
+		
 		
 		if($("#category1-1").val()=='손님 현황'){
 			var target = $(this).find("option:selected").attr("data-target");
@@ -327,6 +159,14 @@ section .exec span select{
 			}
 		}
 		
+		else if($("#category1-1").val()=='디자이너 현황'){
+			var target = $(this).find("option:selected").attr("data-target");
+			if (target == null) {
+				$("#category3").remove();
+			}else{
+				$("#category3").load("../category.html " + target);
+			}
+		}
 		
 		if(value2=='년/월'){
 			chartDraw=function(){
@@ -340,6 +180,7 @@ section .exec span select{
 							+ 1 + "년";
 				}
 
+				
 
 				
 				for (var i = 1; i < 13; i++) {
@@ -483,6 +324,419 @@ section .exec span select{
 				$("#category3").load("../category.html " + target);
 			} */
 	})
+	$(document).on("change", "#category3 select", function() {
+		var value = $("#category3 select").val();
+		
+		lSize=10;
+		lStart=0;
+		
+		
+		options={
+				
+				chart : {
+				title : '총 매출 현황',
+				subtitle : '월/년/일 차트 통계'
+				},
+				vAxis: {
+					format: 'decimal'
+					
+				},
+				boxStyle: {
+					rx:10,
+					ry:10
+				}
+			};
+		
+		
+		if($("#category2-2").val()=='매출금액'){
+			if(value=='년별'){
+				
+				chartDraw=function(){
+					console.log(year)
+					console.log(lSize)
+					console.log(lStart)
+					$.ajax({
+						url : "${pageContext.request.contextPath}/management/chart.do",
+						type : "post",
+						data : {
+							"year":year,
+							"lSize":lSize,
+							"lStart":lStart,
+							"flag":"고객 매출금액 년별"
+						},
+						dataType : "json",
+						success : function(res) {
+							arr = new Array();
+							arr[0] = new Array();
+							arr[0][0] = "고객 매출 순위"+(lStart+1)+"~"+((lStart)+lSize);
+							
+							arr[0][1] = year + "년";
+							
+							for (var i = 1; i < res.length+1; i++) {
+								arr[i] = new Array();
+								arr[i][0] = res[i-1].wGNo.gName;
+								arr[i][1] = res[i-1].wPriceTotal;
+							}
+							
+							console.log(arr);
+							
+							google.charts.load('current', {
+								'packages' : [ 'bar' ]
+							});
+							google.charts.setOnLoadCallback(drawChart);
+						}
+					})
+	
+					
+				}
+				lStart=lStart-10;
+				$("#add").click();
+				
+			}
+			else if(value=='월별'){
+				chartDraw=function(){
+					$.ajax({
+						url : "${pageContext.request.contextPath}/management/chart.do",
+						type : "post",
+						data : {
+							"year":year,
+							"month":month,
+							"lSize":lSize,
+							"lStart":lStart,
+							"flag":"고객 매출금액 월별"
+						},
+						dataType : "json",
+						success : function(res) {
+							
+							arr = new Array();
+							arr[0] = new Array();
+							arr[0][0] = "고객 매출 순위"+(lStart+1)+"~"+((lStart)+lSize);
+							
+							arr[0][1] = month + "월";
+							
+							for (var i = 1; i < res.length+1; i++) {
+								arr[i] = new Array();
+								arr[i][0] = res[i-1].wGNo.gName;
+								arr[i][1] = res[i-1].wPriceTotal;
+							}
+							
+							console.log(arr);
+							
+							
+							google.charts.load('current', {
+								'packages' : [ 'bar' ]
+							});
+							google.charts.setOnLoadCallback(drawChart);
+						}
+					})
+	
+					
+				}
+				
+				lStart=lStart-10;
+				$("#add").click();
+				
+			}
+		}
+		
+		
+		else if($("#category2-2").val()=='방문수'){
+
+			
+			if(value=='년별'){
+				chartDraw=function(){
+					$.ajax({
+						url : "${pageContext.request.contextPath}/management/chart.do",
+						type : "post",
+						data : {
+							"year":year,
+							"lSize":lSize,
+							"lStart":lStart,
+							"flag":"고객 방문수 년별"
+						},
+						dataType : "json",
+						success : function(res) {
+							
+							arr = new Array();
+							arr[0] = new Array();
+							arr[0][0] = "고객 방문 순위"+(lStart+1)+"~"+((lStart)+lSize);
+							
+							arr[0][1] = year + "년";
+							
+							for (var i = 1; i < res.length+1; i++) {
+								arr[i] = new Array();
+								arr[i][0] = res[i-1].wGNo.gName;
+								arr[i][1] = res[i-1].wPriceTotal;
+							}
+							
+							console.log(arr);
+							
+							
+							google.charts.load('current', {
+								'packages' : [ 'bar' ]
+							});
+							google.charts.setOnLoadCallback(drawChart);
+						}
+					})
+	
+					
+				}
+				
+				lStart=lStart-10;
+				$("#add").click();
+				
+			}
+			else if(value=='월별'){
+				chartDraw=function(){
+					$.ajax({
+						url : "${pageContext.request.contextPath}/management/chart.do",
+						type : "post",
+						data : {
+							"year":year,
+							"month":month,
+							"lSize":lSize,
+							"lStart":lStart,
+							"flag":"고객 방문수 월별"
+						},
+						dataType : "json",
+						success : function(res) {
+							
+							arr = new Array();
+							arr[0] = new Array();
+							arr[0][0] = "고객 방문 순위"+(lStart+1)+"~"+((lStart)+lSize);
+							
+							arr[0][1] = month + "월";
+							
+							for (var i = 1; i < res.length+1; i++) {
+								arr[i] = new Array();
+								arr[i][0] = res[i-1].wGNo.gName;
+								arr[i][1] = res[i-1].wPriceTotal;
+							}
+							
+							console.log(arr);
+							
+							
+							google.charts.load('current', {
+								'packages' : [ 'bar' ]
+							});
+							google.charts.setOnLoadCallback(drawChart);
+						}
+					})
+	
+					
+				}
+				
+				lStart=lStart-10;
+				$("#add").click();
+				
+			}
+			
+		}
+		
+		
+		/* 디자이너 파이차트 */
+		if($("#category2-3").val()=='금액실적'){
+			
+			
+			if(value=='년별'){
+				
+				chartDraw=function(){
+					$.ajax({
+						url : "${pageContext.request.contextPath}/management/chart.do",
+						type : "post",
+						data : {
+							"year":year,
+							"lSize":lSize,
+							"lStart":lStart,
+							"flag":"디자이너 금액실적 년별"
+						},
+						
+						dataType : "json",
+						success : function(res) {
+							
+							options = {
+							          title: year+"년"+" 디자이너 매출 순위"+(lStart+1)+"~"+((lStart)+lSize)
+							        };
+							
+							arr = new Array();
+							arr[0] = new Array();
+							arr[0][0] = "고객 매출 순위"+(lStart+1)+"~"+((lStart)+lSize);
+							
+							arr[0][1] = year + "년";
+							
+							for (var i = 1; i < res.length+1; i++) {
+								arr[i] = new Array();
+								arr[i][0] = res[i-1].wDNo.dName;
+								arr[i][1] = res[i-1].wPriceTotal;
+							}
+							
+							console.log(arr);
+							
+							
+							google.charts.load('current', {'packages':['corechart']});
+						    google.charts.setOnLoadCallback(drawChartPie);
+						}
+					})
+	
+					
+				}
+				
+				lStart=lStart-10;
+				$("#add").click();
+				
+			}
+			else if(value=='월별'){
+				chartDraw=function(){
+					$.ajax({
+						url : "${pageContext.request.contextPath}/management/chart.do",
+						type : "post",
+						data : {
+							"year":year,
+							"month":month,
+							"lSize":lSize,
+							"lStart":lStart,
+							"flag":"디자이너 금액실적 월별"
+						},
+						
+						
+						dataType : "json",
+						success : function(res) {
+							
+							
+							options = {
+							          title: month+"월"+" 디자이너 매출 순위"+(lStart+1)+"~"+((lStart)+lSize)
+							        };
+							
+							arr = new Array();
+							arr[0] = new Array();
+							arr[0][0] = "고객 매출 순위"+(lStart+1)+"~"+((lStart)+lSize);
+							
+							arr[0][1] = month + "월";
+							
+							for (var i = 1; i < res.length+1; i++) {
+								arr[i] = new Array();
+								arr[i][0] = res[i-1].wDNo.dName;
+								arr[i][1] = res[i-1].wPriceTotal;
+							}
+							
+							console.log(arr);
+							
+							
+							google.charts.load('current', {'packages':['corechart']});
+						    google.charts.setOnLoadCallback(drawChartPie);
+						}
+					})
+	
+					
+				}
+				
+				lStart=lStart-10;
+				$("#add").click();
+				
+			}
+		}
+		
+		
+		else if($("#category2-3").val()=='커트횟수'){
+
+			if(value=='년별'){
+				chartDraw=function(){
+					$.ajax({
+						url : "${pageContext.request.contextPath}/management/chart.do",
+						type : "post",
+						data : {
+							"year":year,
+							"lSize":lSize,
+							"lStart":lStart,
+							"flag":"디자이너 커트횟수 년별"
+						},
+						
+						
+						dataType : "json",
+						success : function(res) {
+							
+							options = {
+							          title: year+"년"+" 디자이너 커트횟수 순위"+(lStart+1)+"~"+((lStart)+lSize)
+							        };
+							
+							arr = new Array();
+							arr[0] = new Array();
+							arr[0][0] = "고객 방문 순위"+(lStart+1)+"~"+((lStart)+lSize);
+							
+							arr[0][1] = year + "년";
+							
+							for (var i = 1; i < res.length+1; i++) {
+								arr[i] = new Array();
+								arr[i][0] = res[i-1].wDNo.dName;
+								arr[i][1] = res[i-1].wPriceTotal;
+							}
+							
+							console.log(arr);
+							
+							
+							google.charts.load('current', {'packages':['corechart']});
+						    google.charts.setOnLoadCallback(drawChartPie);
+						}
+					})
+	
+					
+				}
+				
+				lStart=lStart-10;
+				$("#add").click();
+				
+			}
+			else if(value=='월별'){
+				chartDraw=function(){
+					$.ajax({
+						url : "${pageContext.request.contextPath}/management/chart.do",
+						type : "post",
+						data : {
+							"year":year,
+							"month":month,
+							"lSize":lSize,
+							"lStart":lStart,
+							"flag":"디자이너 커트횟수 월별"
+						},
+						
+						
+						dataType : "json",
+						success : function(res) {
+							
+							options = {
+							          title: month+"월"+" 디자이너 커트횟수 순위"+(lStart+1)+"~"+((lStart)+lSize)
+							        };
+							
+							arr = new Array();
+							arr[0] = new Array();
+							arr[0][0] = "고객 방문 순위"+(lStart+1)+"~"+((lStart)+lSize);
+							
+							arr[0][1] = month + "월";
+							
+							for (var i = 1; i < res.length+1; i++) {
+								arr[i] = new Array();
+								arr[i][0] = res[i-1].wDNo.dName;
+								arr[i][1] = res[i-1].wPriceTotal;
+							}
+							
+							console.log(arr);
+							
+							
+							google.charts.load('current', {'packages':['corechart']});
+						    google.charts.setOnLoadCallback(drawChartPie);
+						}
+					})
+	
+					
+				}
+				
+				lStart=lStart-10;
+				$("#add").click();
+				
+			}
+			
+		}
+	})
 		
 		$(document).on("change","#category3 select",function(){
 			/* var value1 = $("#category1 select").val();
@@ -515,8 +769,6 @@ section .exec span select{
 				
 				
 				
-				
-				
 				if($("#category1-1").val()=='손님 현황'){
 					
 					$("#add").text("다음고객순위");
@@ -534,8 +786,27 @@ section .exec span select{
 					}	
 				}
 				
+				if($("#category1-1").val()=='디자이너 현황'){
+					
+					$("#add").text("다음고객순위");
+					$("#sub").text("이전고객순위");
+					$("#add").show();
+					$("#sub").show();
+					$("#prev").show();
+					$("#next").show();
+					
+					if($("#category2-3").val()=='금액실적'){
+						lStart=lStart+10;
+					}	
+					if($("#category2-3").val()=='커트횟수'){
+						lStart=lStart+10;
+					}	
+				}
+				
 				chartDraw();
 			})
+			
+			
 					
 			$("#sub").click(function() {
 				if($("#category2-1").val()=='년/월'){
@@ -550,6 +821,10 @@ section .exec span select{
 				}else if($("#category2-2").val()=='매출금액'){
 					lStart=lStart-10;
 				}else if($("#category2-2").val()=='방문수'){
+					lStart=lStart-10;
+				}else if($("#category2-3").val()=='금액실적'){
+					lStart=lStart-10;
+				}else if($("#category2-3").val()=='커트횟수'){
 					lStart=lStart-10;
 				}
 				chartDraw();
