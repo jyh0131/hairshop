@@ -13,15 +13,17 @@ section {
 }       
 section ul#designer h1#title {
 	clear: both;
+	
 }
 
 section div#designerList {
-	width: 900px;
+	width: 905px;
 	height: 200px;
 	padding: 20px;
 	margin-bottom: 10px;
 }
 section ul#designer {
+	margin-top:20px;
 	display: block;
 	list-style: none;
 }
@@ -45,19 +47,21 @@ section article#border {
 	padding: 30px;
 	padding-left:40px;
 	padding-right:40px;
-	
+	width:90%;
 	display:inline-block;
 }
 
 
 section article#border div#designerList{
 	background-color: white;
+	overflow: hidden;
 } 
 
 section article#border div#form {
+	
 	background: white;
 	width:520px;
-	height:1100px;
+	height:1200px;
 	padding: 20px;  
 	float: left;
 }
@@ -66,7 +70,7 @@ section article#border div#form {
 section article#border div#guest{
 	float:right;
 	width:320px;
-	height:1100px;
+	height:1200px;
 	background:white;
 	display: inline-block;
 	padding: 20px;
@@ -153,6 +157,7 @@ section article#border div#form div#reservedForm div#reservedList{
 }
 section article#border div#form div#reservedForm div#reservedList table{
 	border-collapse: collapse;
+	width:90%;
 }
 
 div#form div#reservedForm div#reservedList table th:nth-child(1){
@@ -215,13 +220,9 @@ section article#border table#item td {
 section article#border div#guest img{
 	width:320px;
 	height: 280px;
-	float: left;
 }
 section article#border div#guest h2{
 	clear: both;
-}
-section article#border div#guest p#guestText{
-
 }
 
 section article#border div#guest p#guestText label{
@@ -229,25 +230,23 @@ section article#border div#guest p#guestText label{
 	width: 100px;
 }
 
-section article#border div#guest div#menuIcon{
+section article#border div#form div#menuIcon{
 	display:block;
 	width:100%;
 	height: 120px;
-}
-
-section article#border div#guest div#menuIcon div{
-	width:80px;
-	height:100px;
-	float: left;
-	margin-right: 10px;
-	cursor: pointer;
-}
-section article#border div#guest div#menuIcon div:first-child{
-	margin-left:20px;
-	margin-right:20px;
 	text-align: center;
 }
-section article#border div#guest div#menuIcon img{
+
+section article#border div#form div#menuIcon div{
+	width:80px;
+	height:100px;
+	display:inline-block;
+	margin-right: 40px;
+	cursor: pointer;
+	text-align: center;
+}
+
+section article#border div#form div#menuIcon img{
 	display:block;
 	
 	width: 80px;
@@ -275,6 +274,8 @@ section article#border div#guest div#reserve span{
 #reservedList img{
 	width:500px;
 	text-align: center;
+	margin: 0 auto;
+    display: block;
 }
 
 .toggle{
@@ -291,11 +292,13 @@ section article#border div#guest div#reserve span{
 	
 	
 }
+/* 모바일입니다 */
 @media all and (max-width:1199px){
 	section{
 		width:100%;
 		padding:0;
 	}
+	
 	
 	section article#border {
 		width:96% !important;
@@ -305,7 +308,19 @@ section article#border div#guest div#reserve span{
 	}
 	
 	
+	
+	section div#form div#menuIcon div{
+		width:20% !important;
+		margin-right: 10px !important;
+	}
+	section div#form div#menuIcon div:first-child{
+		margin-right: 20px !important;
+	}
+	section div#form div#menuIcon img {
+	    margin: 0 auto;
+	}
 	section div#form div#reserveForm{
+		clear:both;
 		float:right;
 		width:98% !important;
 		padding:2%;
@@ -317,12 +332,15 @@ section article#border div#guest div#reserve span{
 		margin:0 !important;
 		padding:2.5%;
 		width:92%;
+		height: auto;
+		text-align: center;
 	}
 	section article#border div#form{
 		float:left !important;
 		height: auto !important;
 		width:92% !important;
 		padding:2.5% !important;
+		
 		
 	}
 	
@@ -335,6 +353,8 @@ section article#border div#guest div#reserve span{
 	
 	.toggle{
 		display: block;
+		cursor: pointer;
+		
 	}
 	
 	
@@ -351,18 +371,56 @@ section article#border div#guest div#reserve span{
 		width: 90% !important;
 	}
 	
+	section article#border div#form div#mapForm div#map{
+		width:100% !important;
+	}
+	section article#border div#form div#mapForm{
+		width:100%;
+	}
+	
+	
+	
 	section article#border div#form div#reservedForm div#reservedList {
 		
 	}
 	section article#border div#form div#reservedForm div#reservedList img{
+		width:90%;
+	}
+	.hide{
+		display: none;
+	}
+	section article#border div#guest p#guestText{
+		width:80%;
+		text-align: center;
+		margin: 0 auto;
+	}
+	div#guest div#reserve{
+		width:80%;
+		text-align: center;
+		margin: 0 auto;
+	}
+	div#guest div#reserve label{
+		float: left;
+		width:80px;
+	}
+	section article#border div#form div#mapForm img{
 		width:80%;
 	}
 	
-		
+	section article#border div#guest button#commit{
+		width:25%;
+		height: 50px;
+		margin: 0 auto;
+	}
+	div#guest p#guestText input[type='text']{
+		width:50%;
+	}
 	
-	
+	div#guest p#guestText label{
+		width:80px !important;
+	}
 }
-
+/* 모바일입니다 */
 </style>
 <script type="text/javascript">
 	var designer = "";
@@ -402,30 +460,7 @@ section article#border div#guest div#reserve span{
 		
 		var nowDate = new Date();
 		
-		$("#time td").removeClass("prevDay");
 		
-		if(year==nowDate.getFullYear()){
-			if(month<=nowDate.getMonth()){
-				if(month==nowDate.getMonth()){
-					for(var j=0; j<$("#time td").length; j++){
-						var hour=$("#time td").eq(j).text().slice(0,2);
-						var minute=$("#time td").eq(j).text().slice(3,5);
-						if(hour<nowDate.getHours()){
-							$("#time td").eq(j).addClass("prevDay");
-						}else if(hour==nowDate.getHours()){
-							if(minute<nowDate.getMinutes()){
-								$("#time td").eq(j).addClass("prevDay");
-							}
-						}
-						
-					}
-				}else{
-					$("#time td").addClass("prevDay");
-				}
-			}
-		}else if(year<nowDate.getFullYear()){
-			$("#time td").addClass("prevDay");
-		}
 		
 		
 		for (var j = 0; j < t.getDay(); j++) {
@@ -528,9 +563,40 @@ section article#border div#guest div#reserve span{
 						}
 					}
 				}
-						
+					
 				
 			})
+			
+			var nowDate = new Date();
+			
+			$("#time td").removeClass("prevDay");
+			
+			if(year==nowDate.getFullYear()){
+				if(month<=nowDate.getMonth()+1){
+					if(month==nowDate.getMonth()+1){
+						
+						if(day==nowDate.getDate()){
+							for(var j=0; j<$("#time td").length; j++){
+								var hour=$("#time td").eq(j).text().slice(0,2);
+								var minute=$("#time td").eq(j).text().slice(3,5);
+								if(hour<nowDate.getHours()){
+									$("#time td").eq(j).addClass("prevDay");
+								}else if(hour==nowDate.getHours()){
+									if(minute<nowDate.getMinutes()){
+										$("#time td").eq(j).addClass("prevDay");
+									}
+								}
+								
+							}
+						}
+					}else{
+						$("#time td").addClass("prevDay");
+					}
+				}
+			}else if(year<nowDate.getFullYear()){
+				$("#time td").addClass("prevDay");
+			}
+			
 
 		})
 		
@@ -649,7 +715,7 @@ section article#border div#guest div#reserve span{
 				})			
 			}
 		})
-		$(".show").click(function() {
+		$(".hide").click(function() {
 			$(this).next().next().slideDown();
 		})
 		$(".toggle").click(function() {
@@ -663,7 +729,7 @@ section article#border div#guest div#reserve span{
 	
 	<article id="border">
 		<div id="designerList">
-			<h3 class="show">디자이너 선택</h3>
+			<h3 class="hide">디자이너 선택</h3>
 			<h3 class="toggle">디자이너 선택</h3>
 			<div class="hide">
 			<ul id="designer">
@@ -674,14 +740,31 @@ section article#border div#guest div#reserve span{
 			</div>
 		</div>
 		<div id="form">
+		
+		
+		<div id="menuIcon">
+				<div>
+					<img src="${pageContext.request.contextPath}/images/reserve/time.png"><br>
+					<span>예약하기</span>
+				</div>
+				<div>
+					<img src="${pageContext.request.contextPath}/images/reserve/check.jpg"><br>
+					<span>예약확인</span>
+				</div>
+				<div >
+					<img src="${pageContext.request.contextPath}/images/reserve/come.PNG"><br>
+					<span>오시는길</span>
+				</div>
+			</div>
+		
 			<div id="reserveForm">
-				<h3 class="show">날짜 선택</h3>
+				<h3 class="hide">날짜 선택</h3>
 				<h3 class="toggle">날짜 선택</h3>
 				<div id="calendar" class="hide"></div>
 				<br>
 				<hr>
 				<br>
-				<h3 class="show">시간 선택</h3>
+				<h3 class="hide">시간 선택</h3>
 				<h3 class="toggle">시간 선택</h3>
 				<div  class="hide">
 				<table id="time">
@@ -715,7 +798,7 @@ section article#border div#guest div#reserve span{
 				<hr>
 				<br>
 				
-				<h3 class="show">메뉴 선택</h3>
+				<h3 class="hide">메뉴 선택</h3>
 				<h3 class="toggle">메뉴 선택</h3>
 				<div class="hide">
 				<table id="item">
@@ -725,8 +808,15 @@ section article#border div#guest div#reserve span{
 						</c:forEach>
 					</tr>
 				</table>
+			
+				
+				
 				</div>
+				<br>
+				<hr>
+				<br>
 			</div>
+			
 			<div id="mapForm">
 				<button id="search">검색</button><input type="text">
 				<div id="map" style="width:520px;height:520px;"></div>
@@ -764,25 +854,8 @@ section article#border div#guest div#reserve span{
 			<p>053-981-0000</p>
 			<p>00:00~22:00</p>
 			
-			<br>
-			<hr>
-			<br>
 			
 			
-			<div id="menuIcon">
-				<div>
-					<img src="${pageContext.request.contextPath}/images/reserve/time.png"><br>
-					<span>예약하기</span>
-				</div>
-				<div>
-					<img src="${pageContext.request.contextPath}/images/reserve/check.jpg"><br>
-					<span>예약확인</span>
-				</div>
-				<div >
-					<img src="${pageContext.request.contextPath}/images/reserve/come.PNG"><br>
-					<span>오시는길</span>
-				</div>
-			</div>
 			
 			
 			<hr>
@@ -790,9 +863,9 @@ section article#border div#guest div#reserve span{
 			
 			
 			<div id="reserve">
-					<label>예약시간</label> : <span id="reserveDate"></span><span id="reserveTime"></span><br>
-					<label>디자이너</label> : <span id="reserveDesigner"></span><br>
-					<label>메뉴</label> : <span id="reserveProduct"></span><br>
+					<label>예약시간 : </label><span id="reserveDate"></span><span id="reserveTime"></span><br>
+					<label>디자이너 : </label><span id="reserveDesigner"></span><br>
+					<label>메뉴 : </label><span id="reserveProduct"></span><br>
 			</div>
 			
 			<br>
@@ -835,16 +908,23 @@ section article#border div#guest div#reserve span{
 						$("#reserveForm").show();
 						$("#mapForm").hide();
 						$("#reservedForm").hide();
+						$("#designerList").slideDown();
+						
 						$("#commit").text("예약신청");
+						var offset = $("article#border").offset();
+						$('html, body').animate({
+							scrollTop:offset.top}, 1000);
 					})
 					$("div#menuIcon div").eq(1).click(function() {
 						$("#reserveForm").hide();
 						$("#mapForm").hide();
 						$("#reservedForm").show();
 						
+						$("#designerList").slideUp();
+						
 						$("#commit").text("예약확인");
 						$("#commit").click();
-						 var offset = $("#designerList").offset();
+						 var offset = $("article#border").offset();
 						$('html, body').animate({
 							scrollTop:offset.top}, 1000);
 					})
@@ -852,13 +932,20 @@ section article#border div#guest div#reserve span{
 						$("#reserveForm").hide();
 						$("#mapForm").show();
 						$("#reservedForm").hide();
+						$("#designerList").slideUp();
 						var ps = new kakao.maps.services.Places(); 
 						ps.keywordSearch("영남인재교육원", placesSearchCB);
 						window.setTimeout(function() {
 						    map.relayout();
 						}, 0);
+						var offset = $("article#border").offset();
+						$('html, body').animate({
+							scrollTop:offset.top}, 1000);
 					})
 				})
+				
+			
+				
 				
 			</script>
 		
@@ -904,7 +991,6 @@ section article#border div#guest div#reserve span{
 											str+="</td>";
 											str+="<td>"+work.wPriceTotal.toLocaleString()+"원</td>";
 											if(work.wWorkTime==null){
-												
 												str+="<td><input type='hidden' value='"+work.wNo+"'><button class='delete'>예약 취소</td>";	
 											}
 											else{

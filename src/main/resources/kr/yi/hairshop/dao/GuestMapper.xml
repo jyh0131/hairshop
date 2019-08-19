@@ -105,7 +105,7 @@
 	<insert id="insertGuestByWorkMain"  useGeneratedKeys="true" keyProperty="gNo">
 		insert into hairshop.guest
 		(g_name, g_tel,g_join)
-		values(#{gname},#{gtel},#{gjoin})
+		values(#{gName},#{gTel},#{gJoin})
 	</insert>
 	
 	<!-- 웹 프로젝트 -->

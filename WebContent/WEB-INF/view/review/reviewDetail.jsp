@@ -9,6 +9,7 @@
 		padding:0;
 		margin:0;
 	}
+	@media screen and (min-width:1200px){
 	section{
 		width: 40%;
 		margin: 0 auto;
@@ -99,13 +100,6 @@
 		top:35x;
 		right: 20px;
 	}
-	.comment .btnModify, .btnCancle{
-		background-color: white;
-		border: 1px solid #ccc;
-		color:#5D5D5D;
-		font-size: 13px;
-		padding:10px;
-	}
 	.comment #onlycomment{
 		padding:10px;
 		font-size: 14px;
@@ -115,19 +109,10 @@
 		height:20px;	
 		text-align: right;
 	}
-	
 	.comment .commentFirst{
 		width: 100%;
-		height: 60px;
 		margin-bottom: 10px;
 	}
-	/* .comment #commentContent{
-		width: 100%;
-		height: 40px;
-		border-bottom:1px dotted #5D5D5D;
-		margin-bottom: 10px;
-	
-	} */
 	.comment #cwriter{
 		margin-right: 10px;
 		font-weight: bold;
@@ -138,11 +123,15 @@
 	}
 	.comment .commentFirst .ccontent{
 		color:black;
+		width:80%;
+	}
+	#ccontent{
+		width: 600px;
 	}
 	.comment .modifyComment{ /* 수정댓글창 */
 		display:none;
 		width: 716px;
-		height: 80px;
+		height: 62px;
 		padding-top:10px;
 		padding-left:10px;
 		position: relative;
@@ -159,26 +148,199 @@
 		top:35x;
 		right: 5px;
 	}
-	.comment .modifyComment .btnCancle{ /* 취소버튼 */
-		width:60px;
-		height:20px;
-		position: absolute;
-		top:-15px;
-		right: 5px;
-		padding:0;
-		background-color: white;
-		border: 1px solid #ccc;
-	}
-	
 	.pointLine{
 		width:100%;
 		margin-top:10px;
 		margin-bottom:10px;
 		border:0.5px dotted #5D5D5D;
+	}
+	#commentlogin{
+		text-decoration: underline;
+	}
+	#commentloginbytable{
+		border:1px solid #ccc;
+		color:#353535;
+		height: 62px;
+		font-size: 13px;
+	}
+	#commentloginbytable a{
+		color:#353535;
+	}
+	#blblbl {
+		width:730px;
+	}
+	}
+	
+	@media all and (max-width:1199px){
+	section{
+		width: 90%;
+		margin: 0 auto;
+		padding-top: 40px;
+	}
+	#first{
+		width: 100%;
+		height: 50px;
+		border-top:2px solid #353535;
+		border-bottom:1px solid #353535;
+		line-height:50px;
+		position: relative;
+		overflow: hidden;
+	}
+	#first{
+		font-size: 13px;
+	}
+	#first p{
+		position: absolute;
+		top:0;
+		right: 10px;
+	}
+	#first2{
+		width: 100%;
+		font-size:12px;
+		padding-top:20px;
+		padding-bottom:20px;
+		border-bottom:1px solid #353535;
+	}
+	#first2 img{
+		width: 200px;
+	}
+	#aaa{
+		position: relative;
+		width: 100%;
+		height: 50px;
+		margin-top:10px;
+	}
+	#aaa #list{
+		position: absolute;
+		top:10px;
+		left:0;
+		width: 100%;
+		height: 30px;
+	}
+	#aaa #md{
+		position: absolute;
+		top:0;
+		right: 0;
+	}
+	#aaa a{
+		text-decoration: none;
+		border:1px solid #ccc;
+		width: 60px;
+		height: 30px;
+		background-color: white;
+		border: 1px solid #ccc;
+		color:#5D5D5D;
+		font-size: 13px;
+		padding:10px;
+	}
+	.comment{ /* 댓글 div */
+		margin-top:40px;
+		width: 100%;
+		height: 40%;
+		position: relative;
+		margin-bottom: 40px;
+		background-color: #F6F6F6;
+	}
+	.comment table{ /* 댓글쓰는 공간 */
+		border:none;
+		width: 85%;
+		height: 80px;
+		padding:0 0 0 5px;
+	}
+	textarea{
+		width: 90%;
+		height: 60px;
+		resize: none;
+		border:1px solid #ccc;
+	}
+	textarea:focus{
+		outline: none;
+	}
+	.comment #cContent{ 
+		position: relative;
+	}
+	
+	.comment .btninsert{ /* 댓글등록창에 등록버튼 */
+		width:60px;
+		height: 62px;
+		background-color: white;
+		border: 1px solid #ccc;
+		color:#5D5D5D;
+		font-size: 13px;
+		padding:10px;
+		position: absolute;
+		right: 10px;
+	}
+	.comment #onlycomment{
+		padding:10px;
+		font-size: 14px;
+	}
+	.comment .commentM{
+		width:100%;
+		height:20px;	
+		text-align: right;
+		margin-bottom: 5px;
+	}
+	.comment .commentFirst{
+		width: 100%;
+		margin-bottom: 10px;
+	}
+	.comment #cwriter{
+		margin-right: 10px;
+		font-weight: bold;
+		color:#353535;
+	}
+	.comment .commentFirst{ 
+		color:#747474;
+	}
+	.comment .commentFirst .ccontent{
+		color:black;
+		width:90%;
+	}
+	#ccontent{
+		width: 300px;
+	}
+	.comment .modifyComment{ /* 수정댓글창 */
+		display:none;
+		width: 80%;
+		height: 62px;
+		padding-top:10px;
+		padding-left:10px;
+		position: relative;
 		
+	} 
+	.comment .modifyComment .btnModify{ /*수정버튼 */
+		width:60px;
+		height: 62px;
+		background-color: white;
+		border: 1px solid #ccc;
+		color:#5D5D5D;
+		font-size: 13px;
+		position: absolute;
+		top:35x;
+		right:-40px;
+	}
+	.pointLine{
+		width:100%;
+		margin-top:10px;
+		margin-bottom:10px;
+		border:0.5px dotted #5D5D5D;
+	}
+	#commentlogin{
+		text-decoration: underline;
+	}
+	#commentloginbytable{
+		border:1px solid #ccc;
+		color:#353535;
+		height: 62px;
+		font-size: 13px;
+	}
+	#commentloginbytable a{
+		color:#353535;
 	}
 	
 	
+	}
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>
@@ -212,7 +374,7 @@
 					
 					if(json.success == true){
 						$btn.closest(".commentFirst").remove();
-						$btn.parent().find(".pointLine").remove();
+						
 					}
 				}
 			})
@@ -228,10 +390,6 @@
 		        return;
 		    }
 
-			if (!confirm("등록하시겠습니까?")) {
-		        return;
-		    }
-			
 			var rNo = $(this).attr("data-rno"); //리뷰번호
 			var gNo = $(this).attr("data-gno"); //손님번호
 			var cWriter = $("#cWriter").val(); //작성자
@@ -248,16 +406,17 @@
 					var str="<div class='commentFirst'>"; 
 					str+="<span id='cwriter'>"+json.cWriter+"</span>";
 					str+=new Date(json.cWritetime).format('yyyy.MM.dd a/p hh:mm');
-					str+="<div class='modifyComment'><textarea name='ModicContent' class='ModicContent'>${Comment.cContent }</textarea>";
-					str+="<button id='deugrok' class='btnModify' data-cno='"+json.cNo+"'>"+"수정";
-					str+="</button><button class='btnCancle'>"+"수정취소"+"</button></div><div class='commentM'>";
+					str+="<div class='modifyComment'><textarea name='ModicContent' class='ModicContent' placeholder='후기게시판이 더 훈훈해지는 댓글 부탁드립니다.'>"+json.cContent+"</textarea>";
+					str+="<button class='btnModify' data-cno='"+json.cNo+"'data-rno='"+json.rNo.rNo+"'>"+"수정";
+					str+="</button></div><div class='commentM'>";
 					str+="<button class='btnM' data-cno='"+json.cNo+"'>"+"수정";
 					str+="</button> ";
 					str+="<button class='btnDelete' data-cno='"+json.cNo+"'>"+"삭제";
 					str+="</button></div>";
-					str+="<span class='ccontent'>"+json.cContent+"</span></div>";
-					str+="<hr class='pointLine'>"
-					
+					str+="<div id='ccontent'><span class='ccontent'>"+json.cContent+"</span></div>";
+					str+="<hr class='pointLine'></div>"
+						
+						
 					$("#onlycomment").append(str);
 					
 				}
@@ -266,34 +425,12 @@
 		})
 		
 		
-		/* 수정버튼 눌렀을때 수정창 나와랏 */
+		/* 수정버튼 눌렀을때 수정텍스트 나와 */
 		$(document).on("click", ".btnM", function(){ 
-			//그 위치에 추가 되게, 수정삭제버튼 사라지고 
-			//var $btn = $(this); //수정버튼
-			
-			var index = $(".btnM").index(this);
-			$(".btnM").index(this);
-			$(".commentM").eq(index).hide();
-			$(".modifyComment").eq(index).show();
-			$(".commentFirst").eq(index).css("height","80px");
-			
-			//원래내용나오지마라
-			$(".ccontent").eq(index).css("display","none");
-			
-		})
-		
-		
-		 /* 수정취소 눌렀을때 없어져랏 */
-		$(document).on("click", ".btnCancle", function(){
-			//var $btn = $(this); //수정버튼
-			var index = $(".btnCancle").index(this);
-			$(".btnCancle").index(this);
-			//수정하려고했던거 나오지마라
-			$(".modifyComment").eq(index).hide();
-			//원래리스트 보여주라
-			//부모를 document.body로 바꾸고 
-			
-			
+			$(this).parent().hide(); //삭제,수정버튼사라졋
+			$(this).parent().next("#ccontent").hide(); //내용사라졋
+			$(this).parent().prev(".modifyComment").show(); //수정텍스트나왔
+			 
 		})
 		
 		
@@ -305,11 +442,12 @@
 		        return;
 		    }
 			
-			
-			
-			var cNo = $(this).attr("data-cno"); //리뷰번호
+			var cNo = $(this).attr("data-cno"); //댓글번호
 			var rNo = $(this).attr("data-rno"); //리뷰번호
 			var cContent = $(this).parent().find(".ModicContent").val(); //수정하려는 내용
+			
+			var auth = $('input[name=cWriter]').val();
+			
 			$.ajax({
 				url:"${pageContext.request.contextPath}/comment/modify.do",
 				type:"get",
@@ -322,54 +460,55 @@
 						var str="<div class='commentFirst'>"; 
 						str+="<span id='cwriter'>"+json[i].cWriter+"</span>";
 						str+=new Date(json[i].cWritetime).format('yyyy.MM.dd a/p hh:mm');
-						str+="<div class='modifyComment'><textarea name='ModicContent' class='ModicContent'>${Comment.cContent }</textarea>";
-						str+="<button id='deugrok' class='btnModify' data-cno='"+json[i].cNo+"'>"+"수정";
-						str+="</button><button class='btnCancle'>"+"수정취소"+"</button></div><div class='commentM'>";
-						str+="<button class='btnM' data-cno='"+json[i].cNo+"'>"+"수정";
-						str+="</button> ";
-						str+="<button class='btnDelete' data-cno='"+json[i].cNo+"'>"+"삭제";
-						str+="</button></div>";
-						str+="<span class='ccontent'>"+json[i].cContent+"</span></div>";
-						str+="<hr class='pointLine'>"
+						str+="<div class='modifyComment'><textarea name='ModicContent' class='ModicContent' placeholder='후기게시판이 더 훈훈해지는 댓글 부탁드립니다.'>"+json[i].cContent+"</textarea>";
+						str+="<button class='btnModify' data-cno='"+json[i].cNo+"'data-rno='"+json[i].rNo.rNo+"'>"+"수정";
+						str+="</button></div><div class='commentM'>";
+							if(auth== json[i].cWriter){
+								str+="<button class='btnM' data-cno='"+json[i].cNo+"'>"+"수정";
+								str+="</button> ";
+								str+="<button class='btnDelete' data-cno='"+json[i].cNo+"'>"+"삭제";
+								str+="</button>";
+							}
+						str+="</div><div id='ccontent'><span class='ccontent'>"+json[i].cContent+"</span></div>";
+						str+="<hr class='pointLine'></div>";
 						
 						$("#onlycomment").append(str);
 					}
-					
 					
 				}
 			})
 		}) 
 
 		
-		
 	})
 </script>
 <section>
 <%-- ${Auth }<br>
 ${review }<br>
-${list } --%>
+${list }--%>
 	<div id="first">
 		<h4>${review.rTitle}</h4>
 		<p>${review.rWriter} | <fmt:formatDate value="${review.rWritetime}" pattern="yyyy.MM.dd"/></p>
 	</div>		
 	<div id="first2">
 		${review.rContent}
-		<img src="/hairshop/upload/${review.rFile }">
+		<c:if test="${review.rFile!=null }">
+			<img src="/hairshop/upload/${review.rFile }">
+		</c:if>
 	</div>	
-			
 	<div id="aaa">
 		<div id="list">
 			<a href="${pageContext.request.contextPath}/review/review.do">목록보기</a>
 			<c:if test="${Auth != null}">
 				<a href="${pageContext.request.contextPath}/review/insert.do">글쓰기</a>
 			</c:if>
-	 <c:if test="${Auth.uId == review.rWriter}"> <!-- 비회원일시에 수정삭제 할수 없음 -->
-		<div id="md">
-			<a href="${pageContext.request.contextPath}/review/modify.do?no=${review.rNo}">수정</a>
-			<a href="#" id="delete">삭제</a>
-		</div>
-	</c:if> 
-	</div>	
+			<c:if test="${Auth.uId == review.rWriter}"> <!-- 비회원일시에 수정삭제 할수 없음 -->
+				<div id="md">
+					<a href="${pageContext.request.contextPath}/review/modify.do?no=${review.rNo}">수정</a>
+					<a href="#" id="delete">삭제</a>
+				</div>
+			</c:if> 
+		</div>	
 	</div>
 	<div class="comment">
 	<div id="onlycomment"><!-- 댓글리스트가 보여야해 -->
@@ -378,17 +517,21 @@ ${list } --%>
 				<span id="cwriter">${Comment.cWriter}</span>
 				<fmt:formatDate value="${Comment.cWritetime }" pattern="yyyy.MM.dd hh:mm"/>
 				<div class="modifyComment"><!-- 수정수정수정수정수정수정 -->
-					<textarea name="ModicContent" class="ModicContent" placeholder="댓글을 입력하세요">${Comment.cContent }</textarea>
+					<textarea name="ModicContent" class="ModicContent" placeholder="후기게시판이 더 훈훈해지는 댓글 부탁드립니다.">${Comment.cContent }</textarea>
 					<button class="btnModify" data-cno="${Comment.cNo}" data-rno="${review.rNo }">수정</button>
-					<button class="btnCancle">수정취소</button>
 				</div>
-				<div class="commentM">
-					<button class="btnM" data-cno="${Comment.cNo}">수정</button>
-					<button class="btnDelete" data-cno="${Comment.cNo}" >삭제</button>
+					<div class="commentM">
+						<c:if test="${Auth.uId == Comment.cWriter}">
+							<button class="btnM" data-cno="${Comment.cNo}">수정</button>
+							<button class="btnDelete" data-cno="${Comment.cNo}" >삭제</button>
+						</c:if>
+					</div>
+				<div id="ccontent">
+					<span class="ccontent">${Comment.cContent }</span>
 				</div>
-				<span class="ccontent">${Comment.cContent }</span>
+				<hr class="pointLine">
 			</div>
-			<hr class="pointLine">
+			
 		</c:forEach>
 	</div>
 			<c:if test="${Auth!=null}"><!-- 댓글삽입하는곳 / 로그인했을때만 -->
@@ -409,16 +552,15 @@ ${list } --%>
 						</table>
 				</c:if>
 			<c:if test="${Auth==null}"><!-- 로그인 하지 않았다면 로그인유도 -->
-					<table>
+					<table id="blblbl">
 						<tr>
-							<td>
-								댓글을 작성하려면 로그인 해주세요. <a href="${pageContext.request.contextPath}/login/login.do">[로그인]</a>
+							<td id="commentloginbytable">
+								&nbsp;&nbsp;댓글을 작성하려면 <a href="${pageContext.request.contextPath}/login/login.do"><span id="commentlogin">로그인</span></a> 해주세요.
 							</td>
 						</tr>
 					</table>
 			</c:if>	
 		</div>		
-	
 </section>
 <%@ include file="../../include/footer.jsp" %>
 

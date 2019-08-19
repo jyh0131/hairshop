@@ -45,8 +45,11 @@ public class ReserveHandler implements CommandHandler{
 		GuestMapper gDao = new GuestMapperImpl();
 		
 		if(auth!=null) {
-			Guest guest=gDao.selectGuestByNo(auth.getmNo());
-			req.setAttribute("guest", guest);
+			if(auth.isuIsMgr()==false) {
+				Guest guest=gDao.selectGuestByNo(auth.getmNo());
+				req.setAttribute("guest", guest);
+			}
+			
 		}
 		
 		if(req.getParameter("reserved")==null) {

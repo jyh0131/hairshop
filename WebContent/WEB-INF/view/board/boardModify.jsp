@@ -42,30 +42,31 @@
 <section>
 	<form action="${pageContext.request.contextPath}/review/modify.do" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="rNo" value="${list.rNo }">
-	<p>
-		<label>이름</label>
-		<input type="text" name="rWriter" disabled="disabled" id="rWriter" value="${list.rWriter }">	
-	</p>
-	<br>
-	<p>
-		<label>제목</label>
-		<input type="text" name="rTitle" value="${list.rTitle }">	
-	</p>
-	<br>
-	<p>
-		<label>내용</label>
-		<textarea rows="20" cols="90" name="rContent">${list.rContent }</textarea>
-	</p>
-	<br>
-	<p>
-		<label>사진</label>
-		<input type="file" name="rFile" value="${list.rFile }">	
-	</p>
-	<br>
-	<p id="button">
-		<input type="submit" value="수정">
-		<input type="reset" value="취소">
-	</p>
+		<p>
+			<label>이름</label>
+			<input type="text" name="rWriter" disabled="disabled" id="rWriter" value="${list.rWriter }">	
+		</p>
+		<br>
+		<p>
+			<label>제목</label>
+			<input type="text" name="rTitle" value="${list.rTitle }">	
+		</p>
+		<br>
+		<p>
+			<label>내용</label>
+			<textarea rows="20" cols="90" name="rContent">${list.rContent }</textarea>
+		</p>
+		<br>
+		<p>
+			<label>사진</label>
+			<input type="file" name="rFile" value="${list.rFile }">	
+		</p>
+		<br>
+		<p id="button">
+			<input type="submit" value="수정">
+			<input type="reset" value="취소">
+		</p>
+		<input type="hidden" name="notice" value="notice">
 	</form>
 
 </section>

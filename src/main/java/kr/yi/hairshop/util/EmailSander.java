@@ -1,7 +1,6 @@
 package kr.yi.hairshop.util;
 
 import java.util.Properties;
-import java.util.Random;
 
 import javax.mail.Message;
 import javax.mail.MessagingException;

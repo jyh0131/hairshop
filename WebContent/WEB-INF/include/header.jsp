@@ -13,6 +13,7 @@
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css" type="text/css">
 <script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/se2/js/HuskyEZCreator.js" charset="utf-8"></script>
 <script src="${pageContext.request.contextPath}/js/common.js"></script>
 <style>
 @media screen and (min-width:1200px){
@@ -45,10 +46,6 @@ header #topmenu ul li{
 	float: left;
 	display: inline-block;
 }
-a#reserve li{
-	width:180px !important;
-	margin-left:10px;
-}
 header #topmenu li:hover{
 	text-decoration: underline;
 }
@@ -56,7 +53,7 @@ header #topmenu li#mgnMenu{
 	background-color: #aaa;
 }
 header #topmenuMgn{
-	z-index: 10000000;
+
 }
 header #topmenuMgn ul a{
 	color: black;
@@ -69,26 +66,14 @@ header #topmenuMgn ul li{
 	line-height: 60px;
 	text-decoration: none;
 	text-align: center;
-	float: left;
-	display: inline-block; 
+
 	color: white;
 	background-color: #aaa;
 }
-
-
-
-
 header #topmenuMgn li:hover{
 	background-color: black; 
 }
 
-header #topmenuMgn ul #submenu{
-	display: none;
-	position: absolute;
-	top:50;
-	left:0;
-	width:100%;
-}
 
 
 
@@ -148,20 +133,12 @@ header button#chatShow{
 	border-radius:5px;
 	background: rgba(255,255,255,0.5);
 }
-
 header #submenu{
-	display: none;
-
+	/* display: none; */
 }
 header #submenu li{
-	z-index: 10000;
+
 }
-
-
-
-
-
-
 }
 
 @media all and (max-width:1199px){
@@ -193,15 +170,8 @@ header #topmenu ul li{
 	display: inline-block;
 	font-size: 25px;
 }
-a#reserve li{
-/* 	width:180px !important;
-	margin-left:10px; */
-}
 header #topmenu li:hover{
 	text-decoration: underline;
-}
-header #topmenuMgn{
-
 }
 header #topmenuMgn ul a{
 	color: black;
@@ -209,9 +179,6 @@ header #topmenuMgn ul a{
 }
 
 header #topmenuMgn ul li{
-/* 	width: 152px;
-	height: 60px;
-	line-height: 60px; */
 	width: 100%;
 	height: 50px;
 	line-height: 50px;
@@ -228,14 +195,6 @@ header #Idcheck{
 	width:100%;
 	height: 30px;
 	line-height: 30px;
-/* 	min-width:15%;
-	height:30px;
-	position: absolute;
-	display: inline;
-	top:0;
-	right:0px;
-	text-align: right;
- */
 	text-align: center;
 }
 header #Idcheck span{
@@ -252,7 +211,6 @@ header #Idcheck a{
 	color: black;
 	font-size: 18px;
 }
-
 header .mymenu{
 	width: 90%;
 	height: 45px;
@@ -271,7 +229,6 @@ header .mymenu a{
 	line-height: 45px;
 	font-size: 25px;
 }
-
 header div#chat textarea{
 	background-color: rgba(0,0,0,0.5);
 	color: white;
@@ -290,17 +247,11 @@ header button#chatShow{
 	border-radius:5px;
 	background: rgba(255,255,255,0.5);
 }
-
 header #chat{
 	display: none;
 }
 header #chatShow{
 	display: none;
-}
-
-header #warpFmobile{
-	/* display: none; */
-
 }
 header #warpFmobile #menuBtn{
 	position: absolute;
@@ -311,7 +262,6 @@ header #warpFmobile #menuBtn{
 header #warpFmobile #menuBtn img{
 	width: 100%;
 }
-
 header #menuBtnSlide{
 	display: none;
 }
@@ -327,37 +277,52 @@ header #menuBtnSlide{
 
 $(function () {
 	
-	//a 태그 막고 팝업 실행 시키기
-	
-	$("#reserve").click(function() {
-		$("#reserve").css("background-color", "red");
-		alert("로그인 해주세요");
-		return false;
-	})
-	
-	
 	$("#menuBtn").click(function () {
 		$("#menuBtnSlide").slideToggle(500);
+		$("#topmenuMgn").find("li").css("width", "100%");
+		
 	})
 
-	
 })
 
 // 관리자 로그인 시 
 $(document).ready(function(){
  	
-	<c:if test="${Auth.uIsMgr == true }">
-		$("#topmenu").find("li").css("width", "14.2%");
-		$("#topmenuMgn").css("width", "100%");
-		$("#topmenuMgn").find("li").css("width", "100%");
-
-		$("#mgnMenu").click(function(){
-			   $("#submenu").slideToggle("slow");
-		});
+	$(window).resize(function() {
+		if($(window).width() > 1199) {
+			var flag = ${Auth.uIsMgr == true?true:false}
+			if(flag){
+				$("#topmenu").find("li").css("width", "20%");
+				$("#guestMenu").css("display", "none");
+			}
+		}
 		
-		//$("#topmenu").css("display", "none");
-	</c:if>
+		if($(window).width() < 1198) {
+			var flag = ${Auth.uIsMgr == true?true:false}
+			if(flag){
+				$("#guestMenu").css("display", "none");
+				$("#topmenuMgn").find("li").css("width", "100%");
+				
+				$("#mgnMenu").click(function(){
+					   $("#submenu").slideToggle("slow");
+				});
+			}
+		}		
 
+	});
+	
+	$("#homeopen").click(function(){
+		$("#guestMenu").slideToggle("slow");
+		if($(window).width() < 1198){
+			$("#topmenu").find("li").css("width", "100%");
+			$("#topmenuMgn").find("li").css("width", "100%");		
+		}else{
+			$("#topmenu").find("li").css("width", "16.6%");
+			$("#topmenuMgn").find("li").css("width", "20%");			   
+		}
+	});
+	
+	$(window).resize();
 });
 	
 </script>
@@ -403,34 +368,32 @@ $(document).ready(function(){
 					</div>
 					
 					<div id="topmenu">
-						<ul>
+						<ul id="guestMenu">
 							<a href="${pageContext.request.contextPath}/view/produce.do"><li>INTRO</li></a>
 							<a href="${pageContext.request.contextPath}/view/hair.do"><li>HAIR</li></a>
 							<a href="${pageContext.request.contextPath}/view/video.do"><li>VIDEO</li></a>
 							<a href="${pageContext.request.contextPath}/board/managerList.do"><li>NOTICE</li></a>
 							<a href="${pageContext.request.contextPath}/review/review.do"><li>REVIEW</li></a>
-							<a href="${pageContext.request.contextPath}/reserve/form.do"><li>RESERVATION</li></a>
-							
-							<c:if test="${Auth.uIsMgr == true }">
-							<li id="mgnMenu">관리자메뉴
-								<div id="topmenuMgn">
-									<ul id="submenu">
-										<a href="${pageContext.request.contextPath}/management/reserve.do"><li>예약관리</li></a>
-										<a href="${pageContext.request.contextPath}/guest/guestList.do"><li>회원관리</li></a>
-										<a href="${pageContext.request.contextPath}/management/designerList.do"><li>디자이너관리</li></a>
-										<a href="${pageContext.request.contextPath}/management/chart.do"><li>차트통계</li></a>
-									</ul>
-								</div>							
-							</li>
-							</c:if>
-							
+							<a href="${pageContext.request.contextPath}/reserve/form.do"><li>RESERVATION</li></a>							
 						</ul>
+						<c:if test="${Auth.uIsMgr == true }">
+							<div id="topmenuMgn">
+								<ul id="submenu">
+									<a href="#"><li id="homeopen">홈메뉴 보기</li></a>									
+									<a href="${pageContext.request.contextPath}/management/reserve.do"><li>예약관리</li></a>
+									<a href="${pageContext.request.contextPath}/guest/guestList.do"><li>회원관리</li></a>
+									<a href="${pageContext.request.contextPath}/management/designerList.do"><li>디자이너관리</li></a>
+									<a href="${pageContext.request.contextPath}/management/chart.do"><li>차트통계</li></a>
+								</ul>
+							</div>							
+					</c:if>
 					</div>
 					
 
 				</div>
 				
 			</div>
+			
 			
 			<button id="chatShow">채팅 숨기기</button>
 			<div id="chat">
@@ -439,10 +402,13 @@ $(document).ready(function(){
 			
 			<script>
 				$("#chatShow").click(function() {
-					$("#chat").slideToggle();
+					
 					if($(this).text()=='채팅 숨기기'){
+						$("#chat").animate({right:"-230px"},1000);
 						$(this).text("채팅 보이기");
 					}else{
+						
+						$("#chat").animate({right:"0px"},1000);
 						$(this).text("채팅 숨기기");
 					}
 					

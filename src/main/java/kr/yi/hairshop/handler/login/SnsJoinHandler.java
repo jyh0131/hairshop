@@ -61,7 +61,7 @@ public class SnsJoinHandler implements CommandHandler {
 			snsinfo.setSnsConnecteDate(new Date());
 			
 			SnsinfoMapper sDao = new SnsinfoMapperImpl();
-			int result = sDao.insertSnsinfo(snsinfo);
+			sDao.insertSnsinfo(snsinfo);
 			
 			return "/WEB-INF/view/login/joinSuccessForm.jsp";
 		}

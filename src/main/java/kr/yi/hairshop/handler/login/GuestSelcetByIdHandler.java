@@ -21,19 +21,27 @@ public class GuestSelcetByIdHandler implements CommandHandler {
 		}else if(req.getMethod().equalsIgnoreCase("post")) {
 			
 			String id = req.getParameter("id");
-			System.out.println("검색할 게스트의 아이디는 "+id);
+			String pass = req.getParameter("password");
+			
 			GuestMapper dao = new GuestMapperImpl();
 			Guest guest = dao.selectById(id);
 			int result = 0;
 			
-			if(guest != null) { // 1 = 같은 아이디가 있다, 0 아이디가 없다
-				result = 1;
-				System.out.println("아이디가 db에 있다");
+			if(guest != null) { // 1 = 같은 아이디가 있다, 0 아이디가 없다, 2 비번일 틀림
+				String dbpass =  guest.getgPassword();
+				
+				if(pass.equals(dbpass)) {
+					result = 1;
+					System.out.println("아이디가 db에 있다");	
+				}else{
+					result = 2;
+					System.out.println("아이디가 db에 있는데 비번이 다르다");
+				}
 			}else {
 				result = 0;
-				System.out.println("아이디가 db에 있다");
+				System.out.println("아이디가 db에 없다");
 			}
-			  
+			
 			ObjectMapper om = new ObjectMapper();
 			String data = om.writeValueAsString(result); // json string으로 변환
 			

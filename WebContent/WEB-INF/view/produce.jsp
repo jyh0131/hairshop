@@ -5,6 +5,7 @@
 <link href="https://fonts.googleapis.com/css?family=Cutive+Mono&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Libre+Caslon+Display&display=swap" rel="stylesheet">
 <style>
+	@media screen and (min-width:1200px){
 	#h3{
 		text-align: center;
 		color:gray;
@@ -18,7 +19,6 @@
 	}
 	#explain{
 		margin-bottom: 40px;
-
 	}
 	#table1{
 		background-color: #EAEAEA;
@@ -49,6 +49,9 @@
 		text-align: center;
 		cursor: pointer;
 	}
+	#mobile{
+		display: none;
+	}
 	#staff{
 		margin-top:40px;
 		width: 100%;
@@ -76,8 +79,8 @@
 		position:fixed;
 		left:0;
 		top:0;
-		width:900px;
-		height: 1000px;
+		width:100%;
+		height: 100%;
 		background: rgba(0,0,0,0.9);
 		padding:20px 30%;
 		display: none;
@@ -95,7 +98,7 @@
 		padding-bottom: 10px;
 		position: absolute;
 		top:550px;
-		right: -170px;
+		right:340px;
 	}
 	.close{
 		cursor: pointer;
@@ -109,7 +112,110 @@
 	#pp{
 		font-weight: bold;
 	}
-	
+	}
+	@media all and (max-width:1199px){/*-------------------------------------------모바일 -------------------------------------------- */
+	#h3{
+		text-align: center;
+		color:gray;
+		margin-bottom: 40px;
+		margin-top:40px;
+		font-family: 'Libre Caslon Display', serif;
+	}
+	section{
+		width: 90%;
+		margin:0 auto;
+	}
+	#explain{
+		margin-bottom: 40px;
+	}
+	#table1{
+		background-color: #EAEAEA;
+	}
+	table{
+		border: none;
+		padding: 10px 0 10px 20px;
+	}
+	#chahongimg{
+		margin-top: 40px;
+		width: 100%;
+	}
+	#designer{
+		width: 100%;
+		margin:0 auto;
+	}
+	.designerArticle{
+		float:left;
+		width:40%;
+		height:300px;
+		cursor: pointer;
+		padding-right: 30px;
+	}
+	.designerArticle img{
+		width: 139px;
+		height: 210px;
+	}
+	.designerArticle p{
+		font-size: 14px;
+		font-weight:bold;
+		color:#ccc;
+		text-align: center;
+		cursor: pointer;
+	}
+	#screen{
+		display: none;
+	}
+	#staff{
+		margin-top:40px;
+		width: 100%;
+		height:50px;
+		color:#ccc;
+	}
+	#staff #stafftext{
+		text-align: center;
+		font-family: 'Cutive Mono', monospace;
+		font-size: 15px;
+		color:#ccc;
+	}
+	.profile {
+		display: none !important;
+	}
+	.han{
+		z-index:100;
+		position:fixed;
+		left:-100px;
+		top:0;
+		width:100%;
+		height: 100%;
+		background: rgba(0,0,0,0.9);
+		padding:20px 30%;
+		display: none;
+		color:#D5D5D5;
+	}
+	.photo{
+		width: 50%;
+	}
+	.han2{
+		width: 330px !important;
+		height: 400px !important;
+	}
+	.explain{
+		width:330px;
+		height:170px;
+		font-size: 12px;
+		padding-bottom: 10px;
+		padding-right:20px;
+		overflow: scroll;
+	}
+	.explain h2{
+		font-size: 13px;
+	}
+	.close{
+		background-color: #353535;
+		width:95%;
+		height: 30px;
+		text-align: right;
+	}
+	}
 </style>
 <section>
 
@@ -143,7 +249,8 @@
 		<img src="../images/etc/chahong.png" id="chahongimg">
 	</div>
 	<div id="staff">
-		――――――――――――――――――――――――――― <span id="stafftext">Staff</span> ――――――――――――――――――――――――――――
+		<div id="screen">――――――――――――――――――――――――――― <span id="stafftext">Staff</span> ――――――――――――――――――――――――――――</div>
+		<div id="mobile">―――――――― <span id="stafftext">Staff</span> ――――――――</div>
 	</div>
 	<div id="designer">
 		<div class="designerArticle">
