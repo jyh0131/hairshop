@@ -11,6 +11,13 @@ section {
 	margin-top: 100px;
 	text-align: center;
 }
+
+section .exec span{
+	height: 20px;
+}
+section .exec span select{
+	height: 20px;
+}
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>
@@ -60,8 +67,10 @@ section {
 			format: 'decimal'
 			
 		},
-	
-		
+		boxStyle: {
+			rx:10,
+			ry:10
+		}
 	};
 	
 	

@@ -219,13 +219,9 @@ section article#border table#item td {
 section article#border div#guest img{
 	width:320px;
 	height: 280px;
-	float: left;
 }
 section article#border div#guest h2{
 	clear: both;
-}
-section article#border div#guest p#guestText{
-
 }
 
 section article#border div#guest p#guestText label{
@@ -237,13 +233,13 @@ section article#border div#form div#menuIcon{
 	display:block;
 	width:100%;
 	height: 120px;
-	
+	text-align: center;
 }
 
 section article#border div#form div#menuIcon div{
 	width:80px;
 	height:100px;
-	float: left;
+	display:inline-block;
 	margin-right: 40px;
 	cursor: pointer;
 	text-align: center;
@@ -277,6 +273,8 @@ section article#border div#guest div#reserve span{
 #reservedList img{
 	width:500px;
 	text-align: center;
+	margin: 0 auto;
+    display: block;
 }
 
 .toggle{
@@ -293,6 +291,7 @@ section article#border div#guest div#reserve span{
 	
 	
 }
+/* 모바일입니다 */
 @media all and (max-width:1199px){
 	section{
 		width:100%;
@@ -308,9 +307,13 @@ section article#border div#guest div#reserve span{
 	}
 	
 	
+	
 	section div#form div#menuIcon div{
 		width:20% !important;
-		
+		margin-right: 10px !important;
+	}
+	section div#form div#menuIcon div:first-child{
+		margin-right: 20px !important;
 	}
 	section div#form div#menuIcon img {
 	    margin: 0 auto;
@@ -329,6 +332,7 @@ section article#border div#guest div#reserve span{
 		padding:2.5%;
 		width:92%;
 		height: auto;
+		text-align: center;
 	}
 	section article#border div#form{
 		float:left !important;
@@ -384,14 +388,38 @@ section article#border div#guest div#reserve span{
 	.hide{
 		display: none;
 	}
-	
+	section article#border div#guest p#guestText{
+		width:80%;
+		text-align: center;
+		margin: 0 auto;
+	}
+	div#guest div#reserve{
+		width:80%;
+		text-align: center;
+		margin: 0 auto;
+	}
+	div#guest div#reserve label{
+		float: left;
+		width:80px;
+	}
 	section article#border div#form div#mapForm img{
 		width:80%;
 	}
 	
+	section article#border div#guest button#commit{
+		width:25%;
+		height: 50px;
+		margin: 0 auto;
+	}
+	div#guest p#guestText input[type='text']{
+		width:50%;
+	}
 	
+	div#guest p#guestText label{
+		width:80px !important;
+	}
 }
-
+/* 모바일입니다 */
 </style>
 <script type="text/javascript">
 	var designer = "";
@@ -779,8 +807,15 @@ section article#border div#guest div#reserve span{
 						</c:forEach>
 					</tr>
 				</table>
+			
+				
+				
 				</div>
+				<br>
+				<hr>
+				<br>
 			</div>
+			
 			<div id="mapForm">
 				<button id="search">검색</button><input type="text">
 				<div id="map" style="width:520px;height:520px;"></div>
@@ -827,9 +862,9 @@ section article#border div#guest div#reserve span{
 			
 			
 			<div id="reserve">
-					<label>예약시간</label> : <span id="reserveDate"></span><span id="reserveTime"></span><br>
-					<label>디자이너</label> : <span id="reserveDesigner"></span><br>
-					<label>메뉴</label> : <span id="reserveProduct"></span><br>
+					<label>예약시간 : </label><span id="reserveDate"></span><span id="reserveTime"></span><br>
+					<label>디자이너 : </label><span id="reserveDesigner"></span><br>
+					<label>메뉴 : </label><span id="reserveProduct"></span><br>
 			</div>
 			
 			<br>
