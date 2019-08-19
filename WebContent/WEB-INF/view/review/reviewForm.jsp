@@ -57,17 +57,6 @@
 		width: 220px;
 		height: 30px;
 	}
-	textarea{
-		width: 250px;
-		height: 200px;
-		position: relative;
-		margin-left:57px;
-	}
-	#sodd{
-		position: absolute;
-		top:220px;
-		left: 18px;
-	}
 	#rWriter{
 		border:none;
 		background-color: white;
@@ -83,7 +72,6 @@
 		border: 1px solid #ccc;
 		color:#5D5D5D;
 	}
-		
 	}
 </style>
 <section>
@@ -99,7 +87,7 @@
 	</p>
 	<br>
 	<p>
-		<label>내용</label>
+		<label>내용</label><br>
 		<textarea rows="20" cols="90" name="rContent" id="weditor">차홍아르더를 이용해 주셔서 감사드립니다. 고객님의 한 줄 리뷰가 저희들에게 큰 힘이 됩니다^^!<br>
 담당디자이너:<br>
 시술메뉴:<br>

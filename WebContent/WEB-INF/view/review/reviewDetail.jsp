@@ -195,7 +195,7 @@
 		right: 10px;
 	}
 	#first2{
-		width: 90%;
+		width: 100%;
 		font-size:12px;
 		padding-top:20px;
 		padding-bottom:20px;
@@ -259,6 +259,7 @@
 	.comment #cContent{ 
 		position: relative;
 	}
+	
 	.comment .btninsert{ /* 댓글등록창에 등록버튼 */
 		width:60px;
 		height: 62px;
@@ -278,6 +279,7 @@
 		width:100%;
 		height:20px;	
 		text-align: right;
+		margin-bottom: 5px;
 	}
 	.comment .commentFirst{
 		width: 100%;
@@ -293,10 +295,10 @@
 	}
 	.comment .commentFirst .ccontent{
 		color:black;
-		width:80%;
+		width:90%;
 	}
 	#ccontent{
-		width: 600px;
+		width: 300px;
 	}
 	.comment .modifyComment{ /* 수정댓글창 */
 		display:none;
