@@ -133,20 +133,12 @@ header button#chatShow{
 	border-radius:5px;
 	background: rgba(255,255,255,0.5);
 }
-
 header #submenu{
 	/* display: none; */
-
 }
 header #submenu li{
 
 }
-
-
-
-
-
-
 }
 
 @media all and (max-width:1199px){
