@@ -5,6 +5,7 @@
 
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css">
 <style>
+@media screen and (min-width:1200px){
 #guestChange{
 	width:800px;
 	margin: 0 auto;
@@ -38,7 +39,54 @@
 #guestChange #ddChange table th:nth-child(3) {
 	width: 260px;
 }
-
+}
+@media all and (max-width:1199px){
+#guestChange{
+	width:800px;
+	margin: 0 auto;
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+#guestChange h3{
+	margin: 10px;
+}
+#guestChange #gTodChange{
+	margin-left: 20px;
+}
+#guestChange #gTodChange .ggC{
+	margin: 5px;
+	width: 150px;
+	height: 40px;
+}
+#guestChange #ddChange{
+	margin-left: 20px;
+}
+#guestChange #ddChange table{
+	border-collapse: collapse;
+	text-align: center;
+}
+#guestChange #ddChange table button{
+	width: 70px;
+}
+#guestChange #ddChange table button:nth-child(2){
+	width: 50px;
+}
+#guestChange #ddChange table button:nth-child(4){
+	width: 50px;
+}
+#guestChange #ddChange table th, tr, td{
+	border: 1px solid #ddd;
+}
+#guestChange #ddChange table th:nth-child(1) {
+	width: 60px;
+}
+#guestChange #ddChange table th:nth-child(2) {
+	width: 60px;
+}
+#guestChange #ddChange table th:nth-child(3) {
+	width: 200px;
+}
+}
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>
@@ -84,9 +132,6 @@
 			})
 			
 		})
-		
-		
-		
 	})
 	
 		//디자이너 삭제 버튼
