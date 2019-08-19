@@ -56,8 +56,8 @@
 	<br>
 	<p>
 		<label>내용</label>
-		<textarea rows="20" cols="90" name="rContent"></textarea>
-		<!-- <textarea name="rContent" id="weditor" rows="10" cols="100"></textarea> -->
+		<!-- <textarea rows="20" cols="90" name="rContent"></textarea> -->
+		<textarea name="rContent" id="weditor" rows="10" cols="100"></textarea>
 	</p>
 	<br>
 	<p>

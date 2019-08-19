@@ -213,13 +213,103 @@ section .exec span select{
 				$("#add").click();
 				
 			}
-		}else if($("#category2-2").val()=='방문수'){
+		}
+		
+		
+		else if($("#category2-2").val()=='방문수'){
+
 			if(value=='년별'){
-				alert("년별")
+				chartDraw=function(){
+					$.ajax({
+						url : "${pageContext.request.contextPath}/management/chart.do",
+						type : "post",
+						data : {
+							"year":year,
+							"lSize":lSize,
+							"lStart":lStart,
+							"flag":"고객 방문수 년별"
+						},
+						
+						
+						dataType : "json",
+						success : function(res) {
+							
+							arr = new Array();
+							arr[0] = new Array();
+							arr[0][0] = "고객 방문 순위"+(lStart+1)+"~"+((lStart)+lSize);
+							
+							arr[0][1] = year + "년";
+							
+							for (var i = 1; i < res.length+1; i++) {
+								arr[i] = new Array();
+								arr[i][0] = res[i-1].wGNo.gName;
+								arr[i][1] = res[i-1].wPriceTotal;
+							}
+							
+							console.log(arr);
+							
+							
+							google.charts.load('current', {
+								'packages' : [ 'bar' ]
+							});
+							google.charts.setOnLoadCallback(drawChart);
+						}
+					})
+	
+					
+				}
+				
+				lStart=lStart-10;
+				$("#add").click();
+				
 			}
 			else if(value=='월별'){
-				alert("월별")
+				chartDraw=function(){
+					$.ajax({
+						url : "${pageContext.request.contextPath}/management/chart.do",
+						type : "post",
+						data : {
+							"year":year,
+							"month":month,
+							"lSize":lSize,
+							"lStart":lStart,
+							"flag":"고객 방문수 월별"
+						},
+						
+						
+						dataType : "json",
+						success : function(res) {
+							
+							arr = new Array();
+							arr[0] = new Array();
+							arr[0][0] = "고객 방문 순위"+(lStart+1)+"~"+((lStart)+lSize);
+							
+							arr[0][1] = month + "월";
+							
+							for (var i = 1; i < res.length+1; i++) {
+								arr[i] = new Array();
+								arr[i][0] = res[i-1].wGNo.gName;
+								arr[i][1] = res[i-1].wPriceTotal;
+							}
+							
+							console.log(arr);
+							
+							
+							google.charts.load('current', {
+								'packages' : [ 'bar' ]
+							});
+							google.charts.setOnLoadCallback(drawChart);
+						}
+					})
+	
+					
+				}
+				
+				lStart=lStart-10;
+				$("#add").click();
+				
 			}
+			
 		}
 	})
 	$(document).on("change", "#category2 select", function() {
@@ -414,7 +504,6 @@ section .exec span select{
 					$("#prev").hide();
 					$("#next").hide();
 					
-					
 					if($("#category2-1").val()=='년/월'){
 						year--;
 					}else if($("#category2-1").val()=='월/일'){
@@ -440,6 +529,9 @@ section .exec span select{
 					if($("#category2-2").val()=='매출금액'){
 						lStart=lStart+10;
 					}	
+					if($("#category2-2").val()=='방문수'){
+						lStart=lStart+10;
+					}	
 				}
 				
 				chartDraw();
@@ -457,6 +549,8 @@ section .exec span select{
 						day++;
 				}else if($("#category2-2").val()=='매출금액'){
 					lStart=lStart-10;
+				}else if($("#category2-2").val()=='방문수'){
+					lStart=lStart-10;
 				}
 				chartDraw();
 			})
@@ -472,10 +566,6 @@ section .exec span select{
 				}
 				
 			})
-			
-			
-			
-			
 			
 			
 			$("#next").click(function() {

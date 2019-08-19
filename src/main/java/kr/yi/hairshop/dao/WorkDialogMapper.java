@@ -43,9 +43,9 @@ public interface WorkDialogMapper {
 	
 	//차트
 	public List<WorkDialog> selectGPriceLimit(Map<String, Object> map);
-	public List<WorkDialog> selectGCountLimit(Map<String, String> map);
-	public List<WorkDialog> selectDPriceLimit(Map<String, String> map);
-	public List<WorkDialog> selectDCountLimit(Map<String, String> map);
+	public List<WorkDialog> selectGCountLimit(Map<String, Object> map);
+	public List<WorkDialog> selectDPriceLimit(Map<String, Object> map);
+	public List<WorkDialog> selectDCountLimit(Map<String, Object> map);
 	
 	
 	

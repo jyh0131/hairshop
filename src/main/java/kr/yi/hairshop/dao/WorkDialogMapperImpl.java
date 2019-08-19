@@ -225,21 +225,21 @@ public class WorkDialogMapperImpl implements WorkDialogMapper{
 	}
 
 	@Override
-	public List<WorkDialog> selectGCountLimit(Map<String, String> map) {
+	public List<WorkDialog> selectGCountLimit(Map<String, Object> map) {
 		try(SqlSession sqlSession=MyBatisSqlSessionFactory.openSession();){
 			return sqlSession.selectList(namespace+".selectGCountLimit",map);
 		}
 	}
 
 	@Override
-	public List<WorkDialog> selectDPriceLimit(Map<String, String> map) {
+	public List<WorkDialog> selectDPriceLimit(Map<String, Object> map) {
 		try(SqlSession sqlSession=MyBatisSqlSessionFactory.openSession();){
 			return sqlSession.selectList(namespace+".selectDPriceLimit",map);
 		}
 	}
 
 	@Override
-	public List<WorkDialog> selectDCountLimit(Map<String, String> map) {
+	public List<WorkDialog> selectDCountLimit(Map<String, Object> map) {
 		try(SqlSession sqlSession=MyBatisSqlSessionFactory.openSession();){
 			return sqlSession.selectList(namespace+".selectDCountLimit",map);
 		}

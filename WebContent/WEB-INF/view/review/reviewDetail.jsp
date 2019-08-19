@@ -319,7 +319,9 @@ ${list }--%>
 	</div>		
 	<div id="first2">
 		${review.rContent}
-		<img src="/hairshop/upload/${review.rFile }">
+		<c:if test="${review.rFile!=null }">
+			<img src="/hairshop/upload/${review.rFile }">
+		</c:if>
 	</div>	
 	<div id="aaa">
 		<div id="list">

@@ -44,8 +44,6 @@ public class ChartHandler implements CommandHandler {
 				
 				Map<String, Object> map = new HashMap<String, Object>();
 				
-				Date date = new Date();
-				
 				String dStart = year+"-01-01";
 				String dEnd = year+"-12-31";
 				
@@ -79,7 +77,67 @@ public class ChartHandler implements CommandHandler {
 				
 				Map<String, Object> map = new HashMap<String, Object>();
 				
-				Date date = new Date();
+				
+				String dStart = year+"-"+month+"-01";
+				String dEnd = year+"-"+month+"-"+lastArray[month-1];
+				
+				map.put("dStart", dStart);
+				map.put("dEnd", dEnd);
+				map.put("lStart", lStart);
+				map.put("lSize", lSize);
+				
+				List<WorkDialog> wList=wDao.selectGCountLimit(map);
+				
+				System.out.println(wList.size());
+				
+				ObjectMapper om = new ObjectMapper();
+				String data = om.writeValueAsString(wList);
+				
+				res.setContentType("application/json;charset=utf-8");
+				PrintWriter out = res.getWriter();
+				out.print(data);
+				out.flush();
+				
+			}
+			else if(flag!=null&&flag.equals("고객 방문수 년별")) {
+				int lSize=Integer.parseInt(req.getParameter("lSize"));
+				int lStart=Integer.parseInt(req.getParameter("lStart"));
+				
+				
+				Map<String, Object> map = new HashMap<String, Object>();
+				
+				String dStart = year+"-01-01";
+				String dEnd = year+"-12-31";
+				
+				System.out.println("lStart:"+lStart);
+				System.out.println("lSize:"+lSize);
+				
+				map.put("dStart", dStart);
+				map.put("dEnd", dEnd);
+				map.put("lStart", lStart);
+				map.put("lSize", lSize);
+				
+				List<WorkDialog> wList=wDao.selectGCountLimit(map);
+				
+				System.out.println(wList.size());
+				
+				ObjectMapper om = new ObjectMapper();
+				String data = om.writeValueAsString(wList);
+				
+				res.setContentType("application/json;charset=utf-8");
+				PrintWriter out = res.getWriter();
+				out.print(data);
+				out.flush();
+				
+			}
+			else if(flag!=null&&flag.equals("고객 방문수 월별")) {
+				int lastArray[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+				
+				int lSize=Integer.parseInt(req.getParameter("lSize"));
+				int lStart=Integer.parseInt(req.getParameter("lStart"));
+				
+				
+				Map<String, Object> map = new HashMap<String, Object>();
 				
 				String dStart = year+"-"+month+"-01";
 				String dEnd = year+"-"+month+"-"+lastArray[month-1];
