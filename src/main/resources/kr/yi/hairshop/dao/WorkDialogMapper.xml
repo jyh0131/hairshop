@@ -42,7 +42,7 @@
 	</resultMap>
 	
 	<resultMap type="WorkDialog" id="guestJoin">
-		<id property='id' column='ID' />
+		<id property='wNo' column='ID' />
 		<result property="wWorkTime" column="w_workTime" />
 		<result property="wReservTime" column="w_reservTime" />
 		<result property="wPriceTotal" column="sum(w_priceTotal)" />

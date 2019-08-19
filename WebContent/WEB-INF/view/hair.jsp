@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp" %>
 <style>
+@media screen and (min-width:1200px){
 	*{
 		padding:0;
 		margin:0;
@@ -152,8 +153,154 @@
 		width: 675px !important;
 		height: 900px !important;
 	}
-	
-	
+	}
+	@media all and (max-width:1199px){/*-------------------------------------------모바일 -------------------------------------------- */
+	*{
+		padding:0;
+		margin:0;
+	}
+	section{
+		width: 90%;
+		margin: 0 auto;
+		/* padding-top: 40px; */
+	}
+	.hair{
+		float:left;
+		width: 159px;
+		height:210px;
+		padding-bottom: 30px;
+	}
+	.hair .smallhair{
+		width: 149px;
+		height:210px;
+	}
+	section img{
+		width: 175px;
+		height:261px;
+	}
+	a{
+		text-decoration: none;
+		color:black;
+	}
+	#hairlist{
+		margin:0 auto;
+		background-color: #F6F6F6;
+		width: 40%;
+		height:30px;
+		clear: both;
+		margin-top: 60px;
+		margin-bottom: 60px;
+	}
+	#hairlist ul{
+		list-style:none;
+	}
+	#hairlist ul li{
+		float: left;
+		width: 33%;
+		height: 30px;
+		line-height: 30px;
+		text-align: center;
+		font-size:15px;
+		
+	}	
+	#color > p{
+		color:#AB8212;
+		font-size: 10px;
+	}
+	#top{
+		clear: both;
+		margin:0 auto;
+		color:black;
+		background-color: #F6F6F6;
+		width: 5%;
+		height:30px;
+		text-align:center;
+		margin-bottom: 100px;
+		position: fixed;
+		bottom: -80px;
+		right:4px;
+	}
+	#top #topBtn{
+		font-size: 11px;
+	}
+	button #haircut{
+		background-color: black;
+		color:white;
+	}
+	#color {
+		font-size: 13px;
+	}
+	#color #bb{
+		color:#754C00;
+		text-align: right;
+		padding-right: 50px;
+	}
+	#color #sb{
+		color:#302600;
+		text-align: right;
+		padding-right: 50px;
+	}
+	#color #ob{
+		color:#665C00;
+		text-align: right;
+		padding-right: 50px;
+	}
+	#color #ar{
+		color:#670000;
+		text-align: right;
+		padding-right: 50px;
+	}
+	#color #pb{
+		color:#BA2B2B;
+		text-align: right;
+		padding-right: 50px;
+	}
+	#color #mb{
+		color:#060042;
+		text-align: right;
+		padding-right: 50px;
+	}
+	#color .smallhair{
+		width: 142px !important;
+		height: 210px !important;
+	}
+	#color .hair{ /* 컬러의 div */
+		width: 160px;
+		height:250px;
+		padding-bottom: 30px;
+	}
+	.detail{
+		display: none;
+		z-index:100;
+		position:fixed;
+		left:0;
+		top:0;
+		width:900px;
+		height: 1000px;
+		background: rgba(0,0,0,0.9);
+		padding:20px 30%;
+		display: none;
+		color:#D5D5D5;
+	}
+	.detailhair{
+		width: 675px;
+		height: 900px;
+		position: relative;
+	}
+	.detailclose{
+		cursor:pointer;
+		position: absolute;
+		bottom: 120px;
+		right: 750px;
+	}
+	.detail .detailcolor{
+		width: 675px !important;
+		height: 900px !important;
+	}
+	#color #colorhangle5, #colorhangle4, #colorhangle3, #colorhangle2, #colorhangle1, #colorhangle{
+		display: none;
+	}
+	}
 </style>
 <section>
 	
@@ -499,7 +646,7 @@
 		
 				<img src="../images/color/babybrown.png" class="smallhair">
 		
-			<p id="bb">Baby Brown 베이비브라운</p> 
+			<p id="bb">Baby Brown <span id="colorhangle">베이비브라운</span></p> 
 			<div class="detail">
 				<img src="../images/color/bb.jpg" class="detailcolor">
 				<div class="detailclose">[닫기]</div>
@@ -509,7 +656,7 @@
 	
 				<img src="../images/color/skinbrown.png" class="smallhair">
 		
-			<p id="sb">Skin Brown 스킨브라운</p>
+			<p id="sb">Skin Brown <span id="colorhangle1">스킨브라운</span></p>
 			<div class="detail">
 				<img src="../images/color/sb.jpg" class="detailcolor">
 				<div class="detailclose">[닫기]</div>
@@ -519,7 +666,7 @@
 		
 				<img src="../images/color/olivebrown.png" class="smallhair">
 		
-			<p id="ob">Olive Brown 올리브브라운</p>
+			<p id="ob">Olive Brown <span id="colorhangle2">올리브브라운</span></p>
 			<div class="detail">
 				<img src="../images/color/ob.jpg" class="detailcolor">
 				<div class="detailclose">[닫기]</div>
@@ -529,7 +676,7 @@
 		
 				<img src="../images/color/ororared.png" class="smallhair">
 		
-			<p id="ar">Aurora Red 오로라레드</p>
+			<p id="ar">Aurora Red <span id="colorhangle3">오로라레드</span></p>
 			<div class="detail">
 				<img src="../images/color/ar.jpg" class="detailcolor">
 				<div class="detailclose">[닫기]</div>
@@ -539,7 +686,7 @@
 		
 				<img src="../images/color/peachbrown.png" class="smallhair">
 
-			<p id="pb">Peach Brown 피치브라운</p>
+			<p id="pb">Peach Brown <span id="colorhangle4">피치브라운</span></p>
 			<div class="detail">
 				<img src="../images/color/pb.jpg" class="detailcolor">
 				<div class="detailclose">[닫기]</div>
@@ -549,7 +696,7 @@
 
 				<img src="../images/color/midnightblue.png" class="smallhair">
 	
-			<p id="mb">Midnight Blue 미드나잇블루</p>
+			<p id="mb">Midnight Blue <span id="colorhangle5">미드나잇블루</span></p>
 			<div class="detail">
 				<img src="../images/color/mb.jpg" class="detailcolor">
 				<div class="detailclose">[닫기]</div>
@@ -570,16 +717,19 @@
 				scrollTop:0}, 1000);
 		})
 		$("#hairCut").click(function(){ /* cut로 이동 */
+			var offset = $(".hair").eq(0).offset();
 			$('html,body').animate({
-				scrollTop:300}, 600);
+				scrollTop:offset.top}, 600);
 		})
 		$("#hairPerm").click(function(){
+			var offset = $(".hair").eq(21).offset();
 			$('html,body').animate({
-				scrollTop:1800}, 2000);
+				scrollTop:offset.top}, 2000);
 		})
 		$("#hairColor").click(function(){ /* color로 이동 */
+			var offset = $(".hair").eq(40).offset();
 			$('html,body').animate({
-				scrollTop:3000}, 2000);
+				scrollTop:offset.top}, 2000);
 		})
 		
 		/* 헤어 클릭하면 상세보기 */
@@ -593,7 +743,6 @@
 		
 		
 	})
-	
 </script>
 <%@ include file="../include/footer.jsp" %>
 
