@@ -21,8 +21,11 @@ public class ReviewDeleteHandler implements CommandHandler {
 //		System.out.println("여기");
 		dao.deleteReview(rNo);
 
-		res.sendRedirect(req.getContextPath() + "/review/review.do");
-
+		if(req.getParameter("notice")==null)
+			res.sendRedirect(req.getContextPath() + "/review/review.do");
+		else
+			res.sendRedirect(req.getContextPath() + "/board/managerList.do");
+		
 		return null;
 
 	}

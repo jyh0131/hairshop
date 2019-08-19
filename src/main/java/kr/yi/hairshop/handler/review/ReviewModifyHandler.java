@@ -61,7 +61,11 @@ public class ReviewModifyHandler implements CommandHandler {
 //			System.out.println(review);
 
 			dao.updateReview(review);
-			res.sendRedirect(req.getContextPath() + "/review/review.do");
+			
+			if(multi.getParameter("notice")==null)
+				res.sendRedirect(req.getContextPath() + "/review/review.do");
+			else
+				res.sendRedirect(req.getContextPath() + "/board/managerList.do");
 			return null;
 		}
 		return null;
