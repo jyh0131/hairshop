@@ -14,6 +14,7 @@
 		text-decoration: none;
 		color: black;
 	}
+	@media screen and (min-width:1200px){
 	section{
 		margin-top: 70px;
 		width: 100%;
@@ -68,6 +69,66 @@
 	#reviewtitle #rtitle:hover{
 		text-decoration: underline;
 		color:#5D5D5D;
+	}
+	}
+	
+	@media all and (max-width:1199px){
+	section{
+		margin-top: 30px;
+		width: 100%;
+		height: 700px;
+	}
+	#example{
+		width: 360px;
+		text-align: center;
+		font-size: 10px;
+	}
+	#example td:nth-child(2){
+		text-align: left;
+	}
+	#example th{
+		font-size: 13px;
+		color:#353535;
+	}
+	#example_info{
+		display: none;
+	} 
+	#yellow{
+		width: 100%;
+		height: 20px;
+		position: relative;
+		/* background-color: yellow; */
+	}
+	#example_filter{  /* 검색창 */
+		position: absolute;
+		bottom:-60px;
+		right:40px;
+	}
+	#example_paginate{ /* 페이지표시 */
+		position: absolute;
+		bottom:-40px;
+		right:30px;
+	}
+	#write{ /* 글쓰기 */
+		position: absolute;
+		top:100px;
+		right:20px;
+	}
+	#write a{
+		text-decoration: none;
+		border:1px solid #ccc;
+		width: 60px;
+		height: 30px;
+		background-color:#F6F6F6;
+		border: 1px solid #ccc;
+		font-size: 13px;
+		padding:5px 10px;
+	}
+	#reviewtitle #rtitle:hover{
+		text-decoration: underline;
+		color:#5D5D5D;
+	}
+	
 	}
 	
 </style>

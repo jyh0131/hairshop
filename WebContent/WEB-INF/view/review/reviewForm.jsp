@@ -7,6 +7,7 @@
 		padding:0;
 		margin:0;
 	}
+	@media screen and (min-width:1200px){
 	section{
 		width: 40%;
 		margin: 0 auto;
@@ -37,6 +38,52 @@
 		background-color: white;
 		border: 1px solid #ccc;
 		color:#5D5D5D;
+	}
+	}
+	@media all and (max-width:1199px){
+	section{
+		width: 90%;
+		margin: 0 auto;
+		padding-top: 40px;
+		padding-bottom: 40px;
+	}
+	label{
+		margin-right: 20px;	
+	}
+	#label{
+		text-align: center;
+	}
+	input{
+		width: 220px;
+		height: 30px;
+	}
+	textarea{
+		width: 250px;
+		height: 200px;
+		position: relative;
+		margin-left:57px;
+	}
+	#sodd{
+		position: absolute;
+		top:220px;
+		left: 18px;
+	}
+	#rWriter{
+		border:none;
+		background-color: white;
+	}
+	#button{
+		text-align: right;
+		padding-right: 60px;
+	}
+	#button input{
+		width: 60px;
+		height: 30px;
+		background-color: white;
+		border: 1px solid #ccc;
+		color:#5D5D5D;
+	}
+		
 	}
 </style>
 <section>

@@ -273,29 +273,27 @@
 		display: none;
 		z-index:100;
 		position:fixed;
-		left:0;
+		left:-100px;
 		top:0;
-		width:900px;
-		height: 1000px;
+		width:360px;
+		height: 640px;
 		background: rgba(0,0,0,0.9);
 		padding:20px 30%;
 		display: none;
 		color:#D5D5D5;
 	}
 	.detailhair{
-		width: 675px;
-		height: 900px;
+		width:340px;
+		height: 500px;
 		position: relative;
 	}
 	.detailclose{
-		cursor:pointer;
-		position: absolute;
-		bottom: 120px;
-		right: 750px;
+		text-align: right;
+		padding-right: 15px;
 	}
 	.detail .detailcolor{
-		width: 675px !important;
-		height: 900px !important;
+		width: 340px !important;
+		height: 500px !important;
 	}
 	#color #colorhangle5, #colorhangle4, #colorhangle3, #colorhangle2, #colorhangle1, #colorhangle{
 		display: none;
@@ -566,16 +564,13 @@
 			</div>
 		</div>	
 		<div class="hair">
-			
 				<img src="../images/perm/flower.png" class="smallhair">
 			<div class="detail">
 				<img src="../images/perm/flower.jpg" class="detailhair">
 				<div class="detailclose">[닫기]</div>
 			</div>
 		</div>	
-	
-			<div class="hair">
-			
+		<div class="hair">
 				<img src="../images/perm/frill.png" class="smallhair">
 			<div class="detail">
 				<img src="../images/perm/frill.jpg" class="detailhair">
@@ -583,7 +578,6 @@
 			</div>
 		</div>	
 		<div class="hair">
-			
 				<img src="../images/perm/hole.png" class="smallhair">
 			<div class="detail">
 				<img src="../images/perm/hole.jpg" class="detailhair">
@@ -591,7 +585,6 @@
 			</div>
 		</div>	
 		<div class="hair">
-			
 				<img src="../images/perm/hug.png" class="smallhair">
 		<div class="detail">
 				<img src="../images/perm/hug.jpg" class="detailhair">
@@ -599,7 +592,6 @@
 			</div>
 		</div>	
 		<div class="hair">
-		
 				<img src="../images/perm/jelly.png" class="smallhair">
 			<div class="detail">
 				<img src="../images/perm/jelly.jpg" class="detailhair">
@@ -607,7 +599,6 @@
 			</div>
 		</div>	
 		<div class="hair">
-		
 				<img src="../images/perm/pleats.png" class="smallhair">
 			<div class="detail">
 				<img src="../images/perm/pleats.jpg" class="detailhair">
@@ -615,7 +606,6 @@
 			</div>
 		</div>	
 		<div class="hair">
-		
 				<img src="../images/perm/fog.png" class="smallhair">
 		<div class="detail">
 				<img src="../images/perm/fog.jpg" class="detailhair">
@@ -623,7 +613,6 @@
 			</div>
 		</div>
 		<div class="hair">
-		
 				<img src="../images/perm/tammy.png" class="smallhair">
 		<div class="detail">
 				<img src="../images/perm/tammy.jpg" class="detailhair">
@@ -631,7 +620,6 @@
 			</div>
 		</div>	
 		<div class="hair">
-		
 				<img src="../images/perm/wind.png" class="smallhair">
 	<div class="detail">
 				<img src="../images/perm/wind.jpg" class="detailhair">
@@ -643,9 +631,7 @@
 	<!-- 염색컬러사진 -->	
 	<div id="color">
 		<div class="hair">
-		
 				<img src="../images/color/babybrown.png" class="smallhair">
-		
 			<p id="bb">Baby Brown <span id="colorhangle">베이비브라운</span></p> 
 			<div class="detail">
 				<img src="../images/color/bb.jpg" class="detailcolor">
@@ -653,9 +639,7 @@
 			</div>
 		</div>
 		<div class="hair">
-	
 				<img src="../images/color/skinbrown.png" class="smallhair">
-		
 			<p id="sb">Skin Brown <span id="colorhangle1">스킨브라운</span></p>
 			<div class="detail">
 				<img src="../images/color/sb.jpg" class="detailcolor">
@@ -663,9 +647,7 @@
 			</div>
 		</div>
 		<div class="hair">
-		
 				<img src="../images/color/olivebrown.png" class="smallhair">
-		
 			<p id="ob">Olive Brown <span id="colorhangle2">올리브브라운</span></p>
 			<div class="detail">
 				<img src="../images/color/ob.jpg" class="detailcolor">
@@ -673,9 +655,7 @@
 			</div>
 		</div>
 		<div class="hair">
-		
 				<img src="../images/color/ororared.png" class="smallhair">
-		
 			<p id="ar">Aurora Red <span id="colorhangle3">오로라레드</span></p>
 			<div class="detail">
 				<img src="../images/color/ar.jpg" class="detailcolor">
@@ -683,9 +663,7 @@
 			</div>
 		</div>
 		<div class="hair">
-		
 				<img src="../images/color/peachbrown.png" class="smallhair">
-
 			<p id="pb">Peach Brown <span id="colorhangle4">피치브라운</span></p>
 			<div class="detail">
 				<img src="../images/color/pb.jpg" class="detailcolor">
@@ -693,9 +671,7 @@
 			</div>
 		</div>
 		<div class="hair">
-
 				<img src="../images/color/midnightblue.png" class="smallhair">
-	
 			<p id="mb">Midnight Blue <span id="colorhangle5">미드나잇블루</span></p>
 			<div class="detail">
 				<img src="../images/color/mb.jpg" class="detailcolor">
