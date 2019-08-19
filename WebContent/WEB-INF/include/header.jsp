@@ -13,6 +13,7 @@
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css" type="text/css">
 <script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/se2/js/HuskyEZCreator.js" charset="utf-8"></script>
 <script src="${pageContext.request.contextPath}/js/common.js"></script>
 <style>
 @media screen and (min-width:1200px){
@@ -177,15 +178,8 @@ header #topmenu ul li{
 	display: inline-block;
 	font-size: 25px;
 }
-a#reserve li{
-/* 	width:180px !important;
-	margin-left:10px; */
-}
 header #topmenu li:hover{
 	text-decoration: underline;
-}
-header #topmenuMgn{
-
 }
 header #topmenuMgn ul a{
 	color: black;
@@ -193,9 +187,6 @@ header #topmenuMgn ul a{
 }
 
 header #topmenuMgn ul li{
-/* 	width: 152px;
-	height: 60px;
-	line-height: 60px; */
 	width: 100%;
 	height: 50px;
 	line-height: 50px;
@@ -212,14 +203,6 @@ header #Idcheck{
 	width:100%;
 	height: 30px;
 	line-height: 30px;
-/* 	min-width:15%;
-	height:30px;
-	position: absolute;
-	display: inline;
-	top:0;
-	right:0px;
-	text-align: right;
- */
 	text-align: center;
 }
 header #Idcheck span{
@@ -236,7 +219,6 @@ header #Idcheck a{
 	color: black;
 	font-size: 18px;
 }
-
 header .mymenu{
 	width: 90%;
 	height: 45px;
@@ -255,7 +237,6 @@ header .mymenu a{
 	line-height: 45px;
 	font-size: 25px;
 }
-
 header div#chat textarea{
 	background-color: rgba(0,0,0,0.5);
 	color: white;
@@ -274,17 +255,11 @@ header button#chatShow{
 	border-radius:5px;
 	background: rgba(255,255,255,0.5);
 }
-
 header #chat{
 	display: none;
 }
 header #chatShow{
 	display: none;
-}
-
-header #warpFmobile{
-	/* display: none; */
-
 }
 header #warpFmobile #menuBtn{
 	position: absolute;
@@ -295,7 +270,6 @@ header #warpFmobile #menuBtn{
 header #warpFmobile #menuBtn img{
 	width: 100%;
 }
-
 header #menuBtnSlide{
 	display: none;
 }
@@ -313,33 +287,50 @@ $(function () {
 	
 	$("#menuBtn").click(function () {
 		$("#menuBtnSlide").slideToggle(500);
+		$("#topmenuMgn").find("li").css("width", "100%");
+		
 	})
 
-	
 })
 
 // 관리자 로그인 시 
 $(document).ready(function(){
  	
-	<c:if test="${Auth.uIsMgr == true }">
-		$("#topmenu").find("li").css("width", "20%");
-		$("#guestMenu").css("display", "none");
+	$(window).resize(function() {
+		if($(window).width() > 1199) {
+			var flag = ${Auth.uIsMgr == true?true:false}
+			if(flag){
+				$("#topmenu").find("li").css("width", "20%");
+				$("#guestMenu").css("display", "none");
+			}
+		}
 		
-		
-/* 		$("#topmenuMgn").css("width", "100%");
-		$("#topmenuMgn").find("li").css("width", "100%");
- */
-		$("#mgnMenu").click(function(){
-			   $("#submenu").slideToggle("slow");
-		});
-		$("#homeopen").click(function(){
-			   $("#guestMenu").slideToggle("slow");
-			   $("#topmenu").find("li").css("width", "16.6%");
-			   $("#topmenuMgn").find("li").css("width", "20%");
-		});		
-		//$("#topmenu").css("display", "none");
-	</c:if>
+		if($(window).width() < 1198) {
+			var flag = ${Auth.uIsMgr == true?true:false}
+			if(flag){
+				$("#guestMenu").css("display", "none");
+				$("#topmenuMgn").find("li").css("width", "100%");
+				
+				$("#mgnMenu").click(function(){
+					   $("#submenu").slideToggle("slow");
+				});
+			}
+		}		
 
+	});
+	
+	$("#homeopen").click(function(){
+		$("#guestMenu").slideToggle("slow");
+		if($(window).width() < 1198){
+			$("#topmenu").find("li").css("width", "100%");
+			$("#topmenuMgn").find("li").css("width", "100%");		
+		}else{
+			$("#topmenu").find("li").css("width", "16.6%");
+			$("#topmenuMgn").find("li").css("width", "20%");			   
+		}
+	});
+	
+	$(window).resize();
 });
 	
 </script>

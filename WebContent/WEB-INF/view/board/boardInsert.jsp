@@ -39,8 +39,11 @@
 		color:#5D5D5D;
 	}
 </style>
+
+
+
 <section>
-	<form action="${pageContext.request.contextPath}/board/managerInsert.do" method="post" enctype="multipart/form-data">
+	<form action="${pageContext.request.contextPath}/board/managerInsert.do" id="f1" method="post" enctype="multipart/form-data">
 	<p>
 		<label>이름</label>
 		<input type="text" name="rWriter" disabled="disabled" id="rWriter" value="${Auth.uId }">	
@@ -54,6 +57,7 @@
 	<p>
 		<label>내용</label>
 		<textarea rows="20" cols="90" name="rContent"></textarea>
+		<!-- <textarea name="rContent" id="weditor" rows="10" cols="100"></textarea> -->
 	</p>
 	<br>
 	<p>
@@ -62,9 +66,45 @@
 	</p>
 	<br>
 	<p id="button">
-		<input type="submit" value="등록">
+		<input id="bbBtn" type="button" value="등록">
 		<input type="reset" value="취소">
 	</p>
 	</form>
 </section>
+
+<script type="text/javascript">
+
+	$("#bbBtn").click(function () {
+		oEditors.getById['weditor'].exec('UPDATE_CONTENTS_FIELD', []);
+		$("#f1").submit();
+	})
+
+	var oEditors = [];
+	nhn.husky.EZCreator.createInIFrame({
+	    oAppRef: oEditors,
+	    elPlaceHolder: "weditor",
+	    sSkinURI: "${pageContext.request.contextPath}/se2/SmartEditor2Skin.html",
+	    fCreator: "createSEditor2"
+	});
+
+</script> 
+
 <%@ include file="../../include/footer.jsp" %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

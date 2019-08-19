@@ -13,15 +13,17 @@ section {
 }       
 section ul#designer h1#title {
 	clear: both;
+	
 }
 
 section div#designerList {
-	width: 900px;
+	width: 905px;
 	height: 200px;
 	padding: 20px;
 	margin-bottom: 10px;
 }
 section ul#designer {
+	margin-top:20px;
 	display: block;
 	list-style: none;
 }
@@ -45,19 +47,21 @@ section article#border {
 	padding: 30px;
 	padding-left:40px;
 	padding-right:40px;
-	
+	width:90%;
 	display:inline-block;
 }
 
 
 section article#border div#designerList{
 	background-color: white;
+	overflow: hidden;
 } 
 
 section article#border div#form {
+	
 	background: white;
 	width:520px;
-	height:1100px;
+	height:1200px;
 	padding: 20px;  
 	float: left;
 }
@@ -66,7 +70,7 @@ section article#border div#form {
 section article#border div#guest{
 	float:right;
 	width:320px;
-	height:1100px;
+	height:1200px;
 	background:white;
 	display: inline-block;
 	padding: 20px;
@@ -233,6 +237,7 @@ section article#border div#form div#menuIcon{
 	display:block;
 	width:100%;
 	height: 120px;
+	
 }
 
 section article#border div#form div#menuIcon div{
@@ -241,13 +246,9 @@ section article#border div#form div#menuIcon div{
 	float: left;
 	margin-right: 40px;
 	cursor: pointer;
-}
-
-section article#border div#form div#menuIcon div:first-child{
-	margin-left:20px;
-	margin-right:50px;
 	text-align: center;
 }
+
 section article#border div#form div#menuIcon img{
 	display:block;
 	
@@ -298,6 +299,7 @@ section article#border div#guest div#reserve span{
 		padding:0;
 	}
 	
+	
 	section article#border {
 		width:96% !important;
 		padding:2%;
@@ -306,7 +308,15 @@ section article#border div#guest div#reserve span{
 	}
 	
 	
+	section div#form div#menuIcon div{
+		width:20% !important;
+		
+	}
+	section div#form div#menuIcon img {
+	    margin: 0 auto;
+	}
 	section div#form div#reserveForm{
+		clear:both;
 		float:right;
 		width:98% !important;
 		padding:2%;
@@ -318,12 +328,14 @@ section article#border div#guest div#reserve span{
 		margin:0 !important;
 		padding:2.5%;
 		width:92%;
+		height: auto;
 	}
 	section article#border div#form{
 		float:left !important;
 		height: auto !important;
 		width:92% !important;
 		padding:2.5% !important;
+		
 		
 	}
 	
@@ -336,6 +348,8 @@ section article#border div#guest div#reserve span{
 	
 	.toggle{
 		display: block;
+		cursor: pointer;
+		
 	}
 	
 	
@@ -352,14 +366,28 @@ section article#border div#guest div#reserve span{
 		width: 90% !important;
 	}
 	
+	section article#border div#form div#mapForm div#map{
+		width:100% !important;
+	}
+	section article#border div#form div#mapForm{
+		width:100%;
+	}
+	
+	
+	
 	section article#border div#form div#reservedForm div#reservedList {
 		
 	}
 	section article#border div#form div#reservedForm div#reservedList img{
-		width:80%;
+		width:90%;
+	}
+	.hide{
+		display: none;
 	}
 	
-		
+	section article#border div#form div#mapForm img{
+		width:80%;
+	}
 	
 	
 }
@@ -658,7 +686,7 @@ section article#border div#guest div#reserve span{
 				})			
 			}
 		})
-		$(".show").click(function() {
+		$(".hide").click(function() {
 			$(this).next().next().slideDown();
 		})
 		$(".toggle").click(function() {
@@ -672,7 +700,7 @@ section article#border div#guest div#reserve span{
 	
 	<article id="border">
 		<div id="designerList">
-			<h3 class="show">디자이너 선택</h3>
+			<h3 class="hide">디자이너 선택</h3>
 			<h3 class="toggle">디자이너 선택</h3>
 			<div class="hide">
 			<ul id="designer">
@@ -701,13 +729,13 @@ section article#border div#guest div#reserve span{
 			</div>
 		
 			<div id="reserveForm">
-				<h3 class="show">날짜 선택</h3>
+				<h3 class="hide">날짜 선택</h3>
 				<h3 class="toggle">날짜 선택</h3>
 				<div id="calendar" class="hide"></div>
 				<br>
 				<hr>
 				<br>
-				<h3 class="show">시간 선택</h3>
+				<h3 class="hide">시간 선택</h3>
 				<h3 class="toggle">시간 선택</h3>
 				<div  class="hide">
 				<table id="time">
@@ -741,7 +769,7 @@ section article#border div#guest div#reserve span{
 				<hr>
 				<br>
 				
-				<h3 class="show">메뉴 선택</h3>
+				<h3 class="hide">메뉴 선택</h3>
 				<h3 class="toggle">메뉴 선택</h3>
 				<div class="hide">
 				<table id="item">
@@ -927,7 +955,6 @@ section article#border div#guest div#reserve span{
 											str+="</td>";
 											str+="<td>"+work.wPriceTotal.toLocaleString()+"원</td>";
 											if(work.wWorkTime==null){
-												
 												str+="<td><input type='hidden' value='"+work.wNo+"'><button class='delete'>예약 취소</td>";	
 											}
 											else{
