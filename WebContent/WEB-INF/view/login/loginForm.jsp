@@ -94,7 +94,7 @@
 					$.ajax({
 						url:"${pageContext.request.contextPath}/login/designerSelcetById.do",
 						type:"post",
-						data:{"id" : $("#id").val() },
+						data:{"id" : $("#id").val(), "password" : $("#password").val() },
 						dataType:"json",
 						success:function(data){
 							console.log(data); // data 1 같은 아이디가 있다, 0 아이디가 없다
@@ -116,6 +116,23 @@
 									$("input[name='id']").next().css("display", "inline");
 									return false;
 								}
+							}else if(data==2){
+								alert("비밀번호를 확인하세요");
+								$(".error").css("display", "none")
+								$(".error2").css("display", "none")
+								//빈 input태그가 존재하면 submit를 막는다
+								if (checkInputEmpty($("input[name]")) == false) {
+									return false;
+								}
+								//입력 필드가 비어 있을때
+								if ($("input[name='password']").val() == null) {
+									$("input[name='password']").next().css("display", "inline");
+									return false;
+								}
+								if ($("input[name='id']").val() == null) {
+									$("input[name='id']").next().css("display", "inline");
+									return false;
+								}								
 							}else{
 								//로그인 전에 아이디를 ajax로 검색해서 db에 있는지 없는지 판단한 결과가 저장되는 flag
 								flag = true;
@@ -131,10 +148,10 @@
 					$.ajax({
 						url:"${pageContext.request.contextPath}/login/guestSelcetById.do",
 						type:"post",
-						data:{"id" : $("#id").val() },
+						data:{"id" : $("#id").val(), "password" : $("#password").val()  },
 						dataType:"json",
 						success:function(data){
-							console.log(data); // data 1 = 같은 아이디가 있다, 0 아이디가 없다
+							console.log(data);// 1 = 같은 아이디가 있다, 0 아이디가 없다, 2 비번일 틀림
 							
 							if(data==0){
 								alert("없는 아이디 입니다");
@@ -153,6 +170,23 @@
 									$("input[name='id']").next().css("display", "inline");
 									return false;
 								}
+							}else if(data==2){
+								alert("비밀번호를 확인하세요");
+								$(".error").css("display", "none")
+								$(".error2").css("display", "none")
+								//빈 input태그가 존재하면 submit를 막는다
+								if (checkInputEmpty($("input[name]")) == false) {
+									return false;
+								}
+								//입력 필드가 비어 있을때
+								if ($("input[name='password']").val() == null) {
+									$("input[name='password']").next().css("display", "inline");
+									return false;
+								}
+								if ($("input[name='id']").val() == null) {
+									$("input[name='id']").next().css("display", "inline");
+									return false;
+								}								
 							}else{
 								//로그인 전에 아이디를 ajax로 검색해서 db에 있는지 없는지 판단한 결과가 저장되는 flag
 								flag = true;
@@ -191,7 +225,7 @@
 			<span class="error">ID를 입력하세요</span>
 		</p>
 		<p>
-			<input type="password" name="password" id="pass" class="loiginFormInput" placeholder="비밀번호를 입력하세요">
+			<input type="password" name="password" id="password" class="loiginFormInput" placeholder="비밀번호를 입력하세요">
 			<span class="error">비밀번호를 입력하세요</span>
 		</p>
 		<p>
