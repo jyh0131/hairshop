@@ -79,8 +79,8 @@
 		position:fixed;
 		left:0;
 		top:0;
-		width:900px;
-		height: 1000px;
+		width:100%;
+		height: 100%;
 		background: rgba(0,0,0,0.9);
 		padding:20px 30%;
 		display: none;
@@ -98,7 +98,7 @@
 		padding-bottom: 10px;
 		position: absolute;
 		top:550px;
-		right: -170px;
+		right:340px;
 	}
 	.close{
 		cursor: pointer;
@@ -184,8 +184,8 @@
 		position:fixed;
 		left:-100px;
 		top:0;
-		width:500px;
-		height: 800px;
+		width:100%;
+		height: 100%;
 		background: rgba(0,0,0,0.9);
 		padding:20px 30%;
 		display: none;
@@ -211,7 +211,7 @@
 	}
 	.close{
 		background-color: #353535;
-		width:70%;
+		width:95%;
 		height: 30px;
 		text-align: right;
 	}
