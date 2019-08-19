@@ -40,8 +40,6 @@ public class BoardInsertHandler implements CommandHandler {
 			this.getClass().getResource("/").getPath();
 			//->현재 실행되는 자바의 최상위 폴더. (..생략/tmp0/wtpwebapps/플젝명/WEB-INF/classes/) 
 			
-			
-			
 			File dir = new File(uploadPath);
 			if (dir.exists() == false) {
 				dir.mkdir();
