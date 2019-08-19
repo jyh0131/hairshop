@@ -39,6 +39,9 @@
 		color:#5D5D5D;
 	}
 </style>
+
+
+
 <section>
 	<form action="${pageContext.request.contextPath}/board/managerInsert.do" method="post" enctype="multipart/form-data">
 	<p>
@@ -54,6 +57,7 @@
 	<p>
 		<label>내용</label>
 		<textarea rows="20" cols="90" name="rContent"></textarea>
+		<!-- <textarea name="rContent" id="weditor" rows="10" cols="100"></textarea> -->
 	</p>
 	<br>
 	<p>
@@ -67,4 +71,39 @@
 	</p>
 	</form>
 </section>
+
+<script type="text/javascript">
+	var oEditors = [];
+	nhn.husky.EZCreator.createInIFrame({
+	    oAppRef: oEditors,
+	    elPlaceHolder: "weditor",
+	    sSkinURI: "${pageContext.request.contextPath}/se2/SmartEditor2Skin.html",
+	    fCreator: "createSEditor2"
+	});
+	
+/* 	function pasteHTML(filepath){
+		var sHTML = '<img src="${pageContext.request.contextPath}/se2/upload/'+filepath+'">';
+		oEditors.getById["weditor"].exec("PASTE_HTML", [sHTML]);
+	}
+ */	
+</script> 
+
 <%@ include file="../../include/footer.jsp" %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
