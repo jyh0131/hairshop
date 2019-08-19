@@ -9,6 +9,7 @@
 		padding:0;
 		margin:0;
 	}
+	@media screen and (min-width:1200px){
 	section{
 		width: 40%;
 		margin: 0 auto;
@@ -167,6 +168,176 @@
 	}
 	#blblbl {
 		width:730px;
+	}
+	}
+	
+	@media all and (max-width:1199px){
+	section{
+		width: 90%;
+		margin: 0 auto;
+		padding-top: 40px;
+	}
+	#first{
+		width: 100%;
+		height: 50px;
+		border-top:2px solid #353535;
+		border-bottom:1px solid #353535;
+		line-height:50px;
+		position: relative;
+		overflow: hidden;
+	}
+	#first{
+		font-size: 13px;
+	}
+	#first p{
+		position: absolute;
+		top:0;
+		right: 10px;
+	}
+	#first2{
+		width: 90%;
+		font-size:12px;
+		padding-top:20px;
+		padding-bottom:20px;
+		border-bottom:1px solid #353535;
+	}
+	#first2 img{
+		width: 200px;
+	}
+	#aaa{
+		position: relative;
+		width: 100%;
+		height: 50px;
+		margin-top:10px;
+	}
+	#aaa #list{
+		position: absolute;
+		top:10px;
+		left:0;
+		width: 100%;
+		height: 30px;
+	}
+	#aaa #md{
+		position: absolute;
+		top:0;
+		right: 0;
+	}
+	#aaa a{
+		text-decoration: none;
+		border:1px solid #ccc;
+		width: 60px;
+		height: 30px;
+		background-color: white;
+		border: 1px solid #ccc;
+		color:#5D5D5D;
+		font-size: 13px;
+		padding:10px;
+	}
+	.comment{ /* 댓글 div */
+		margin-top:40px;
+		width: 100%;
+		height: 40%;
+		position: relative;
+		margin-bottom: 40px;
+		background-color: #F6F6F6;
+	}
+	.comment table{ /* 댓글쓰는 공간 */
+		border:none;
+		width: 85%;
+		height: 80px;
+		padding:0 0 0 5px;
+	}
+	textarea{
+		width: 90%;
+		height: 60px;
+		resize: none;
+		border:1px solid #ccc;
+	}
+	textarea:focus{
+		outline: none;
+	}
+	.comment #cContent{ 
+		position: relative;
+	}
+	.comment .btninsert{ /* 댓글등록창에 등록버튼 */
+		width:60px;
+		height: 62px;
+		background-color: white;
+		border: 1px solid #ccc;
+		color:#5D5D5D;
+		font-size: 13px;
+		padding:10px;
+		position: absolute;
+		right: 10px;
+	}
+	.comment #onlycomment{
+		padding:10px;
+		font-size: 14px;
+	}
+	.comment .commentM{
+		width:100%;
+		height:20px;	
+		text-align: right;
+	}
+	.comment .commentFirst{
+		width: 100%;
+		margin-bottom: 10px;
+	}
+	.comment #cwriter{
+		margin-right: 10px;
+		font-weight: bold;
+		color:#353535;
+	}
+	.comment .commentFirst{ 
+		color:#747474;
+	}
+	.comment .commentFirst .ccontent{
+		color:black;
+		width:80%;
+	}
+	#ccontent{
+		width: 600px;
+	}
+	.comment .modifyComment{ /* 수정댓글창 */
+		display:none;
+		width: 80%;
+		height: 62px;
+		padding-top:10px;
+		padding-left:10px;
+		position: relative;
+		
+	} 
+	.comment .modifyComment .btnModify{ /*수정버튼 */
+		width:60px;
+		height: 62px;
+		background-color: white;
+		border: 1px solid #ccc;
+		color:#5D5D5D;
+		font-size: 13px;
+		position: absolute;
+		top:35x;
+		right:-40px;
+	}
+	.pointLine{
+		width:100%;
+		margin-top:10px;
+		margin-bottom:10px;
+		border:0.5px dotted #5D5D5D;
+	}
+	#commentlogin{
+		text-decoration: underline;
+	}
+	#commentloginbytable{
+		border:1px solid #ccc;
+		color:#353535;
+		height: 62px;
+		font-size: 13px;
+	}
+	#commentloginbytable a{
+		color:#353535;
+	}
+	
+	
 	}
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -327,13 +498,13 @@ ${list }--%>
 			<c:if test="${Auth != null}">
 				<a href="${pageContext.request.contextPath}/review/insert.do">글쓰기</a>
 			</c:if>
-	 <c:if test="${Auth.uId == review.rWriter}"> <!-- 비회원일시에 수정삭제 할수 없음 -->
-		<div id="md">
-			<a href="${pageContext.request.contextPath}/review/modify.do?no=${review.rNo}">수정</a>
-			<a href="#" id="delete">삭제</a>
-		</div>
-	</c:if> 
-	</div>	
+			<c:if test="${Auth.uId == review.rWriter}"> <!-- 비회원일시에 수정삭제 할수 없음 -->
+				<div id="md">
+					<a href="${pageContext.request.contextPath}/review/modify.do?no=${review.rNo}">수정</a>
+					<a href="#" id="delete">삭제</a>
+				</div>
+			</c:if> 
+		</div>	
 	</div>
 	<div class="comment">
 	<div id="onlycomment"><!-- 댓글리스트가 보여야해 -->

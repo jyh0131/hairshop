@@ -7,6 +7,7 @@
 		padding:0;
 		margin:0;
 	}
+	@media screen and (min-width:1200px){
 	section{
 		width: 40%;
 		margin: 0 auto;
@@ -38,6 +39,52 @@
 		border: 1px solid #ccc;
 		color:#5D5D5D;
 	}
+	}
+	@media all and (max-width:1199px){
+	section{
+		width: 90%;
+		margin: 0 auto;
+		padding-top: 40px;
+		padding-bottom: 40px;
+	}
+	label{
+		margin-right: 20px;	
+	}
+	#label{
+		text-align: center;
+	}
+	input{
+		width: 220px;
+		height: 30px;
+	}
+	textarea{
+		width: 250px;
+		height: 200px;
+		position: relative;
+		margin-left:57px;
+	}
+	#sodd{
+		position: absolute;
+		top:220px;
+		left: 18px;
+	}
+	#rWriter{
+		border:none;
+		background-color: white;
+	}
+	#button{
+		text-align: right;
+		padding-right: 60px;
+	}
+	#button input{
+		width: 60px;
+		height: 30px;
+		background-color: white;
+		border: 1px solid #ccc;
+		color:#5D5D5D;
+	}
+		
+	}
 </style>
 <section>
 	<form action="${pageContext.request.contextPath}/review/insert.do" method="post" enctype="multipart/form-data">
@@ -52,7 +99,7 @@
 	</p>
 	<br>
 	<p>
-		<label>내용</label>
+		<label id="sodd">내용</label>
 		<textarea rows="20" cols="90" name="rContent">차홍아르더를 이용해 주셔서 감사드립니다. 고객님의 한 줄 리뷰가 저희들에게 큰 힘이 됩니다^^!
 담당디자이너:
 시술메뉴:
@@ -68,8 +115,7 @@
 	<br>
 	<p id="button">
 		<input type="submit" value="등록">
-		
-			<input type="reset" value="취소" id="inputreset">
+		<input type="reset" value="취소" id="inputreset">
 	</p>
 	</form>
 </section>
