@@ -18,6 +18,17 @@ section .exec span{
 section .exec span select{
 	height: 20px;
 }
+
+@media all and (max-width:1199px){
+	section{
+		width:100%;
+		padding:0;
+	}
+
+
+	
+}
+
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>
@@ -136,6 +147,7 @@ section .exec span select{
 			
 			chart : {
 			title : '총 매출 현황',
+			
 			subtitle : '월/년/일 차트 통계'
 			},
 			vAxis: {
