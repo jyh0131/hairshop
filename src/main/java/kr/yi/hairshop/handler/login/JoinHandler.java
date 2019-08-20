@@ -48,7 +48,9 @@ public class JoinHandler implements CommandHandler {
 			guest.setgTel(tel);
 			guest.setgEmail(email);
 			guest.setgBirth(birthDate);
-			
+			guest.setgPostcode(postcode);
+			guest.setgRoadAddr(roadAddr);
+			guest.setgDetailAddr(detailAddr);
 
 			guest.setgJoin(new Date());
 			guest.setgPoint(5000); //웹회원가입 포인트 5000원

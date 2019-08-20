@@ -13,9 +13,9 @@ public class Guest {
 	private String gTel;
 	private String gEmail;
 	
-	private String postcode; // 주소 추가 19.08.20
-	private String roadAddr;
-	private String detailAddr;
+	private String gPostcode; // 주소 추가 19.08.20
+	private String gRoadAddr;
+	private String gDetailAddr;
 	
 	private Date gBirth;
 	private Date gJoin;
@@ -38,7 +38,7 @@ public class Guest {
 	}
 
 	public Guest(int gNo, String gId, String gPassword, Level gLGrade, String gName, String gTel, String gEmail,
-			String postcode, String roadAddr, String detailAddr, Date gBirth, Date gJoin, int gPoint, String gMemo,
+			String gPostcode, String gRoadAddr, String gDetailAddr, Date gBirth, Date gJoin, int gPoint, String gMemo,
 			boolean gSecession, List<WorkDialog> workDialogList) {
 		super();
 		this.gNo = gNo;
@@ -48,9 +48,9 @@ public class Guest {
 		this.gName = gName;
 		this.gTel = gTel;
 		this.gEmail = gEmail;
-		this.postcode = postcode;
-		this.roadAddr = roadAddr;
-		this.detailAddr = detailAddr;
+		this.gPostcode = gPostcode;
+		this.gRoadAddr = gRoadAddr;
+		this.gDetailAddr = gDetailAddr;
 		this.gBirth = gBirth;
 		this.gJoin = gJoin;
 		this.gPoint = gPoint;
@@ -59,28 +59,28 @@ public class Guest {
 		this.workDialogList = workDialogList;
 	}
 
-	public String getPostcode() {
-		return postcode;
+	public String getgPostcode() {
+		return gPostcode;
 	}
 
-	public void setPostcode(String postcode) {
-		this.postcode = postcode;
+	public void setgPostcode(String gPostcode) {
+		this.gPostcode = gPostcode;
 	}
 
-	public String getRoadAddr() {
-		return roadAddr;
+	public String getgRoadAddr() {
+		return gRoadAddr;
 	}
 
-	public void setRoadAddr(String roadAddr) {
-		this.roadAddr = roadAddr;
+	public void setgRoadAddr(String gRoadAddr) {
+		this.gRoadAddr = gRoadAddr;
 	}
 
-	public String getDetailAddr() {
-		return detailAddr;
+	public String getgDetailAddr() {
+		return gDetailAddr;
 	}
 
-	public void setDetailAddr(String detailAddr) {
-		this.detailAddr = detailAddr;
+	public void setgDetailAddr(String gDetailAddr) {
+		this.gDetailAddr = gDetailAddr;
 	}
 
 	public int getgNo() {

@@ -95,7 +95,7 @@
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/common.js"></script>
-<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+
 <script>
 	var duplicateID = 0;
 	
@@ -301,22 +301,18 @@
 		<p>
 			<label>주소</label>
 			<input type="text" id="roadAddress" name="roadAddr" class="input" placeholder="도로명주소">
-			<input type="text" id="jibunAddress" class="input" placeholder="지번주소">
 			<span id="guide" style="color:#999;display:none"></span>
 		</p>
 		
 		<p>
 			<label>상세 주소</label>
 			<input type="text" id="detailAddress" name="detailAddr" class="input" placeholder="상세주소">
-			<input type="text" id="extraAddress" class="input" placeholder="참고항목">			
 		</p>
 		
 		<p>
 			<input type="submit" value="회원가입" id="btnSubmit" class="sBtn">
 			<input type="button" value="리셋" id="btnReset" class="sBtn">
 		</p>
-
-
 
 	</form>
 
@@ -352,14 +348,6 @@
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
                 document.getElementById('postcode').value = data.zonecode;
                 document.getElementById("roadAddress").value = roadAddr;
-                document.getElementById("jibunAddress").value = data.jibunAddress;
-                
-                // 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
-                if(roadAddr !== ''){
-                    document.getElementById("extraAddress").value = extraRoadAddr;
-                } else {
-                    document.getElementById("extraAddress").value = '';
-                }
 
                 var guideTextBox = document.getElementById("guide");
                 // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
