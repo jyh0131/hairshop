@@ -37,7 +37,6 @@
 </style>
 	
 	
-	
 		<footer>
 			<div>
 				<p class="foot1">CHAHONG ARDOR</p> 

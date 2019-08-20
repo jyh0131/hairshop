@@ -43,7 +43,9 @@ public class LoginHandler implements CommandHandler {
 				//로그인 된 사람의 정가 담긴 user class 생성 후 sesseion에 저장
 				User user = new User(guest.getgNo(), guest.getgName(), guest.getgId(), false, false); //false 손님, false 일반회원
 				session.setAttribute("Auth", user);
-				
+				session.setMaxInactiveInterval(10);
+
+			
 			}else if(isMgn==0) {
 				DesignerMapper dao = new DesignerMapperImpl();
 				Designer designer = dao.selelctDesignerById(id);
