@@ -58,11 +58,11 @@
 	right:0;
 	color:red;
 	margin-left: 0px;
+	font-size: 13px;
 }
 }
 
 @media all and (max-width:1199px){
-
 #joinService{
 	width:100%;
 	margin: 0 auto;
@@ -87,10 +87,17 @@
 	margin-top: 10px;
 	margin-bottom: 10px;
 }
-
 #joinService #naverP{
 	text-align: center;
 	margin: 0 auto;
+}
+#joinService form #point{
+	position:relative;
+	top:0;
+	right:0;
+	color:red;
+	margin-left: 0px;
+	font-size: 13px;
 }
 }
 
@@ -274,11 +281,12 @@ IP주소, 쿠키, 서비스 이용기록, 방문기록 등
 개인정보의 마케팅/홍보의 수집 및 이용 동의를 거부하시더라도 회원 가입 시 제한은 없습니다. 다만, 마케팅 활용 서비스 안내 및 참여에 제한이 있을 수 있습니다.		
 		</textarea>
 		<br>
-		<input type="checkbox" name="service3" value="service3"> 마케팅/홍보를 위하여 귀하의 개인정보를 이용하는데 동의합니다.(선택)<span id="point"> 이용동의시 5000P 증정</span>
+		<input type="checkbox" name="service3" value="service3"> 마케팅/홍보를 위하여 귀하의 개인정보를 이용하는데 동의합니다.(선택)<br>
+		<span id="point">이용동의시 5000P 증정</span>, <span id="point">웹 회원가입시 5000P 증정</span>
 		</p>
 		
 		<p id="joinServiceBtnP">
-			<input type="submit" value="동의 하고 회원가입 하기" id="joinServiceBtn"><span id="point">웹 회원가입시 5000P 증정</span>
+			<input type="submit" value="동의 하고 회원가입 하기" id="joinServiceBtn">
 		</p>
 		
 		<!-- 네이버아이디로로그인 버튼 노출 영역 -->

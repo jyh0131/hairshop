@@ -113,8 +113,11 @@
 			$("input[name='confirmPassword']").val("");
 			$("input[name='tel']").val("");
 			$("input[name='birth']").val("");
+			$("input[name='realid']").val("");
 			
+			$("#btnSubmit").attr("disabled","disabled");
 			$("input[name='id']").removeAttr("disabled");
+			
 			
 		})
 		
@@ -144,6 +147,7 @@
 								duplicateID = 1;
 								$("#btnSubmit").removeAttr("disabled");
 								$("input[name='id']").attr("disabled","disabled");
+								$("input[name='realid']").val($("input[name='id']").val());
 							}						
 						}else{
 							alert("아이디를 입력하세요");
@@ -245,6 +249,7 @@
 		<p>
 			<label><span>(<span class="fontColorRed">*</span>)</span>아이디</label>
 			<input class="input" type="text" name="id" id="id" value="${pram.id }" placeholder="영어,숫자 포함 4~15 자리">
+			<input type="hidden" name="realid" id="realid">
 			<span class="error">ID(영어, 숫자 6~15)를 입력하세요</span>
 			<button type="button" id="btnCheck" class="sBtn">ID 중복확인</button>
 			<c:if test="${duplicatedId == true }">

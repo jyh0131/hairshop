@@ -5,6 +5,7 @@ import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import kr.yi.hairshop.controller.CommandHandler;
 import kr.yi.hairshop.dao.GuestMapper;
@@ -21,7 +22,7 @@ public class JoinHandler implements CommandHandler {
 		}else if(req.getMethod().equalsIgnoreCase("post")) {
 			SimpleDateFormat sDate = new SimpleDateFormat("yyyy-MM-dd");
 			
-			String id = req.getParameter("id");
+			String id = req.getParameter("realid");
 			String password = req.getParameter("password");
 			String name = req.getParameter("name");
 			String tel = req.getParameter("tel");
@@ -47,12 +48,16 @@ public class JoinHandler implements CommandHandler {
 			guest.setgJoin(new Date());
 			guest.setgPoint(5000); //웹회원가입 포인트 5000원
 			
-			String serivce3 = req.getParameter("serivce3");
-			if(serivce3 != null) {
+			HttpSession session = req.getSession(false);
+			String service3 = (String) session.getAttribute("service3");
+			
+			if(service3 != null) {
 				guest.setgMemo("온라인 회원가입+광고동의");
 				int po = guest.getgPoint();
-				po += 5000; 
+				po = po + 5000;
 				guest.setgPoint(po); // 광고 동의 포인트
+				System.out.println(guest.getgPoint()+"포인트가 잘들어가나");
+				
 			}else {
 				guest.setgMemo("온라인 회원가입+광고X");
 			}

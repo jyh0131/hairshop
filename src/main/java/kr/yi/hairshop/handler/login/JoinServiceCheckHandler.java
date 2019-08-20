@@ -17,11 +17,11 @@ public class JoinServiceCheckHandler implements CommandHandler {
 //			String service1 = req.getParameter("service1");
 //			String service2 = req.getParameter("service2");
 			String service3 = req.getParameter("service3");
+			
 			HttpSession session = req.getSession(false);
-			
 			session.setAttribute("service3", service3);
-			res.sendRedirect(req.getContextPath()+"/login/join.do");
 			
+			res.sendRedirect(req.getContextPath()+"/login/join.do");
 			
 			return null;
 		}
