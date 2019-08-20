@@ -15,6 +15,10 @@
 		<result property="gName" column="g_name" />
 		<result property="gTel" column="g_tel" />
 		<result property="gEmail" column="g_email" />
+		
+		<result property="postcode" column="g_postcode"/>
+		
+		
 		<result property="gBirth" column="g_birth" />
 		<result property="gJoin" column="g_join" />
 		<result property="gPoint" column="g_point" />

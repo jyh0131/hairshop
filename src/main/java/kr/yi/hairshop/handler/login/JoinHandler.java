@@ -28,6 +28,10 @@ public class JoinHandler implements CommandHandler {
 			String tel = req.getParameter("tel");
 			String email = req.getParameter("email");
 			
+			String postcode = req.getParameter("postcode");
+			String roadAddr = req.getParameter("roadAddr");
+			String detailAddr = req.getParameter("detailAddr");
+			
 			String birth = req.getParameter("birth");
 			Date birthDate;
 			if(birth.isEmpty() != true) {
@@ -43,7 +47,8 @@ public class JoinHandler implements CommandHandler {
 			guest.setgName(name);
 			guest.setgTel(tel);
 			guest.setgEmail(email);
-			guest.setgBirth(birthDate);				
+			guest.setgBirth(birthDate);
+			
 
 			guest.setgJoin(new Date());
 			guest.setgPoint(5000); //웹회원가입 포인트 5000원
