@@ -106,7 +106,7 @@
 				</tr>
 			</c:forEach>
 		</table>
-		<p><a href="${pageContext.request.contextPath}/member/passCheck.do">mypage로 돌아가기</a></p>
+		<p><a href="${pageContext.request.contextPath}/member/mypage.do">mypage로 돌아가기</a></p>
 	</div>
 
 	
