@@ -25,10 +25,12 @@
 	text-align: center;
 }
 #guestChange #ddChange table button{
-	width: 80px;
+	width: 70px;
+	margin: 2px;
 }
 #guestChange #ddChange table th, tr, td{
 	border: 1px solid #ddd;
+	height: 30px;
 }
 #guestChange #ddChange table th:nth-child(1) {
 	width: 120px;
@@ -146,7 +148,7 @@
 				$.ajax({
 					url:"${pageContext.request.contextPath}/member/designerDel.do",
 					type:"post",
-					data:{"id" : $(this).prev().prev().val() },
+					data:{"id" : $(this).prev().prev().prev().val() },
 					dataType:"json",
 					success:function(data){
 						if(data==1){

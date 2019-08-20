@@ -40,6 +40,13 @@ public class GuestModifyHandler implements CommandHandler {
 			String birth = req.getParameter("birth");
 			SimpleDateFormat sDate = new SimpleDateFormat("yyyy-MM-dd");			
 			Date birthDate = sDate.parse(birth);
+			String postcode = req.getParameter("postcode");
+			String roadAddr = req.getParameter("roadAddr");
+			String detailAddr = req.getParameter("detailAddr");
+			
+			guest.setgPostcode(postcode);
+			guest.setgRoadAddr(roadAddr);
+			guest.setgDetailAddr(detailAddr);
 			
 			guest.setgTel(tel);
 			guest.setgEmail(email);

@@ -15,6 +15,7 @@
 <script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/se2/js/HuskyEZCreator.js" charset="utf-8"></script>
 <script src="${pageContext.request.contextPath}/js/common.js"></script>
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <style>
 @media screen and (min-width:1200px){
 

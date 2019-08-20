@@ -77,6 +77,7 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/common.js"></script>
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script>
 	$(function() {
 		
@@ -234,7 +235,7 @@
 		<p>
 			<input type="button" class="loiginFormInput" id="find" value="아이디/비밀번호 찾기">
 		</p>
-		
+
 		<!-- 네이버아이디로로그인 버튼 노출 영역 -->
 		<div id="naverIdLogin"></div>
 		<!-- //네이버아이디로로그인 버튼 노출 영역 -->
@@ -242,7 +243,7 @@
 	</form>
 
 </section>
-
+	
 
 
 
