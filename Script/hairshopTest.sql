@@ -145,7 +145,7 @@ select * from workdialog;
 /* 여기까지 드래그 */
 
 /* 특정 날자 사이에 랜덤값  */
-set @start=UNIX_TIMESTAMP('2019-07-01 00:00:00');
+set @start=UNIX_TIMESTAMP('2016-07-01 00:00:00');
 set @end=UNIX_TIMESTAMP('2019-08-31 23:59:59');
 
 select @start,@end;
