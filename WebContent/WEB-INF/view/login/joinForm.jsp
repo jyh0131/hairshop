@@ -110,36 +110,51 @@
 			$("input[name='id']").val("");
 			$("input[name='name']").val("");
 			$("input[name='password']").val("");
+			$("input[name='confirmPassword']").val("");
+			$("input[name='tel']").val("");
+			$("input[name='birth']").val("");
+			$("input[name='realid']").val("");
 			
+			$("#btnSubmit").attr("disabled","disabled");
 			$("input[name='id']").removeAttr("disabled");
+			
 			
 		})
 		
 		$("#btnCheck").click(function() {
-			$.ajax({
-				url:"${pageContext.request.contextPath}/login/idCheckHandler.do",
-				type:"get",
-				data:{"id" : $("#id").val() },
-				dataType:"json",
-				success:function(res){ //res = 1 아이디가 있음, 0 아이디 없음 
-					console.log(res);
-					
-					if($("#id").val() != ""){
-						if(res == 1){
-							confirm('ID가 존제합니다');
-							duplicateID = 0;
+			
+			var idcheck = /^[a-z0-9]{4,15}$/i;
+			var id = $("input[name='id']").val();
+			if( idcheck.test(id) == false ){
+				alert("4자리 이상의 영어, 숫자로 입력하세요");
+				return false;
+			}else{
+				
+				$.ajax({
+					url:"${pageContext.request.contextPath}/login/idCheckHandler.do",
+					type:"get",
+					data:{"id" : $("#id").val() },
+					dataType:"json",
+					success:function(res){ //res = 1 아이디가 있음, 0 아이디 없음 
+						console.log(res);
+						
+						if($("#id").val() != ""){
+							if(res == 1){
+								confirm('ID가 존제합니다');
+								duplicateID = 0;
+							}else{
+								confirm('가입이 가능합니다');
+								duplicateID = 1;
+								$("#btnSubmit").removeAttr("disabled");
+								$("input[name='id']").attr("disabled","disabled");
+								$("input[name='realid']").val($("input[name='id']").val());
+							}						
 						}else{
-							confirm('가입이 가능합니다');
-							duplicateID = 1;
-							$("#btnSubmit").removeAttr("disabled");
-							$("input[name='id']").attr("disabled","disabled");
-						}						
-					}else{
-						alert("아이디를 입력하세요");
+							alert("아이디를 입력하세요");
+						}
 					}
-
-				}
-			})
+				})				
+			}
 		})
 		
 		
@@ -169,17 +184,20 @@
 				}else if(checkInputEmpty( $("input[name='birth']") ) == false){
 					alert("생일을 입력하세요");
 					return false;
+				}else if(checkInputEmpty( $("input[name='email']") ) == false){
+					alert("이메일을 입력하세요");
+					return false;
 				}
 			}
 			
-			var idcheck = /^[a-z0-9]{1,15}$/i;
+			var idcheck = /^[a-z0-9]{4,15}$/i;
 			var id = $("input[name='id']").val();
 			if( idcheck.test(id) == false ){
 				$("input[name='id']").next().css("display", "inline");
 				return false;
 			}
 			
-			var pwcheck = /^[a-zA-Z0-9!@#]{1,20}$/i;
+			var pwcheck = /^[a-zA-Z0-9!@#]{4,20}$/i;
 			var pw = $("input[name='password']").val();			
 			if( pwcheck.test(pw) == false ){
 				$("input[name='password']").next().css("display", "inline");
@@ -230,7 +248,8 @@
 		
 		<p>
 			<label><span>(<span class="fontColorRed">*</span>)</span>아이디</label>
-			<input class="input" type="text" name="id" id="id" value="${pram.id }" placeholder="영어,숫자 포함 1~15 자리">
+			<input class="input" type="text" name="id" id="id" value="${pram.id }" placeholder="영어,숫자 포함 4~15 자리">
+			<input type="hidden" name="realid" id="realid">
 			<span class="error">ID(영어, 숫자 6~15)를 입력하세요</span>
 			<button type="button" id="btnCheck" class="sBtn">ID 중복확인</button>
 			<c:if test="${duplicatedId == true }">
@@ -239,8 +258,8 @@
 		</p>
 		<p>
 			<label><span>(<span class="fontColorRed">*</span>)</span>비밀번호</label>
-			<input class="input" type="password" name="password" placeholder="영어,숫자,특수문자 포함 1~20자리">
-			<span class="error">비밀번호(영어, 숫자, 특수문자 포함, 1~20자)를 입력하세요</span>					
+			<input class="input" type="password" name="password" placeholder="영어,숫자,특수문자 포함 4~20자리">
+			<span class="error">비밀번호(영어, 숫자, 특수문자 포함, 4~20자)를 입력하세요</span>					
 		</p>
 		<p>
 			<label><span>(<span class="fontColorRed">*</span>)</span>비밀번호 확인</label>

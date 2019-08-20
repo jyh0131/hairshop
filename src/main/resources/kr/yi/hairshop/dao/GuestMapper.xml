@@ -58,10 +58,8 @@
 	<insert id="insertGuest" parameterType="Guest">
 		INSERT INTO
 		hairshop.guest
-		(g_id, g_password, g_l_grade, g_name, g_tel, g_email, g_birth, g_join,
-		g_point, g_memo)
-		VALUES(#{gId}, #{gPassword}, #{gLGrade.lGrade}, #{gName}, #{gTel}, #{gEmail}, #{gBirth}, #{gJoin}, 0, #{gMemo});
-
+		(g_id, g_password, g_l_grade, g_name, g_tel, g_email, g_birth, g_join, g_point, g_memo)
+		VALUES(#{gId}, #{gPassword}, #{gLGrade.lGrade}, #{gName}, #{gTel}, #{gEmail}, #{gBirth}, #{gJoin}, #{gPoint}, #{gMemo});
 	</insert>
 
 	<!-- 전체내용 업데이트 -->

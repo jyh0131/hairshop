@@ -18,14 +18,12 @@
 }
 #IPfinder #idFinder{
 	width: 70%;
-	background-color: lightgreen;
 	padding-bottom:15px;
 	padding-top:15px;
 	margin: 0 auto;
 }
 #IPfinder #passReset{
 	width: 70%;
-	background-color: #ccc;
 	padding-bottom:15px;
 	padding-top:15px;
 	margin: 0 auto;
@@ -53,18 +51,20 @@
 	margin: 20px;
 }
 #IPfinder #idFinder{
-	width: 70%;
-	background-color: lightgreen;
+	width: 85%;
 	padding-bottom:15px;
 	padding-top:15px;
 	margin: 0 auto;
 }
 #IPfinder #passReset{
-	width: 70%;
-	background-color: #ccc;
+	width: 85%;
 	padding-bottom:15px;
 	padding-top:15px;
 	margin: 0 auto;
+}
+#IPfinder input{
+	width: 60%;
+	height: 40px;
 }
 }
 </style>

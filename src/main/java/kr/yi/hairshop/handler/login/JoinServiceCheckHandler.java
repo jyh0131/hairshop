@@ -3,7 +3,6 @@ package kr.yi.hairshop.handler.login;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.swing.JOptionPane;
 
 import kr.yi.hairshop.controller.CommandHandler;
 
@@ -15,14 +14,14 @@ public class JoinServiceCheckHandler implements CommandHandler {
 			return "/WEB-INF/view/login/joinServiceCheck.jsp";
 		}else if(req.getMethod().equalsIgnoreCase("post")) {
 			
-			String service1 = req.getParameter("service1");
-			String service2 = req.getParameter("service2");
+//			String service1 = req.getParameter("service1");
+//			String service2 = req.getParameter("service2");
 			String service3 = req.getParameter("service3");
+			
 			HttpSession session = req.getSession(false);
-			
 			session.setAttribute("service3", service3);
-			res.sendRedirect(req.getContextPath()+"/login/join.do");
 			
+			res.sendRedirect(req.getContextPath()+"/login/join.do");
 			
 			return null;
 		}
