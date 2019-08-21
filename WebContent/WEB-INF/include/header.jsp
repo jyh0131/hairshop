@@ -31,9 +31,10 @@ header{
 }
 header #title{
 	text-align: center;
+	clear: both;
 }
 header #title img{
-	height: 60%;
+	 height: 90px; 
 }
 header #topmenu ul a{
 	color: black;
@@ -54,31 +55,23 @@ header #topmenu li#mgnMenu{
 	background-color: #aaa;
 }
 header #topmenuMgn{
-
 }
 header #topmenuMgn ul a{
 	color: black;
 	font-weight: bold;
 }
-
 header #topmenuMgn ul li{
 	width: 20%;
 	height: 60px;
 	line-height: 60px;
 	text-decoration: none;
 	text-align: center;
-
 	color: white;
 	background-color: #aaa;
 }
 header #topmenuMgn li:hover{
 	background-color: black; 
 }
-
-
-
-
-
 header #Idcheck{
 	min-width:15%;
 	height:30px;
@@ -97,12 +90,10 @@ header #Idcheck a{
 	text-decoration: none;
 	color: black;
 }
-
 header .mymenu{
 	width: 120px;
 	height: 40px;
 	background-color: gray;
-	
 	position: absolute;
 	display: inline;
 	top:30px;
@@ -115,7 +106,6 @@ header .mymenu a{
 	font-weight: bold;
 	line-height: 40px;
 }
-
 header div#chat textarea{
 	background-color: rgba(0,0,0,0.5);
 	color: white;
@@ -135,9 +125,27 @@ header button#chatShow{
 	background: rgba(255,255,255,0.5);
 }
 header #submenu{
-	/* display: none; */
 }
 header #submenu li{
+
+}
+header #loginMenu{
+	text-align: right;
+}
+header #timer{
+	position: relative; 
+	top: 0px;
+	right :0px;
+	width: 240px; 
+	height: 20px; 
+
+	visibility: hidden;
+	color: black; 
+	font-family: tahoma; 
+	font-size: 20px !important;
+	font-weight: bold; 
+	text-align: center;
+	display: inline;
 
 }
 }
@@ -266,7 +274,25 @@ header #warpFmobile #menuBtn img{
 header #menuBtnSlide{
 	display: none;
 }
+header #loginMenu{
+	text-align: center;
+}
+header #timer{
+	position: relative; 
+	top: 0px;
+	right :0px;
+	width: 240px; 
+	height: 20px; 
 
+	visibility: hidden;
+	color: black; 
+	font-family: tahoma; 
+	font-size: 20px !important;
+	font-weight: bold; 
+	text-align: center;
+	display: inline;
+
+}
 
 }
 
@@ -276,12 +302,64 @@ header #menuBtnSlide{
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>
 
+
+Lpad=function(str, len){ 
+	str = str + ""; 
+	while(str.length < len){ 
+		str = "0"+str; 
+	}
+	return str; 
+} 
+
+// 사용자로부터 마우스 또는 키보드 이벤트가 없을경우의 자동로그아웃까지의 대기시간, 분단위 
+var iMinute = 1;
+ 
+//자동로그아웃 처리 몇초전에 경고를 보여줄지 설정하는 부분, 초단위 
+var noticeSecond = 59; 
+
+var iSecond = iMinute * 60;
+var timerchecker = null; 
+ 
+initTimer=function(){
+	//사용자부터 마우스 또는 키보드 이벤트가 발생했을경우 자동로그아웃까지의 대기시간을 다시 초기화 
+	if(window.event){ 
+		iSecond = iMinute * 60 ;
+		clearTimeout(timerchecker); 
+		coverFilmMain.style.visibility='hidden'; // 입력방지 레이어 해제 
+		timer.style.visibility='hidden';  // 자동로그아웃 경고레이어 해제 
+	}
+	rMinute = parseInt(iSecond / 60); 
+	rSecond = iSecond % 60;
+   
+	if(iSecond > 0){//지정한 시간동안 마우스, 키보드 이벤트가 발생되지 않았을 경우 
+		if(iSecond < noticeSecond){
+			coverFilmMain.style.visibility='visible';	/// 입력방지 레이어 활성 
+			timer.style.visibility='visible';	// 자동로그아웃 경고레이어 활성 
+		} 
+        //자동로그아웃 경고레이어에 경고문+남은 시간 보여주는 부분 
+		timer.innerHTML = "<font family=tahoma style='font-size:16;'>AUTO LOG OUT</font></h1> <font color=red>" + Lpad(rMinute, 2)+":"+Lpad(rSecond, 2);
+		
+		if( ${Auth.uId}!=null ){
+			iSecond--;
+			timerchecker = setTimeout("initTimer()", 1000); // 1초 간격으로 체크 			
+			console.log(iSecond);
+		}
+	}else{
+		clearTimeout(timerchecker);
+		location.href = "${pageContext.request.contextPath}/login/logout.do"; // 로그아웃 처리 페이지
+		alert("장시간 미사용으로 자동 로그아웃 처리되었습니다.");
+	}
+}
+onload = initTimer;//현재 페이지 대기시간 
+document.onclick = initTimer; // 현재 페이지의 사용자 마우스 클릭이벤트 캡춰 
+document.onkeypress = initTimer;// 현재 페이지의 키보트 입력이벤트 캡춰 
+
+
+
 $(function () {
-	
 	$("#menuBtn").click(function () {
 		$("#menuBtnSlide").slideToggle(500);
 		$("#topmenuMgn").find("li").css("width", "100%");
-		
 	})
 
 })
@@ -332,7 +410,14 @@ $(document).ready(function(){
 
 <body>
 	<div id="container">
+	
+
+
+
 		<header>
+			<!-- 비활성화 시키는 레이어-->
+			<div id='coverFilmMain'	style='z-index: 99997; position: absolute; visibility: hidden; width: 100%; height: 100%; background-color: #000000; filter: Alpha(opacity = 20); opacity: 0.6; -moz-opacity: 0.6; text-align: center; font-size: 12pt; color: black;'></div>
+		
 			<div id="title">
 				<a href="${pageContext.request.contextPath}/view/home.do"><img src="${pageContext.request.contextPath}/images/logo.png"></a>
 			</div>
@@ -358,7 +443,9 @@ $(document).ready(function(){
 						<c:if test="${Auth.uIsMgr == false }">
 							<!-- 일반회원일경우 -->
 							<c:if test="${Auth.uIsSns == false }">
-								<span class="mymenu"><a href="${pageContext.request.contextPath}/member/passCheck.do">마이 페이지</a></span>
+								<span class="mymenu"><a href="${pageContext.request.contextPath}/member/mypage.do">마이 페이지</a></span>
+								<!-- 자동로그아웃시까지 남은 시간을 보여주는 레이어-->
+								<div id="timer"></div>
 							</c:if>
 							
 							<!-- SNS회원일경우 -->
@@ -408,7 +495,6 @@ $(document).ready(function(){
 						$("#chat").animate({right:"-230px"},1000);
 						$(this).text("채팅 보이기");
 					}else{
-						
 						$("#chat").animate({right:"0px"},1000);
 						$(this).text("채팅 숨기기");
 					}

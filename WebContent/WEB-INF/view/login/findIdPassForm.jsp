@@ -121,7 +121,6 @@ $(function() {
 
 <section id="IPfinder">
 
-	<h1>아이디/비밀번호 찾기</h1>
 
 	<div id="idFinder">
 		<p><h3>아이디 찾기</h3>(가입시 사용한 이메일을 입력하세요)</p>

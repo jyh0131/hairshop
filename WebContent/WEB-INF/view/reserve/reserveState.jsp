@@ -6,6 +6,7 @@
 
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css">
 <style>
+@media screen and (min-width:1200px){
 #reservState{
 	width:1080px;
 	height:600px;
@@ -14,6 +15,8 @@
 }
 #reservState h1{
 	margin: 15px;
+	margin-bottom: 30px; 
+	margin-top: 15px;
 }
 #reservState table{
 	border-collapse: collapse;
@@ -50,8 +53,64 @@
 	font-size: 15px;
 	color: black;
 }
+}
 
 
+@media all and (max-width:1199px){
+#reservState{
+	width:100%;
+	margin: 0 auto;
+	text-align: center;
+}
+#reservState h1{
+	margin: 10px;
+	margin-bottom: 30px; 
+	margin-top: 20px;
+}
+#reservState table{
+	border-collapse: collapse;
+	margin: 0 auto;
+	font-size: 13px;
+}
+#reservState table th, td, tr{
+	border: 1px solid #ddd;
+	height: 40px;
+}
+
+#reservState table th:nth-child(1) {
+	width: 200px;
+}
+#reservState table th:nth-child(5) {
+	width: 150px;
+}
+#reservState table th:nth-child(2) {
+	display: none;
+}
+#reservState table th:nth-child(3) {
+	display: none;
+}
+#reservState table th:nth-child(4) {
+	display: none;
+}
+
+#reservState table td:nth-child(2) {
+	display: none;
+}
+#reservState table td:nth-child(3) {
+	display: none;
+}
+#reservState table td:nth-child(4) {
+	display: none;
+}
+
+
+
+
+#reservState table th:nth-child(5) {
+	
+}
+
+}
 </style>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -106,7 +165,7 @@
 				</tr>
 			</c:forEach>
 		</table>
-		<p><a href="${pageContext.request.contextPath}/member/passCheck.do">mypage로 돌아가기</a></p>
+		<p><a href="${pageContext.request.contextPath}/member/mypage.do">mypage로 돌아가기</a></p>
 	</div>
 
 	

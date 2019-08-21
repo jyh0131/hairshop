@@ -56,7 +56,7 @@ public class GuestModifyHandler implements CommandHandler {
 			if(result == 1)
 				System.out.println("내정보 수정이 잘되었다");
 			
-			res.sendRedirect(req.getContextPath()+"/member/passCheck.do");
+			res.sendRedirect(req.getContextPath()+"/member/mypage.do");
 			return null;
 		}
 		return null;

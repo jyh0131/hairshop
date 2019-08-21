@@ -21,8 +21,8 @@ public class ReserveStateHandler implements CommandHandler {
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		
 		HttpSession session = req.getSession(false);
-		User user = (User) session.getAttribute("Auth");
 		
+		User user = (User) session.getAttribute("Auth");
 		String id = user.getuId();
 		
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -37,8 +37,7 @@ public class ReserveStateHandler implements CommandHandler {
 
 		Iterator<WorkDialog> list = lookAhead.iterator();
 		while(list.hasNext()) {
-			WorkDialog work=list.next();
-			System.out.println("11");
+			WorkDialog work = list.next();
 			System.out.println(work);
 		}
 		
