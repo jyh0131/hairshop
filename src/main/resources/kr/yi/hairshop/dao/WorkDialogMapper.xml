@@ -390,6 +390,7 @@
 		group by d_name
 		order by sum(w_priceTotal) desc limit #{lStart},#{lSize}
 	</select>
+	
 	<select id="selectDCountLimit" resultMap="designerCountJoin">
 		select count(w_priceTotal), w_d_no, d_no, d_name
 		from workdialog w

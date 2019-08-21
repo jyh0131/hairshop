@@ -332,7 +332,7 @@
 					<div><%@ include file="event/nowFastEvent.jsp" %></div>
 				</article>
 				<article>
-					<div>이슈이슈</div>
+					<div><%@ include file="review/homeReview.jsp" %></div>
 				</article>
 		</div>
 		
