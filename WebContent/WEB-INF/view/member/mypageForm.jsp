@@ -114,6 +114,9 @@
 #mypage #myMenuBtn a {
 	text-decoration: none;
 }
+#mypage table{
+	display: none;
+}
 }
 </style>
     

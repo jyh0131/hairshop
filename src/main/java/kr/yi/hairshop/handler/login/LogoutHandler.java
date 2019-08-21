@@ -11,7 +11,7 @@ public class LogoutHandler implements CommandHandler {
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
 
-		HttpSession session = req.getSession(true);
+		HttpSession session = req.getSession(false);
 		session.setAttribute("Auth", null);
 		
 		return "/WEB-INF/view/login/loginForm.jsp";

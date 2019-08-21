@@ -16,7 +16,7 @@ public class MypageHandler implements CommandHandler {
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		if(req.getMethod().equalsIgnoreCase("get")) {
 			
-			HttpSession session = req.getSession();
+			HttpSession session = req.getSession(false);
 			User user = (User) session.getAttribute("Auth");
 			
 			String id = user.getuId();
@@ -24,15 +24,12 @@ public class MypageHandler implements CommandHandler {
 			GuestMapper dao = new GuestMapperImpl();
 			Guest guest = dao.selectById(id);
 
-			
 			GuestMapper gDao = new GuestMapperImpl();
 			guest = gDao.selectById(id);
 			//System.out.println(guest.getgLGrade().getlGrade());
 			req.setAttribute("guest", guest);
 
 			return "/WEB-INF/view/member/mypageForm.jsp";
-
-			
 			
 		}else if(req.getMethod().equalsIgnoreCase("post")) {
 			

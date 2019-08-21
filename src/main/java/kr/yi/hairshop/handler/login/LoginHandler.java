@@ -25,7 +25,7 @@ public class LoginHandler implements CommandHandler {
 			String id = req.getParameter("id");
 			String password = req.getParameter("password");
 			
-			HttpSession session = req.getSession();
+			HttpSession session = req.getSession(false);
 
 			if(isMgn == 1) {
 				GuestMapper dao = new GuestMapperImpl();
@@ -43,7 +43,7 @@ public class LoginHandler implements CommandHandler {
 				//로그인 된 사람의 정가 담긴 user class 생성 후 sesseion에 저장
 				User user = new User(guest.getgNo(), guest.getgName(), guest.getgId(), false, false); //false 손님, false 일반회원
 				session.setAttribute("Auth", user);
-				session.setMaxInactiveInterval(10);
+				//session.setMaxInactiveInterval(10);
 
 			
 			}else if(isMgn==0) {
