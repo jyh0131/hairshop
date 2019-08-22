@@ -18,7 +18,7 @@ public class DesignerDelHandler implements CommandHandler {
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		
 		String id = req.getParameter("id");
-		
+		System.out.println("삭제할 아이디는 : "+id);
 		DesignerMapper dao = new DesignerMapperImpl();
 		Designer des = dao.selelctDesignerById(id);
 		int result = dao.deleteDesigner(des.getdNo());

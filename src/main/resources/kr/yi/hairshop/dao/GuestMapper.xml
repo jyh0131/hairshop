@@ -2,8 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.yi.hairshop.dao.GuestMapper">
 
-	<resultMap type="Guest" id="extendsGuest"
-		extends="basicGuest">
+	<resultMap type="Guest" id="extendsGuest" extends="basicGuest">
 		<association property="gLGrade"	resultMap="kr.yi.hairshop.dao.LevelMapper.basicLevel" />
 		<collection property="workDialogList" resultMap="kr.yi.hairshop.dao.WorkDialogMapper.basicWorkDialog" />
 	</resultMap>
@@ -15,6 +14,9 @@
 		<result property="gName" column="g_name" />
 		<result property="gTel" column="g_tel" />
 		<result property="gEmail" column="g_email" />
+		<result property="gPostcode" column="g_addr"/>
+		<result property="gRoadAddr" column="g_addr2"/>
+		<result property="gDetailAddr" column="g_addr3"/>
 		<result property="gBirth" column="g_birth" />
 		<result property="gJoin" column="g_join" />
 		<result property="gPoint" column="g_point" />
@@ -58,10 +60,8 @@
 	<insert id="insertGuest" parameterType="Guest">
 		INSERT INTO
 		hairshop.guest
-		(g_id, g_password, g_l_grade, g_name, g_tel, g_email, g_birth, g_join,
-		g_point, g_memo)
-		VALUES(#{gId}, #{gPassword}, #{gLGrade.lGrade}, #{gName}, #{gTel}, #{gEmail}, #{gBirth}, #{gJoin}, 0, #{gMemo});
-
+		(g_id, g_password, g_l_grade, g_name, g_tel, g_email, g_birth, g_join, g_point, g_memo, g_addr, g_addr2, g_addr3)
+		VALUES(#{gId}, #{gPassword}, #{gLGrade.lGrade}, #{gName}, #{gTel}, #{gEmail}, #{gBirth}, #{gJoin}, #{gPoint}, #{gMemo}, #{gPostcode}, #{gRoadAddr}, #{gDetailAddr});
 	</insert>
 
 	<!-- 전체내용 업데이트 -->
@@ -69,7 +69,8 @@
 		UPDATE hairshop.guest
 		SET g_id=#{gId}, g_password=#{gPassword}, g_l_grade=#{gLGrade.lGrade}, g_name=#{gName},
 		g_tel=#{gTel}, g_email=#{gEmail}, g_birth=#{gBirth}, g_join=#{gJoin},
-		g_point=#{gPoint}, g_memo=#{gMemo}, g_secession=#{gSecession}
+		g_point=#{gPoint}, g_memo=#{gMemo}, g_secession=#{gSecession},
+		g_addr=#{gPostcode}, g_addr2=#{gRoadAddr}, g_addr3=#{gDetailAddr}
 		where g_no=#{gNo};
 	</update>
 	
@@ -78,14 +79,16 @@
 		UPDATE hairshop.guest
 		SET g_l_grade=#{gLGrade.lGrade}, g_name=#{gName},
 		g_tel=#{gTel}, g_email=#{gEmail}, g_birth=#{gBirth}, g_join=#{gJoin},
-		g_point=#{gPoint}, g_memo=#{gMemo}
+		g_point=#{gPoint}, g_memo=#{gMemo},
+		g_addr=#{gPostcode}, g_addr2=#{gRoadAddr}, g_addr3=#{gDetailAddr}
 		where g_no=#{gNo};
 	</update>
 	
 	<!-- mypage에서 내용 수정 tel, email, birth-->
 	<update id="updateGuest3">
 		UPDATE hairshop.guest
-		SET g_tel=#{gTel}, g_email=#{gEmail}, g_birth=#{gBirth}
+		SET g_tel=#{gTel}, g_email=#{gEmail}, g_birth=#{gBirth}, 
+		g_addr=#{gPostcode}, g_addr2=#{gRoadAddr}, g_addr3=#{gDetailAddr}
 		where g_no=#{gNo};
 	</update>
 
@@ -110,13 +113,13 @@
 	
 	<!-- 웹 프로젝트 -->
 	<select id="selectById" resultType="Guest" resultMap="extendsGuest">
-		select g_no, g_id, g_password, g_l_grade as l_grade , g_name, g_tel, g_email, g_birth, g_join, g_point, g_memo, g_secession 
+		select g_no, g_id, g_password, g_l_grade as l_grade , g_name, g_tel, g_email, g_birth, g_join, g_point, g_memo, g_secession, g_addr, g_addr2, g_addr3
 		from hairshop.guest
 		where g_id = #{id}
 	</select>
 
 	<select id="selectGuestByEmail" resultType="Guest" resultMap="extendsGuest">
-		select g_no, g_id, g_password, g_l_grade as l_grade , g_name, g_tel, g_email, g_birth, g_join, g_point, g_memo, g_secession 
+		select g_no, g_id, g_password, g_l_grade as l_grade , g_name, g_tel, g_email, g_birth, g_join, g_point, g_memo, g_secession, g_addr, g_addr2, g_addr3
 		from hairshop.guest
 		where g_email = #{email}
 	</select>

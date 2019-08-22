@@ -48,6 +48,9 @@ public class GuestToDesignerModifyHandler implements CommandHandler {
 			designer.setdPassword(guest.getgPassword());
 			designer.setdTel(guest.getgTel());
 			designer.setdBirth(guest.getgBirth());
+			designer.setdAddr(guest.getgPostcode());
+			designer.setdAddr2(guest.getgRoadAddr());
+			designer.setdAddr3(guest.getgDetailAddr());
 			designer.setdJoin(new Date());
 			designer.setdGrade("인턴");
 			designer.setdMemo("승급디자이너");

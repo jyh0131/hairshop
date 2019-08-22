@@ -93,7 +93,7 @@ select @w_reservTime,@w_workTime;
 
 /* 1.시작~끝 시간 설정 */
 /* 7/1~8/31셋팅 */
-set @start=UNIX_TIMESTAMP('2018-08-01 00:00:00');
+set @start=UNIX_TIMESTAMP('2016-08-01 00:00:00');
 set @end=UNIX_TIMESTAMP('2019-08-31 23:59:59');
 /* 당일데이터만 삽입 */
 set @start=UNIX_TIMESTAMP(concat(left(curdate(),10),' 08:00:00'));
@@ -145,7 +145,7 @@ select * from workdialog;
 /* 여기까지 드래그 */
 
 /* 특정 날자 사이에 랜덤값  */
-set @start=UNIX_TIMESTAMP('2019-07-01 00:00:00');
+set @start=UNIX_TIMESTAMP('2016-07-01 00:00:00');
 set @end=UNIX_TIMESTAMP('2019-08-31 23:59:59');
 
 select @start,@end;
@@ -317,3 +317,7 @@ select *
 		where now() <= e.e_startday 
 		order by now()-e.e_startday desc
 		limit 10;
+	
+	
+	
+	

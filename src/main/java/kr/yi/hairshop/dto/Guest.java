@@ -12,6 +12,11 @@ public class Guest {
 	private String gName;
 	private String gTel;
 	private String gEmail;
+	
+	private String gPostcode; // 주소 추가 19.08.20
+	private String gRoadAddr;
+	private String gDetailAddr;
+	
 	private Date gBirth;
 	private Date gJoin;
 	private int gPoint;
@@ -33,7 +38,8 @@ public class Guest {
 	}
 
 	public Guest(int gNo, String gId, String gPassword, Level gLGrade, String gName, String gTel, String gEmail,
-			Date gBirth, Date gJoin, int gPoint, String gMemo, boolean gSecession, List<WorkDialog> workDialogList) {
+			String gPostcode, String gRoadAddr, String gDetailAddr, Date gBirth, Date gJoin, int gPoint, String gMemo,
+			boolean gSecession, List<WorkDialog> workDialogList) {
 		super();
 		this.gNo = gNo;
 		this.gId = gId;
@@ -42,12 +48,39 @@ public class Guest {
 		this.gName = gName;
 		this.gTel = gTel;
 		this.gEmail = gEmail;
+		this.gPostcode = gPostcode;
+		this.gRoadAddr = gRoadAddr;
+		this.gDetailAddr = gDetailAddr;
 		this.gBirth = gBirth;
 		this.gJoin = gJoin;
 		this.gPoint = gPoint;
 		this.gMemo = gMemo;
 		this.gSecession = gSecession;
 		this.workDialogList = workDialogList;
+	}
+
+	public String getgPostcode() {
+		return gPostcode;
+	}
+
+	public void setgPostcode(String gPostcode) {
+		this.gPostcode = gPostcode;
+	}
+
+	public String getgRoadAddr() {
+		return gRoadAddr;
+	}
+
+	public void setgRoadAddr(String gRoadAddr) {
+		this.gRoadAddr = gRoadAddr;
+	}
+
+	public String getgDetailAddr() {
+		return gDetailAddr;
+	}
+
+	public void setgDetailAddr(String gDetailAddr) {
+		this.gDetailAddr = gDetailAddr;
 	}
 
 	public int getgNo() {

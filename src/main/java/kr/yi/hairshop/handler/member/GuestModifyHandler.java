@@ -40,6 +40,13 @@ public class GuestModifyHandler implements CommandHandler {
 			String birth = req.getParameter("birth");
 			SimpleDateFormat sDate = new SimpleDateFormat("yyyy-MM-dd");			
 			Date birthDate = sDate.parse(birth);
+			String postcode = req.getParameter("postcode");
+			String roadAddr = req.getParameter("roadAddr");
+			String detailAddr = req.getParameter("detailAddr");
+			
+			guest.setgPostcode(postcode);
+			guest.setgRoadAddr(roadAddr);
+			guest.setgDetailAddr(detailAddr);
 			
 			guest.setgTel(tel);
 			guest.setgEmail(email);
@@ -49,7 +56,7 @@ public class GuestModifyHandler implements CommandHandler {
 			if(result == 1)
 				System.out.println("내정보 수정이 잘되었다");
 			
-			res.sendRedirect(req.getContextPath()+"/member/passCheck.do");
+			res.sendRedirect(req.getContextPath()+"/member/mypage.do");
 			return null;
 		}
 		return null;

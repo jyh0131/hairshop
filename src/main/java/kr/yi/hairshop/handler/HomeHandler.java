@@ -23,9 +23,11 @@ public class HomeHandler implements CommandHandler {
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		ReviewMapper board = new ReviewMapperImpl();
 		List<Review> bList=board.selectBoardManager();
-		
 		req.setAttribute("bList", bList);
 		
+		
+		List<Review> rList = board.selectReview();
+		req.setAttribute("rList", rList);
 		
 		EventMapper eDao=new EventMapperImpl();
 		List<Event> eList=eDao.selectNowFastDay();
