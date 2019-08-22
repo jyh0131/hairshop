@@ -67,7 +67,6 @@
 	#section{
 		/* height: 2954px; */
 		height: 1874px;
-		
 	}
 	
 	.lead {
@@ -317,6 +316,12 @@
 					
 				</div>
 				
+				<!-- <div class="mov_box">
+				YouTube position
+					<div class="yt_wrap">
+						<div id="player1" class="yt_box"></div>
+					</div>
+				</div> -->
 				
 			</div>
 			
