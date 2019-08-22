@@ -431,7 +431,12 @@ $(document).ready(function(){
 				<div id="menuBtnSlide">
 					<div id="Idcheck">
 						<c:if test="${Auth != null }">
-							<span>관리자 : ${Auth.uName}님</span>
+							<span>
+							<c:if test="${Auth.uIsMgr == true}">
+								관리자 : 
+							</c:if>
+								${Auth.uName}님
+							</span>
 							<span><a href="${pageContext.request.contextPath}/login/logout.do">LogOut</a></span>
 						</c:if>
 						<c:if test="${Auth == null }">
