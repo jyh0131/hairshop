@@ -58,7 +58,7 @@
 		padding:5px 10px;
 	}
 	
-		@media all and (max-width:1199px){
+	@media all and (max-width:1199px){
 	section{
 		margin-top: 30px;
 		width: 100%;
@@ -67,13 +67,30 @@
 	#example{
 		width: 360px;
 		text-align: center;
-		font-size: 10px;
+		font-size: 14px;
 	}
 	#example td:nth-child(2){
 		text-align: left;
+		width: 60%;
+		padding:0;
+	}
+	#example th:nth-child(1){
+		padding:0;
+	}
+	#example th:nth-child(4){
+		display: none;
+	}
+	#example td:nth-child(3){
+		padding:0;
+	}
+	#example th:nth-child(4){
+		display: none;
+	}
+	#example td:nth-child(4){
+		display: none;
 	}
 	#example th{
-		font-size: 13px;
+		font-size: 15px;
 		color:#353535;
 	}
 	#example_info{
@@ -83,21 +100,24 @@
 		width: 100%;
 		height: 20px;
 		position: relative;
-		/* background-color: yellow; */
+		text-align: center;
+		font-size: 18px;
+		padding-bottom: 20px;
+		font-weight: bold;
 	}
 	#example_filter{  /* 검색창 */
 		position: absolute;
-		bottom:-60px;
-		right:40px;
+		bottom:-80px;
+		right:60px;
 	}
 	#example_paginate{ /* 페이지표시 */
 		position: absolute;
-		bottom:-40px;
-		right:30px;
+		bottom:-50px;
+		right:52px;
 	}
 	#write{ /* 글쓰기 */
 		position: absolute;
-		top:100px;
+		top:120px;
 		right:20px;
 	}
 	#write a{
