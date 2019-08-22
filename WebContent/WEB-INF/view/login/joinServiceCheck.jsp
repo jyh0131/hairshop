@@ -282,7 +282,7 @@ IP주소, 쿠키, 서비스 이용기록, 방문기록 등
 		</textarea>
 		<br>
 		<input type="checkbox" name="service3" value="service3"> 마케팅/홍보를 위하여 귀하의 개인정보를 이용하는데 동의합니다.(선택)<br>
-		<span id="point">이용동의시 5000P 증정</span>, <span id="point">웹 회원가입시 5000P 증정</span>
+		<span id="point">이용동의시 10000P 증정</span><!-- , <span id="point">웹 회원가입시 5000P 증정</span> -->
 		</p>
 		
 		<p id="joinServiceBtnP">
@@ -290,9 +290,9 @@ IP주소, 쿠키, 서비스 이용기록, 방문기록 등
 		</p>
 		
 		<!-- 네이버아이디로로그인 버튼 노출 영역 -->
-		<div id="naverP">
+<!-- 		<div id="naverP">
 			<div id="naverIdLogin"></div>
-		</div>
+		</div> -->
 		<!-- //네이버아이디로로그인 버튼 노출 영역 -->
 	</form>
 
