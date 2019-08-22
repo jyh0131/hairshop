@@ -237,7 +237,7 @@
 		</p>
 
 		<!-- 네이버아이디로로그인 버튼 노출 영역 -->
-		<div id="naverIdLogin"></div>
+<!-- 		<div id="naverIdLogin"></div> -->
 		<!-- //네이버아이디로로그인 버튼 노출 영역 -->
 
 	</form>
