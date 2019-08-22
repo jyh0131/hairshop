@@ -46,8 +46,11 @@
 		g_tel, g_email,
 		g_birth, g_join, g_point, g_memo
 		FROM guest
-		where g_name like CONCAT('%',#{gName},'%')
+		where g_name like CONCAT('%',#{gName},'%') and g_secession = false 
 	</select>
+	
+	
+	
 	<select id="selectGuestByGNameGTel" resultMap="extendsGuest">
 		SELECT g_no, g_id, g_l_grade as l_grade, g_name,
 		g_tel, g_email,
