@@ -16,7 +16,7 @@
 	}
 	@media screen and (min-width:1200px){
 	section{
-		margin-top: 70px;
+		margin-top: 50px;
 		width: 100%;
 		height: 600px;
 	}
@@ -38,7 +38,10 @@
 		width: 100%;
 		height: 20px;
 		position: relative;
-		/* background-color: yellow; */
+		text-align: center;
+		font-size: 18px;
+		padding-bottom: 20px;
+		font-weight: bold;
 	}
 	#example_filter{  /* 검색창 */
 		position: absolute;
@@ -54,7 +57,6 @@
 		position: absolute;
 		top:235px;
 		right:590px;
-		
 	}
 	#write a{
 		text-decoration: none;
@@ -81,13 +83,30 @@
 	#example{
 		width: 360px;
 		text-align: center;
-		font-size: 10px;
+		font-size: 14px;
 	}
 	#example td:nth-child(2){
 		text-align: left;
+		width: 60%;
+		padding:0;
+	}
+	#example th:nth-child(1){
+		padding:0;
+	}
+	#example th:nth-child(4){
+		display: none;
+	}
+	#example td:nth-child(3){
+		padding:0;
+	}
+	#example th:nth-child(4){
+		display: none;
+	}
+	#example td:nth-child(4){
+		display: none;
 	}
 	#example th{
-		font-size: 13px;
+		font-size: 15px;
 		color:#353535;
 	}
 	#example_info{
@@ -97,21 +116,24 @@
 		width: 100%;
 		height: 20px;
 		position: relative;
-		/* background-color: yellow; */
+		text-align: center;
+		font-size: 18px;
+		padding-bottom: 20px;
+		font-weight: bold;
 	}
 	#example_filter{  /* 검색창 */
 		position: absolute;
-		bottom:-60px;
-		right:40px;
+		bottom:-80px;
+		right:60px;
 	}
 	#example_paginate{ /* 페이지표시 */
 		position: absolute;
-		bottom:-40px;
-		right:30px;
+		bottom:-50px;
+		right:52px;
 	}
 	#write{ /* 글쓰기 */
 		position: absolute;
-		top:100px;
+		top:120px;
 		right:20px;
 	}
 	#write a{
@@ -133,7 +155,9 @@
 	
 </style>
 <section>
-<div id="yellow"></div>
+<div id="yellow">
+	후기 게시판
+</div>
 	<table id="example" class="table table-bordered">
   	<thead>
     	<tr>

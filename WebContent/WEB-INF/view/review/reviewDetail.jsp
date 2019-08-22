@@ -15,6 +15,15 @@
 		margin: 0 auto;
 		padding-top: 40px;
 	}
+	#yellow{
+		width: 100%;
+		height: 20px;
+		position: relative;
+		text-align: center;
+		font-size: 18px;
+		padding-bottom: 20px;
+		font-weight: bold;
+	}
 	#first{
 		width: 100%;
 		height: 50px;
@@ -176,6 +185,15 @@
 		width: 90%;
 		margin: 0 auto;
 		padding-top: 40px;
+	}
+	#yellow{
+		width: 100%;
+		height: 20px;
+		position: relative;
+		text-align: center;
+		font-size: 18px;
+		padding-bottom: 20px;
+		font-weight: bold;
 	}
 	#first{
 		width: 100%;
@@ -483,6 +501,9 @@
 	})
 </script>
 <section>
+<div id="yellow">
+	후기 게시판
+</div>
 <%-- ${Auth }<br>
 ${review }<br>
 ${list }--%>
