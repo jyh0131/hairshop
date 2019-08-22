@@ -315,7 +315,7 @@ Lpad=function(str, len){
 var iMinute = 1;
  
 //자동로그아웃 처리 몇초전에 경고를 보여줄지 설정하는 부분, 초단위 
-var noticeSecond = 59; 
+var noticeSecond = 10;
 
 var iSecond = iMinute * 60;
 var timerchecker = null; 
@@ -339,11 +339,12 @@ initTimer=function(){
         //자동로그아웃 경고레이어에 경고문+남은 시간 보여주는 부분 
 		timer.innerHTML = "<font family=tahoma style='font-size:16;'>AUTO LOG OUT</font></h1> <font color=red>" + Lpad(rMinute, 2)+":"+Lpad(rSecond, 2);
 		
-		if( ${Auth.uId}!=null ){
+		<c:if test="${Auth != null }">
 			iSecond--;
 			timerchecker = setTimeout("initTimer()", 1000); // 1초 간격으로 체크 			
-			console.log(iSecond);
-		}
+			console.log(iSecond);		
+		</c:if>
+		
 	}else{
 		clearTimeout(timerchecker);
 		location.href = "${pageContext.request.contextPath}/login/logout.do"; // 로그아웃 처리 페이지
