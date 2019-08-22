@@ -326,7 +326,7 @@ initTimer=function(){
 		iSecond = iMinute * 60 ;
 		clearTimeout(timerchecker); 
 		coverFilmMain.style.visibility='hidden'; // 입력방지 레이어 해제 
-		timer.style.visibility='hidden';  // 자동로그아웃 경고레이어 해제 
+		/* timer.style.visibility='hidden';  // 자동로그아웃 경고레이어 해제  */
 	}
 	rMinute = parseInt(iSecond / 60); 
 	rSecond = iSecond % 60;
@@ -337,7 +337,7 @@ initTimer=function(){
 			timer.style.visibility='visible';	// 자동로그아웃 경고레이어 활성 
 		} 
         //자동로그아웃 경고레이어에 경고문+남은 시간 보여주는 부분 
-		timer.innerHTML = "<font family=tahoma style='font-size:16;'>AUTO LOG OUT</font></h1> <font color=red>" + Lpad(rMinute, 2)+":"+Lpad(rSecond, 2);
+		/* timer.innerHTML = "<font family=tahoma style='font-size:16;'>AUTO LOG OUT</font></h1> <font color=red>" + Lpad(rMinute, 2)+":"+Lpad(rSecond, 2); */
 		
 		<c:if test="${Auth != null }">
 			iSecond--;
@@ -431,7 +431,7 @@ $(document).ready(function(){
 				<div id="menuBtnSlide">
 					<div id="Idcheck">
 						<c:if test="${Auth != null }">
-							<span>${Auth.uName}님</span>
+							<span>관리자 : ${Auth.uName}님</span>
 							<span><a href="${pageContext.request.contextPath}/login/logout.do">LogOut</a></span>
 						</c:if>
 						<c:if test="${Auth == null }">

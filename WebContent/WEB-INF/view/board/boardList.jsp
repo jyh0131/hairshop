@@ -7,7 +7,9 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
 <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>
 <style>
-	
+	#title{
+		text-align: center;
+	}
 	a{
 		text-decoration: none;
 		color: black;
@@ -117,6 +119,7 @@
 	
 </style>
 <section>
+<h1 id="title">공지사항</h1>
 	<table id="example" class="table table-bordered">
   	<thead>
     	<tr>

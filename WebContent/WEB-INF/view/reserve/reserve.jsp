@@ -309,6 +309,11 @@ section article#border div#guest div#reserve span{
 	
 	
 	
+	
+	
+	
+	
+	
 	section div#form div#menuIcon div{
 		width:20% !important;
 		margin-right: 10px !important;
@@ -319,13 +324,31 @@ section article#border div#guest div#reserve span{
 	section div#form div#menuIcon img {
 	    margin: 0 auto;
 	}
+	section div#reservedList table td:nth-child(3){
+		display: none;
+	}
+	section div#reservedList table td:nth-child(5){
+		display: none;
+	}
+	section div#reservedList table th:nth-child(3){
+		display: none;
+	}
+	section div#reservedList table th:nth-child(5){
+		display: none;
+	}
 	section div#form div#reserveForm{
 		clear:both;
 		float:right;
 		width:98% !important;
 		padding:2%;
 	}
-	
+	div#form h3{
+		border: 1px solid black;
+		border-radius: 5px;
+		width:90px;
+		background: #D5D5D5;
+		padding:5px;
+	}
 	
 	section article#border div#guest {
 		float:left;
@@ -698,7 +721,7 @@ section article#border div#guest div#reserve span{
 			
 			if(check==true){
 				$.ajax({  
-					url : "${pageContext.request.contextPath }/management/deleteWork.do",
+					url : "${pageContext.request.contextPath }/reserve/deleteWork.do",
 					type : "get",
 					data : {
 								"wNo":wNo,

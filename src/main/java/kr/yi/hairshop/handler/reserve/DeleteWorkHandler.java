@@ -1,4 +1,4 @@
-package kr.yi.hairshop.handler.management;
+package kr.yi.hairshop.handler.reserve;
 
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
@@ -24,7 +24,6 @@ public class DeleteWorkHandler implements CommandHandler{
 		int wNo = Integer.parseInt(req.getParameter("wNo"));
 		
 		
-		
 		WorkDialogMapper wDao = new WorkDialogMapperImpl();
 		
 		int result1=wDao.deleteChoice(wNo);
@@ -42,7 +41,7 @@ public class DeleteWorkHandler implements CommandHandler{
 		out.print(data);
 		out.flush();
 		
-		return "/WEB-INF/view/management/gradeChangeForm.jsp";
+		return null;
 	}
 
 }

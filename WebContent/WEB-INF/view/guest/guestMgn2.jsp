@@ -9,7 +9,7 @@
 <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>
 <style>
 	#sectable{
-		width:1250px;
+		width:1300px;
 		margin:0 auto;
 		margin-top:20px;
 	}
@@ -83,7 +83,7 @@ div#updatePageBlack select{
 }
 
 #sectable #example th:nth-child(1) {
-	width: 33px;
+	width: 15px;
 }
 
 #sectable #example th:nth-child(2) {
@@ -91,27 +91,33 @@ div#updatePageBlack select{
 }
 
 #sectable #example th:nth-child(3) {
-	width: 33px;
+	width: 35px;
 }
 #sectable #example th:nth-child(4) {
-	width: 100px;
+	width: 30px;
 }
 #sectable #example th:nth-child(5) {
 	width: 100px;
-} 
-#sectable #example th:nth-child(6) {
-	width: 130px;
 }
+#sectable #example th:nth-child(6) {
+	width: 60px;
+} 
+
 #sectable #example th:nth-child(7) {
 	width: 130px;
-} 
+}
 #sectable #example th:nth-child(8) {
-	width: 48px;
+	width: 130px;
 } 
 #sectable #example th:nth-child(9) {
-	width: 120px;
+	width: 48px;
 } 
 #sectable #example th:nth-child(10) {
+	width: 120px;
+} 
+
+
+#sectable #example th:nth-child(11) {
 	width: 30px;
 }  
 </style>
@@ -125,6 +131,7 @@ div#updatePageBlack select{
     		<th>번호</th>
 			<th>등급</th>
 			<th>이름</th>
+			<th>아이디</th>
 			<th>전화번호</th>
 			<th>이메일</th>
 			<th>생일</th>
@@ -151,6 +158,9 @@ div#updatePageBlack select{
 				
 				<td>
 					${i.gName }
+				</td>
+				<td>
+					${i.gId }
 				</td>
 				
 				<td>

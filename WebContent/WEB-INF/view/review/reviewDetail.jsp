@@ -502,7 +502,7 @@ ${list }--%>
 			<c:if test="${Auth != null}">
 				<a href="${pageContext.request.contextPath}/review/insert.do">글쓰기</a>
 			</c:if>
-			<c:if test="${Auth.uId == review.rWriter}"> <!-- 비회원일시에 수정삭제 할수 없음 -->
+			<c:if test="${Auth.uId == review.rWriter||Auth.uIsMgr==true}"> <!-- 비회원일시에 수정삭제 할수 없음 -->
 				<div id="md">
 					<a href="${pageContext.request.contextPath}/review/modify.do?no=${review.rNo}">수정</a>
 					<a href="#" id="delete">삭제</a>

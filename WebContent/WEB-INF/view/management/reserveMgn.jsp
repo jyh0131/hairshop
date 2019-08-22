@@ -555,7 +555,7 @@ div#updatePageBlack #updateCommit{
 				if(check==true){
 					$("table#reserved td").remove();
 					$.ajax({  
-						url : "${pageContext.request.contextPath }/management/deleteWork.do",
+						url : "${pageContext.request.contextPath }/reserve/deleteWork.do",
 						type : "get",
 						data : {
 									"wNo":wNo

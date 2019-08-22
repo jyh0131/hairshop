@@ -110,7 +110,7 @@
 	<h2>후기</h2>
 		<c:if test="${Auth.uIsMgr==true }">
 		<div id="write">
-			<a href="${pageContext.request.contextPath}/board/managerInsert.do">[글쓰기]</a>
+			<a href="${pageContext.request.contextPath}/review/insert.do">[글쓰기]</a>
 		</div>
 	</c:if>
 	
@@ -124,7 +124,7 @@
 			<c:forEach var="review" items="${rList }"  step="1" varStatus="i">
 				<tr>
 					<td>
-					<a href="${pageContext.request.contextPath}/board/managerDetail.do?no=${review.rNo}">${review.rTitle }</a>
+					<a href="${pageContext.request.contextPath}/review/detail.do?no=${review.rNo}">${review.rTitle }</a>
 					</td>
 					<td><fmt:formatDate var="resultRegDt" value="${review.rWritetime}" pattern="yyyy.MM.dd" />${resultRegDt}</td>
 				</tr>
