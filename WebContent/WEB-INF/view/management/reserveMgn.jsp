@@ -763,29 +763,7 @@ div#updatePageBlack #updateCommit{
 	
 		<h1 id="title">예약관리</h1>
 		
-	<article id="">
-	
-	
-		<h1>회원 예약 검색</h1>
-		<input type="text" id="searchText"><button id="search">검색</button>
-		
-		<table id="searchTable">
-		<tr>
-			<th>예약일시</th>
-			<th>디자이너</th>
-			<th>손님명</th>
-			<th>손님전화번호</th>
-			<th>손님등급</th>
-			<th>작업명</th>
-			<th>이벤트</th>
-			<th>가격</th>
-			<th>완료일시</th>
-			<th></th>
-		</tr>
-		
-		
-		</table>
-	</article>
+
 	<article>
 		<h1>디자이너 선택</h1>
 		<ul id="designer">
@@ -822,6 +800,29 @@ div#updatePageBlack #updateCommit{
 		<tbody>
 		
 		</tbody>
+		</table>
+	</article>
+		<article>
+	
+	
+		<h1>회원 예약 검색</h1>
+		<input type="text" id="searchText"><button id="search">검색</button>
+		
+		<table id="searchTable">
+		<tr>
+			<th>예약일시</th>
+			<th>디자이너</th>
+			<th>손님명</th>
+			<th>손님전화번호</th>
+			<th>손님등급</th>
+			<th>작업명</th>
+			<th>이벤트</th>
+			<th>가격</th>
+			<th>완료일시</th>
+			<th></th>
+		</tr>
+		
+		
 		</table>
 	</article>
 	<script>
