@@ -144,7 +144,7 @@ $(function () {
 			return false;
 		}
 
-		var pwcheck = /^[a-zA-Z0-9!@#]{1,20}$/i;
+		var pwcheck = /^[a-zA-Z0-9!@#]{4,20}$/i;
 		var pw = $("input[name='newPassword']").val();			
 		if( pwcheck.test(pw) == false ){
 			$("input[name='newPassword']").next().next().css("display", "inline");
@@ -181,7 +181,7 @@ $(function () {
 	
 	 		<p>
 				<label>새로운 비밀번호</label>
-				<input class="input" type="password" name="newPassword" placeholder="영어,숫자,특수문자 포함 1~20자리"><br>
+				<input class="input" type="password" name="newPassword" placeholder="영어,숫자,특수문자 포함 4~20자리"><br>
 				<span class="error">비밀번호(영어, 숫자, 특수문자 포함, 1~20자)를 입력하세요</span>
 			</p>
 			
