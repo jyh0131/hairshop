@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
+
+
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 <meta charset="utf-8">
@@ -64,7 +65,8 @@
 	}
 	
 	#section{
-		height: 2954px;
+		/* height: 2954px; */
+		height: 1874px;
 	}
 	
 	.lead {
@@ -254,10 +256,10 @@
 	
 </style>
 
-<!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha384-vk5WoKIaW/vJyUAd9n/wmopsmNhiy+L2Z+SBxGYnUkunIxVxAv/UtMOhba/xskxh"
         crossorigin="anonymous">
-</script> -->
+</script>
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -266,6 +268,15 @@
 
 
 <script>
+	// YouTube ID
+	var ytPlayList = [ {
+		id : "player1",
+		VideoId : "OYttd9GgVoM"     /* OYttd9GgVoM *//* bFiaiFBuy2I */
+	} ];
+	
+	
+
+	
 	//slider
 	$(function(){
 		  $('.bxslider').bxSlider({
@@ -305,12 +316,12 @@
 					
 				</div>
 				
-				<div class="mov_box">
-				<!-- YouTube position -->
-				<div class="yt_wrap">
-					<div id="player1" class="yt_box"></div>
-				</div>
-				</div>
+				<!-- <div class="mov_box">
+				YouTube position
+					<div class="yt_wrap">
+						<div id="player1" class="yt_box"></div>
+					</div>
+				</div> -->
 				
 			</div>
 			
@@ -332,7 +343,7 @@
 					<div><%@ include file="event/nowFastEvent.jsp" %></div>
 				</article>
 				<article>
-					<div>이슈이슈</div>
+					<div><%@ include file="review/homeReview.jsp" %></div>
 				</article>
 		</div>
 		
@@ -355,11 +366,6 @@
 	<script src="${pageContext.request.contextPath}/js/ytmultiple.js"></script>
 	<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
 	<script>
-		// YouTube ID
-		var ytPlayList = [ {
-			id : "player1",
-			VideoId : "OYttd9GgVoM"     /* OYttd9GgVoM *//* bFiaiFBuy2I */
-		} ];
 
 	</script>
 	
@@ -408,9 +414,6 @@
 </body>
 
 <%@ include file="../include/footer.jsp"%>
-
-
-
 
 
 
