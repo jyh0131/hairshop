@@ -69,6 +69,10 @@
 	height: 60px;
 	line-height: 60px;
 }
+
+#joinForm p pId{
+	height: 120px;
+}
 #joinForm p input{
 	height: 30px;
 }
@@ -250,7 +254,7 @@
 			<span><span>(<span class="fontColorRed">*</span>)</span>는 필수 입니다.</span>
 		</p>
 
-		<p>
+		<p id="pId">		
 			<label><span>(<span class="fontColorRed">*</span>)</span>아이디</label>
 			<input class="input" type="text" name="id" id="id" value="${pram.id }" placeholder="영어,숫자 포함 4~15 자리">
 			<input type="hidden" name="realid" id="realid">
