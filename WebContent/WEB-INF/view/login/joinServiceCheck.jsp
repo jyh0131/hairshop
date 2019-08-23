@@ -64,13 +64,17 @@
 
 @media all and (max-width:1199px){
 #joinService{
-	width:100%;
+	width:95%;
 	margin: 0 auto;
 	margin-top: 30px;
 	margin-bottom: 30px;
 }
 #joinService h3{
 	margin-top: 20px;
+}
+
+#joinService textarea{
+	width: 100%;
 }
 #joinService form .serviceCheck{
 	width: 20px;
