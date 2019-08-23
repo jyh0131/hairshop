@@ -364,7 +364,7 @@ div#updatePageBlack #updateCommit{
 							$("table#reserved tbody").append(str);
 						}
 					}else{
-						$("table#reserved").append("<tr><td colspan='9'>예약이 하나도없네요ㅋㅋㅋㅋ</td></tr>");
+						$("table#reserved").append("<tr><td colspan='9'>예약이 없습니다</td></tr>");
 					}
 				}
 			})
@@ -751,7 +751,7 @@ div#updatePageBlack #updateCommit{
 						$("#searchTable").append(str);
 					}
 				}else{
-					$("table#searchTable").append("<tr><td colspan='10'>예약이 하나도없네요ㅋㅋㅋㅋ</td></tr>");
+					$("table#searchTable").append("<tr><td colspan='10'>예약이 없습니다</td></tr>");
 				}
             }
         });
